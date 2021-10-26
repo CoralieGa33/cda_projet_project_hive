@@ -4,18 +4,18 @@ USE cda_projet_trello_like;
 
 CREATE TABLE user (
     user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
+    email VARCHAR (255) NOT NULL UNIQUE,
+    username VARCHAR (255) NOT NULL,
+    password VARCHAR (255) NOT NULL,
+    role VARCHAR (255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
 CREATE TABLE board (
     board_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    color VARCHAR(255),
+    title VARCHAR (255) NOT NULL,
+    color VARCHAR (255),
     owner_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
@@ -30,12 +30,11 @@ CREATE TABLE user_board (
     FOREIGN KEY (board_id) REFERENCES board(board_id)
 );
 
-
 CREATE TABLE list (
     list_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    color VARCHAR(255),
-    order INT NOT NULL,
+    title VARCHAR (255) NOT NULL,
+    color VARCHAR (255),
+    order_nb INT NOT NULL,
     board_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
@@ -44,9 +43,9 @@ CREATE TABLE list (
 
 CREATE TABLE card (
     card_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    content VARCHAR(255) NOT NULL,
-    order INT NOT NULL,
+    title VARCHAR (255) NOT NULL,
+    content VARCHAR (255) NOT NULL,
+    order_nb INT NOT NULL,
     list_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
