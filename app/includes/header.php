@@ -1,5 +1,5 @@
 <?php
-    require 'includes/config.php';
+    require '../config/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +28,11 @@
                     <?php
                     } else {
                         ?>
-                        <a href="" class="btn header-signup">S'inscrire</a>
+                        <a href="?route=signup" class="btn header-signup">S'inscrire</a>
                         <a href="" type="button" class="btn header-signin">Se connecter</a>
                     <?php
                     }
                 ?>
             </div>
     </header>
-</div>
+

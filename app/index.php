@@ -1,10 +1,10 @@
 <?php
-    require 'includes/header.php';
-?>  
+require_once "../config/Autoloader.php";
 
-<!-- Code ici -->
+use App\config\Autoloader;
+Autoloader::register();
 
-<!-- -------- -->
-<?php
-    require 'includes/footer.php';
-?>
+use App\config\Router;
+
+$router = new Router();
+$router->run();
