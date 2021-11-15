@@ -11,7 +11,7 @@ class Router {
 
     public function __construct()
     {
-     $this->userController = new UserController() ;   
+        $this->userController = new UserController() ;   
     }
     public function Run() {
         if(isset($_GET['route'])) {

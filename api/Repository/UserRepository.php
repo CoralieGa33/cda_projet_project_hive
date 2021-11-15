@@ -56,18 +56,23 @@ class UserRepository extends ManagerRepository
                                 header('Location: ?');
                             } else {
                                 $this->errorMessage('Les mots de passes sont différents.');
+                                header('Location: ?route=signup');
                             }
                         } else {
                             $this->errorMessage('Le mot de passe doit faire 6 caractères au minimum.');
+                            header('Location: ?route=signup');
                         }
                     } else {
                         $this->errorMessage('Ce pseudo est déjà utilisé.');
+                        header('Location: ?route=signup');
                     }
                 }else {
-                    $this->errorMessage('Cet email est incorrect ou existe déjà.'); 
+                    $this->errorMessage('Cet email est incorrect ou existe déjà.');
+                    header('Location: ?route=signup'); 
                 }
             }  else {
                 $this->errorMessage('Certains champs sont vides.');
+                header('Location: ?route=signup');
             }
             unset($_POST);
 
