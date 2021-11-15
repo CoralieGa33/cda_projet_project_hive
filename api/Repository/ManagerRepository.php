@@ -14,7 +14,7 @@ class ManagerRepository
             $database = new PDO(DB_HOST, DB_USER, DB_PASS);
             $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->connection = $database;
-
+            session_start();
             return $this->connection;
 
         } catch (Exception $e) {

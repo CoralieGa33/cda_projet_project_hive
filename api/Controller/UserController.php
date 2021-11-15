@@ -2,7 +2,7 @@
 
 namespace App\api\Controller;
 
-use App\src\Repository\UserRepository;
+use App\api\Repository\UserRepository;
 
 
 class UserController
@@ -17,8 +17,7 @@ class UserController
     public function addUser($user)
     {
         if (isset($user['submit'])) {
-            $this->UserRepository->addUser($user);
-            header('Location: ?');
+            $this->userRepository->addUser($user);
         }
 
         require "../app/templates/signup.php";
