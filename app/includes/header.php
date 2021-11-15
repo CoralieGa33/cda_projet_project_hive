@@ -14,7 +14,7 @@
 <div class="container">
     <header class="header">
         <div class="header-logo">
-            <img src="images/logo.jpg" alt="Logo Project Hive">
+            <a href="?"><img src="images/logo.jpg" alt="Logo Project Hive"></a>
         </div>
         <div class="header-navigation">
                 <?php
