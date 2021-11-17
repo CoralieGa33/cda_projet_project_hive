@@ -26,7 +26,7 @@
                     } else {
                         ?>
                         <a href="?route=signup" class="btn header-signup">S'inscrire</a>
-                        <a href="" type="button" class="btn header-signin">Se connecter</a>
+                        <a href="?route=signin" type="button" class="btn header-signin">Se connecter</a>
                     <?php
                     }
                 ?>

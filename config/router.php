@@ -17,10 +17,12 @@ class Router {
         if(isset($_GET['route'])) {
             // rediriger vers la bonne page
             if($_GET['route'] === 'signup') {
-                require "../app/templates/signup.php";
-            } elseif ($_GET['route'] === 'addUser') {
-                $this->userController->addUSer($_POST);
-            } 
+                //require "../app/templates/signup.php";
+                $this->userController->signup($_POST);
+            }
+            elseif($_GET['route'] === 'signin') {
+                $this->userController->signin($_POST);
+            }
         }else {
             require "../app/templates/home.php";
         }

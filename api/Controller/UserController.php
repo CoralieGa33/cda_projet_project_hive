@@ -14,7 +14,7 @@ class UserController
         $this->userRepository = new UserRepository();
     }
 
-    public function addUser($user)
+    public function signup($user)
     {
         if (isset($user['submit'])) {
             $this->userRepository->addUser($user);
@@ -23,6 +23,12 @@ class UserController
         require "../app/templates/signup.php";
     }
 
-    
+    public function signin()
+    {     
+        if (isset($user['submit'])) {
+            $this->userRepository->connectUser($user);
+        }
 
+        require "../app/templates/signin.php";  
+    }
 }

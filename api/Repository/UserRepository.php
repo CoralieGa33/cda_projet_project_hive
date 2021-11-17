@@ -25,8 +25,6 @@ class UserRepository extends ManagerRepository
     public function addUser($user)
     {
         if(!empty($_POST)) {
-            // var_dump($_POST);
-            
             // Si tous les champs ont été remplis
             //if (!in_array('', $_POST)) {
             if(isset($_POST['email']) && isset($_POST['username']) && ($_POST['password']) && ($_POST['password2'])){ 
@@ -49,7 +47,7 @@ class UserRepository extends ManagerRepository
                         if(strlen($password) > 6) {
                             if ($password === $password2) {
                                 $password = password_hash($password, PASSWORD_DEFAULT);// par défaut, meilleur encodeur actuel
-                                // Requête préparée avec vérrouillage des valeurs dans des variables
+                                // Requête préparée avec verrouillage des valeurs dans des variables
                                 $sql = 'INSERT INTO user (email, username, password, role, created_at, updated_at) VALUES (?, ?, ?, "registered", NOW(), NOW())';
                                 $this->createQuery($sql, [$email, $username, $password]);//createQuery dans ManagerRepository
                                 echo '<div class="alert alert-success" role="alert">Enregistrement effectué</div>';
@@ -75,7 +73,53 @@ class UserRepository extends ManagerRepository
                 header('Location: ?route=signup');
             }
             unset($_POST);
-
+        }
+    }
+    
+    public function connectUser($user)
+    {
+        //! Si le bouton submit a été cliqué
+        if (!empty($_POST)) {
+            //! Si tous les champs ont été remplis
+            if (!in_array('', $_POST)) {
+                //! Assainissement des variables
+                $email = htmlspecialchars($_POST['email']);
+                $password = htmlspecialchars($_POST['password']);
+                
+                //! Début de la requête de vérification de l'email
+                //? Requete SQL pour récupérer la ligne qui correspond à l'email
+                $getRowByEmail = "SELECT * FROM user WHERE email = '{$email}'";
+                
+                //? Lancement de ma requête
+                $getUser = $this->createQuery($getRowByEmail);
+                
+                //? Si ma requête a pu être effectuée, alors crée une variable $userInfos avec les infos
+                if ($userInfos = $getUser->fetch()) {
+                    if (password_verify($password, $userInfos['password'])) {
+                        $_SESSION['id'] = $userInfos['id'];
+                        $_SESSION['username'] = $userInfos['username'];
+                        $_SESSION['email'] = $userInfos['email'];
+                        $_SESSION['token'] = uniqid(rand(),true); //pour vérifier que c'est bien le bon utilisateur
+                        
+                        header('Location: ?');
+                    } else {
+                        $this->errorMessage('Vérifiez votre mot de passe.');
+                        header('Location: ?route=signin');
+                    }
+                } else {
+                    $this->errorMessage('Votre email n\'est pas valide.');
+                    header('Location: ?route=signin');
+                }
+            } else {
+                //? Oubli des else pour les messages d'erreur
+                $this->errorMessage('Veuillez renseigner tous les champs.');
+                header('Location: ?route=signin');
+            }
+        unset($_POST);
+        } else {
+            //? Oubli des else pour les messages d'erreur
+            $this->errorMessage('Veuillez renseigner tous les champs.');
+            header('Location: ?route=signin');
         }
     }
 
