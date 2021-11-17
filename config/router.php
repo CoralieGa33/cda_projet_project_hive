@@ -14,16 +14,23 @@ class Router {
         $this->userController = new UserController() ;   
     }
     public function Run() {
-        if(isset($_GET['route'])) {
-            // rediriger vers la bonne page
-            if($_GET['route'] === 'signup') {
-                //require "../app/templates/signup.php";
+        if($_GET) {
+            if (isset($_GET['signup'])) {
                 $this->userController->signup($_POST);
             }
-            elseif($_GET['route'] === 'signin') {
+            elseif (isset($_GET['signin'])) {
                 $this->userController->signin($_POST);
             }
-        }else {
+            elseif (isset($_GET['logout'])) {
+                session_start();
+                session_destroy();
+                header('Location: ?');
+            }
+            else {
+                echo "404 : PAGE NOT FOUND";
+            }
+        }
+        else {
             require "../app/templates/home.php";
         }
     }

@@ -18,6 +18,7 @@
         </div>
         <div class="header-navigation">
                 <?php
+                    session_start();
                     if (!empty($_SESSION)) {
                     ?>
                         <a href="" class="header-user"><i class="fas fa-user-circle"></i></a>
@@ -25,8 +26,8 @@
                     <?php
                     } else {
                         ?>
-                        <a href="?route=signup" class="btn header-signup">S'inscrire</a>
-                        <a href="?route=signin" type="button" class="btn header-signin">Se connecter</a>
+                        <a href="?signup" class="btn header-signup">S'inscrire</a>
+                        <a href="?signin" type="button" class="btn header-signin">Se connecter</a>
                     <?php
                     }
                 ?>

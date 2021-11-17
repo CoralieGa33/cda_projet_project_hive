@@ -54,23 +54,23 @@ class UserRepository extends ManagerRepository
                                 header('Location: ?');
                             } else {
                                 $this->errorMessage('Les mots de passes sont différents.');
-                                header('Location: ?route=signup');
+                                header('Location: ?signup');
                             }
                         } else {
                             $this->errorMessage('Le mot de passe doit faire 6 caractères au minimum.');
-                            header('Location: ?route=signup');
+                            header('Location: ?signup');
                         }
                     } else {
                         $this->errorMessage('Ce pseudo est déjà utilisé.');
-                        header('Location: ?route=signup');
+                        header('Location: ?signup');
                     }
                 }else {
                     $this->errorMessage('Cet email est incorrect ou existe déjà.');
-                    header('Location: ?route=signup'); 
+                    header('Location: ?signup'); 
                 }
             }  else {
                 $this->errorMessage('Certains champs sont vides.');
-                header('Location: ?route=signup');
+                header('Location: ?signup');
             }
             unset($_POST);
         }
@@ -95,31 +95,32 @@ class UserRepository extends ManagerRepository
                 
                 //? Si ma requête a pu être effectuée, alors crée une variable $userInfos avec les infos
                 if ($userInfos = $getUser->fetch()) {
-                    if (password_verify($password, $userInfos['password'])) {
-                        $_SESSION['id'] = $userInfos['id'];
-                        $_SESSION['username'] = $userInfos['username'];
-                        $_SESSION['email'] = $userInfos['email'];
+                    if (password_verify($password, $userInfos->password)) {
+                        session_start();
+                        $_SESSION['user_id'] = $userInfos->user_id;
+                        $_SESSION['username'] = $userInfos->username;
+                        $_SESSION['email'] = $userInfos->email;
                         $_SESSION['token'] = uniqid(rand(),true); //pour vérifier que c'est bien le bon utilisateur
-                        
+
                         header('Location: ?');
                     } else {
                         $this->errorMessage('Vérifiez votre mot de passe.');
-                        header('Location: ?route=signin');
+                        header('Location: ?signin');
                     }
                 } else {
                     $this->errorMessage('Votre email n\'est pas valide.');
-                    header('Location: ?route=signin');
+                    header('Location: ?signin');
                 }
             } else {
                 //? Oubli des else pour les messages d'erreur
                 $this->errorMessage('Veuillez renseigner tous les champs.');
-                header('Location: ?route=signin');
+                header('Location: ?signin');
             }
         unset($_POST);
         } else {
             //? Oubli des else pour les messages d'erreur
             $this->errorMessage('Veuillez renseigner tous les champs.');
-            header('Location: ?route=signin');
+            header('Location: ?signin');
         }
     }
 

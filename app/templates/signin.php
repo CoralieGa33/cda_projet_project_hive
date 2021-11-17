@@ -7,7 +7,7 @@ if(isset($_COOKIE['ERROR_MESSAGE'])) {
     echo "<p style='color:red'>". $_COOKIE['ERROR_MESSAGE'] . "</p>";
 }
 ?>
-    <form method="post" action="?route=connectUser">
+    <form method="post" action="?signin">
         <div class="signup-input">
             <label for="email" class="signup-label">Email</label>
             <input type="text" name="email" placeholder="email@email.com">

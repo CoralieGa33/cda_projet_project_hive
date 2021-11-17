@@ -23,7 +23,7 @@ class UserController
         require "../app/templates/signup.php";
     }
 
-    public function signin()
+    public function signin($user)
     {     
         if (isset($user['submit'])) {
             $this->userRepository->connectUser($user);
