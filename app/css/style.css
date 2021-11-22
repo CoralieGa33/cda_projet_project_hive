@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  background-color: #e7e8e8;
+}
+
+.header-logo {
+  width: 5rem;
+}
+
+.header-logo img {
+  width: 100%;
+}
+
+.header-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header-navigation .btn {
+  background-color: #4b1cfd;
+  color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
+/*# sourceMappingURL=style.css.map */

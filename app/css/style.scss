@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap');
+// font-family: 'Poppins', sans-serif;
+// font-family: 'Solway', serif;
+
+// colors :
+$base-color: #4b1cfd;
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+.header{
+    display:flex;
+    justify-content:space-between;
+    padding: 1rem;
+    background-color:#e7e8e8;
+    
+
+    &-logo{
+        width: 5rem;
+
+        img{
+            width: 100%;
+        }
+    }
+
+    &-navigation{
+        display: flex;
+        align-items: center;
+        .btn{
+            background-color: $base-color;
+            color:white;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            margin-left: 1rem;
+        }
+    }
+}
