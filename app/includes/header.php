@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +17,9 @@
         </div>
         <div class="header-navigation">
                 <?php
-                    session_start();
                     if (!empty($_SESSION)) {
                     ?>
-                        <a href="" class="header-user"><i class="fas fa-user-circle"></i></a>
+                        <a href="?profile" class="header-user"><i class="fas fa-user-circle"></i></a>
                         <a href="?logout" class="btn header-logout">Se déconnecter</a>
                     <?php
                     } else {

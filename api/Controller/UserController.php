@@ -3,9 +3,9 @@
 namespace App\api\Controller;
 
 use App\api\Repository\UserRepository;
+use App\api\Controller\AbstractController;
 
-
-class UserController
+class UserController extends AbstractController
 {
     private $UserRepository;
 
@@ -30,5 +30,14 @@ class UserController
         }
 
         require "../app/templates/signin.php";  
+    }
+    
+    public function profile($id)
+    {
+        $user = $this->userRepository->profile($id);
+
+        $this->render("profile", [
+            'user' => $user
+        ]);
     }
 }
