@@ -14,6 +14,7 @@ class Router {
         $this->userController = new UserController() ;   
     }
     public function Run() {
+        session_start();
         if($_GET) {
             if (isset($_GET['signup'])) {
                 $this->userController->signup($_POST);
@@ -21,8 +22,10 @@ class Router {
             elseif (isset($_GET['signin'])) {
                 $this->userController->signin($_POST);
             }
+            elseif (isset($_GET['profile'])) {
+                $this->userController->profile($_SESSION["user_id"]);
+            }
             elseif (isset($_GET['logout'])) {
-                session_start();
                 session_destroy();
                 header('Location: ?');
             }

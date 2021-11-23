@@ -96,7 +96,6 @@ class UserRepository extends ManagerRepository
                 //? Si ma requête a pu être effectuée, alors crée une variable $userInfos avec les infos
                 if ($userInfos = $getUser->fetch()) {
                     if (password_verify($password, $userInfos->password)) {
-                        session_start();
                         $_SESSION['user_id'] = $userInfos->user_id;
                         $_SESSION['username'] = $userInfos->username;
                         $_SESSION['email'] = $userInfos->email;
@@ -122,6 +121,15 @@ class UserRepository extends ManagerRepository
             $this->errorMessage('Veuillez renseigner tous les champs.');
             header('Location: ?signin');
         }
+    }
+
+    public function profile($user_id) {
+        $sql = "SELECT * FROM user WHERE user_id = ?";
+        $result = $this->createQuery($sql, [$user_id]);
+        $row = $result->fetch();
+        $user = $this->buildObject($row);
+
+        return $user;
     }
 
     public function errorMessage($error){ //$error = phrase d'erreur

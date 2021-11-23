@@ -10,7 +10,7 @@ if(isset($_COOKIE['ERROR_MESSAGE'])) {
     <form method="post" action="?signin">
         <div class="signup-input">
             <label for="email" class="signup-label">Email</label>
-            <input type="text" name="email" placeholder="email@email.com">
+            <input type="email" name="email" placeholder="email@email.com">
         </div>
         
         <div class="signup-input">

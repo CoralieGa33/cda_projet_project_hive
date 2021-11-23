@@ -51,7 +51,7 @@ class User
     /**
     * Get the value of username
     */ 
-    public function getUsername($username)
+    public function getUsername()
     {
         return $this->username;
     }
