@@ -32,12 +32,29 @@ class UserController extends AbstractController
         require "../app/templates/signin.php";  
     }
     
-    public function profile($id)
+    public function profile($id, $post)
     {
-        $user = $this->userRepository->profile($id);
+        if(isset($post['submit'])) {
+            var_dump($post);
+            die();
+            $this->userRepository->editUser($id);
+        }
+
+        $user = $this->userRepository->findUser($id);
 
         $this->render("profile", [
             'user' => $user
         ]);
+    }
+
+    public function editpass($id, $post)
+    {
+        if(isset($post['submit'])) {
+            var_dump($post);
+            die();
+            $this->userRepository->editpass($id);
+        }
+
+        $this->render("editpass");
     }
 }

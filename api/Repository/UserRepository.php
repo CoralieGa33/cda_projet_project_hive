@@ -123,13 +123,37 @@ class UserRepository extends ManagerRepository
         }
     }
 
-    public function profile($user_id) {
+    public function findUser($user_id) {
         $sql = "SELECT * FROM user WHERE user_id = ?";
         $result = $this->createQuery($sql, [$user_id]);
         $row = $result->fetch();
         $user = $this->buildObject($row);
 
         return $user;
+    }
+
+    public function editUser($id, $post) {
+        if (!empty($post)) {
+            if (!in_array('', $post)) {
+                // verif inputs
+                // prepare request
+                // query
+                // message
+                // redirection
+            }
+        }
+    }
+
+    public function editpass($id, $post) {
+        if (!empty($post)) {
+            if (!in_array('', $post)) {
+                // verif inputs
+                // prepare request
+                // query
+                // message
+                // redirection
+            }
+        }
     }
 
     public function errorMessage($error){ //$error = phrase d'erreur
