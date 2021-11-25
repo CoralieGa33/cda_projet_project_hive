@@ -33,8 +33,9 @@ CREATE TABLE board (
 
 CREATE TABLE user_board (
     user_boardId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
     board_id INT NOT NULL,
+    user_id INT NOT NULL,
+    userRole VARCHAR (255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(userId),
     FOREIGN KEY (board_id) REFERENCES board(boardId)
 );
