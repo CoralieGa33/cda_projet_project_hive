@@ -7,7 +7,7 @@ use App\api\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
-    private $UserRepository;
+    private $userRepository;
 
     public function __construct()
     {
@@ -37,7 +37,7 @@ class UserController extends AbstractController
         if(isset($post['submit'])) {
             var_dump($post);
             die();
-            $this->userRepository->editUser($id);
+            $this->userRepository->editUser($id, $post);
         }
 
         $user = $this->userRepository->findUser($id);
@@ -52,7 +52,7 @@ class UserController extends AbstractController
         if(isset($post['submit'])) {
             var_dump($post);
             die();
-            $this->userRepository->editpass($id);
+            $this->userRepository->editpass($id, $post);
         }
 
         $this->render("editpass");
