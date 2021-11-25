@@ -24,20 +24,46 @@ class UserController extends AbstractController
     }
 
     public function signin($user)
-    {     
+    {
         if (isset($user['submit'])) {
             $this->userRepository->connectUser($user);
         }
 
-        require "../app/templates/signin.php";  
+        require "../app/templates/signin.php";
     }
-    
-    public function profile($id)
+
+    public function profile($user_id)
     {
-        $user = $this->userRepository->profile($id);
+        $userData = $this->userRepository->profile($user_id); 
+        $this->render("profile", [
+            'userData' => $userData,
+        ]);
+    }
+ 
+    public function profile($id, $post)
+    {
+        if(isset($post['submit'])) {
+            var_dump($post);
+            die();
+            $this->userRepository->editUser($id);
+        }
+
+        $user = $this->userRepository->findUser($id);
 
         $this->render("profile", [
             'user' => $user
         ]);
     }
+
+    public function editpass($id, $post)
+    {
+        if(isset($post['submit'])) {
+            var_dump($post);
+            die();
+            $this->userRepository->editpass($id);
+        }
+
+        $this->render("editpass");
+    }
 }
+
