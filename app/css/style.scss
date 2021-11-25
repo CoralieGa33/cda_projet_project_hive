@@ -105,7 +105,8 @@ a {
             margin:1rem 0.5rem;
         }
         //je n'ai pas réussi à l'imbriquer donc je l'ai isolé des autres btn
-        .header-logout{ text-align: center;
+        .header-logout{ 
+            text-align: center;
             background-color: #4b1cfd;
             color:white;
             border-radius: 5px;
@@ -164,5 +165,28 @@ a {
         /*color: $base-color;*/
     }
 
+}
 
+/* Paragraphes en bleu par défaut */
+p
+{
+    color: blue;
+}
+
+/* Media queries pour le footer et le header */
+@media screen and (max-device-width: 480px)
+{
+  .header, .footer{
+    .btn
+      {
+      font-size: 0.5rem;
+      }
+    }
+
+  footer{
+    .nav
+    {
+      font-size:3 rem;
+    }
+  }
 }

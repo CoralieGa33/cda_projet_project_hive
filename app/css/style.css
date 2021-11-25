@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap");
 .col {
@@ -175,5 +176,20 @@ a:visited {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   /*color: $base-color;*/
+}
+
+/* Paragraphes en bleu par défaut */
+p {
+  color: blue;
+}
+
+/* Media queries pour le footer et le header */
+@media screen and (max-device-width: 480px) {
+  .header .btn, .footer .btn {
+    font-size: 0.5rem;
+  }
+  footer .nav {
+    font-size: 3 rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

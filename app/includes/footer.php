@@ -11,7 +11,7 @@
         <div class="nav legal">
             <a href="">Mentions légales</a>
         </div>
-        <div class="nav GDRP">
+        <div class="nav traitement des données">
             <a href="">RGPD</a>
         </div>
     <!-- </div> -->
