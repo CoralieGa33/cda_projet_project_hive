@@ -23,10 +23,10 @@ class Router {
                 $this->userController->signin($_POST);
             }
             elseif (isset($_GET['profile'])) {
-                $this->userController->profile($_SESSION["user_id"], $_POST);
+                $this->userController->profile($_SESSION["userId"], $_POST);
             }
             elseif (isset($_GET['editpass'])) {
-                $this->userController->editpass($_SESSION["user_id"], $_POST);
+                $this->userController->editpass($_SESSION["userId"], $_POST);
             }
             elseif (isset($_GET['logout'])) {
                 session_destroy();

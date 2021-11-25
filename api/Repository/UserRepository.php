@@ -12,13 +12,13 @@ class UserRepository extends ManagerRepository
     {
         $user = new User();
         $user
-            ->setUser_id($row->user_id)
+            ->setUserId($row->userId)
             ->setEmail($row->email)
             ->setUsername($row->username)
             ->setPassword($row->password)
             ->setRole($row->role)
-            ->setCreated_at($row->created_at)
-            ->setUpdated_at($row->updated_at);
+            ->setCreatedAt($row->createdAt)
+            ->setUpdatedAt($row->updatedAt);
         return $user;
     }
 
@@ -48,7 +48,7 @@ class UserRepository extends ManagerRepository
                             if ($password === $password2) {
                                 $password = password_hash($password, PASSWORD_DEFAULT);// par défaut, meilleur encodeur actuel
                                 // Requête préparée avec verrouillage des valeurs dans des variables
-                                $sql = 'INSERT INTO user (email, username, password, role, created_at, updated_at) VALUES (?, ?, ?, "registered", NOW(), NOW())';
+                                $sql = 'INSERT INTO user (email, username, password, role, createdAt, updatedAt) VALUES (?, ?, ?, "registered", NOW(), NOW())';
                                 $this->createQuery($sql, [$email, $username, $password]);//createQuery dans ManagerRepository
                                 echo '<div class="alert alert-success" role="alert">Enregistrement effectué</div>';
                                 header('Location: ?');
@@ -96,10 +96,10 @@ class UserRepository extends ManagerRepository
                 //? Si ma requête a pu être effectuée, alors crée une variable $userInfos avec les infos
                 if ($userInfos = $getUser->fetch()) {
                     if (password_verify($password, $userInfos->password)) {
-                        $_SESSION['user_id'] = $userInfos->user_id;
+                        $_SESSION['userId'] = $userInfos->userId;
                         $_SESSION['username'] = $userInfos->username;
                         $_SESSION['email'] = $userInfos->email;
-                        $_SESSION['token'] = uniqid(rand(),true); //pour vérifier que c'est bien le bon utilisateur
+                        // $_SESSION['token'] = uniqid(rand(),true); //pour vérifier que c'est bien le bon utilisateur
 
                         header('Location: ?');
                     } else {
@@ -123,9 +123,9 @@ class UserRepository extends ManagerRepository
         }
     }
 
-    public function findUser($user_id) {
-        $sql = "SELECT * FROM user WHERE user_id = ?";
-        $result = $this->createQuery($sql, [$user_id]);
+    public function findUser($userId) {
+        $sql = "SELECT * FROM user WHERE userId = ?";
+        $result = $this->createQuery($sql, [$userId]);
         $row = $result->fetch();
         $user = $this->buildObject($row);
 
@@ -167,9 +167,9 @@ class UserRepository extends ManagerRepository
             ]
         );
 }
-        public function profile ($user_id){
-            $sql = "SELECT * FROM user WHERE user_id = ?";
-            $result = $this->createQuery($sql, [$user_id]);
+        public function profile ($userId){
+            $sql = "SELECT * FROM user WHERE userId = ?";
+            $result = $this->createQuery($sql, [$userId]);
             $row = $result->fetch();
             $user = $this->buildObject($row);
 

@@ -251,6 +251,7 @@ a {
   font-size: 9px;
   line-height: 1.3rem;
   text-align: center;
+  letter-spacing: 0;
 }
 
 .accueil .desc {
