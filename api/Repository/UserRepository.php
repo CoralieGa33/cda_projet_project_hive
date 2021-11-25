@@ -166,5 +166,15 @@ class UserRepository extends ManagerRepository
                 'httponly' => true,
             ]
         );
-    }
 }
+        public function profile ($user_id){
+            $sql = "SELECT * FROM user WHERE user_id = ?";
+            $result = $this->createQuery($sql, [$user_id]);
+            $row = $result->fetch();
+            $user = $this->buildObject($row);
+
+            return $user;
+        }
+    
+    }
+

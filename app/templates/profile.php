@@ -23,3 +23,4 @@
         <a href="?editpass" class="profile-link" data-link-alt="C'est par là !"><span>Pour modifier votre mot de passe</span></a>
     </form>
 </div>
+

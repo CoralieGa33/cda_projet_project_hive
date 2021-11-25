@@ -24,14 +24,22 @@ class UserController extends AbstractController
     }
 
     public function signin($user)
-    {     
+    {
         if (isset($user['submit'])) {
             $this->userRepository->connectUser($user);
         }
 
-        require "../app/templates/signin.php";  
+        require "../app/templates/signin.php";
     }
-    
+
+    public function profile($user_id)
+    {
+        $userData = $this->userRepository->profile($user_id); 
+        $this->render("profile", [
+            'userData' => $userData,
+        ]);
+    }
+ 
     public function profile($id, $post)
     {
         if(isset($post['submit'])) {
@@ -58,3 +66,4 @@ class UserController extends AbstractController
         $this->render("editpass");
     }
 }
+

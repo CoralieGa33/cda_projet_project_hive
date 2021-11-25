@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/445a650e5b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
     <title>Project Hive</title>
 </head>
 <body>
