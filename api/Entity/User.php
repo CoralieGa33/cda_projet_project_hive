@@ -4,29 +4,29 @@ namespace App\api\Entity;
 	
 class User
 {
-    private $user_id;
+    private $userId;
     private $email;
     private $username;
     private $password;
     private $role;
-    private $created_at;
-    private $updated_at;
+    private $createdAt;
+    private $updatedAt;
 
     /**
-     * Get the value of user_id
+     * Get the value of userId
      */ 
-    public function getUser_id()
+    public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
     /**
-     * Set the value of user_id
+     * Set the value of userId
      *
      * @return  self
      */ 
-    public function setUser_id($user_id)
+    public function setUserId($userId)
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
         return $this;
     }
     
@@ -103,38 +103,38 @@ class User
     }
 
     /**
-     * Get the value of created_at
+     * Get the value of createdAt
      */ 
-    public function getCreated_at()
+    public function getCreatedAt()
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
     /**
-     * Set the value of created_at
+     * Set the value of createdAt
      *
      * @return  self
      */ 
-    public function setCreated_at($Created_at)
+    public function setCreatedAt($createdAt)
     {
-        $this->created_at = $Created_at;
+        $this->createdAt = $createdAt;
         return $this;
     }
 
     /**
-     * Get the value of Created_at
+     * Get the value of updatedAt
      */ 
-    public function getUpdated_at()
+    public function getUpdatedAt()
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
     /**
-     * Set the value of updated_at
+     * Set the value of updatedAt
      *
      * @return  self
      */ 
-    public function setUpdated_at($updated_at)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }
