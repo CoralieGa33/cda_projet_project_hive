@@ -1,17 +1,11 @@
 <?php 
-
-require 'includes/header.php';
-
+    require_once "includes/header.php"
 ?>
 
-<div class="container">
+    <div class="container">
         <?= $content ?>
     </div>
 
-
-
-
-
 <?php 
-require 'includes/footer.php';
+    require_once "includes/footer.php"
 ?>

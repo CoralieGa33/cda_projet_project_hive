@@ -5,7 +5,6 @@ namespace App\api\Controller;
 class AbstractController
 {
     private $path;
-    private $title;
 
     public function render($template, $data = [])
     {
@@ -21,13 +20,16 @@ class AbstractController
 
     public function renderFile($path, $data)
     {
+
         if (file_exists($path)) {
             extract($data);
             ob_start();
             require_once $path;
             return ob_get_clean();
         } else {
-            header('Location: ?route=notFound');
+
+            header('Location: ?route=notfound');
         }
     }
 }
+

@@ -3,7 +3,7 @@
 namespace App\api\Controller;
 
 use App\api\Repository\UserRepository;
-
+use App\api\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
@@ -39,4 +39,31 @@ class UserController extends AbstractController
             'userData' => $userData,
         ]);
     }
+ 
+    public function profile($id, $post)
+    {
+        if(isset($post['submit'])) {
+            var_dump($post);
+            die();
+            $this->userRepository->editUser($id);
+        }
+
+        $user = $this->userRepository->findUser($id);
+
+        $this->render("profile", [
+            'user' => $user
+        ]);
+    }
+
+    public function editpass($id, $post)
+    {
+        if(isset($post['submit'])) {
+            var_dump($post);
+            die();
+            $this->userRepository->editpass($id);
+        }
+
+        $this->render("editpass");
+    }
 }
+
