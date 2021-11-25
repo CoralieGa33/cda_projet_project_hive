@@ -1,29 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap');
-// font-family: 'Poppins', sans-serif;
+// font-family: 'Poppins', sans-serif; //peut-être qu'on aurait pu l'appliquer sur tout le document ?
 // font-family: 'Solway', serif;
 
 // colors :
 $base-color: #4b1cfd;
+$sd-color: #6D0CCE;
+
+//pour les colonnes : 
+.col {
+    width: calc(90% / 4);
+  }
+  
+  .col-1 {
+    width: calc(100% / 12 * 1);
+  }
+  .col-2 {
+    width: calc(100% / 12 * 2);
+  }
+  .col-3 {
+    width: calc(100% / 12 * 3);
+  }
+  .col-4 {
+    width: calc(100% / 12 * 4);
+  }
+  .col-5 {
+    width: calc(100% / 12 * 5);
+  }
+  .col-6 {
+    width: calc(100% / 12 * 6);
+  }
+  .col-7 {
+    width: calc(100% / 12 * 7);
+  }
+  .col-8 {
+    width: calc(100% / 12 * 8);
+  }
+  .col-9 {
+    width: calc(100% / 12 * 9);
+  }
+  .col-10 {
+    width: calc(100% / 12 * 10);
+  }
+  .col-11 {
+    width: calc(100% / 12 * 11);
+  }
+  .col-12 {
+    width: calc(100% / 12 * 12);
+  }
 
 * {
     box-sizing: border-box;
 }
+
+//les éléments à styliser
+
 body {
     margin: 0;
+    letter-spacing: .1rem;
 }
+
 a {
     text-decoration: none;
+
+    &:visited{
+        color:$base-color;
+    }
 }
+
 .header{
     display:flex;
     justify-content:space-between;
-    padding: 1rem;
-    background-color:#e7e8e8;
-    
+    align-items: center;
+    padding : 0.1rem 1.2rem 0rem 1.2rem;
+    background-color:white;
+    font-family: 'Poppins', sans-serif;//j'ai testé les 2 et je préfère Poppins (du coup il faudrait l'appliquer sur tous les boutons par souci d'unformité
+    //font-family: 'Solway', serif;
+    border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
 
     &-logo{
-        width: 5rem;
+        width: 4rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.2;
 
         img{
             width: 100%;
@@ -33,12 +91,78 @@ a {
     &-navigation{
         display: flex;
         align-items: center;
+
         .btn{
-            background-color: $base-color;
+            text-align: center;
+            background-color: #4b1cfd;
             color:white;
-            padding: 0.7rem 1rem;
-            border-radius: 10px;
-            margin-left: 1rem;
+            border-radius: 5px;
+            border: none;
+            font-size:0.75rem;
+            padding: 0.5rem 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            display:block;
+            margin:1rem 0.5rem;
         }
+        //je n'ai pas réussi à l'imbriquer donc je l'ai isolé des autres btn
+        .header-logout{ text-align: center;
+            background-color: #4b1cfd;
+            color:white;
+            border-radius: 5px;
+            border: none;
+            font-size:0.75rem;
+            padding: 0.5rem 0.5rem;//c'est le seul champ qui diffère, ça fait bcp de code pour rien
+            font-family: 'Poppins', sans-serif;
+            display:block;
+            margin:1rem 0.5rem;
+            
+        }
+
+        .fas{
+            font-size:2.3rem;
+            margin-right:0.8rem;
+        }
+
     }
+
+    
+
+    
+}
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding : 0.2rem 2rem 0.1rem;
+    background-color:white;//#f0efff;
+    font-family: 'Poppins', sans-serif;//j'ai testé les 2 et je préfère Poppins (du coup il faudrait l'appliquer sur tous les boutons par souci d'unformité
+    //font-family: 'Solway', serif;
+    color:$base-color;
+    border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    
+
+   /* &-logo{
+        width: 3rem;
+
+        img{
+            width: 100%;
+        }
+    }*/
+
+    .nav{
+        font-size:0.7rem;
+    }
+ 
+    &-favicons{
+        display: flex;
+        justify-content: space-around;
+        /*color: $base-color;*/
+    }
+
+
 }
