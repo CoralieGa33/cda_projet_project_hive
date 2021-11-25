@@ -8,49 +8,52 @@
 // colors :
 $base-color: #4b1cfd;
 $sd-color: #6D0CCE;
+//$light-color: #FFFEFC;
+//$light-color: #FAFAFA;
+$light-color: #FBFBF9;
 
 
 //pour les colonnes : 
 .col {
     width: calc(90% / 4);
-  }
-  
-  .col-1 {
-    width: calc(100% / 12 * 1);
-  }
-  .col-2 {
-    width: calc(100% / 12 * 2);
-  }
-  .col-3 {
-    width: calc(100% / 12 * 3);
-  }
-  .col-4 {
-    width: calc(100% / 12 * 4);
-  }
-  .col-5 {
-    width: calc(100% / 12 * 5);
-  }
-  .col-6 {
-    width: calc(100% / 12 * 6);
-  }
-  .col-7 {
-    width: calc(100% / 12 * 7);
-  }
-  .col-8 {
-    width: calc(100% / 12 * 8);
-  }
-  .col-9 {
-    width: calc(100% / 12 * 9);
-  }
-  .col-10 {
-    width: calc(100% / 12 * 10);
-  }
-  .col-11 {
-    width: calc(100% / 12 * 11);
-  }
-  .col-12 {
-    width: calc(100% / 12 * 12);
-  }
+}
+
+.col-1 {
+width: calc(100% / 12 * 1);
+}
+.col-2 {
+width: calc(100% / 12 * 2);
+}
+.col-3 {
+width: calc(100% / 12 * 3);
+}
+.col-4 {
+width: calc(100% / 12 * 4);
+}
+.col-5 {
+width: calc(100% / 12 * 5);
+}
+.col-6 {
+width: calc(100% / 12 * 6);
+}
+.col-7 {
+width: calc(100% / 12 * 7);
+}
+.col-8 {
+width: calc(100% / 12 * 8);
+}
+.col-9 {
+width: calc(100% / 12 * 9);
+}
+.col-10 {
+width: calc(100% / 12 * 10);
+}
+.col-11 {
+width: calc(100% / 12 * 11);
+}
+.col-12 {
+width: calc(100% / 12 * 12);
+}
 
 
 * {
@@ -75,7 +78,7 @@ a {
     justify-content:space-between;
     align-items: center;
     padding : 0.1rem 1.2rem 0rem 1.2rem;
-    background-color:white;
+    background-color:$light-color;
     font-family: 'Poppins', sans-serif;//j'ai testé les 2 et je préfère Poppins (du coup il faudrait l'appliquer sur tous les boutons par souci d'unformité
     //font-family: 'Solway', serif;
     border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
@@ -124,6 +127,11 @@ a {
         .fas{
             font-size:2.3rem;
             margin-right:0.8rem;
+            color: $base-color;
+
+            &:visited {
+                color: $base-color;
+            }
         }
     }
 }
@@ -132,8 +140,8 @@ a {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding : 0.2rem 2rem 0.1rem;
-    background-color:white;//#f0efff;
+    padding : 0.5rem 10rem 0.5rem;
+    background-color:$light-color;//#f0efff;
     font-family: 'Poppins', sans-serif;//j'ai testé les 2 et je préfère Poppins (du coup il faudrait l'appliquer sur tous les boutons par souci d'unformité
     //font-family: 'Solway', serif;
     color:$base-color;
@@ -146,15 +154,15 @@ a {
     .nav{
         font-size:0.7rem;
     }
- 
+
     &-favicons{
         display: flex;
         justify-content: space-around;
         /*color: $base-color;*/
     }
-  
+
     a:visited{
-          color:$base-color;
+        color:$base-color;
     }
 }
 
@@ -166,7 +174,7 @@ a {
         font-family: 'Poppins', sans-serif;
     }
     .row-home{
-        background-color: #fff;
+        background-color: $light-color;
         text-align:center;
         margin-top: 5%;
         margin-left: 20%;
@@ -260,6 +268,7 @@ a {
         box-shadow: 0 0 5px $sd-color;
         border-radius: 10px;
         padding: 2rem;
+        background-color: $light-color;
     }
 
     &-title {
@@ -379,19 +388,22 @@ a {
 ------------------------ Media Queries ----------------------
 ------------------------------------------------------------*/
 /* Large devices (desktops, less than 1200px) */
-@media (max-width: 1199.98px) {
+@media (max-width: 1200px) {
     
 }
 /* Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) {
+@media (max-width: 992px) {
 
 }
 /* Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) {
-
+@media (max-width: 768px) {
+    .footer{
+        padding : 0.5rem 1rem 0.5rem;
+        text-align: center;
+    }
 }
 /* Small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
+@media (max-width: 576px) {
     .signup, .signin, .profile, .editpass {
         display: flex;
     
@@ -409,18 +421,16 @@ a {
 /* Media queries pour le footer et le header */
 @media screen and (max-device-width: 480px)
 {
-  .header, .footer{
-    .btn
-      {
-      font-size: 0.5rem;
-      }
+    .header, .footer{
+        .btn {
+        font-size: 0.5rem;
+        }
     }
 
-  footer{
-    .nav
-    {
-      font-size:3 rem;
+    footer{
+        .nav {
+        font-size:3 rem;
+        }
     }
-  }
 }
 

@@ -161,7 +161,7 @@ class UserRepository extends ManagerRepository
             'ERROR_MESSAGE',
             $error,
             [
-                'expires' => time() + 5,
+                'expires' => time() + 1,
                 'secure'  => true,
                 'httponly' => true,
             ]

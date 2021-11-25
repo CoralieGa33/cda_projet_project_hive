@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap");
 .col {
@@ -67,10 +66,6 @@ a {
   text-decoration: none;
 }
 
-a:visited {
-  color: #4b1cfd;
-}
-
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -82,7 +77,7 @@ a:visited {
       -ms-flex-align: center;
           align-items: center;
   padding: 0.1rem 1.2rem 0rem 1.2rem;
-  background-color: white;
+  background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
   border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
 }
@@ -135,6 +130,11 @@ a:visited {
 .header-navigation .fas {
   font-size: 2.3rem;
   margin-right: 0.8rem;
+  color: #4b1cfd;
+}
+
+.header-navigation .fas:visited {
+  color: #4b1cfd;
 }
 
 .footer {
@@ -147,8 +147,8 @@ a:visited {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.2rem 2rem 0.1rem;
-  background-color: white;
+  padding: 0.5rem 10rem 0.5rem;
+  background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
   color: #4b1cfd;
   border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
@@ -156,13 +156,6 @@ a:visited {
   bottom: 0;
   left: 0;
   right: 0;
-  /* &-logo{
-        width: 3rem;
-
-        img{
-            width: 100%;
-        }
-    }*/
 }
 
 .footer .nav {
@@ -178,28 +171,16 @@ a:visited {
   /*color: $base-color;*/
 }
 
-/* Paragraphes en bleu par défaut */
-p {
-  color: blue;
+.footer a:visited {
+  color: #4b1cfd;
 }
 
-/* Media queries pour le footer et le header */
-@media screen and (max-device-width: 480px) {
-  .header .btn, .footer .btn {
-    font-size: 0.5rem;
-  }
-  footer .nav {
-    font-size: 3 rem;
-  }
-}
-
-////////////////////// chloe_css
 .accueil p {
   font-family: 'Poppins', sans-serif;
 }
 
 .accueil .row-home {
-  background-color: #fff;
+  background-color: #FBFBF9;
   text-align: center;
   margin-top: 5%;
   margin-left: 20%;
@@ -259,7 +240,7 @@ p {
   font-family: 'Solway', serif;
   text-align: center;
   letter-spacing: .1rem;
-  text-shadow: -1px -1px 1px #4b1cfd70,  2px 2px 1px #4b1cfd25;
+  text-shadow: -1px -1px 1px #4b1cfd70,  2px 2px 1px #4b1cfd25;
   font-weight: bold;
 }
 
@@ -290,10 +271,8 @@ p {
   left: 0;
   right: 0;
   z-index: -100;
+}
 
-  /////////////////////////////////
-  ////////////////////Coralie css
-  
 .signup, .signin, .profile, .editpass {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -306,6 +285,7 @@ p {
           box-shadow: 0 0 5px #6D0CCE;
   border-radius: 10px;
   padding: 2rem;
+  background-color: #FBFBF9;
 }
 
 .signup-title, .signin-title, .profile-title, .editpass-title {
@@ -430,8 +410,15 @@ p {
 /* Large devices (desktops, less than 1200px) */
 /* Medium devices (tablets, less than 992px) */
 /* Small devices (landscape phones, less than 768px) */
+@media (max-width: 768px) {
+  .footer {
+    padding: 0.5rem 1rem 0.5rem;
+    text-align: center;
+  }
+}
+
 /* Small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
+@media (max-width: 576px) {
   .signup, .signin, .profile, .editpass {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -444,9 +431,15 @@ p {
     width: 100%;
     margin: 0 auto 1rem;
   }
+}
 
-  
-  /////////////////////////////////////////////
-  
+/* Media queries pour le footer et le header */
+@media screen and (max-device-width: 480px) {
+  .header .btn, .footer .btn {
+    font-size: 0.5rem;
+  }
+  footer .nav {
+    font-size: 3 rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */
