@@ -175,6 +175,12 @@ a {
   color: #4b1cfd;
 }
 
+.accueil {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .accueil p {
   font-family: 'Poppins', sans-serif;
 }
@@ -182,10 +188,7 @@ a {
 .accueil .row-home {
   background-color: #FBFBF9;
   text-align: center;
-  margin-top: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 1%;
+  margin: 5rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -215,6 +218,10 @@ a {
   text-align: start;
 }
 
+.accueil #btn-accueil {
+  width: 7rem;
+}
+
 .accueil .preview {
   width: 50%;
   display: -webkit-box;
@@ -240,7 +247,7 @@ a {
   font-family: 'Solway', serif;
   text-align: center;
   letter-spacing: .1rem;
-  text-shadow: -1px -1px 1px #4b1cfd70,  2px 2px 1px #4b1cfd25;
+  text-shadow: -1px -1px 1px #4b1cfd70,  2px 2px 1px #4b1cfd25;
   font-weight: bold;
 }
 
@@ -248,7 +255,7 @@ a {
   font-family: 'Poppins', sans-serif;
   color: grey;
   margin-top: 1%;
-  font-size: 9px;
+  font-size: 8px;
   line-height: 1.3rem;
   text-align: center;
   letter-spacing: 0;
@@ -409,12 +416,30 @@ a {
 ------------------------ Media Queries ----------------------
 ------------------------------------------------------------*/
 /* Large devices (desktops, less than 1200px) */
-/* Medium devices (tablets, less than 992px) */
+/* Medium devices (tablets, less than 1024px) */
+@media (max-width: 1024px) {
+  .accueil .row-home {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .accueil .text, .accueil .preview {
+    width: 100%;
+  }
+}
+
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 768px) {
   .footer {
     padding: 0.5rem 1rem 0.5rem;
     text-align: center;
+  }
+  .accueil .row-home {
+    width: 90%;
   }
 }
 

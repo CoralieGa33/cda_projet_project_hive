@@ -136,26 +136,129 @@ class UserRepository extends ManagerRepository
         if (!empty($post)) {
             if (!in_array('', $post)) {
                 // verif inputs
-                // prepare request
-                // query
-                // message
-                // redirection
+                $newEmail = htmlspecialchars($post['email']);
+                $validEmail = htmlspecialchars($post['email']);
+                $newUsername = htmlspecialchars($post['username']);
+                $validUsername = htmlspecialchars($post['username']);
+                $password = htmlspecialchars($post['password']);
+
+                $verifMail = "SELECT * FROM user WHERE email = '{$newEmail}'";
+                $verifUsername = "SELECT * FROM user WHERE username = '{$newUsername}'";
+
+                //Chloé's sauce
+                //! Début de la requête de vérification de l'email
+                // 1. je vérifie si l'email a été modifié
+                if ($newEmail !== $_SESSION['email']) {
+                    // Si c'est le cas, je vérifie que le nouvel email n'existe pas déjà en bdd
+                    $resultnewEmail = $this->createQuery($verifMail)->fetchColumn();
+
+                    // Si le fetchColumn ne me retourne rien, alors je stocke le nouvel email
+                    if (filter_var($newEmail, FILTER_VALIDATE_EMAIL) && !$resultnewEmail) {
+                        $validEmail = $newEmail;
+                    }
+                    // Sinon je retourne un message d'erreur
+                    else {
+                        $this->errorMessage('Cet e-mail est incorrect.');
+                        header('Location: ?profile');
+                    }
+                } else { // S'il n'a pas été modifié, l'email reste identique
+                    $validEmail = $newEmail;
+                }
+                //end
+
+                //valider le UserName
+                //! Début de la requête de vérification de l'username
+                // 1. je vérifie si l'username a été modifié
+                if ($newUsername !== $_SESSION['username']) {
+                    // Si c'est le cas, je vérifie que le nouvel username n'existe pas déjà en bdd
+                    $resultnewUsername = $this->createQuery($verifUsername)->fetchColumn();
+    
+                    // Si le fetchColumn ne me retourne rien, alors je stocke le nouvel username
+                    if (!$resultnewUsername) {
+                        $validUsername = $newUsername;
+                    }
+                    // Sinon je retourne un message d'erreur
+                    else {
+                        $this->errorMessage('Ce pseudo existe déjà.');
+                        header('Location: ?profile');
+                    }
+                } else { // S'il n'a pas été modifié, l'username reste identique
+                    $validUsername = $newUsername;
+                }
+                //end
+
+                //valider le password
+                // Je vais récupérer les infos de l'utilisateur connecté
+                $userInfos = $this->findUser($id);
+                // Je vérifie le password hashé
+                if (password_verify($password, $userInfos->getPassword())) {
+                    //je prépare ma requête
+                    $sql = "UPDATE user SET email = ?, username = ?, updatedAt = ? WHERE userId = ? ";
+                    // query
+                    $this->createQuery($sql, [
+                        $validEmail,
+                        $validUsername,
+                        date("Y-m-d H:i:s"),
+                        $id
+                    ]);
+                    $this->errorMessage('La modification de l\'email a bien été enregistrée.');
+                    header('Location: ?profile');
+                } else {
+                    $this->errorMessage('Vérifiez votre mot de passe');
+                }
+            } else {
+            $this->errorMessage('Des champs sont vides');
             }
         }
     }
+
 
     public function editpass($id, $post) {
         if (!empty($post)) {
-            if (!in_array('', $post)) {
-                // verif inputs
-                // prepare request
-                // query
-                // message
-                // redirection
-            }
-        }
-    }
+            if(!in_array('', $post)){
+                //déclaration des variables 
+                $password = htmlspecialchars($post['password']);
+                $newPassword = htmlspecialchars($post['newPassword']);
+                $newPassword2 = htmlspecialchars($post['newPassword2']);
 
+                //vérif inputs 
+                $userInfos = $this->findUser($id);
+                if(password_verify($password, $userInfos->getPassword())){
+                    if(strlen($newPassword) > 6) {
+                        if($newPassword === $newPassword2) {
+                            $newPasswordHashed = password_hash($newPassword, PASSWORD_DEFAULT);
+                            //prepare request
+                            $sql ="UPDATE user SET password = ?, updatedAt = ? WHERE userId = ?"; //userId est le nom de la DATABASE
+                            //query 
+                            $this->createQuery($sql, [
+                                $newPasswordHashed,
+                                date ("Y-m-d H:i:s"),
+                                $id
+                            ]);
+                            //message 
+                            $this->errorMessage('La modification du mot de passe a bien été enregistrée.');
+                            header('Location: ?editpass');
+                            //redirection 
+                        }else{
+                            $this->errorMessage('Les nouveaux mots de passe doivent correspondre.');
+                            header('Location: ?editpass');
+                        }
+                        }else{
+                            $this->errorMessage('Le mot de passe doit faire au moins 6 caractères.');
+                            header('Location: ?editpass');
+                        }
+                        }else{
+                            $this->errorMessage('Vérifiez votre mot de passe.');
+                            header('Location: ?editpass');
+                        }
+                        }else{
+                        $this->errorMessage('Veuillez renseigner tous les champs.');
+                        header('Location: ?editpass');
+                    }
+                }
+
+            }
+        
     public function errorMessage($error){ //$error = phrase d'erreur
         setcookie(
             'ERROR_MESSAGE',

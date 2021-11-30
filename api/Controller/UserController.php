@@ -35,8 +35,7 @@ class UserController extends AbstractController
     public function profile($id, $post)
     {
         if(isset($post['submit'])) {
-            var_dump($post);
-            die();
+        
             $this->userRepository->editUser($id, $post);
         }
 
@@ -50,8 +49,7 @@ class UserController extends AbstractController
     public function editpass($id, $post)
     {
         if(isset($post['submit'])) {
-            var_dump($post);
-            die();
+        
             $this->userRepository->editpass($id, $post);
         }
 

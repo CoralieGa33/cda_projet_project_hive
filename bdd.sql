@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS cda_projet_project_hive;
--- CREATE DATABASE cda_projet_project_hive CHARACTER SET utf8;
--- USE cda_projet_project_hive;
+ DROP DATABASE IF EXISTS cda_projet_project_hive;
+ CREATE DATABASE cda_projet_project_hive CHARACTER SET utf8;
+ USE cda_projet_project_hive;
 
 CREATE TABLE user (
     userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
