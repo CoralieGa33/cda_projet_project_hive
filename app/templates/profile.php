@@ -1,10 +1,10 @@
 <div class="profile">
     <form method="post" action="">
         <h2 class="signin-title">Page de profil</h2>
-        <?php if(isset($_COOKIE['ERROR_MESSAGE'])) : ?>
-            <p class='profile-error'><?= $_COOKIE['ERROR_MESSAGE'] ?></p>
+        <?php if($message) : ?>
+            <?= $message ?></p>
         <?php else : ?>
-            <p class='profil-noerror'>&nbsp;</p>
+            <p class='profile-noerror'>&nbsp;</p>
         <?php endif ?>
 
         <div class="profile-input">

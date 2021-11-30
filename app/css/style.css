@@ -66,6 +66,17 @@ a {
   text-decoration: none;
 }
 
+.background {
+  background-size: cover;
+  position: fixed;
+  opacity: 0.7;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -264,14 +275,6 @@ a {
 
 .accueil .background {
   background-image: url(../images/bkgd.jpeg);
-  background-size: cover;
-  position: fixed;
-  opacity: 0.7;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -100;
 }
 
 .signup, .signin, .profile, .editpass {
@@ -302,11 +305,18 @@ a {
   text-shadow: -1px -1px 1px #6D0CCE70, 2px 2px 1px #6D0CCE25;
 }
 
-.signup-error, .signup-noerror, .signin-error, .signin-noerror, .profile-error, .profile-noerror, .editpass-error, .editpass-noerror {
-  color: red;
+.signup-valid, .signup-error, .signup-noerror, .signin-valid, .signin-error, .signin-noerror, .profile-valid, .profile-error, .profile-noerror, .editpass-valid, .editpass-error, .editpass-noerror {
   font-family: 'Poppins', sans-serif;
   font-size: 0.8rem;
   margin-bottom: 1rem;
+}
+
+.signup-valid, .signin-valid, .profile-valid, .editpass-valid {
+  color: green;
+}
+
+.signup-error, .signin-error, .profile-error, .editpass-error {
+  color: red;
 }
 
 .signup-input, .signin-input, .profile-input, .editpass-input {

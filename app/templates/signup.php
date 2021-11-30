@@ -7,8 +7,8 @@
 <div class="signup">
     <form method="post" action="?signup">
         <h2 class="signup-title">Créer un compte</h2>
-        <?php if(isset($_COOKIE['ERROR_MESSAGE'])) : ?>
-            <p class='signup-error'><?= $_COOKIE['ERROR_MESSAGE'] ?></p>
+        <?php if($message) : ?>
+            <?= $message ?></p>
         <?php else : ?>
             <p class='signup-noerror'>&nbsp;</p>
         <?php endif ?>

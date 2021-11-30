@@ -1,11 +1,12 @@
 <?php
     require 'includes/header.php';
-?>  
+?>
+
 <div class="signin">
     <form method="post" action="?signin">
         <h2 class="signin-title">Se connecter</h2>
-        <?php if(isset($_COOKIE['ERROR_MESSAGE'])) : ?>
-            <p class='signin-error'><?= $_COOKIE['ERROR_MESSAGE'] ?></p>
+        <?php if($message) : ?>
+            <?= $message ?></p>
         <?php else : ?>
             <p class='signin-noerror'>&nbsp;</p>
         <?php endif ?>
@@ -24,7 +25,6 @@
         <a href="?signup" class="signin-link" data-link-alt="S'inscrire"><span>Vous n'avez pas de compte ?</span></a>
     </form>
 </div>
-
 
 <?php
     require 'includes/footer.php';

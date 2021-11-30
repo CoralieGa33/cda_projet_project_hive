@@ -1,8 +1,8 @@
 <div class="editpass">
     <form method="post" action="">
         <h2 class="editpass-title">Mot de passe</h2>
-        <?php if(isset($_COOKIE['ERROR_MESSAGE'])) : ?>
-            <p class='editpass-error'><?= $_COOKIE['ERROR_MESSAGE'] ?></p>
+        <?php if($message) : ?>
+            <?= $message ?></p>
         <?php else : ?>
             <p class='editpass-noerror'>&nbsp;</p>
         <?php endif ?>
@@ -20,6 +20,6 @@
             <input type="password" name="newPassword2">
         </div>
         <input type="submit"  class="editpass-btn" name="submit" value="Modifier">
-        <a href="?profile" class="editpass-link" data-link-alt="C'est par là !"><span>Pour annuler et revenir au profil</span></a>
+        <a href="?profile" class="editpass-link" data-link-alt="C'est par là !"><span>Pour revenir au profil</span></a>
     </form>
 </div>
