@@ -179,17 +179,15 @@ a {
 
 // Chloé's scss
 .accueil{
-    
+    display:flex;
+
     p{
         font-family: 'Poppins', sans-serif;
     }
     .row-home{
         background-color: $light-color;
         text-align:center;
-        margin-top: 5%;
-        margin-left: 20%;
-        margin-right: 20%;
-        margin-bottom: 1%;
+        margin: 5rem auto;
         display:flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -210,8 +208,9 @@ a {
         width: 50%;
         padding: 1.8rem;
         text-align: start;
-        
-
+    }
+    #btn-accueil{
+        width: 7rem;
     }
     .preview{
         width: 50%;
@@ -241,7 +240,7 @@ a {
         font-family: 'Poppins', sans-serif;
         color: grey;
         margin-top: 1%;
-        font-size: 9px;
+        font-size: 8px;
         line-height: 1.3rem;
         text-align: center;
         letter-spacing: 0;
@@ -401,9 +400,19 @@ a {
 @media (max-width: 1200px) {
     
 }
-/* Medium devices (tablets, less than 992px) */
-@media (max-width: 992px) {
-
+/* Medium devices (tablets, less than 1024px) */
+@media (max-width: 1024px) {
+    //Chloé start
+    .accueil{
+        .row-home{
+            flex-direction: column;
+            justify-content:center;
+        }
+        .text, .preview{
+            width: 100%;
+        }
+    }
+    //end 
 }
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 768px) {
@@ -411,6 +420,13 @@ a {
         padding : 0.5rem 1rem 0.5rem;
         text-align: center;
     }
+    //Chloé start
+    .accueil{
+        .row-home{
+            width:90%;
+        }
+    }
+    //end 
 }
 /* Small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
