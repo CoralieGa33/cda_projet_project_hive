@@ -1,6 +1,6 @@
 <?php
 
-namespace App\api\Repository;
+namespace Api\Repository;
 
 use PDO;
 use Exception;

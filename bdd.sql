@@ -40,10 +40,9 @@ CREATE TABLE user_board (
     FOREIGN KEY (board_id) REFERENCES board(boardId)
 );
 
-CREATE TABLE list (
-    listId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE liste (
+    listeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR (255) NOT NULL,
-    color VARCHAR (255),
     orderNb INT NOT NULL,
     board_id INT NOT NULL,
     posLeft FLOAT NOT NULL,
@@ -58,8 +57,9 @@ CREATE TABLE card (
     title VARCHAR (255) NOT NULL,
     content VARCHAR (255) NOT NULL,
     orderNb INT NOT NULL,
-    list_id INT NOT NULL,
+    color VARCHAR (255),
+    liste_id INT NOT NULL,
     createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (list_id) REFERENCES list(listId)
+    FOREIGN KEY (liste_id) REFERENCES liste(listeId)
 );

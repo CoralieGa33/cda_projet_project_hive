@@ -1,10 +1,10 @@
 <?php
 require_once "../config/Autoloader.php";
 
-use App\config\Autoloader;
+use Config\Autoloader;
 Autoloader::register();
 
-use App\config\Router;
+use Config\Router;
 
 $router = new Router();
 $router->run();

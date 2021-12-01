@@ -1,6 +1,6 @@
 <?php
 
-namespace App\config;
+namespace Config;
 
 class Autoloader {
     public static function register() {
@@ -8,8 +8,6 @@ class Autoloader {
     }
 
     public static function autoload($class) {
-        // var_dump($class);
-        $class = str_replace("App", '', $class);
         $class = str_replace("\\", '/', $class);
 
         require_once '../' . $class . '.php';

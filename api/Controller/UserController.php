@@ -1,9 +1,9 @@
 <?php
 
-namespace App\api\Controller;
+namespace Api\Controller;
 
-use App\api\Repository\UserRepository;
-use App\api\Controller\AbstractController;
+use Api\Repository\UserRepository;
+use Api\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
