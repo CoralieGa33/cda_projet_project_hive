@@ -77,6 +77,25 @@ a {
   z-index: -100;
 }
 
+.btn {
+  display: block;
+  margin: 2rem auto 0;
+  font-family: 'Poppins', sans-serif;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: solid 2px #5d51f7;
+  color: #6D0CCE;
+  line-height: normal;
+  background-color: #5d51f730;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #5d51f7;
+  color: #FBFBF9;
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -112,40 +131,53 @@ a {
           align-items: center;
 }
 
-.header-navigation .btn {
-  text-align: center;
-  background-color: #4b1cfd;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  font-size: 0.75rem;
-  padding: 0.5rem 0.8rem;
-  font-family: 'Poppins', sans-serif;
-  display: block;
-  margin: 1rem 0.5rem;
-}
-
-.header-navigation .header-logout {
-  text-align: center;
-  background-color: #4b1cfd;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  font-size: 0.75rem;
-  padding: 0.5rem 0.5rem;
-  font-family: 'Poppins', sans-serif;
-  display: block;
+.header-navigation .btn, .header-navigation .header-logout {
   margin: 1rem 0.5rem;
 }
 
 .header-navigation .fas {
   font-size: 2.3rem;
   margin-right: 0.8rem;
-  color: #4b1cfd;
+  color: #5d51f7;
+}
+
+.header-navigation .fas:hover {
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .header-navigation .fas:visited {
-  color: #4b1cfd;
+  color: #5d51f7;
 }
 
 .footer {
@@ -161,7 +193,7 @@ a {
   padding: 0.5rem 10rem 0.5rem;
   background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
-  color: #4b1cfd;
+  color: #5d51f7;
   border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
   position: fixed;
   bottom: 0;
@@ -173,6 +205,11 @@ a {
   font-size: 0.7rem;
 }
 
+.footer .nav a:hover {
+  color: #6D0CCE;
+  text-decoration: underline;
+}
+
 .footer-favicons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -182,14 +219,26 @@ a {
   /*color: $base-color;*/
 }
 
+.footer-favicons a {
+  padding: 0.3rem 0.5rem;
+}
+
+.footer-favicons i:hover {
+  color: #6D0CCE;
+}
+
 .footer a:visited {
-  color: #4b1cfd;
+  color: #5d51f7;
 }
 
 .accueil {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.accueil .background {
+  background-image: url(../images/bkgd.jpeg);
 }
 
 .accueil p {
@@ -209,28 +258,20 @@ a {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   border-radius: 10px;
+  -webkit-box-shadow: 0 0 5px #5d51f7;
+          box-shadow: 0 0 5px #5d51f7;
 }
 
-.accueil .btn-primary {
-  background-color: #4b1cfd;
+.accueil .btn-home {
   text-align: center;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 0.8rem;
-  font-family: 'Poppins', sans-serif;
-  display: block;
+  width: 7rem;
   margin: 1rem auto;
 }
 
 .accueil .text {
   width: 50%;
-  padding: 1.8rem;
+  padding: 1.8rem 1.5rem;
   text-align: start;
-}
-
-.accueil #btn-accueil {
-  width: 7rem;
 }
 
 .accueil .preview {
@@ -254,11 +295,11 @@ a {
 .accueil h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #4b1cfd;
+  color: #5d51f7;
   font-family: 'Solway', serif;
   text-align: center;
   letter-spacing: .1rem;
-  text-shadow: -1px -1px 1px #4b1cfd70,  2px 2px 1px #4b1cfd25;
+  text-shadow: -1px -1px 1px #5d51f770, 2px 2px 1px #5d51f725;
   font-weight: bold;
 }
 
@@ -284,49 +325,180 @@ a {
   background-image: url(../images/bkgd.jpeg);
 }
 
-.signup, .signin, .profile, .editpass {
+.board-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.board-header .menu-burger {
+  padding-right: 1.5rem;
+  font-size: 2rem;
+  color: #4B5C6B;
+}
+
+.board-header .board-liste {
+  border: 1px dotted #4B5C6B;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 11rem;
+}
+
+.board-header .board-liste-title {
+  font-size: 1rem;
+  color: #4B5C6B;
+  padding-bottom: 0.3rem;
+}
+
+.board-header .board-title {
+  padding-right: 1.5rem;
+  font-size: 2rem;
+  color: #4B5C6B;
+}
+
+.board-header .add-liste {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #788896;
+  border: 1px solid #788896;
+}
+
+.board-header .add-liste-icon {
+  text-decoration: none;
+  color: #788896;
+}
+
+.board .new-liste {
+  border: 1px solid #5d51f7;
+  font-size: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  width: 8rem;
+}
+
+.board .new-liste-icon {
+  color: #4B5C6B;
+}
+
+.liste {
+  border: 1px solid #4B5C6B;
+  width: 15rem;
+  padding: 1rem;
+  top: 2rem;
+  left: 0rem;
+}
+
+.liste-title {
+  font-size: 1.3rem;
+  /*display: flex;
+        justify-content: space-around;
+        */
+  padding-top: 0.7rem;
+}
+
+.liste .delete-liste {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 0.8rem;
+  color: #4B5C6B;
+  margin-top: 0.5rem;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid red;
+  width: 13rem;
+  margin-top: 1rem;
+}
+
+.card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.card-title {
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card-content {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.card .modify-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 0.6rem;
+  color: #4B5C6B;
+  margin-top: 0.6rem;
+}
+
+.signup, .signin, .profile, .editpass, .registered {
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.signup form, .signin form, .profile form, .editpass form {
+.signup form, .signup .frame, .signin form, .signin .frame, .profile form, .profile .frame, .editpass form, .editpass .frame, .registered form, .registered .frame {
   margin: 5rem auto;
-  -webkit-box-shadow: 0 0 5px #6D0CCE;
-          box-shadow: 0 0 5px #6D0CCE;
+  -webkit-box-shadow: 0 0 5px #5d51f7;
+          box-shadow: 0 0 5px #5d51f7;
   border-radius: 10px;
   padding: 2rem;
   background-color: #FBFBF9;
 }
 
-.signup-title, .signin-title, .profile-title, .editpass-title {
+.signup-title, .signin-title, .profile-title, .editpass-title, .registered-title {
   font-family: 'Solway', serif;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.5rem;
-  color: #6D0CCE;
+  color: #5d51f7;
   margin: 0 1rem 1.5rem;
   width: 22rem;
   letter-spacing: .1rem;
-  text-shadow: -1px -1px 1px #6D0CCE70, 2px 2px 1px #6D0CCE25;
+  text-shadow: -1px -1px 1px #5d51f770, 2px 2px 1px #5d51f725;
 }
 
-.signup-valid, .signup-error, .signup-noerror, .signin-valid, .signin-error, .signin-noerror, .profile-valid, .profile-error, .profile-noerror, .editpass-valid, .editpass-error, .editpass-noerror {
+.signup-valid, .signup-error, .signup-noerror, .signin-valid, .signin-error, .signin-noerror, .profile-valid, .profile-error, .profile-noerror, .editpass-valid, .editpass-error, .editpass-noerror, .registered-valid, .registered-error, .registered-noerror {
   font-family: 'Poppins', sans-serif;
   font-size: 0.8rem;
   margin-bottom: 1rem;
 }
 
-.signup-valid, .signin-valid, .profile-valid, .editpass-valid {
+.signup-valid, .signin-valid, .profile-valid, .editpass-valid, .registered-valid {
   color: green;
 }
 
-.signup-error, .signin-error, .profile-error, .editpass-error {
+.signup-error, .signin-error, .profile-error, .editpass-error, .registered-error {
   color: red;
 }
 
-.signup-input, .signin-input, .profile-input, .editpass-input {
+.signup-input, .signin-input, .profile-input, .editpass-input, .registered-input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -337,43 +509,32 @@ a {
   margin-bottom: 1rem;
 }
 
-.signup-input input, .signin-input input, .profile-input input, .editpass-input input {
+.signup-input input, .signin-input input, .profile-input input, .editpass-input input, .registered-input input {
   padding: 0.4rem 0.6rem;
   font-size: 1rem;
   border-radius: 5px;
-  border: solid 2px #6D0CCE;
+  border: solid 2px #5d51f7;
 }
 
-.signup-input input:focus-visible, .signin-input input:focus-visible, .profile-input input:focus-visible, .editpass-input input:focus-visible {
-  outline: solid 1px #6D0CCE;
-  -webkit-box-shadow: inset 0 0 5px #6D0CCE;
-          box-shadow: inset 0 0 5px #6D0CCE;
+.signup-input input:focus-visible, .signin-input input:focus-visible, .profile-input input:focus-visible, .editpass-input input:focus-visible, .registered-input input:focus-visible {
+  outline: solid 1px #5d51f7;
+  -webkit-box-shadow: inset 0 0 5px #5d51f7;
+          box-shadow: inset 0 0 5px #5d51f7;
 }
 
-.signup-label, .signin-label, .profile-label, .editpass-label {
+.signup-label, .signin-label, .profile-label, .editpass-label, .registered-label {
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
   line-height: 1.4rem;
   font-weight: bold;
+  color: #6D0CCE;
 }
 
-.signup-btn, .signin-btn, .profile-btn, .editpass-btn {
-  display: block;
+.signup-btn, .signin-btn, .profile-btn, .editpass-btn, .registered-btn {
   margin: 2rem auto 0;
-  font-family: 'Poppins', sans-serif;
-  padding: 0.3rem 0.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: solid 2px #6D0CCE;
-  background-color: #6D0CCE30;
 }
 
-.signup-btn:hover, .signin-btn:hover, .profile-btn:hover, .editpass-btn:hover {
-  background-color: #6D0CCE;
-  color: seashell;
-}
-
-.signup-link, .signin-link, .profile-link, .editpass-link {
+.signup-link, .signin-link, .profile-link, .editpass-link, .registered-link {
   font-family: 'Poppins', sans-serif;
   color: #6D0CCE;
   display: block;
@@ -389,7 +550,7 @@ a {
           animation-fill-mode: both;
 }
 
-.signup-link span, .signin-link span, .profile-link span, .editpass-link span {
+.signup-link span, .signin-link span, .profile-link span, .editpass-link span, .registered-link span {
   display: block;
   -webkit-transition: -webkit-transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transition: -webkit-transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -397,7 +558,7 @@ a {
   transition: transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55), -webkit-transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.signup-link:after, .signin-link:after, .profile-link:after, .editpass-link:after {
+.signup-link:after, .signin-link:after, .profile-link:after, .editpass-link:after, .registered-link:after {
   content: attr(data-link-alt);
   display: inline;
   position: absolute;
@@ -409,17 +570,30 @@ a {
   text-align: center;
 }
 
-.signup-link:hover, .signin-link:hover, .profile-link:hover, .editpass-link:hover {
+.signup-link:hover, .signin-link:hover, .profile-link:hover, .editpass-link:hover, .registered-link:hover {
   cursor: pointer;
 }
 
-.signup-link:hover span, .signin-link:hover span, .profile-link:hover span, .editpass-link:hover span {
+.signup-link:hover span, .signin-link:hover span, .profile-link:hover span, .editpass-link:hover span, .registered-link:hover span {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
 }
 
-.signup-link:hover:after, .signin-link:hover:after, .profile-link:hover:after, .editpass-link:hover:after {
+.signup-link:hover:after, .signin-link:hover:after, .profile-link:hover:after, .editpass-link:hover:after, .registered-link:hover:after {
   top: 0;
+}
+
+.registered .frame {
+  text-align: center;
+}
+
+.registered-btn {
+  display: inline-block;
+  line-height: normal;
+}
+
+.signin .background, .signup .background, .registered .background {
+  background-image: url(../images/bkgd.jpeg);
 }
 
 /*----------------------------------------------------------- 
@@ -455,15 +629,15 @@ a {
 
 /* Small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
-  .signup, .signin, .profile, .editpass {
+  .signup, .signin, .profile, .editpass, .registered {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
-  .signup form, .signin form, .profile form, .editpass form {
+  .signup form, .signup .frame, .signin form, .signin .frame, .profile form, .profile .frame, .editpass form, .editpass .frame, .registered form, .registered .frame {
     max-width: 90%;
   }
-  .signup-title, .signin-title, .profile-title, .editpass-title {
+  .signup-title, .signin-title, .profile-title, .editpass-title, .registered-title {
     width: 100%;
     margin: 0 auto 1rem;
   }

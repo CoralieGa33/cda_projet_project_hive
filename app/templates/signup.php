@@ -1,10 +1,6 @@
-<?php
-    require 'includes/header.php';
-?>  
-
-<!-- Code ici -->
-
 <div class="signup">
+    <div class="background"></div>
+
     <form method="post" action="?signup">
         <h2 class="signup-title">Créer un compte</h2>
         <?php if($message) : ?>
@@ -28,13 +24,7 @@
             <label for="password2" class="signup-label">Confirmez le mot de passe</label>
             <input type="password" name="password2" placeholder="Mot de passe">
         </div>
-        <input type="submit" class="signup-btn" name="submit" value="S'inscrire">
+        <input type="submit" class="btn signup-btn" name="submit" value="S'inscrire">
         <a href="?signin" class="signup-link" data-link-alt="Se connecter"><span>Vous avez déjà un compte ?</span></a>
     </form>
 </div>
-
-<!-- -------- -->
-
-<?php
-    require 'includes/footer.php';
-?>

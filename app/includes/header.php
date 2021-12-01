@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <script src="https://kit.fontawesome.com/445a650e5b.js" crossorigin="anonymous"></script>
-
+    <script defer src="js/script.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
     <title>Project Hive</title>
@@ -31,7 +31,7 @@
                 } else {
                 ?>
                     <a href="?signup" class="btn header-signup">S'inscrire</a>
-                    <a href="?signin" type="button" class="btn header-signin">Se connecter</a>
+                    <a href="?signin" class="btn header-signin">Se connecter</a>
                 <?php
                 }
                 ?>

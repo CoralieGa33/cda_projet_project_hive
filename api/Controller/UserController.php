@@ -1,11 +1,11 @@
 <?php
 
-namespace App\api\Controller;
+namespace Api\Controller;
 
-use App\api\DataFixtures\UserFixtures;
-use App\api\Entity\User;
-use App\api\Repository\UserRepository;
-use App\api\Controller\AbstractController;
+use Api\DataFixtures\UserFixtures;
+use Api\Entity\User;
+use Api\Repository\UserRepository;
+use Api\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
