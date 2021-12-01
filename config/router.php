@@ -31,8 +31,9 @@ class Router {
             elseif (isset($_GET['logout'])) {
                 session_destroy();
                 header('Location: ?');
-            }
-            else {
+            }elseif (isset($_GET['board'])) {
+                require "../app/templates/board.php";
+            }else {
                 echo "404 : PAGE NOT FOUND";
             }
         }
