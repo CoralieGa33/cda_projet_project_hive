@@ -1,8 +1,6 @@
-<?php
-    require 'includes/header.php';
-?>
-
 <div class="signin">
+    <div class="background"></div>
+    
     <form method="post" action="?signin">
         <h2 class="signin-title">Se connecter</h2>
         <?php if($message) : ?>
@@ -21,14 +19,11 @@
             <input type="password" name="password" placeholder="Mot de passe">
         </div>
 
-        <input type="submit"  class="signin-btn" name="submit" value="Se connecter">
+        <input type="submit"  class="btn signin-btn" name="submit" value="Se connecter">
         <a href="?signup" class="signin-link" data-link-alt="S'inscrire"><span>Vous n'avez pas de compte ?</span></a>
     </form>
 </div>
 
-<?php
-    require 'includes/footer.php';
-?> 
 
 
 

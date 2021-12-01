@@ -1,4 +1,6 @@
 <div class="profile">
+    <div class="background"></div>
+    
     <form method="post" action="">
         <h2 class="signin-title">Page de profil</h2>
         <?php if($message) : ?>
@@ -19,7 +21,7 @@
             <label for="password" class="profile-label">Entrez votre mot de passe pour confirmer</label>
             <input type="password" name="password">
         </div>
-        <input type="submit"  class="profile-btn" name="submit" value="Modifier">
+        <input type="submit"  class="btn profile-btn" name="submit" value="Modifier">
         <a href="?editpass" class="profile-link" data-link-alt="C'est par là !"><span>Pour modifier votre mot de passe</span></a>
     </form>
 </div>
