@@ -6,7 +6,8 @@
 
 
 // colors :
-$base-color: #4b1cfd;
+$base-color: #5d51f7;
+//$base-color: #4b1cfd;
 $sd-color: #6D0CCE;
 //$light-color: #FFFEFC;
 //$light-color: #FAFAFA;
@@ -82,6 +83,25 @@ a {
     z-index:-100;
 }
 
+.btn {
+    display: block;
+    margin: 2rem auto 0;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: solid 2px $base-color;
+    color: $sd-color;
+    line-height: normal;
+    background-color:  #{$base-color}30;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $base-color;
+        color: $light-color;
+    }
+}
+
 // Sabrina's scss
 .header{
     display:flex;
@@ -89,8 +109,7 @@ a {
     align-items: center;
     padding : 0.1rem 1.2rem 0rem 1.2rem;
     background-color:$light-color;
-    font-family: 'Poppins', sans-serif;//j'ai testé les 2 et je préfère Poppins (du coup il faudrait l'appliquer sur tous les boutons par souci d'unformité
-    //font-family: 'Solway', serif;
+    font-family: 'Poppins', sans-serif;
     border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
 
     &-logo{
@@ -107,37 +126,33 @@ a {
         display: flex;
         align-items: center;
 
-        .btn{
-            text-align: center;
-            background-color: #4b1cfd;
-            color:white;
-            border-radius: 5px;
-            border: none;
-            font-size:0.75rem;
-            padding: 0.5rem 0.8rem;
-            font-family: 'Poppins', sans-serif;
-            display:block;
+        .btn, .header-logout{
             margin:1rem 0.5rem;
-        }
-        //je n'ai pas réussi à l'imbriquer donc je l'ai isolé des autres btn
-        .header-logout{ 
-            text-align: center;
-            background-color: #4b1cfd;
-            color:white;
-            border-radius: 5px;
-            border: none;
-            font-size:0.75rem;
-            padding: 0.5rem 0.5rem;//c'est le seul champ qui diffère, ça fait bcp de code pour rien
-            font-family: 'Poppins', sans-serif;
-            display:block;
-            margin:1rem 0.5rem;
-            
         }
 
         .fas{
             font-size:2.3rem;
             margin-right:0.8rem;
             color: $base-color;
+
+            &:hover {
+                animation: pulse 2s infinite;
+
+                @keyframes pulse {
+                    0% {
+                        transform: scale(1);
+                    }
+                    
+                    50% {
+                        transform: scale(1.3);
+                    }
+                    
+                    100% {
+                        transform: scale(1);
+                    }
+                }
+            }
+
 
             &:visited {
                 color: $base-color;
@@ -151,26 +166,37 @@ a {
     justify-content:space-between;
     align-items:center;
     padding : 0.5rem 10rem 0.5rem;
-    background-color:$light-color;//#f0efff;
-    font-family: 'Poppins', sans-serif;//j'ai testé les 2 et je préfère Poppins (du coup il faudrait l'appliquer sur tous les boutons par souci d'unformité
-    //font-family: 'Solway', serif;
+    background-color:$light-color;
+    font-family: 'Poppins', sans-serif;
     color:$base-color;
     border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
     position: fixed;
     bottom:0;
     left:0;
     right:0;
-
+    
     .nav{
         font-size:0.7rem;
-    }
 
+        a:hover {
+            color: $sd-color;
+            text-decoration: underline;
+        }
+    }
+    
     &-favicons{
         display: flex;
         justify-content: space-around;
         /*color: $base-color;*/
-    }
 
+        a {
+            padding: 0.3rem 0.5rem;
+        }
+        i:hover {
+            color: $sd-color;
+        }
+    }
+    
     a:visited{
         color:$base-color;
     }
@@ -180,6 +206,10 @@ a {
 // Chloé's scss
 .accueil{
     display:flex;
+    
+    .background{
+        background-image: url(../images/bkgd.jpeg);
+    }
 
     p{
         font-family: 'Poppins', sans-serif;
@@ -192,25 +222,17 @@ a {
         justify-content: center;
         flex-wrap: wrap;
         border-radius: 10px;
+        box-shadow: 0 0 5px $base-color;
     }
-    .btn-primary{
-        background-color: #4b1cfd;
+    .btn-home{
         text-align: center;
-        color:white;
-        border-radius: 5px;
-        border: none;
-        padding: 0.5rem 0.8rem;
-        font-family: 'Poppins', sans-serif;
-        display:block;
+        width: 7rem;
         margin:1rem auto;
     }
     .text{
         width: 50%;
-        padding: 1.8rem;
+        padding: 1.8rem 1.5rem;
         text-align: start;
-    }
-    #btn-accueil{
-        width: 7rem;
     }
     .preview{
         width: 50%;
@@ -226,13 +248,13 @@ a {
     h1{
         font-size: 2.5rem;
         margin-bottom: 2rem;
-        color:#4b1cfd;
+        color:$base-color;
         font-family: 'Solway', serif; 
         text-align: center;
         letter-spacing: .1rem;
-        text-shadow: 
-            -1px -1px 1px #4b1cfd70, 
-            2px 2px 1px #4b1cfd25;
+        text-shadow:
+            -1px -1px 1px #{$base-color}70, 
+            2px 2px 1px #{$base-color}25;
         font-weight: bold;
     }
     
@@ -253,21 +275,15 @@ a {
         text-indent: 1rem;
         line-height: 1.3rem;
     }
-
-    .background{
-        background-image: url(../images/bkgd.jpeg);
-    }
-
-
 }
 
 // Coralie's scss
-.signup, .signin, .profile, .editpass {
+.signup, .signin, .profile, .editpass, .registered {
     display: flex;
 
-    form {
+    form, .frame {
         margin: 5rem auto;
-        box-shadow: 0 0 5px $sd-color;
+        box-shadow: 0 0 5px $base-color;
         border-radius: 10px;
         padding: 2rem;
         background-color: $light-color;
@@ -279,13 +295,13 @@ a {
         text-transform: uppercase;
         font-weight: bold;
         font-size: 1.5rem;
-        color: $sd-color;
+        color: $base-color;
         margin: 0 1rem 1.5rem;
         width: 22rem;
         letter-spacing: .1rem;
         text-shadow: 
-            -1px -1px 1px #{$sd-color}70, 
-            2px 2px 1px #{$sd-color}25;
+            -1px -1px 1px #{$base-color}70, 
+            2px 2px 1px #{$base-color}25;
     }
 
     &-valid, &-error, &-noerror {
@@ -311,11 +327,11 @@ a {
             padding: 0.4rem 0.6rem;
             font-size: 1rem;
             border-radius: 5px;
-            border: solid 2px $sd-color;
+            border: solid 2px $base-color;
 
             &:focus-visible {
-                outline: solid 1px $sd-color;
-                box-shadow: inset 0 0 5px $sd-color;
+                outline: solid 1px $base-color;
+                box-shadow: inset 0 0 5px $base-color;
             }
         }
     }
@@ -325,28 +341,13 @@ a {
         font-size: 0.9rem;
         line-height: 1.4rem;
         font-weight: bold;
+        color: $sd-color;
     }
 
     &-btn {
-        display: block;
         margin: 2rem auto 0;
-        font-family: 'Poppins', sans-serif;
-        padding: 0.3rem 0.5rem;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: solid 2px $sd-color;
-        background-color:  #{$sd-color}30;
-
-        &:hover {
-            background-color: $sd-color;
-            color: seashell;
-        }
     }
 
-    // &:active {
-    //     color: $sd-color;
-    //     font-weight: bold;
-    // }
 
     &-link {
         font-family: 'Poppins', sans-serif;
@@ -392,7 +393,20 @@ a {
         }
     }
 }
-
+.registered {
+    .frame {
+        text-align: center;
+    }
+    &-btn {
+        display: inline-block;
+        line-height: normal;
+    }
+}
+.signin, .signup, .registered {
+    .background{
+        background-image: url(../images/bkgd.jpeg);
+    }
+}
 /*----------------------------------------------------------- 
 ------------------------ Media Queries ----------------------
 ------------------------------------------------------------*/
@@ -430,10 +444,10 @@ a {
 }
 /* Small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
-    .signup, .signin, .profile, .editpass {
+    .signup, .signin, .profile, .editpass, .registered {
         display: flex;
     
-        form {
+        form, .frame {
             max-width: 90%;
         }
 

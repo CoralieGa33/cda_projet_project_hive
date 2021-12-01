@@ -1,10 +1,10 @@
 <?php
 
-namespace App\config;
+namespace Config;
 
 require_once 'env.local.php'; 
 
-use App\api\Controller\UserController ;
+use Api\Controller\UserController ;
 
 class Router {
     private $userController;
@@ -18,6 +18,9 @@ class Router {
         if($_GET) {
             if (isset($_GET['signup'])) {
                 $this->userController->signup($_POST);
+            }
+            elseif (isset($_GET['registered'])) {
+                require "../app/templates/registered.php";
             }
             elseif (isset($_GET['signin'])) {
                 $this->userController->signin($_POST);

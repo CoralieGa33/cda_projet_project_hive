@@ -2,9 +2,7 @@
     require_once "includes/header.php"
 ?>
 
-    <div class="container">
-        <?= $content ?>
-    </div>
+<?= $content ?>
 
 <?php 
     require_once "includes/footer.php"

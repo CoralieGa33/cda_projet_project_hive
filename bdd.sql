@@ -43,7 +43,6 @@ CREATE TABLE user_board (
 CREATE TABLE list (
     listId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR (255) NOT NULL,
-    color VARCHAR (255),
     orderNb INT NOT NULL,
     board_id INT NOT NULL,
     posLeft FLOAT NOT NULL,
@@ -58,6 +57,7 @@ CREATE TABLE card (
     title VARCHAR (255) NOT NULL,
     content VARCHAR (255) NOT NULL,
     orderNb INT NOT NULL,
+    color VARCHAR (255),
     list_id INT NOT NULL,
     createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),

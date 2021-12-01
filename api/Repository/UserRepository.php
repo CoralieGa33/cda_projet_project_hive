@@ -1,10 +1,9 @@
 <?php
 
-namespace App\api\Repository;
+namespace Api\Repository;
 
-use App\api\Entity\User;
-use App\api\Repository\ManagerRepository;
-use DateTime;
+use Api\Entity\User;
+use Api\Repository\ManagerRepository;
 
 class UserRepository extends ManagerRepository
 {
@@ -50,8 +49,7 @@ class UserRepository extends ManagerRepository
                                 // Requête préparée avec verrouillage des valeurs dans des variables
                                 $sql = 'INSERT INTO user (email, username, password, role, createdAt, updatedAt) VALUES (?, ?, ?, "registered", NOW(), NOW())';
                                 $this->createQuery($sql, [$email, $username, $password]);//createQuery dans ManagerRepository
-                                header('Location: ?signin');
-                                //return "<p class='editpass-valid'>Enregistrement effectué, vous pouvez vous connecter.</p>";
+                                header('Location: ?registered');
                             } else {
                                 return "<p class='editpass-error'>Les mots de passes sont différents.</p>";
                             }

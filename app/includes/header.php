@@ -31,7 +31,7 @@
                 } else {
                 ?>
                     <a href="?signup" class="btn header-signup">S'inscrire</a>
-                    <a href="?signin" type="button" class="btn header-signin">Se connecter</a>
+                    <a href="?signin" class="btn header-signin">Se connecter</a>
                 <?php
                 }
                 ?>
