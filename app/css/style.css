@@ -321,7 +321,142 @@ a {
   line-height: 1.3rem;
 }
 
+.accueil .background {
+  background-image: url(../images/bkgd.jpeg);
+}
+
+.board-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.board-header .menu-burger {
+  padding-right: 1.5rem;
+  font-size: 2rem;
+  color: #4B5C6B;
+}
+
+.board-header .board-liste {
+  border: 1px dotted #4B5C6B;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 11rem;
+}
+
+.board-header .board-liste-title {
+  font-size: 1rem;
+  color: #4B5C6B;
+  padding-bottom: 0.3rem;
+}
+
+.board-header .board-title {
+  padding-right: 1.5rem;
+  font-size: 2rem;
+  color: #4B5C6B;
+}
+
+.board-header .add-liste {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #788896;
+  border: 1px solid #788896;
+}
+
+.board-header .add-liste-icon {
+  text-decoration: none;
+  color: #788896;
+}
+
+.board .new-liste {
+  border: 1px solid #5d51f7;
+  font-size: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  width: 8rem;
+}
+
+.board .new-liste-icon {
+  color: #4B5C6B;
+}
+
+.liste {
+  border: 1px solid #4B5C6B;
+  width: 15rem;
+  padding: 1rem;
+  top: 2rem;
+  left: 0rem;
+}
+
+.liste-title {
+  font-size: 1.3rem;
+  /*display: flex;
+        justify-content: space-around;
+        */
+  padding-top: 0.7rem;
+}
+
+.liste .delete-liste {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 0.8rem;
+  color: #4B5C6B;
+  margin-top: 0.5rem;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid red;
+  width: 13rem;
+  margin-top: 1rem;
+}
+
+.card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.card-title {
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card-content {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.card .modify-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 0.6rem;
+  color: #4B5C6B;
+  margin-top: 0.6rem;
+}
+
 .signup, .signin, .profile, .editpass, .registered {
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
