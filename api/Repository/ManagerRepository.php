@@ -41,4 +41,5 @@ class ManagerRepository
         
         return $result;
     }
+    
 }
