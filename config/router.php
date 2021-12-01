@@ -16,6 +16,9 @@ class Router {
     public function Run() {
         session_start();
         if($_GET) {
+            if (isset($_GET['fixtures'])) {
+            $this->userController->loadFixtures();
+            }
             if (isset($_GET['signup'])) {
                 $this->userController->signup($_POST);
             }

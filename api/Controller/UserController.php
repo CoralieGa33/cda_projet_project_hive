@@ -2,6 +2,8 @@
 
 namespace Api\Controller;
 
+use Api\DataFixtures\UserFixtures;
+use Api\Entity\User;
 use Api\Repository\UserRepository;
 use Api\Controller\AbstractController;
 
@@ -13,6 +15,12 @@ class UserController extends AbstractController
     public function __construct()
     {
         $this->userRepository = new UserRepository();
+    }
+
+    public function loadFixtures()
+    {
+        UserFixtures::load();
+        header('Location: ?');
     }
 
     public function signup($user)

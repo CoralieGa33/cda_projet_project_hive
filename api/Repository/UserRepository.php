@@ -22,11 +22,28 @@ class UserRepository extends ManagerRepository
         return $user;
     }
 
+    public function addFakeUser(object $user)
+    {
+        $sql = 'INSERT INTO user (email, username, password) VALUES (?, ?, ?)';
+        $this->createQuery($sql, [
+            $user->getEmail(),
+            $user->getUsername(),
+            $user->getPassword(),
+        ]);
+    }
+
+    public function removeAll()
+    {
+        $sql = "DELETE FROM user";
+        $this->createQuery($sql);
+    }
+
     public function addUser($user)
     {
         if(!empty($user)) {
             // Si tous les champs ont été remplis
             if (!in_array('', $user)) {
+            //if(isset($_POST['email']) && isset($_POST['username']) && ($_POST['password']) && ($_POST['password2'])){
                 $email = htmlspecialchars($user['email']);
                 $username = htmlspecialchars($user['username']);
                 $password = htmlspecialchars($user['password']);
