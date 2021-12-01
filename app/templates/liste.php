@@ -9,6 +9,6 @@
             ?>
 
         </ul>
-        <a id="delete-liste" href="">Supprimer<i class="fas fa-trash-alt"></i></a>
+        <a class="delete-liste" href="">Supprimer<i class="fas fa-trash-alt"></i></a>
 
     </div>

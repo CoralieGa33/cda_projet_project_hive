@@ -295,31 +295,44 @@ a {
   margin-left: 1rem;
 }
 
-.menu-burger {
+.board-header .menu-burger {
   padding-right: 1.5rem;
   font-size: 2rem;
   color: #4B5C6B;
 }
 
-.board-title {
+.board-header .board-liste {
+  border: 1px dotted #4B5C6B;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 11rem;
+}
+
+.board-header .board-liste-title {
+  font-size: 1rem;
+  color: #4B5C6B;
+  padding-bottom: 0.3rem;
+}
+
+.board-header .board-title {
   padding-right: 1.5rem;
   font-size: 2rem;
   color: #4B5C6B;
 }
 
-.add-liste {
+.board-header .add-liste {
   font-size: 1rem;
   padding: 0.5rem;
   color: #788896;
   border: 1px solid #788896;
 }
 
-.add-liste-icon {
+.board-header .add-liste-icon {
   text-decoration: none;
   color: #788896;
 }
 
-.new-liste {
+.board .new-liste {
   border: 1px solid #5d51f7;
   font-size: 1rem;
   padding: 1rem;
@@ -327,21 +340,8 @@ a {
   width: 8rem;
 }
 
-.new-liste-icon {
+.board .new-liste-icon {
   color: #4B5C6B;
-}
-
-.board-liste-title {
-  font-size: 1rem;
-  color: #4B5C6B;
-  padding-bottom: 0.3rem;
-}
-
-.board-liste {
-  border: 1px dotted #4B5C6B;
-  font-size: 1rem;
-  padding: 0.5rem;
-  width: 11rem;
 }
 
 .liste {
@@ -360,7 +360,7 @@ a {
   padding-top: 0.7rem;
 }
 
-#delete-liste {
+.liste .delete-liste {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,19 +372,19 @@ a {
   margin-top: 0.5rem;
 }
 
+.card {
+  padding: 1rem;
+  border: 1px solid red;
+  width: 13rem;
+  margin-top: 1rem;
+}
+
 .card-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-}
-
-.card {
-  padding: 1rem;
-  border: 1px solid red;
-  width: 13rem;
-  margin-top: 1rem;
 }
 
 .card-title {
@@ -402,7 +402,7 @@ a {
   margin-top: 0.5rem;
 }
 
-.modify-card {
+.card .modify-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
