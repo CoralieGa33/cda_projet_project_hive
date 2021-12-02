@@ -175,7 +175,7 @@ class Liste implements JsonSerializable
         return $this;
     }
 
-    public function jsonSerialize($id)
+    public function jsonSerialize()
     {
         return[
             'listeId'=>$this->listeId,
@@ -186,6 +186,6 @@ class Liste implements JsonSerializable
             'posTop'=>$this->posTop,
             'createdAt'=>$this->createdAt,
             'updatedAt'=>$this->updatedAt
-        ]
+        ];
     }
 }
