@@ -4,14 +4,20 @@ namespace Config;
 
 require_once 'env.local.php'; 
 
-use Api\Controller\UserController ;
+use Api\Controller\UserController;
+use Api\Controller\BoardController;
+use Api\Controller\BackgroundController;
 
 class Router {
     private $userController;
+    private $boardController;
+    private $backgroundController;
 
     public function __construct()
     {
-        $this->userController = new UserController() ;   
+        $this->userController = new UserController();
+        $this->boardController = new BoardController();
+        $this->backgroundController = new BackgroundController();
     }
     public function Run() {
         session_start();
@@ -41,7 +47,9 @@ class Router {
                 require "../app/templates/board.php";
             }elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
-            
+                //$this->boardController->getBoardInfos(1);
+            }elseif (isset($_GET['api/backgrounds'])) {
+                $this->backgroundController->getBackgrounds();
             }else {
                 echo "404 : PAGE NOT FOUND";
             }
