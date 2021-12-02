@@ -16,46 +16,43 @@ class BoardController extends AbstractController
         $this->boardRepository = new BoardRepository();
     }   
 
-
     public function getBoardInfos($id)
-        {
-            $board = $this->boardRepository->findOne($id);
-                echo json_encode($board);  
-        }
+    {
+        $board = $this->boardRepository->findOne($id);
 
-        public function newBoard($post)
-        {
-            if (isset($post['submit'])) {
-                $board = new Board();
-                $board
-                    ->setTitle($post["title"])
-                    ->setColor($post["color"])
-                    ->setBackground_id($post["background_id"])
-                    ->setOwner_id($post["owner_id"]);
-    
-                $this->BoardRepository->addBoard($board);
+        echo json_encode($board);
+    }
 
-            }
-        }
+    public function newBoard($post) //enregistre un tableau dans la bdd
+    {
+        if (isset($post['submit'])) {
+            $board = new Board();
+            $board
+                ->setTitle($post["title"])
+                ->setColor($post["color"])
+                ->setBackground_id($post["background_id"])
+                ->setOwner_id($post["owner_id"]);
 
-        public function editBoard($board){
-        if (isset($post['edit']))
-            {
-                $board
-                    ->setTitle($post["title"])
-                    ->setColor($post['color'])
-                    ->setBackground_id($post['background_id']);
-            
-                $this->boardRepository->editBoard($board);
-            }
+            $this->boardRepository->addBoard($board);
+        }
+    }
 
+    public function editBoard($board)
+    {
+        if (isset($post['edit'])) {
+            $board
+                ->setTitle($post["title"])
+                ->setColor($post["color"])
+                ->setBackground_id($post["background_id"]);
+    
+            $this->boardRepository->editBoard($board);
         }
-            
-        public function deleteBoard($id)
-        {
-            $this->boardRepository->delete($id);   
-        }
-    
-    
-    
+    }
+
+    public function deleteBoard($id)
+    {
+        $this->boardRepository->delete($id);
+    }
+
 }
+

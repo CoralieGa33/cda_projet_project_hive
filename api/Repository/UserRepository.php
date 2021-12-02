@@ -7,23 +7,6 @@ use Api\Repository\ManagerRepository;
 
 class UserRepository extends ManagerRepository
 {
-    /*public function addFakeUser(object $user)
-    {
-        $sql = 'INSERT INTO user (email, username, password) VALUES (?, ?, ?)';
-        $this->createQuery($sql, [
-            $user->getEmail(),
-            $user->getUsername(),
-            $user->getPassword(),
-        ]);
-    }
-
-    public function removeAll()
-    {
-        $sql = "DELETE FROM user";
-        $this->createQuery($sql);
-    }
-    */
-
     public function addUser($user)
     {
         if(!empty($user)) {
@@ -110,16 +93,6 @@ class UserRepository extends ManagerRepository
             return "<p class='editpass-error'>Veuillez renseigner tous les champs.</p>";
         }
     }
-
-    /* pas nécessaire car présent dans le ManagerRepository
-    public function findUser($userId) {
-        $sql = "SELECT * FROM user WHERE userId = ?";
-        $result = $this->createQuery($sql, [$userId]);
-        $row = $result->fetch();
-        $user = $this->buildObject($row);
-
-        return $user;
-    }*/
 
     public function editUser($id, $post) {
         // Si l'utilisateur a cliqué sur "modifier"

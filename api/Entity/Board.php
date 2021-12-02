@@ -154,16 +154,17 @@ class Board implements JsonSerializable
         return $this;
     }
 
-    public function jsonSerialize($id)
+    public function jsonSerialize()
     {
         return[
             'boardId'=>$this->boardId,
-            'title'=>$this->title
+            'title'=>$this->title,
             'color'=>$this->color,
             'background_id'=>$this->background_id,
             'owner_id'=>$this->owner_id,
             'createdAt'=>$this->createdAt,
             'updatedAt'=>$this->updatedAt
-        ]
+        ];
     }
+
 }

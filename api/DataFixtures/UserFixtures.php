@@ -1,9 +1,9 @@
 <?php
 
-namespace App\api\DataFixtures;
+namespace Api\DataFixtures;
 
-use App\api\Entity\User;
-use App\api\Repository\UserRepository;
+use Api\Entity\User;
+use Api\Repository\UserRepository;
 
 class UserFixtures
 {

@@ -21,7 +21,6 @@ class ManagerRepository
                 $entity->$method($value);
             }
         }
-
         return $entity;
     }
 
@@ -109,13 +108,6 @@ class ManagerRepository
 
         return $entities;
     }
-
-    /*public function removeAll()
-    {
-        $tableName = $this->getTableName();
-        $sql = "DELETE FROM $tableName";
-        $this->createQuery($sql);
-    }*/
 
     public function delete($id)
     {
