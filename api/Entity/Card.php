@@ -2,7 +2,9 @@
 
 namespace Api\Entity;
 
-class Card
+use JsonSerializable;
+
+class Card implements JsonSerializable
 {
     private $cardId;
     private $title;
@@ -172,5 +174,19 @@ class Card
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return[
+            'cardId'=>$this->cardId,
+            'title'=>$this->title,
+            'content'=>$this->content,
+            'orderNb'=>$this->orderNb,
+            'color'=>$this->color,
+            'liste_id'=>$this->liste_id,
+            'createdAt'=>$this->createdAt,
+            'updatedAt'=>$this->updatedAt
+        ];
     }
 }
