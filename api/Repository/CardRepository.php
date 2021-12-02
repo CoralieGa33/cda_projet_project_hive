@@ -31,4 +31,17 @@ class CardRepository extends ManagerRepository
             $card->getCardId()
         ]);
     }
+
+    public function getCardsByListe(int $id) {
+        $sql = 'SELECT * FROM card WHERE liste_id = ?';
+        $result = $this->createQuery($sql, [$id]);
+        $cards = [];
+
+        foreach($result as $row){
+            $card = $this->buildObject($row);
+            array_push($cards, $card);
+        }
+
+        return $cards;
+    }
 }

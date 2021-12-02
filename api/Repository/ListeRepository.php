@@ -32,4 +32,17 @@ class ListeRepository extends ManagerRepository
             $liste->getListeId()
         ]);
     }
+
+    public function getListesByBoard(int $id) {
+        $sql = 'SELECT * FROM liste WHERE board_id= ?';
+        $result = $this->createQuery($sql, [$id]);
+        $listes = [];
+
+        foreach($result as $row){
+            $liste = $this->buildObject($row);
+            array_push($listes, $liste);
+        }
+
+        return $listes;
+    }
 }

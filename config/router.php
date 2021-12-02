@@ -25,7 +25,7 @@ class Router {
         $this->cardController = new CardController() ;
         $this->backgroundController = new BackgroundController();
     }
-      
+
     public function Run() {
         session_start();
         if($_GET) {
@@ -55,10 +55,10 @@ class Router {
             }elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
               //$this->boardController->getBoardInfos(1);
-            }elseif (isset($_GET['api/listes'])) {
-                $this->listeController->getListes($_POST["boardId"]);
+            }elseif (isset($_GET['api/liste'])) {
+                $this->listeController->getListe($_POST["listId"]);
             }elseif (isset($_GET['api/cards'])) {
-                $this->cardController->getCards($_POST["listeId"]);
+                $this->cardController->getCard($_POST["cardId"]);
             }elseif (isset($_GET['api/backgrounds'])) {
                 $this->backgroundController->getBackgrounds();
             }else {

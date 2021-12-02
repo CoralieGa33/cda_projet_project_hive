@@ -6,7 +6,6 @@ use Api\Entity\Card;
 use Api\Repository\CardRepository;
 use Api\Controller\AbstractController;
 
-
 class CardController extends AbstractController
 {
     private $cardRepository;
@@ -16,11 +15,11 @@ class CardController extends AbstractController
         $this->cardRepository = new CardRepository();
     }   
 
-    public function getCards()
+    public function getCard($id)
     {
-        $cards = $this->cardRepository->findAll();
+        $card = $this->cardRepository->findOne($id);
 
-        echo json_encode($cards);
+        echo json_encode($card);
     }
 
     public function newCard($post) //enregistre une card dans la bdd
