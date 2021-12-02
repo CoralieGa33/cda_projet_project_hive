@@ -7,37 +7,6 @@ use Api\Repository\ManagerRepository;
 
 class UserRepository extends ManagerRepository
 {
-
-    public function buildObject($row)
-    {
-        $user = new User();
-        $user
-            ->setUserId($row->userId)
-            ->setEmail($row->email)
-            ->setUsername($row->username)
-            ->setPassword($row->password)
-            ->setRole($row->role)
-            ->setCreatedAt($row->createdAt)
-            ->setUpdatedAt($row->updatedAt);
-        return $user;
-    }
-
-    public function addFakeUser(object $user)
-    {
-        $sql = 'INSERT INTO user (email, username, password) VALUES (?, ?, ?)';
-        $this->createQuery($sql, [
-            $user->getEmail(),
-            $user->getUsername(),
-            $user->getPassword(),
-        ]);
-    }
-
-    public function removeAll()
-    {
-        $sql = "DELETE FROM user";
-        $this->createQuery($sql);
-    }
-
     public function addUser($user)
     {
         if(!empty($user)) {
@@ -125,15 +94,6 @@ class UserRepository extends ManagerRepository
         }
     }
 
-    public function findUser($userId) {
-        $sql = "SELECT * FROM user WHERE userId = ?";
-        $result = $this->createQuery($sql, [$userId]);
-        $row = $result->fetch();
-        $user = $this->buildObject($row);
-
-        return $user;
-    }
-
     public function editUser($id, $post) {
         // Si l'utilisateur a cliqué sur "modifier"
         if (!empty($post)) {
@@ -188,7 +148,7 @@ class UserRepository extends ManagerRepository
 
                 //! Début de la requête de vérification du mot de passe
                 // 3. Je vais chercher les infos de l'utilisateur connecté
-                $userInfos = $this->findUser($id);
+                $userInfos = $this->findOne($id);
                 
                 // 4. Je vérifie que le mot de passe entré correspond à celui enregistré en bdd
                 if (password_verify($password, $userInfos->getPassword())) {
@@ -219,7 +179,7 @@ class UserRepository extends ManagerRepository
                 $newPassword = htmlspecialchars($post['newPassword']);
                 $newPassword2 = htmlspecialchars($post['newPassword2']);
 
-                $userInfos = $this->findUser($id);
+                $userInfos = $this->findOne($id);
 
                 // verif inputs
                 if (password_verify($password, $userInfos->getPassword())) {

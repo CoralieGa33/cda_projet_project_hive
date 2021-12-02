@@ -39,6 +39,9 @@ class Router {
                 header('Location: ?');
             }elseif (isset($_GET['board'])) {
                 require "../app/templates/board.php";
+            }elseif (isset($_GET['api/board'])) {
+                $this->boardController->getBoardInfos($_POST["boardId"]);
+            
             }else {
                 echo "404 : PAGE NOT FOUND";
             }

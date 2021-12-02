@@ -51,7 +51,7 @@ class UserController extends AbstractController
             $this->message = $this->userRepository->editUser($id, $post);
         }
 
-        $user = $this->userRepository->findUser($id);
+        $user = $this->userRepository->findOne($id);
 
         $this->render("profile", [
             'user' => $user,
