@@ -3,14 +3,12 @@
 namespace Api\Repository;
 
 use Api\Entity\Board;
-use Api\Repository\ManagerRepository;
-
 
 class BoardRepository extends ManagerRepository
 {
     public function addBoard(object $board)
     {
-        $sql = 'INSERT INTO board (title, color, background_id, owner_id) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO board (title, color, background_id, owner_id, createdAt, updatedAt) VALUES (?, ?, ?, ?, NOW(), NOW())';
         $this->createQuery($sql, [
             $board->getTitle(),
             $board->getColor(),
@@ -21,13 +19,13 @@ class BoardRepository extends ManagerRepository
 
     public function editBoard($board)
     {
-        $sql = "UPDATE board SET title = ?,  color = ?, background_id = ? WHERE boardId = ?";
+        $sql = "UPDATE board SET title = ?,  color = ?, background_id = ?, updatedAt = ? WHERE boardId = ?";
         $this->createQuery($sql, [
             $board->getTitle(),
             $board->getColor(),
-            $board->getBackground_id (),
-            $board->getBoardId()
+            $board->getBackground_id(),
+            date("Y-m-d H:i:s"),
+            $board->getBoardId(),
         ]);
     }
 }
-

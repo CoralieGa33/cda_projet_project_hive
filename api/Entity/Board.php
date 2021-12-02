@@ -2,7 +2,9 @@
 
 namespace Api\Entity;
 
-class Board
+use JsonSerializable;
+
+class Board implements JsonSerializable
 {
     private $boardId;
     private $title;
@@ -150,5 +152,18 @@ class Board
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function jsonSerialize($id)
+    {
+        return[
+            'boardId'=>$this->boardId,
+            'title'=>$this->title
+            'color'=>$this->color,
+            'background_id'=>$this->background_id,
+            'owner_id'=>$this->owner_id,
+            'createdAt'=>$this->createdAt,
+            'updatedAt'=>$this->updatedAt
+        ]
     }
 }

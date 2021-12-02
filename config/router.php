@@ -5,13 +5,19 @@ namespace Config;
 require_once 'env.local.php'; 
 
 use Api\Controller\UserController ;
+use Api\Controller\BoardController;
+use Api\Controller\ListeController;
 
 class Router {
     private $userController;
+    private $boardController;
+    private $listeController;
 
     public function __construct()
     {
         $this->userController = new UserController() ;   
+        $this->boardController = new BoardController();
+        $this->listeController = new ListeController();
     }
     public function Run() {
         session_start();
@@ -39,6 +45,12 @@ class Router {
                 header('Location: ?');
             }elseif (isset($_GET['board'])) {
                 require "../app/templates/board.php";
+            }elseif (isset($_GET['api/board'])) {
+                $this->boardController->getBoardInfos($_POST["boardId"]);
+            }elseif (isset($_GET['api/listes'])) {
+                    $this->listeController->getListes($_POST["boardId"]);
+            }elseif (isset($_GET['api/cards'])) {
+                    $this->cardController->getCards($_POST["listeId"]);
             }else {
                 echo "404 : PAGE NOT FOUND";
             }

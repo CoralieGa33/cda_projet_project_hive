@@ -20,7 +20,42 @@ class BoardController extends AbstractController
     public function getBoardInfos($id)
         {
             $board = $this->boardRepository->findOne($id);
-            $this->rende
+                echo json_encode($board);  
         }
+
+        public function newBoard($post)
+        {
+            if (isset($post['submit'])) {
+                $board = new Board();
+                $board
+                    ->setTitle($post["title"])
+                    ->setColor($post["color"])
+                    ->setBackground_id($post["background_id"])
+                    ->setOwner_id($post["owner_id"]);
+    
+                $this->BoardRepository->addBoard($board);
+
+            }
+        }
+
+        public function editBoard($board){
+        if (isset($post['edit']))
+            {
+                $board
+                    ->setTitle($post["title"])
+                    ->setColor($post['color'])
+                    ->setBackground_id($post['background_id']);
+            
+                $this->boardRepository->editBoard($board);
+            }
+
+        }
+            
+        public function deleteBoard($id)
+        {
+            $this->boardRepository->delete($id);   
+        }
+    
+    
     
 }
