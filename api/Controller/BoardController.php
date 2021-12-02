@@ -54,7 +54,5 @@ class BoardController extends AbstractController
         $this->boardRepository->delete($id);
     }
 
-    
-   
 }
 

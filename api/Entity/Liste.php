@@ -2,7 +2,9 @@
 
 namespace Api\Entity;
 
-class Liste
+use JsonSerializable;
+
+class Liste implements JsonSerializable
 {
     private $listeId;
     private $title;
@@ -171,5 +173,19 @@ class Liste
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function jsonSerialize($id)
+    {
+        return[
+            'listeId'=>$this->listeId,
+            'title'=>$this->title,
+            'OrderNb'=>$this->orderNb,
+            'board_id'=>$this->board_id,
+            'posLeft'=>$this->posLeft,
+            'posTop'=>$this->posTop,
+            'createdAt'=>$this->createdAt,
+            'updatedAt'=>$this->updatedAt
+        ]
     }
 }
