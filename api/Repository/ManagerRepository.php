@@ -23,6 +23,7 @@ class ManagerRepository
         }
         return $entity;
     }
+
     public function getConnection(){
         try {
             $database = new PDO(DB_HOST, DB_USER, DB_PASS);
@@ -55,7 +56,7 @@ class ManagerRepository
         
         return $result;
     }
-    
+
     public function getRepositoryClassName()
     {
         $staticClass = static::class;
@@ -112,7 +113,7 @@ class ManagerRepository
     {
         $tableName = $this->getTableName();
         $idName = $tableName."Id";
-        $sql = "DELETE FROM $tableName WHERE  $idName = ?";
+        $sql = "DELETE FROM $tableName WHERE $idName = ?";
         $this->createQuery($sql, [$id]);
     }
 }
