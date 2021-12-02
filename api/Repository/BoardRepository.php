@@ -25,7 +25,7 @@ class BoardRepository extends ManagerRepository
             $board->getColor(),
             $board->getBackground_id(),
             date("Y-m-d H:i:s"),
-            $board->getBoardId(),
+            $board->getBoardId()
         ]);
     }
 }

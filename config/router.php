@@ -6,14 +6,16 @@ require_once 'env.local.php';
 
 use Api\Controller\UserController ;
 use Api\Controller\BoardController ;
-use Api\Controller\CardController ;
 use Api\Controller\ListeController;
+use Api\Controller\CardController ;
+use Api\Controller\BackgroundController;
 
 class Router {
     private $userController;
     private $boardController;
     private $listeController;
     private $cardController;
+    private $backgroundController;
 
     public function __construct()
     {
@@ -21,7 +23,9 @@ class Router {
         $this->boardController = new BoardController() ;
         $this->listeController = new ListeController();
         $this->cardController = new CardController() ;
+        $this->backgroundController = new BackgroundController();
     }
+      
     public function Run() {
         session_start();
         if($_GET) {
@@ -50,10 +54,13 @@ class Router {
                 require "../app/templates/board.php";
             }elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
+              //$this->boardController->getBoardInfos(1);
             }elseif (isset($_GET['api/listes'])) {
                 $this->listeController->getListes($_POST["boardId"]);
             }elseif (isset($_GET['api/cards'])) {
                 $this->cardController->getCards($_POST["listeId"]);
+            }elseif (isset($_GET['api/backgrounds'])) {
+                $this->backgroundController->getBackgrounds();
             }else {
                 echo "404 : PAGE NOT FOUND";
             }
