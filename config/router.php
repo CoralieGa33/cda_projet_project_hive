@@ -17,7 +17,7 @@ class Router {
     private $listeController;
     private $cardController;
     private $backgroundController;
-    private $multicontroller;
+    private $multiController;
 
     public function __construct()
     {
@@ -65,8 +65,8 @@ class Router {
             }elseif (isset($_GET['api/backgrounds'])) {
                 $this->backgroundController->getBackgrounds();
             }elseif (isset($_GET['api/test'])) {
-                // $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
-                $this->multiController->getAllOfBoard(1, 2);
+                $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
+                //$this->multiController->getAllOfBoard(1, 2);
             }else {
                 echo "404 : PAGE NOT FOUND";
             }
