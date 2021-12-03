@@ -35,6 +35,7 @@ class UserRepository extends ManagerRepository
                                 // Requête préparée avec verrouillage des valeurs dans des variables
                                 $sql = 'INSERT INTO user (email, username, password, role, createdAt, updatedAt) VALUES (?, ?, ?, "registered", NOW(), NOW())';
                                 $this->createQuery($sql, [$email, $username, $password]);//createQuery dans ManagerRepository
+                                
                                 header('Location: ?registered');
                             } else {
                                 return "<p class='editpass-error'>Les mots de passes sont différents.</p>";
@@ -78,7 +79,6 @@ class UserRepository extends ManagerRepository
                         $_SESSION['username'] = $userInfos->username;
                         $_SESSION['email'] = $userInfos->email;
                         // $_SESSION['token'] = uniqid(rand(),true); //pour vérifier que c'est bien le bon utilisateur
-
                         header('Location: ?');
                     } else {
                         return "<p class='editpass-error'>Vérifiez votre mot de passe.</p>";

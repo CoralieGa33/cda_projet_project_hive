@@ -5,16 +5,20 @@ namespace Api\Controller;
 use Api\DataFixtures\UserFixtures;
 use Api\Entity\User;
 use Api\Repository\UserRepository;
+use Api\Repository\BoardRepository;
 use Api\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
     private $userRepository;
+    private $boardRepository;
     private $message;
+    private $boardsList;
 
     public function __construct()
     {
         $this->userRepository = new UserRepository();
+        $this->boardRepository = new BoardRepository();
     }
 
     public function loadFixtures()
@@ -38,10 +42,14 @@ class UserController extends AbstractController
     {
         if (isset($user['submit'])) {
             $this->message = $this->userRepository->connectUser($user);
+            $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
+            if(empty($this->boardsList)) {
+                $this->boardRepository->defaultBoard($_SESSION['username'], $_SESSION['userId']);
+            }
         }
-
         $this->render("signin", [
-            'message' => $this->message
+            'message' => $this->message,
+            'boardsList' => $this->boardsList
         ]);
     }
 
