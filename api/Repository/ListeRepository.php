@@ -27,7 +27,7 @@ class ListeRepository extends ManagerRepository
             $liste->getTitle(),
             $liste->getOrderNb(),
             $liste->getPosLeft(),
-            $liste->getPOsTop(),
+            $liste->getPosTop(),
             date("Y-m-d H:i:s"),
             $liste->getListeId()
         ]);
