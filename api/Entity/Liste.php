@@ -14,6 +14,7 @@ class Liste implements JsonSerializable
     private $posTop;
     private $createdAt;
     private $updatedAt;
+    private $cards;
 
     /**
      * Get the value of listeId
@@ -175,6 +176,18 @@ class Liste implements JsonSerializable
         return $this;
     }
 
+    /**
+     * Set the value of cards
+     *
+     * @return  self
+     */ 
+    public function setCards($cards)
+    {
+        $this->cards = $cards;
+
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return[
@@ -185,7 +198,8 @@ class Liste implements JsonSerializable
             'posLeft'=>$this->posLeft,
             'posTop'=>$this->posTop,
             'createdAt'=>$this->createdAt,
-            'updatedAt'=>$this->updatedAt
+            'updatedAt'=>$this->updatedAt,
+            'cards'=>$this->cards
         ];
     }
 }

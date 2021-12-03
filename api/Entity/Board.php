@@ -13,6 +13,7 @@ class Board implements JsonSerializable
     private $owner_id;
     private $createdAt;
     private $updatedAt;
+    private $listes;
 
     /**
      * Get the value of boardId
@@ -154,6 +155,19 @@ class Board implements JsonSerializable
         return $this;
     }
 
+    /**
+     * Set the value of listes
+     *
+     * @return  self
+     */ 
+    public function setListes($listes)
+    {
+        $this->listes = $listes;
+
+        return $this;
+    }
+    
+
     public function jsonSerialize()
     {
         return[
@@ -163,7 +177,8 @@ class Board implements JsonSerializable
             'background_id'=>$this->background_id,
             'owner_id'=>$this->owner_id,
             'createdAt'=>$this->createdAt,
-            'updatedAt'=>$this->updatedAt
+            'updatedAt'=>$this->updatedAt,
+            'listes'=>$this->listes
         ];
     }
 
