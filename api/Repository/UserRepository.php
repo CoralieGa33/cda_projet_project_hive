@@ -79,7 +79,7 @@ class UserRepository extends ManagerRepository
                         $_SESSION['username'] = $userInfos->username;
                         $_SESSION['email'] = $userInfos->email;
                         // $_SESSION['token'] = uniqid(rand(),true); //pour vérifier que c'est bien le bon utilisateur
-                        header('Location: ?');
+                        header('Location: ?board');
                     } else {
                         return "<p class='editpass-error'>Vérifiez votre mot de passe.</p>";
                     }
