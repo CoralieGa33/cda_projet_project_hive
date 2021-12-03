@@ -1,5 +1,6 @@
 <?php
     require 'includes/header.php';
+    //var_dump($boardsList);
 ?>
 
 <div class="background"></div>
@@ -10,14 +11,14 @@
             <i class="fas fa-bars"></i> 
         </div>
 
-        <div class="board-liste hidden">
+        <!-- <div class="board-liste hidden">
             <h5 class="board-liste-title">Liste des tableaux</h5>
             <ul>
                 <li>Lorem</li>
                 <li>Lorem</li>
                 <li>Lorem</li>
             </ul>
-        </div>
+        </div> -->
 
         <h2 class="board-title">Tableau 1234</h2>
 
@@ -76,6 +77,13 @@
     </div>
     <!--  -->
 </div>
+
+<script>
+    let userId = <?= $_SESSION['userId']; ?>;
+    let username = "<?= $_SESSION['username']; ?>";
+    let boardsList = <?= $boardsList; ?>;
+</script>
+<script defer src="js/board.js"></script>
 
 <?php
     require 'includes/footer.php';

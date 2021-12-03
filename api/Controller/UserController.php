@@ -45,11 +45,14 @@ class UserController extends AbstractController
             $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
             if(empty($this->boardsList)) {
                 $this->boardRepository->defaultBoard($_SESSION['username'], $_SESSION['userId']);
+                $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
             }
+            $this->render("board", [
+                'boardsList' => json_encode($this->boardsList)
+            ]);
         }
         $this->render("signin", [
             'message' => $this->message,
-            'boardsList' => $this->boardsList
         ]);
     }
 

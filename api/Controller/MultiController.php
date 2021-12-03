@@ -22,7 +22,7 @@ class MultiController extends AbstractController
 
     public function getAllOfBoard($boardId, $userId) {
         $board = $this->boardRepository->findOne($boardId);
-        if($board->getBoardId() == $userId) {
+        if($board->getOwner_id() == $userId) {
             $listes = $this->listeRepository->getListesByBoard($boardId);
             $board->setListes($listes);
             foreach($listes as $liste) {
