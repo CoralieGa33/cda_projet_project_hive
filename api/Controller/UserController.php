@@ -42,9 +42,11 @@ class UserController extends AbstractController
     {
         if (isset($user['submit'])) {
             $this->message = $this->userRepository->connectUser($user);
-            $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
-            if(empty($this->boardsList)) {
-                $this->boardRepository->defaultBoard($_SESSION['username'], $_SESSION['userId']);
+            if(isset($_SESSION['userId'])) {
+                $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
+                if(empty($this->boardsList)) {
+                    $this->boardRepository->defaultBoard($_SESSION['username'], $_SESSION['userId']);
+                }
             }
         }
         $this->render("signin", [
