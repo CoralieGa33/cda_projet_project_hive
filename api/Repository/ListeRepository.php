@@ -34,7 +34,7 @@ class ListeRepository extends ManagerRepository
     }
 
     public function getListesByBoard(int $id) {
-        $sql = 'SELECT * FROM liste WHERE board_id= ?';
+        $sql = 'SELECT * FROM liste WHERE board_id= ? ORDER BY orderNb ASC';
         $result = $this->createQuery($sql, [$id]);
         $listes = [];
 

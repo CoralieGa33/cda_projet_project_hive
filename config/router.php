@@ -54,7 +54,7 @@ class Router {
                 session_destroy();
                 header('Location: ?');
             }elseif (isset($_GET['board'])) {
-                require "../app/templates/board.php";
+                $this->userController->showBoard();
             }elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
               //$this->boardController->getBoardInfos(1);
@@ -64,9 +64,9 @@ class Router {
                 $this->cardController->getCard($_POST["cardId"]);
             }elseif (isset($_GET['api/backgrounds'])) {
                 $this->backgroundController->getBackgrounds();
-            }elseif (isset($_GET['api/test'])) {
-                $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
-                //$this->multiController->getAllOfBoard(1, 2);
+            }elseif (isset($_GET['api/boards'])) {
+                //$this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
+                $this->multiController->getAllOfBoard(1, 1);
             }else {
                 echo "404 : PAGE NOT FOUND";
             }

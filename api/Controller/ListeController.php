@@ -32,7 +32,7 @@ class ListeController extends AbstractController
                 //->setPosLeft($post["posLeft"]) pas la peine, positionnée à un endroit précis par défaut à la création
                 //->setPosTop($post["posTop"]);  idem
 
-            $this->ListeRepository->addListe($liste);
+            $this->listeRepository->addListe($liste);
         }
     }
 
