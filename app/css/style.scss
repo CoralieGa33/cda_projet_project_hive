@@ -407,14 +407,14 @@ a {
                         font-size: 1.1rem;
                         max-width: 100%;
                         border: none;
-                        background-color: transparent;
+                        background-color: #{$grey-color}30;
     
                         &::placeholder {
                             font-family: 'Poppins', sans-serif;
                         }
     
                         &:focus-visible {
-                            outline: none;
+                            outline: solid 2px $grey-color;
                         }
                         }
                     }

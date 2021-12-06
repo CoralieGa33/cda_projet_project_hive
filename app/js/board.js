@@ -1,5 +1,5 @@
 let app = {
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
+    baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
     
     init: function() {
         console.log("initialisation ...")
@@ -7,6 +7,7 @@ let app = {
         //console.log(boardsList[0]['owner_id']);
 
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
+        $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
 
         app.loadBoard();
     },
@@ -48,6 +49,7 @@ let app = {
         //console.log(newListe)
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
+        newListe.setAttribute('liste-id', liste.listeId)
         newListe.querySelector('h3').textContent = liste.title;
         newListe.querySelector('input[name=liste-title]').value = liste.title;
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
@@ -88,7 +90,15 @@ let app = {
         let listTitleForm = listTitle.next('form');
         listTitleForm.removeClass('is-hidden');
         listTitleForm[0].querySelector('.liste-header-title-input').focus();
-        console.log(listTitleForm[0]);
+    },
+
+    handleBlurListTitle: function(event) {
+        let listTitleForm = $(event.currentTarget).parent();
+        //console.log(listTitleForm)
+        listTitleForm.addClass('is-hidden');
+        let listTitle = listTitleForm.prev('.liste-header-show');
+        $(event.currentTarget)[0].value = listTitle.contents()[1].textContent;
+        listTitle.removeClass('is-hidden');
     },
 };
 
