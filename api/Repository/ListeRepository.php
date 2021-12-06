@@ -45,4 +45,14 @@ class ListeRepository extends ManagerRepository
 
         return $listes;
     }
+
+    /*public function draggListe( int $id){
+    Pour récupérer l'id et la position
+    $id = $_POST['id'];
+    $posLeft = $_POST['posLeft'];
+    $posTop = $_POST['posTop'];
+    
+    $sql = "UPDATE liste SET posLeft = $posLeft, posTop = $posTop WHERE listeId = $id";
+    }
+    */
 }
