@@ -653,7 +653,7 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #5d51f7;
+  color: #FBFBF9;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -682,10 +682,6 @@ a {
 
 #burger-wrap:target #open,
 #burger-wrap:not(:target) #close {
-  display: none;
-}
-
-#burger-wrap:target #open {
   display: none;
 }
 
@@ -752,6 +748,9 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #burger-open {

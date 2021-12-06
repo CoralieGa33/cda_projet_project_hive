@@ -7,16 +7,16 @@
                         <i class="fas fa-arrow-right"></i>
                         </a>
                             <a href="#" id="close"><i class="fas fa-arrow-left"></i></a>
-                            <h1 class="burger-title"><a href="#">Liste des tableaux : </a></h1>
+                            <h3 class="burger-title">Liste des tableaux :</h3>
                             <ul>
-                                <li class="table-brush"><a class="burger-list" href="#">Tableau de testeur1</a><i class="fas fa-paint-brush"></i></li>
-                                <li><a class="burger-list" href="#">Tableau 2 de testeur1</a></li>
-                                <li><a class="burger-list" href="#">Tableau 3 de testeur1</a></li>
-                                <li><a class="burger-list" href="#">Tableau 4 de testeur1</a></li>
-                                <li><a class="burger-add-table" href="#">Ajouter un tableau</a></li>
+                                <li class="table-brush burger-list">Tableau de testeur1 <i class="fas fa-paint-brush"></i></li>
+                                <li class="burger-list board-2" >Tableau 2 de testeur1</li>
+                                <li class="burger-list board-3" >Tableau 3 de testeur1</li>
+                                <li class="burger-list board-4" >Tableau 4 de testeur1</li>
+                                <li class="burger-add-table">Ajouter un tableau</li>
                             </ul>
                         <div class="modify-table">
-                            <a class="burger-list" href="#">Modifier le tableau actif : </a>
+                            <h4 class="burger-list"> Modifier le tableau actif : </h4>
                                 <form action="">
                                     <input type="text" class="" value="Titre du tableau" placeholder="Titre du tableau" name="Titre du tableau">
                                     <input type="text" value="Choisir une couleur" placeholder="Choisir une couleur" name="Choisir une couleur">
@@ -35,14 +35,14 @@
                         </div>
 
                         <div class="burger-new-table">
-                            <a class="burger-list" href="#">Nouveau tableau : </a>
+                            <h4 class="burger-list">Nouveau tableau : </h4>
                                 <form action="">
                                         <input type="text" class="" value="" placeholder="" name="">
                                         <input type="text" value="" placeholder="" name="">
                                         <input type="text" value="" placeholder="" name="">
                                 </form>
                         </div>
-                        
+
                      </nav>
                 </header>
             </div>

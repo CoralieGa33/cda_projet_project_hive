@@ -560,7 +560,7 @@ a {
     line-height: 1.6;
     margin: 0;
     display: flex;
-    color: #5d51f7;
+    color:$light-color;
     transition: transform .4s cubic-bezier(.25, .1, .25, 1);
     position:absolute;
     z-index:99999;
@@ -587,11 +587,7 @@ a {
   #burger-wrap:not(:target) #close {
     display: none;
   }
-  
-  #burger-wrap:target #open {
-    display: none;
-  }
-  
+
   .burger-nav a {
     color: #FBFBF9;
     text-decoration: none;
@@ -641,6 +637,7 @@ a {
 .table-brush{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #burger-open{
