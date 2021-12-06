@@ -562,6 +562,9 @@ a {
     display: flex;
     color: #5d51f7;
     transition: transform .4s cubic-bezier(.25, .1, .25, 1);
+    position:absolute;
+    z-index:99999;
+
   }
   
   #burger-wrap:not(:target) {
@@ -602,6 +605,7 @@ a {
     padding: 0 20px;
     display:inline-block;
     vertical-align:top;
+    
   }
   
   .burger-nav {
@@ -626,6 +630,21 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+.menu-burger{
+    position:relative;
+}
+.fa-paint-brush{
+    color: white;
+    font-size: 0.8rem;
+}
+.table-brush{
+    display: flex;
+    justify-content: space-between;
+}
+
+#burger-open{
+    margin-left: 1.2rem;
 }
 //Menu burger end
 
