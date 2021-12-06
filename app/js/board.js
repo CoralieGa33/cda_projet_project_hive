@@ -9,6 +9,8 @@ let app = {
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
 
+        $('.add-liste').on('submit', app.createNewListe);
+
         app.loadBoard();
     },
 
@@ -100,6 +102,25 @@ let app = {
         $(event.currentTarget)[0].value = listTitle.contents()[1].textContent;
         listTitle.removeClass('is-hidden');
     },
+
+    createNewListe: function(event) {
+        event.preventDefault();
+        let newListeName = $('.add-liste-input').eq(0).val();
+        console.log(newListeName);
+        $.ajax({
+            url: app.baseUrl + 'liste/add',
+            method: 'POST',
+            data: {
+                title: newListeName,
+                dataType: 'json',
+                orderNb: 10,
+                boardId: 0,
+            }
+        }).done(function(res) {
+            console.log(res)
+            console.log("requete ok");
+        })
+    }
 };
 
 document.addEventListener('DOMContentLoaded', app.init);

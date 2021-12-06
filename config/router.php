@@ -57,9 +57,13 @@ class Router {
                 $this->userController->showBoard();
             }elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
-              //$this->boardController->getBoardInfos(1);
+                //$this->boardController->getBoardInfos(1);
             }elseif (isset($_GET['api/liste'])) {
-                $this->listeController->getListe($_POST["listId"]);
+                $this->listeController->getListe($listId);
+            }elseif (isset($_GET['api/liste/add'])) {
+                $this->listeController->newListe($post);
+            }elseif (isset($_GET['api/liste/update'])) {
+                $this->listeController->editListe($post);
             }elseif (isset($_GET['api/card'])) {
                 $this->cardController->getCard($_POST["cardId"]);
             }elseif (isset($_GET['api/backgrounds'])) {

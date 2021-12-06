@@ -15,8 +15,8 @@ class ListeRepository extends ManagerRepository
             $liste->getTitle(),
             $liste->getOrderNb(),
             $liste->getBoard_id(), //peut-être à revoir
-            $liste->getposLeft(),
-            $liste->getposTop()
+            70,
+            20
         ]);
     }
 
