@@ -7,8 +7,6 @@
 <div class="board">
     <div class="board-header">
         <div class="menu-burger">
-           <!-- <i class="fas fa-bars"></i> -->
-
            <div id="burger-wrap">
                 <header class="burger-header">
                     <nav class="burger-nav">
@@ -57,25 +55,15 @@
                      </nav>
                 </header>
             </div>
-
-            <!-- 
-        <div class="board-liste hidden">
-            <h5 class="board-liste-title">Liste des tableaux</h5>
-            <ul>
-                <li>Lorem</li>
-                <li>Lorem</li>
-                <li>Lorem</li>
-            </ul>
         </div>
+
 
         <h2 class="board-title">Tableau 1234</h2>
 
         <form class="add-liste" action="" method="POST">    
             <i class="fas fa-plus add-liste-icon"></i><input type="text" class="add-liste-input" placeholder="Ajouter une liste" name="add-liste">
-        </form>   -->
-        </div>
-           
-
+        </form>   
+       
         
     <!-- FAKE NEW LIST -->
     <div class="liste"  id="liste-3">
