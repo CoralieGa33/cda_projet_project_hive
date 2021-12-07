@@ -5,7 +5,7 @@
 INSERT INTO user (`email`, `username`, `password`, `role`, `createdAt`, `updatedAt`) VALUES
 ('testeur1@testeur1.fr', 'testeur1', '$2y$10$5pIKdrlVhslccRhoLbGB8OgXFTB5Lg7lGzo4HMIW8QhHfOX4RUhKO', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('testeur2@testeur2.fr', 'testeur2', '$2y$10$cMNEoOw319Ehzf.sJVXmuOf32QqqO.npLUhnPF3Z/EoqzXSfJouXa', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('testeur1@testeur3.fr', 'testeur3', '$2y$10$GtPKSmaiJVR6ky6Dnm17MupmCt9x3GgkptnXFXrGm5flfTWzqdUEu', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25');
+('testeur3@testeur3.fr', 'testeur3', '$2y$10$GtPKSmaiJVR6ky6Dnm17MupmCt9x3GgkptnXFXrGm5flfTWzqdUEu', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 INSERT INTO background (`imageUrl`, `createdAt`, `updatedAt`) VALUES
 ("https://picsum.photos/id/1002/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
