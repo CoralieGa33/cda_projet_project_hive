@@ -1,21 +1,21 @@
 //Pour le déplacement des div .liste avec jquery draggable
-
+/*
 $(".liste").draggable({  
     cursor: "move", // pour modifier le curseur de déplacement
     //containment: "#cible"// limite le déplacement à une zone
     
     //Pour l'enregistrement des positions après le déplacement
-   
+    
     stop: function(event, ui){
         let posLeft = $(this).position().left;//voir si je change offset par position
         let posTop = $(this).position().top;//offset modifié par position car parent ajouté par Coralie
-        let id = $(this).attr("id");//à changer avec liste_id
-        console.log(id);
+        let id = $(this).attr("listId");//à changer avec liste_id
+        console.log(listeId);
         console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
-       
+        
     }
 }); 
-
+*/
 
 //Pour la réorganisation de l'ordre des cards avec sortable
 

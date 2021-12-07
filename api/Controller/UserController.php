@@ -42,7 +42,6 @@ class UserController extends AbstractController
     {
         if (isset($user['submit'])) {
             $this->message = $this->userRepository->connectUser($user);
-            header('Location: ?board');
         }
         $this->render("signin", [
             'message' => $this->message,

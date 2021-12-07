@@ -39,9 +39,10 @@ class ListeController extends AbstractController
         }
     }
 
-    public function editListe($liste){
-        if (isset($post['edit']))
-        {
+    public function editListe($post){
+        if(!in_array('', $post)) {
+            $liste = $this->listeRepository->findOne($post['listeId']);
+        
             $liste
                 ->setTitle($post["title"])
                 ->setOrderNb($post['orderNb'])
@@ -49,6 +50,8 @@ class ListeController extends AbstractController
                 ->setPosTop($post["posTop"]);
         
             $this->listeRepository->editListe($liste);
+            $updatedListe = $this->listeRepository->findOne($post['listeId']);
+            echo json_encode($updatedListe); 
         }
     }
         

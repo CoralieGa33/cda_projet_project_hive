@@ -62,7 +62,7 @@ class Router {
             }elseif (isset($_GET['api/liste/add'])) {
                 $this->listeController->newListe($_POST);
             }elseif (isset($_GET['api/liste/update'])) {
-                $this->listeController->editListe($post);
+                $this->listeController->editListe($_POST);
             }elseif (isset($_GET['api/card'])) {
                 $this->cardController->getCard($_POST["cardId"]);
             }elseif (isset($_GET['api/backgrounds'])) {

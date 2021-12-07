@@ -1,6 +1,6 @@
 let app = {
-    baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
-    //baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_0512/app/?api/',
+    //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
     
     init: function() {
         console.log("initialisation ...")
@@ -10,6 +10,7 @@ let app = {
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
 
+        $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.add-liste').on('submit', app.createNewListe);
 
         app.loadBoard();
@@ -46,6 +47,7 @@ let app = {
                 })
                 
             })
+            app.setDragListes();
         }).fail(function(e) {
             console.error(e);
         });
@@ -67,6 +69,7 @@ let app = {
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
         newListe.style.left = liste.posLeft+'px';
         newListe.style.top = liste.posTop+'px';
+        newListe.style.zIndex = liste.orderNb;
         newListe.classList.remove('is-hidden');
         return newListe;
     },
@@ -139,11 +142,64 @@ let app = {
         });
     },
 
+    handleUpdateListeName: function(event) {
+        event.preventDefault();
+        let liste = $(event.currentTarget).parent().parent();
+        app.updateListe(liste);
+        $('.liste-header-title-input').blur();
+    },
+
     getMaxListOrderNb: function(listeCollection) {
         let allListes = [... listeCollection];
         orderedListes = allListes.sort((a, b) => b.orderNb - a.orderNb);
         maxOrderNb = orderedListes[0].orderNb;
         return(maxOrderNb);
+    },
+
+    setDragListes: function() {
+        //Pour le déplacement des div .liste avec jquery draggable
+        $(".liste").draggable({  
+            cursor: "move", // pour modifier le curseur de déplacement
+            //containment: "#cible"// limite le déplacement à une zone
+            containment: ".board-listes",
+            //Pour l'enregistrement des positions après le déplacement
+            
+            stop: function(event, ui){
+                let posLeft = $(this).position().left;//voir si je change offset par position
+                let posTop = $(this).position().top;//offset modifié par position car parent ajouté par Coralie
+                let listeId = $(this).attr("liste-id");//à changer avec liste_id
+                //console.log(listeId);
+                //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
+                app.updateListe($(this));
+            }
+        });
+    },
+
+    updateListe: function(liste) {
+        let listeTitle = liste.find('.liste-header-title-input').val();
+        //console.log(listeTitle);
+        $.ajax({
+            url: app.baseUrl + 'liste/update',
+            method: 'POST',
+            data: {
+                listeId: liste.attr('liste-id'),
+                title: listeTitle,
+                orderNb: liste.attr('order-nb'),
+                posLeft: liste.position().left,
+                posTop: liste.position().top,
+            }
+        }).done(function(updatedListe) {
+            updatedListe = JSON.parse(updatedListe);
+            //console.log(updatedListe)
+            let listeToUpdateId = updatedListe.listeId;
+            let listeToUpdate = $('.liste[liste-id='+ listeToUpdateId +']');
+            //console.log(listeToUpdate)
+            listeToUpdate.attr('order-nb', updatedListe.orderNb)
+            listeToUpdate.find('h3').text(updatedListe.title);
+            listeToUpdate.find('input[name=liste-title]').val( updatedListe.title);
+        }).fail(function(e) {
+            console.error(e);
+        });
     }
 };
 
