@@ -14,7 +14,7 @@ let app = {
 
         app.loadBoard();
     },
-
+    maxListeOrderNb: 0,
     loadBoard: function() {
         $.ajax({
             url: app.baseUrl + 'boards',
@@ -25,8 +25,12 @@ let app = {
         }).done(function(boardDatas) {
             //console.log(boardDatas)
             let board = JSON.parse(boardDatas)
+            app.generateBoard(board.boardId);
             //console.log(board.listes)
             let listeCollection = board.listes;
+            //console.log(listeCollection)
+            app.maxListeOrderNb = app.getMaxListOrderNb(listeCollection);
+            //console.log(app.maxListeOrderNb);
             listeCollection.map(liste => {
                 //console.log(liste)
                 // remplir une liste en js et l'afficher dans le dom
@@ -46,6 +50,10 @@ let app = {
             console.error(e);
         });
     },
+    generateBoard: function(boardId) {
+        let board = document.querySelector('.board');
+        board.setAttribute('board-id', boardId)
+    },
     
     generateListeElement: function(liste) {
         let newListe = document.querySelector('.template-liste').cloneNode(true)
@@ -53,6 +61,7 @@ let app = {
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
         newListe.setAttribute('liste-id', liste.listeId)
+        newListe.setAttribute('order-nb', liste.orderNb)
         newListe.querySelector('h3').textContent = liste.title;
         newListe.querySelector('input[name=liste-title]').value = liste.title;
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
@@ -107,25 +116,34 @@ let app = {
     createNewListe: function(event) {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
-        //console.log(newListeName);
+        let boardId = $('.board').attr('board-id');
+        //console.log(boardId);
         $.ajax({
             url: app.baseUrl + 'liste/add',
             method: 'POST',
             dataType: 'json',
             data: {
                 title: newListeName,
-                orderNb: 10,
-                boardId: 1,
+                orderNb: parseInt(app.maxListeOrderNb)+1,
+                boardId: boardId,
             }
         }).done(function(liste) {
-            console.log(liste)
+            //console.log(liste)
             let newListeElement = app.generateListeElement(liste);
             $('.add-liste-input').eq(0).val("");
             $('.add-liste-input').blur();
             app.addListeElement(newListeElement);
+            app.maxListeOrderNb ++
         }).fail(function(e) {
             console.error(e);
         });
+    },
+
+    getMaxListOrderNb: function(listeCollection) {
+        let allListes = [... listeCollection];
+        orderedListes = allListes.sort((a, b) => b.orderNb - a.orderNb);
+        maxOrderNb = orderedListes[0].orderNb;
+        return(maxOrderNb);
     }
 };
 

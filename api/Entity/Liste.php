@@ -193,7 +193,7 @@ class Liste implements JsonSerializable
         return[
             'listeId'=>$this->listeId,
             'title'=>$this->title,
-            'OrderNb'=>$this->orderNb,
+            'orderNb'=>$this->orderNb,
             'board_id'=>$this->board_id,
             'posLeft'=>$this->posLeft,
             'posTop'=>$this->posTop,
