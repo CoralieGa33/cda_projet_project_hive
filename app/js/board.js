@@ -1,11 +1,10 @@
 let app = {
+    // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
     baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
     
     init: function() {
         console.log("initialisation ...")
-        //console.log(userId);
-        //console.log(boardsList[0]['owner_id']);
 
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
@@ -13,9 +12,12 @@ let app = {
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.add-liste').on('submit', app.createNewListe);
 
+        // je charge mon tableau principal
         app.loadBoard();
     },
     maxListeOrderNb: 0,
+
+    // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
     loadBoard: function() {
         $.ajax({
             url: app.baseUrl + 'boards',
@@ -24,22 +26,25 @@ let app = {
                 boardId:`${boardsList[0]['boardId']}`,
             }
         }).done(function(boardDatas) {
-            //console.log(boardDatas)
             let board = JSON.parse(boardDatas)
             app.generateBoard(board.boardId);
-            //console.log(board.listes)
+
+            // Je place dans une variable toutes les listes reçues du tableau
             let listeCollection = board.listes;
-            //console.log(listeCollection)
+            
+            // Je stocke ici le plus grand des orderNb retourné parmi les listes
             app.maxListeOrderNb = app.getMaxListOrderNb(listeCollection);
-            //console.log(app.maxListeOrderNb);
+
+            // Je boucle sur la collection de listes
             listeCollection.map(liste => {
-                //console.log(liste)
                 // remplir une liste en js et l'afficher dans le dom
                 let newListeElement = app.generateListeElement(liste);
                 app.addListeElement(newListeElement);
                 
+                // Je place dans une variable toutes les cartes reçues de la liste
                 let cardCollection = liste.cards;
-                //console.log(cardCollection);
+                
+                // Je boucle sur la collection de cartes
                 cardCollection.map(card => {
                     // remplir une carte en js et l'afficher dans le dom de la liste
                     let newCardElement = app.generateCardElement(card);
@@ -47,19 +52,22 @@ let app = {
                 })
                 
             })
+            // J'ajoute à chaque liste la capacité d'être déplacée une fois que TOUTES mes listes sont chargées
             app.setDragListes();
         }).fail(function(e) {
             console.error(e);
         });
     },
+    // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite
     generateBoard: function(boardId) {
         let board = document.querySelector('.board');
         board.setAttribute('board-id', boardId)
     },
     
+    // permet  de générer une nouvelle liste avec ses détails
+    // elle reste "virtuelle" tant qu'elle n'est pas ajoutée au DOM
     generateListeElement: function(liste) {
         let newListe = document.querySelector('.template-liste').cloneNode(true)
-        //console.log(newListe)
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
         newListe.setAttribute('liste-id', liste.listeId)
@@ -74,14 +82,17 @@ let app = {
         return newListe;
     },
     
+    // Ajoute la liste générée au DOM
     addListeElement: function(newListeElement) {
         let listeContainer = $('.board-listes');
         listeContainer.append(newListeElement);
+        app.setDragListes();
     },
 
+    // permet  de générer une nouvelle carte  avec ses détails
+    // elle reste "virtuelle" tant qu'elle n'est pas ajoutée au DOM
     generateCardElement: function(card) {
         let newCard = document.querySelector('.template-card').cloneNode(true)
-        //console.log(newcard)
         newCard.id = "card-"+card.cardId;
         newCard.classList.remove("template-card");
         newCard.querySelector('h4').textContent = card.title;
@@ -93,12 +104,13 @@ let app = {
         return newCard;
     },
 
+    // Ajoute la carte générée au DOM
     addCardElement: function(newCardElement) {
         let cardContainer = $('.liste-cards-'+newCardElement.getAttribute('liste-id'));
-        //console.log(cardContainer)
         cardContainer.append(newCardElement);
     },
 
+    // Fait apparaitre le formulaire de modification du titre de la liste
     handleDblClickListTitle: function(event) {
         let listTitle = $(event.currentTarget);
         listTitle.addClass('is-hidden');
@@ -107,20 +119,20 @@ let app = {
         listTitleForm[0].querySelector('.liste-header-title-input').focus();
     },
 
+    // Réinitialise le titre et la valeur du form si le changement n'est pas validé
     handleBlurListTitle: function(event) {
         let listTitleForm = $(event.currentTarget).parent();
-        //console.log(listTitleForm)
         listTitleForm.addClass('is-hidden');
         let listTitle = listTitleForm.prev('.liste-header-show');
         $(event.currentTarget)[0].value = listTitle.contents()[1].textContent;
         listTitle.removeClass('is-hidden');
     },
 
+    // Requête d'ajout d'une nouvelle liste
     createNewListe: function(event) {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
         let boardId = $('.board').attr('board-id');
-        //console.log(boardId);
         $.ajax({
             url: app.baseUrl + 'liste/add',
             method: 'POST',
@@ -131,7 +143,8 @@ let app = {
                 boardId: boardId,
             }
         }).done(function(liste) {
-            //console.log(liste)
+            // Si c'est ok, je génère la nouvelle liste et je l'ajoute au DOM
+            // ça évite de recharger la page et de faire une nouvelle requête
             let newListeElement = app.generateListeElement(liste);
             $('.add-liste-input').eq(0).val("");
             $('.add-liste-input').blur();
@@ -142,42 +155,9 @@ let app = {
         });
     },
 
-    handleUpdateListeName: function(event) {
-        event.preventDefault();
-        let liste = $(event.currentTarget).parent().parent();
-        app.updateListe(liste);
-        $('.liste-header-title-input').blur();
-    },
-
-    getMaxListOrderNb: function(listeCollection) {
-        let allListes = [... listeCollection];
-        orderedListes = allListes.sort((a, b) => b.orderNb - a.orderNb);
-        maxOrderNb = orderedListes[0].orderNb;
-        return(maxOrderNb);
-    },
-
-    setDragListes: function() {
-        //Pour le déplacement des div .liste avec jquery draggable
-        $(".liste").draggable({  
-            cursor: "move", // pour modifier le curseur de déplacement
-            //containment: "#cible"// limite le déplacement à une zone
-            containment: ".board-listes",
-            //Pour l'enregistrement des positions après le déplacement
-            
-            stop: function(event, ui){
-                let posLeft = $(this).position().left;//voir si je change offset par position
-                let posTop = $(this).position().top;//offset modifié par position car parent ajouté par Coralie
-                let listeId = $(this).attr("liste-id");//à changer avec liste_id
-                //console.log(listeId);
-                //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
-                app.updateListe($(this));
-            }
-        });
-    },
-
+    // Requête pour mettre à jour une liste donnée
     updateListe: function(liste) {
         let listeTitle = liste.find('.liste-header-title-input').val();
-        //console.log(listeTitle);
         $.ajax({
             url: app.baseUrl + 'liste/update',
             method: 'POST',
@@ -190,17 +170,54 @@ let app = {
             }
         }).done(function(updatedListe) {
             updatedListe = JSON.parse(updatedListe);
-            //console.log(updatedListe)
+            // Si c'est ok je mets à jour les détails la liste ciblée dans le DOM
             let listeToUpdateId = updatedListe.listeId;
             let listeToUpdate = $('.liste[liste-id='+ listeToUpdateId +']');
-            //console.log(listeToUpdate)
             listeToUpdate.attr('order-nb', updatedListe.orderNb)
             listeToUpdate.find('h3').text(updatedListe.title);
             listeToUpdate.find('input[name=liste-title]').val( updatedListe.title);
         }).fail(function(e) {
             console.error(e);
         });
-    }
+    },
+
+    // Sélectionne et envoie la liste complète visée par l'action pour la requête
+    handleUpdateListeName: function(event) {
+        event.preventDefault();
+        let liste = $(event.currentTarget).parent().parent();
+        app.updateListe(liste);
+        $('.liste-header-title-input').blur();
+    },
+
+    // Trouve le orderNb le plus grand parmi les listes
+    // (Servira aussi plus tard pour gérer la superposition des listes)
+    getMaxListOrderNb: function(listeCollection) {
+        let allListes = [... listeCollection];
+        orderedListes = allListes.sort((a, b) => b.orderNb - a.orderNb);
+        maxOrderNb = orderedListes[0].orderNb;
+        return(maxOrderNb);
+    },
+
+    // Pour rendre une liste déplaçable dans le tableau
+    setDragListes: function() {
+        //Pour le déplacement des div .liste avec jquery draggable
+        $(".liste").draggable({  
+            cursor: "move", // pour modifier le curseur de déplacement
+            //containment: "#cible"// limite le déplacement à une zone
+            containment: ".board-listes",
+            //Pour l'enregistrement des positions après le déplacement
+            
+            stop: function(event, ui){
+                let posLeft = $(this).position().left;//voir si je change offset par position
+                let posTop = $(this).position().top;//offset modifié par position car parent ajouté par Coralie
+                let listeId = $(this).attr("liste-id");//à changer avec liste-id
+                //console.log(listeId);
+                //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
+                app.updateListe($(this));
+            }
+        });
+    },
+
 };
 
 document.addEventListener('DOMContentLoaded', app.init);
