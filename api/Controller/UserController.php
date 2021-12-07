@@ -42,17 +42,24 @@ class UserController extends AbstractController
     {
         if (isset($user['submit'])) {
             $this->message = $this->userRepository->connectUser($user);
-            if(isset($_SESSION['userId'])) {
-                $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
-                if(empty($this->boardsList)) {
-                    $this->boardRepository->defaultBoard($_SESSION['username'], $_SESSION['userId']);
-                }
-            }
+            header('Location: ?board');
         }
         $this->render("signin", [
             'message' => $this->message,
-            'boardsList' => $this->boardsList
         ]);
+    }
+
+    public function showBoard() {
+        if(isset($_SESSION['userId'])) {
+            $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
+            if(empty($this->boardsList)) {
+                $this->boardRepository->defaultBoard($_SESSION['username'], $_SESSION['userId']);
+                $this->boardsList = $this->boardRepository->getBoardsByOwnerId($_SESSION['userId']);
+            }
+            $this->render("board", [
+                'boardsList' => json_encode($this->boardsList)
+            ]);
+        }
     }
 
     public function profile($id, $post)

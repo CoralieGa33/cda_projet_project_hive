@@ -15,8 +15,8 @@ class ListeRepository extends ManagerRepository
             $liste->getTitle(),
             $liste->getOrderNb(),
             $liste->getBoard_id(), //peut-être à revoir
-            $liste->getposLeft(),
-            $liste->getposTop()
+            70,
+            20
         ]);
     }
 
@@ -34,7 +34,7 @@ class ListeRepository extends ManagerRepository
     }
 
     public function getListesByBoard(int $id) {
-        $sql = 'SELECT * FROM liste WHERE board_id= ?';
+        $sql = 'SELECT * FROM liste WHERE board_id= ? ORDER BY orderNb ASC';
         $result = $this->createQuery($sql, [$id]);
         $listes = [];
 
@@ -44,5 +44,14 @@ class ListeRepository extends ManagerRepository
         }
 
         return $listes;
+    }
+
+    public function getLastListe() {
+        $sql = 'SELECT * FROM liste WHERE listeId = (SELECT MAX(listeId) FROM liste)';
+        $result = $this->createQuery($sql);
+        $row = $result->fetch();
+        $lastListe = $this->buildObject($row);
+
+        return $lastListe;
     }
 }

@@ -24,15 +24,18 @@ class ListeController extends AbstractController
 
     public function newListe($post)
     {
-        if (isset($post['submit'])) {
+        if ($post) {
             $liste = new Liste();
             $liste
-                ->setTitle($post["title"])
-                ->setOrderNb($post["orderNb"]);
-                //->setPosLeft($post["posLeft"]) pas la peine, positionnée à un endroit précis par défaut à la création
-                //->setPosTop($post["posTop"]);  idem
-
-            $this->ListeRepository->addListe($liste);
+            ->setTitle($post["title"])
+            ->setOrderNb($post["orderNb"])
+            ->setBoard_id($post["boardId"]);
+            //->setPosLeft($post["posLeft"]) pas la peine, positionnée à un endroit précis par défaut à la création
+            //->setPosTop($post["posTop"]);  idem
+            
+            $this->listeRepository->addListe($liste);
+            $lastListe = $this->listeRepository->getLastListe();
+            echo json_encode($lastListe); 
         }
     }
 

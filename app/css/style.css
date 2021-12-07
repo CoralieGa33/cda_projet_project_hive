@@ -96,6 +96,10 @@ a {
   color: #FBFBF9;
 }
 
+.container {
+  height: 100%;
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -106,9 +110,10 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.1rem 1.2rem 0rem 1.2rem;
+  padding: 0 1.2rem;
   background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
+  height: 4.5rem;
   border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
 }
 
@@ -190,11 +195,12 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.5rem 10rem 0.5rem;
+  padding: 0.5rem 10rem;
   background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
   color: #5d51f7;
   border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
+  height: 2.2rem;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -328,8 +334,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 1rem;
-  margin-left: 1rem;
+  padding: 1rem;
+  height: 4.7rem;
 }
 
 .board-header .menu-burger {
@@ -352,7 +358,6 @@ a {
 }
 
 .board-header .board-title {
-  padding-right: 1.5rem;
   font-size: 2rem;
   color: #4B5C6B;
   font-family: 'Solway', serif;
@@ -360,12 +365,16 @@ a {
 }
 
 .board-header .add-liste {
+  margin: 0 1rem;
   font-size: 1rem;
   padding: 0.5rem;
   color: #4B5C6B;
   border: 1px solid #4B5C6B;
   border-radius: 5px;
   background-color: #FBFBF9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .board-header .add-liste-icon {
@@ -400,31 +409,23 @@ a {
   outline: none;
 }
 
-.board #liste-1 {
-  top: 250px;
-  left: 400px;
+.board-listes {
+  position: relative;
+  height: calc(100vh - 4.5rem - 4.7rem - 2.2rem);
 }
 
-.board #liste-2 {
-  top: 400px;
-  left: 800px;
-}
-
-.board #liste-3 {
-  top: 200px;
-  left: 75px;
-}
-
-.board .liste {
+.board-listes .liste {
   border: 1px solid #4B5C6B;
   background-color: #FBFBF9;
   border-radius: 5px;
   width: 15rem;
-  padding: 1rem;
+  padding: 0.7rem;
   position: absolute;
+  top: 200px;
+  left: 75px;
 }
 
-.board .liste .btn-icon {
+.board-listes .liste .btn-icon {
   border: none;
   background-color: transparent;
   font-size: 1rem;
@@ -432,11 +433,11 @@ a {
   padding: 0.2rem;
 }
 
-.board .liste .btn-icon:hover {
+.board-listes .liste .btn-icon:hover {
   cursor: pointer;
 }
 
-.board .liste .tooltip {
+.board-listes .liste .tooltip {
   position: absolute;
   background-color: #FBFBF9;
   font-size: 0.7rem;
@@ -445,7 +446,7 @@ a {
   transition: 1s all;
 }
 
-.board .liste-header {
+.board-listes .liste-header-show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -455,58 +456,64 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
 }
 
-.board .liste-header-title {
+.board-listes .liste-header-title {
   font-size: 1.3rem;
-  max-width: 80%;
-}
-
-.board .liste-header-title-input {
+  margin-right: 0.1rem;
   font-family: 'Solway', serif;
   color: #4B5C6B;
   font-weight: bold;
-  border: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.board-listes .liste-header-title-input {
+  font-family: 'Solway', serif;
+  color: #4B5C6B;
+  font-weight: bold;
+  font-size: 1.1rem;
   max-width: 100%;
-  background-color: transparent;
+  border: none;
+  background-color: #4B5C6B30;
 }
 
-.board .liste-header-title-input::-webkit-input-placeholder {
+.board-listes .liste-header-title-input::-webkit-input-placeholder {
   font-family: 'Poppins', sans-serif;
 }
 
-.board .liste-header-title-input:-ms-input-placeholder {
+.board-listes .liste-header-title-input:-ms-input-placeholder {
   font-family: 'Poppins', sans-serif;
 }
 
-.board .liste-header-title-input::-ms-input-placeholder {
+.board-listes .liste-header-title-input::-ms-input-placeholder {
   font-family: 'Poppins', sans-serif;
 }
 
-.board .liste-header-title-input::placeholder {
+.board-listes .liste-header-title-input::placeholder {
   font-family: 'Poppins', sans-serif;
 }
 
-.board .liste-header-title-input:focus-visible {
-  outline: none;
+.board-listes .liste-header-title-input:focus-visible {
+  outline: solid 2px #4B5C6B;
 }
 
-.board .liste-header .add-card {
+.board-listes .liste-header .add-card {
   color: #4B5C6B;
   position: relative;
+  display: inline-block;
 }
 
-.board .liste-header .add-card .addcard-tooltip {
+.board-listes .liste-header .add-card .addcard-tooltip {
   right: 1.2rem;
   top: -0.8rem;
 }
 
-.board .liste-header .add-card:hover .addcard-tooltip {
+.board-listes .liste-header .add-card:hover .addcard-tooltip {
   opacity: 1;
 }
 
-.board .liste-footer {
+.board-listes .liste-footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -515,98 +522,93 @@ a {
           justify-content: flex-end;
 }
 
-.board .liste-footer .trash-tooltip {
+.board-listes .liste-footer .trash-tooltip {
   right: 1.3rem;
   top: -0.2rem;
 }
 
-.board .liste-footer .delete-liste {
+.board-listes .liste-footer .delete-liste {
   margin-top: 0.5rem;
   padding: 0.2rem;
   position: relative;
 }
 
-.board .liste-footer .delete-liste:hover .trash-tooltip {
+.board-listes .liste-footer .delete-liste:hover .trash-tooltip {
   opacity: 1;
 }
 
-.board .liste .card {
+.board-listes .liste .card {
   padding: 0.5rem;
   border: 1px solid #4B5C6B;
   border-radius: 3px;
   margin-top: 0.5rem;
 }
 
-.board .liste .card-header {
+.board-listes .liste .card-show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-.board .liste .card-header-title {
+.board-listes .liste .card-show .card-content-title {
   font-family: 'Solway', serif;
   color: #4B5C6B;
   font-size: 0.8rem;
   font-weight: bold;
+  margin-bottom: 0.2rem;
 }
 
-.board .liste .card-header .delete-card {
-  position: relative;
-}
-
-.board .liste .card-header .delete-card .deletecard-tooltip {
-  right: 1rem;
-  top: -0.2rem;
-}
-
-.board .liste .card-header .delete-card:hover .deletecard-tooltip {
-  opacity: 1;
-}
-
-.board .liste .card-content {
+.board-listes .liste .card-show .card-content-description {
   font-size: 0.7rem;
-  margin-top: 0.5rem;
   font-family: 'Poppins', sans-serif;
 }
 
-.board .liste .card-footer {
+.board-listes .liste .card-utils {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.board .liste .card-footer .modify-card {
-  font-size: 0.7rem;
-  color: #4B5C6B;
-  margin-top: 0.6rem;
-  padding: 0.2rem;
+.board-listes .liste .card-utils .modify-card {
+  font-size: 0.8rem;
   position: relative;
 }
 
-.board .liste .card-footer .modify-card .editcard-tooltip {
+.board-listes .liste .card-utils .modify-card .editcard-tooltip {
   right: 1.2rem;
   top: -0.2rem;
 }
 
-.board .liste .card-footer .modify-card:hover .editcard-tooltip {
+.board-listes .liste .card-utils .modify-card:hover .editcard-tooltip {
   opacity: 1;
 }
 
-.board .liste .card .edit-card-form .card-header-title, .board .liste .card .edit-card-form .card-header-content {
+.board-listes .liste .card-utils .delete-card {
+  position: relative;
+}
+
+.board-listes .liste .card-utils .delete-card .deletecard-tooltip {
+  right: 1rem;
+  top: -0.2rem;
+}
+
+.board-listes .liste .card-utils .delete-card:hover .deletecard-tooltip {
+  opacity: 1;
+}
+
+.board-listes .liste .card .edit-card-form .card-header-title, .board-listes .liste .card .edit-card-form .card-header-content {
   width: 100%;
   margin: 0.2rem auto;
 }
 
-.board .liste .card .edit-card-form .edit-color {
+.board-listes .liste .card .edit-card-form .edit-color {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -615,7 +617,7 @@ a {
           align-items: center;
 }
 
-.board .liste .card .edit-card-form .edit-color label {
+.board-listes .liste .card .edit-card-form .edit-color label {
   font-family: 'Poppins', sans-serif;
   color: #4B5C6B;
   font-size: 0.7rem;
@@ -623,7 +625,7 @@ a {
   letter-spacing: normal;
 }
 
-.board .liste .card .edit-card-form .sm-btn {
+.board-listes .liste .card .edit-card-form .sm-btn {
   display: block;
   margin: 0.3rem auto;
   font-family: 'Poppins', sans-serif;
@@ -635,13 +637,13 @@ a {
   background-color: #4B5C6B30;
 }
 
-.board .liste .card .edit-card-form .sm-btn:hover {
+.board-listes .liste .card .edit-card-form .sm-btn:hover {
   cursor: pointer;
   background-color: #4B5C6B;
   color: #FBFBF9;
 }
 
-.board .liste .card .is-hidden {
+.board .is-hidden {
   display: none;
 }
 
@@ -814,6 +816,21 @@ a {
   .accueil .row-home {
     width: 90%;
   }
+  .board-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+  }
+  .board-header .menu-burger {
+    position: absolute;
+    left: 1rem;
+  }
+  .board-header .board-title {
+    max-width: 80%;
+    margin: 0 1rem 0.5rem;
+  }
 }
 
 /* Small devices (portrait phones, less than 576px) */
@@ -836,6 +853,17 @@ a {
 @media screen and (max-device-width: 480px) {
   .header .btn, .footer .btn {
     font-size: 0.5rem;
+  }
+  .board-lists {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .board-lists .liste {
+    position: relative;
+    width: 80%;
+    top: auto;
+    left: auto;
   }
   footer .nav {
     font-size: 3 rem;

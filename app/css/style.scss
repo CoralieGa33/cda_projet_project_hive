@@ -103,14 +103,19 @@ a {
     }
 }
 
+.container {
+    height: 100%;
+}
+
 // Sabrina's scss
 .header{
     display:flex;
     justify-content:space-between;
     align-items: center;
-    padding : 0.1rem 1.2rem 0rem 1.2rem;
+    padding : 0 1.2rem;
     background-color:$light-color;
     font-family: 'Poppins', sans-serif;
+    height: 4.5rem;
     border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
 
     &-logo{
@@ -166,11 +171,12 @@ a {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding : 0.5rem 10rem 0.5rem;
+    padding : 0.5rem 10rem;
     background-color:$light-color;
     font-family: 'Poppins', sans-serif;
     color:$base-color;
     border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
+    height: 2.2rem;
     position: fixed;
     bottom:0;
     left:0;
@@ -283,8 +289,8 @@ a {
         &-header{
             display:flex;
             align-items: center;
-            margin-top:1rem;
-            margin-left: 1rem;
+            padding: 1rem;
+            height: 4.7rem;
 
             .menu-burger{
                 padding-right: 1.5rem;
@@ -306,7 +312,6 @@ a {
             }
 
             .board-title{
-                padding-right: 1.5rem;
                 font-size: 2rem;
                 color: $grey-color;
                 font-family: 'Solway', serif;
@@ -314,12 +319,14 @@ a {
             }
 
             .add-liste{
+                margin: 0 1rem;
                 font-size:1rem;
                 padding:0.5rem;
                 color:$grey-color;
                 border:1px solid $grey-color;
                 border-radius: 5px;
                 background-color: $light-color;
+                display: flex;
 
                 &-icon{
                     text-decoration: none;
@@ -343,26 +350,20 @@ a {
             }
         
         }
-        #liste-1 {
-            top: 250px;
-            left: 400px;
-        }
-        #liste-2 {
-            top: 400px;
-            left: 800px;
-        }
-        #liste-3 {
-            top: 200px;
-            left: 75px;
-        }
-        //List start
+        &-listes {
+            position: relative;
+            height: calc(100vh - 4.5rem - 4.7rem - 2.2rem ); // -header -board-header -  footer
+
+            //List start
             .liste{
                 border:1px solid $grey-color;
                 background-color: $light-color;
                 border-radius: 5px;
                 width:15rem;
-                padding:1rem;
+                padding:0.7rem;
                 position: absolute;
+                top: 200px;
+                left: 75px;
 
                 .btn-icon {
                     border: none;
@@ -385,35 +386,42 @@ a {
                 }
         
                 &-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
+                    &-show {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                    }
                     &-title{
                     font-size: 1.3rem;
-                    max-width: 80%;
-                    
+                    margin-right: 0.1rem;
+                    font-family: 'Solway', serif;
+                    color: $grey-color;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+
                     &-input {
                         font-family: 'Solway', serif;
                         color: $grey-color;
                         font-weight: bold;
-                        border: none;
-                        font-size: 1.2rem;
+                        font-size: 1.1rem;
                         max-width: 100%;
-                        background-color: transparent;
+                        border: none;
+                        background-color: #{$grey-color}30;
     
                         &::placeholder {
                             font-family: 'Poppins', sans-serif;
                         }
     
                         &:focus-visible {
-                            outline: none;
+                            outline: solid 2px $grey-color;
                         }
                         }
                     }
                     .add-card {
                         color:$grey-color;
                         position: relative;
+                        display: inline-block;
 
                         .addcard-tooltip {
                             right: 1.2rem;
@@ -452,17 +460,42 @@ a {
                         border:1px solid $grey-color ;
                         border-radius: 3px;
                         margin-top: 0.5rem;
-                
-                        &-header{
+
+                        &-show{
                             display: flex;
                             justify-content: space-between;
-                            align-items: center;
 
-                            &-title{
-                                font-family: 'Solway', serif;
-                                color: $grey-color;
-                                font-size: 0.8rem;
-                                font-weight: bold;
+                            .card-content {
+                                &-title{
+                                    font-family: 'Solway', serif;
+                                    color: $grey-color;
+                                    font-size: 0.8rem;
+                                    font-weight: bold;
+                                    margin-bottom: 0.2rem;
+                                }
+    
+                                &-description{
+                                    font-size: 0.7rem;
+                                    font-family: 'Poppins', sans-serif;
+                                }
+                            }
+                        }
+
+                        &-utils {
+                            display: flex;
+                            flex-direction: column;
+                            .modify-card{
+                                font-size:0.8rem;
+                                position: relative;
+
+                                .editcard-tooltip {
+                                    right: 1.2rem;
+                                    top: -0.2rem
+                                }
+
+                                &:hover .editcard-tooltip {
+                                    opacity: 1;
+                                }
                             }
 
                             .delete-card {
@@ -474,34 +507,6 @@ a {
                                 }
         
                                 &:hover .deletecard-tooltip {
-                                    opacity: 1;
-                                }
-                            }
-                        }
-
-                        &-content{
-                            font-size: 0.7rem;
-                            margin-top: 0.5rem;
-                            font-family: 'Poppins', sans-serif;
-                        }
-
-                        &-footer {
-                            display: flex;
-                            justify-content: flex-end;
-
-                            .modify-card{
-                                font-size:0.7rem;
-                                color:$grey-color;
-                                margin-top: 0.6rem;
-                                padding: 0.2rem;
-                                position: relative;
-
-                                .editcard-tooltip {
-                                    right: 1.2rem;
-                                    top: -0.2rem
-                                }
-
-                                &:hover .editcard-tooltip {
                                     opacity: 1;
                                 }
                             }
@@ -541,15 +546,15 @@ a {
                                 }
                             }
                         }
-
-                        .is-hidden {
-                            display: none;
-                        }
                     }
                 //Card end
             }
         //List end
-        
+        }
+
+        .is-hidden {
+            display: none;
+        }
     }
 //Board end
 
@@ -718,7 +723,22 @@ a {
             width:90%;
         }
     }
-    //end 
+    //end
+    .board{
+        &-header{
+            flex-direction: column;
+            position: relative;
+            
+            .menu-burger {
+                position: absolute;
+                left: 1rem;
+            }
+            .board-title {
+                max-width: 80%;
+                margin: 0 1rem 0.5rem;
+            }
+        }
+    }
 }
 /* Small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
@@ -743,6 +763,20 @@ a {
         .btn {
         font-size: 0.5rem;
         }
+    }
+
+    .board{
+        &-lists {
+            justify-content: center;
+
+            .liste {
+                position: relative;
+                width: 80%;
+                top: auto;
+                left: auto;
+            }
+        }
+        
     }
 
     footer{

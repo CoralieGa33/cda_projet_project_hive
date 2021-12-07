@@ -33,7 +33,7 @@ class CardRepository extends ManagerRepository
     }
 
     public function getCardsByListe(int $id) {
-        $sql = 'SELECT * FROM card WHERE liste_id = ?';
+        $sql = 'SELECT * FROM card WHERE liste_id = ? ORDER BY orderNb ASC';
         $result = $this->createQuery($sql, [$id]);
         $cards = [];
 

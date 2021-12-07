@@ -53,7 +53,6 @@ class ManagerRepository
         }else{
             $result->execute();
         }
-        
         return $result;
     }
 
@@ -88,10 +87,12 @@ class ManagerRepository
         $idName = $tableName."Id";
         $sql = "SELECT * FROM $tableName WHERE $idName = ?";
         $result = $this->createQuery($sql, [$id]); //on envoie le numéro d'id
-        $row = $result->fetch();
-        $entity = $this->buildObject($row);
-
-        return $entity;
+        if($row = $result->fetch()) {
+            $entity = $this->buildObject($row);
+            return $entity;
+        } else{
+            header('Location: ?404');
+        }
     }
 
     public function findAll()
