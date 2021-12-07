@@ -53,7 +53,6 @@ class ManagerRepository
         }else{
             $result->execute();
         }
-        
         return $result;
     }
 

@@ -61,7 +61,7 @@ class Router {
             }elseif (isset($_GET['api/liste'])) {
                 $this->listeController->getListe($listId);
             }elseif (isset($_GET['api/liste/add'])) {
-                $this->listeController->newListe($post);
+                $this->listeController->newListe($_POST);
             }elseif (isset($_GET['api/liste/update'])) {
                 $this->listeController->editListe($post);
             }elseif (isset($_GET['api/card'])) {
@@ -69,8 +69,8 @@ class Router {
             }elseif (isset($_GET['api/backgrounds'])) {
                 $this->backgroundController->getBackgrounds();
             }elseif (isset($_GET['api/boards'])) {
-                //$this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
-                $this->multiController->getAllOfBoard(1, 1);
+                $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
+                //$this->multiController->getAllOfBoard(1, 1);
             }else {
                 echo "404 : PAGE NOT FOUND";
             }

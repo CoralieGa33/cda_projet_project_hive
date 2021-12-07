@@ -1,5 +1,6 @@
 let app = {
     baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
+    //baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_0512/app/?api/',
     
     init: function() {
         console.log("initialisation ...")
@@ -106,20 +107,25 @@ let app = {
     createNewListe: function(event) {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
-        console.log(newListeName);
+        //console.log(newListeName);
         $.ajax({
             url: app.baseUrl + 'liste/add',
             method: 'POST',
+            dataType: 'json',
             data: {
                 title: newListeName,
-                dataType: 'json',
                 orderNb: 10,
-                boardId: 0,
+                boardId: 1,
             }
-        }).done(function(res) {
-            console.log(res)
-            console.log("requete ok");
-        })
+        }).done(function(liste) {
+            console.log(liste)
+            let newListeElement = app.generateListeElement(liste);
+            $('.add-liste-input').eq(0).val("");
+            $('.add-liste-input').blur();
+            app.addListeElement(newListeElement);
+        }).fail(function(e) {
+            console.error(e);
+        });
     }
 };
 

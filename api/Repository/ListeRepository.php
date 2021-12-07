@@ -45,4 +45,13 @@ class ListeRepository extends ManagerRepository
 
         return $listes;
     }
+
+    public function getLastListe() {
+        $sql = 'SELECT * FROM liste WHERE listeId = (SELECT MAX(listeId) FROM liste)';
+        $result = $this->createQuery($sql);
+        $row = $result->fetch();
+        $lastListe = $this->buildObject($row);
+
+        return $lastListe;
+    }
 }
