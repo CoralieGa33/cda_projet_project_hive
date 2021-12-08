@@ -3,6 +3,8 @@ let app = {
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
     baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
     
+    maxListeOrderNb: 0,
+    
     init: function() {
         console.log("initialisation ...")
 
@@ -15,7 +17,6 @@ let app = {
         // je charge mon tableau principal
         app.loadBoard();
     },
-    maxListeOrderNb: 0,
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
     loadBoard: function() {
@@ -198,6 +199,24 @@ let app = {
         return(maxOrderNb);
     },
 
+    // Réattribue un nouvel orderNb suite à un déplacement pour gérer les superpositions
+    updateOrderListe: function(liste) {
+        // attribue le orderNb maximum à la liste déplacée
+        liste.attr('order-nb', app.maxListeOrderNb);
+        app.updateListe(liste); // pour mettre à jour la bdd
+        liste.css('zIndex', liste.attr('order-nb')); // pour mettre à jour le dom
+
+        // pour sélectionner toutes les listes qui étaient après celle déplacée
+        let afterListes = liste.nextAll();
+
+        afterListes.each(function () {
+            // pour chaque liste suivante, je descends le orderNb et le zIndex de 1
+            $(this).attr('order-nb', $(this).attr("order-nb")-1);
+            app.updateListe($(this));
+            $(this).css('zIndex', $(this).attr('order-nb'));
+        });
+    },
+
     // Pour rendre une liste déplaçable dans le tableau
     setDragListes: function() {
         //Pour le déplacement des div .liste avec jquery draggable
@@ -213,7 +232,7 @@ let app = {
                 let listeId = $(this).attr("liste-id");//à changer avec liste-id
                 //console.log(listeId);
                 //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
-                app.updateListe($(this));
+                app.updateOrderListe($(this));
             }
         });
     },
