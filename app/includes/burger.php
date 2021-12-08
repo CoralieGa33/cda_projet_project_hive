@@ -16,11 +16,11 @@
                                 <li class="burger-add-table">Ajouter un tableau</li>
                             </ul>
                         <div class="modify-table">
-                            <h4 class="burger-list"> Modifier le tableau actif : </h4>
+                            <h4 class="burger-liste"> Modifier le tableau actif : </h4>
                                 <form action="">
-                                    <input type="text" class="" value="Titre du tableau" placeholder="Titre du tableau" name="Titre du tableau">
-                                    <input type="text" value="Choisir une couleur" placeholder="Choisir une couleur" name="Choisir une couleur">
-                                    <input type="text" value="Choisir une image de fond" placeholder="Choisir une image de fond" name="Choisir une image de fond">
+                                    <input type="text" class="input" value="" placeholder="Titre du tableau" name="Titre du tableau">
+                                    <input class="colorpicker" type="color" value="#FBFBF9" placeholder="Choisir une couleur" name="Choisir une couleur">
+                                    <input type="text" class="input" value="" placeholder="Choisir une image de fond" name="Choisir une image de fond">
                                     <div class="edit-table-image">
                                             <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
                                             <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
@@ -35,11 +35,11 @@
                         </div>
 
                         <div class="burger-new-table">
-                            <h4 class="burger-list">Nouveau tableau : </h4>
+                            <h4 class="burger-liste">Nouveau tableau : </h4>
                                 <form action="">
-                                        <input type="text" class="" value="" placeholder="" name="">
-                                        <input type="text" value="" placeholder="" name="">
-                                        <input type="text" value="" placeholder="" name="">
+                                        <input type="text" class="input" value="" placeholder="Titre du tableau" name="Titre du tableau">
+                                        <input class="colorpicker" type="color" value="#FBFBF9" placeholder="Choisir une couleur" name="Choisir une couleur">
+                                        <input type="text" class="input" value="" placeholder="Choisir une image de fond" name="Choisir une image de fond">
                                 </form>
                         </div>
 

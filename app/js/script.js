@@ -21,3 +21,4 @@ $('.fa-paint-brush').on('click', function() {
 $('.burger-add-table').on('click', function() {
     $('.burger-new-table').show();
 });
+

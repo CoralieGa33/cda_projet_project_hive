@@ -660,6 +660,7 @@ a {
   transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), -webkit-transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   position: absolute;
   z-index: 99999;
+  height: calc(100vh - 4.5rem - 2.2rem);
 }
 
 #burger-wrap:not(:target) {
@@ -694,7 +695,7 @@ a {
 
 .burger-header {
   background: #5d51f7;
-  width: 360px;
+  width: 300px;
   padding: 0 20px;
   display: inline-block;
   vertical-align: top;
@@ -705,21 +706,21 @@ a {
 }
 
 .burger-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
 .burger-list {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  padding: 0.1rem 0;
+  margin: 0.2rem 0;
 }
 
-.burger-add-table {
-  font-size: 1rem;
-  border: 2px solid #FBFBF9;
-  width: 11rem;
-  padding: 0.2rem;
-  text-align: center;
-  margin-top: 1rem;
+.burger-list:hover {
+  background-color: #FBFBF9;
+  color: #5d51f7;
 }
 
 .edit-table-image {
@@ -741,6 +742,10 @@ a {
   font-size: 0.8rem;
 }
 
+.fa-paint-brush:hover {
+  color: #5d51f7;
+}
+
 .table-brush {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -753,10 +758,40 @@ a {
           align-items: center;
 }
 
-#burger-open {
-  margin-left: 1.2rem;
+.modify-table {
+  margin-top: 1rem;
 }
 
+.burger-liste {
+  font-size: 0.9rem;
+}
+
+.burger-new-table {
+  margin-top: 0.8rem;
+}
+
+.burger-add-table {
+  font-size: 0.9rem;
+  border: 2px solid #FBFBF9;
+  width: 11rem;
+  padding: 0.2rem;
+  text-align: center;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.burger-add-table:hover {
+  background-color: #FBFBF9;
+  color: #5d51f7;
+}
+
+.input {
+  padding: 0.4rem;
+  border-radius: 3%;
+  margin-bottom: 1rem;
+}
+
+/* height: calc(100vh - 4.5rem - 2.2rem);*/
 .signup, .signin, .profile, .editpass, .registered {
   display: -webkit-box;
   display: -ms-flexbox;
