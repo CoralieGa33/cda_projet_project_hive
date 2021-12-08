@@ -13,6 +13,8 @@ $sd-color: #6D0CCE;
 //$light-color: #FAFAFA;
 $light-color: #FBFBF9;
 $grey-color: #4B5C6B;
+$pink-color: #83367B;
+$orange-color:orange;
 
 
 //pour les colonnes : 
@@ -557,6 +559,141 @@ a {
         }
     }
 //Board end
+
+//Menu burger start   
+#burger-wrap {
+    background-color:#83367B;
+    width: 50px;
+    padding: 0 20px;
+    font-family: 'Poppins',sans-serif; 
+    font-size: 21px;
+    line-height: 1.6;
+    margin: 0;
+    color:$light-color;
+    //transition: transform .4s cubic-bezier(.25, .1, .25, 1);
+    position:absolute;
+    z-index:99999;
+    height: calc(100vh - 4.5rem - 2.2rem);
+  }
+  
+  .btn-burger {
+      margin: 1rem;
+  }
+
+  #burger-open,
+  #burger-close {
+    text-align: right;
+  }
+  #burger-open {
+      margin-left:-1rem;
+  }
+  #burger-close {
+      display: none
+    }
+  
+  .burger-nav a {
+    color: #FBFBF9;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .burger-nav {
+    padding: 0 25px;
+    display: none;
+  }
+  .burger-title{
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-family: 'Solway', serif;
+    color:orange;
+  }
+  .burger-list{
+    font-size:0.9rem;
+    transition: 0.4s;
+    padding:0.1rem 0;
+    margin:0.2rem 0;
+  }
+  .burger-list:hover{
+    background-color: $light-color;
+    color:$grey-color;
+  }
+  .edit-table-image{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .menu-burger{
+    position:relative;
+  }
+  .fa-paint-brush{
+    font-size: 0.8rem;
+  }
+  
+  .table-brush{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modify-table{
+    margin-top: 4rem;
+    display:none;
+    text-align: center;
+  }
+  .burger-liste{
+    font-size: 1.2rem;
+    font-family: 'Solway', serif;
+    color:orange;
+  }
+
+  .burger-new-table{
+    margin-top: 4rem;
+    display:none;
+    text-align: center;
+  }
+  .burger-add-table{
+    font-size:0.9rem;
+    border:2px solid #FBFBF9;
+    width:11rem;
+    padding:0.2rem;
+    text-align: center;
+    margin-top: 1.2rem;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; 
+    border-radius: 5px;
+
+  }
+  .burger-add-table:hover{
+    background-color:$light-color;
+    color:$grey-color;
+  }
+  .input{
+    padding: 0.4rem;
+    border-radius: 5px;
+    margin-bottom: 0.7rem;
+  }
+  .label-modify-table{
+    font-size:0.8rem;
+    font-family: 'Poppins', sans-serif;
+    color:orange; 
+  }
+  .colorpicker{
+      margin-bottom: 0;
+  }
+
+  input[type="color"]{
+        background-color: transparent;
+        border: none;
+        height: 3rem;
+        width: 3rem;
+        margin-left: auto;
+        display: block;
+        margin-right: auto;
+        border-radius: 5px;
+   }
+
+/* height: calc(100vh - 4.5rem - 2.2rem);*/
+//Menu burger end
 
 
 
