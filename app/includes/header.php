@@ -13,6 +13,7 @@
     <script defer src="js/script.js"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Project Hive</title>
 </head>
 

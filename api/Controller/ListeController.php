@@ -24,21 +24,25 @@ class ListeController extends AbstractController
 
     public function newListe($post)
     {
-        if (isset($post['submit'])) {
+        if ($post) {
             $liste = new Liste();
             $liste
-                ->setTitle($post["title"])
-                ->setOrderNb($post["orderNb"]);
-                //->setPosLeft($post["posLeft"]) pas la peine, positionnée à un endroit précis par défaut à la création
-                //->setPosTop($post["posTop"]);  idem
-
-            $this->ListeRepository->addListe($liste);
+            ->setTitle($post["title"])
+            ->setOrderNb($post["orderNb"])
+            ->setBoard_id($post["boardId"]);
+            //->setPosLeft($post["posLeft"]) pas la peine, positionnée à un endroit précis par défaut à la création
+            //->setPosTop($post["posTop"]);  idem
+            
+            $this->listeRepository->addListe($liste);
+            $lastListe = $this->listeRepository->getLastListe();
+            echo json_encode($lastListe); 
         }
     }
 
-    public function editListe($liste){
-        if (isset($post['edit']))
-        {
+    public function editListe($post){
+        if(!in_array('', $post)) {
+            $liste = $this->listeRepository->findOne($post['listeId']);
+        
             $liste
                 ->setTitle($post["title"])
                 ->setOrderNb($post['orderNb'])
@@ -46,11 +50,13 @@ class ListeController extends AbstractController
                 ->setPosTop($post["posTop"]);
         
             $this->listeRepository->editListe($liste);
+            $updatedListe = $this->listeRepository->findOne($post['listeId']);
+            echo json_encode($updatedListe); 
         }
     }
         
     public function deleteListe($id)
     {
-        $this->listeRepository->delete($id);   
+        echo json_encode($this->listeRepository->delete($id));
     }
 }

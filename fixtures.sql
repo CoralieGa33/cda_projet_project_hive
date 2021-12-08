@@ -5,7 +5,7 @@
 INSERT INTO user (`email`, `username`, `password`, `role`, `createdAt`, `updatedAt`) VALUES
 ('testeur1@testeur1.fr', 'testeur1', '$2y$10$5pIKdrlVhslccRhoLbGB8OgXFTB5Lg7lGzo4HMIW8QhHfOX4RUhKO', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('testeur2@testeur2.fr', 'testeur2', '$2y$10$cMNEoOw319Ehzf.sJVXmuOf32QqqO.npLUhnPF3Z/EoqzXSfJouXa', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('testeur1@testeur3.fr', 'testeur3', '$2y$10$GtPKSmaiJVR6ky6Dnm17MupmCt9x3GgkptnXFXrGm5flfTWzqdUEu', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25');
+('testeur3@testeur3.fr', 'testeur3', '$2y$10$GtPKSmaiJVR6ky6Dnm17MupmCt9x3GgkptnXFXrGm5flfTWzqdUEu', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 INSERT INTO background (`imageUrl`, `createdAt`, `updatedAt`) VALUES
 ("https://picsum.photos/id/1002/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
@@ -35,18 +35,18 @@ INSERT INTO liste (`title`, `orderNb`, `board_id`, `posLeft`, `posTop`, `created
 ('liste10', 1, 5, 50, 50, '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 INSERT INTO card (`title`, `content`, `orderNb`, `color`, `liste_id`, `createdAt`, `updatedAt`) VALUES
-('carte1', "dolorem assumenda facilis aut fugit facilis ratione", 1, "#FFFF00", 1, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte1', "dolorem assumenda facilis aut fugit facilis ratione", 2, "#FFFF00", 1, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte2', "sit et fugiat voluptatem commodi libero", 1, "#FFFF00", 1, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte3', "itaque pariatur facilis pariatur quia et tenetur vel commodi et harum atque ducimus aut perspiciatis consequatur ab", 1, "#FFFF00", 2, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('carte4', "consectetur ab", 1, "#FFFF00", 2, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('carte5', "consequuntur qui et illo repellendus totam ut", 1, "#FFFF00", 2, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte4', "consectetur ab", 3, "#FFFF00", 2, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte5', "consequuntur qui et illo repellendus totam ut", 2, "#FFFF00", 2, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte6', "illo itaque", 1, "#FFFF00", 3, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte7', "possimus veritatis ipsum id earum", 1, "#FFFF00", 4, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('carte8', "ut eveniet eius voluptas possimus", 1, "#FFFF00", 4, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('carte9', "possimus adipisci id quasi ut quo similique quod nulla itaque architecto", 1, "#FFFF00", 6, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte8', "ut eveniet eius voluptas possimus", 2, "#FFFF00", 4, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte9', "possimus adipisci id quasi ut quo similique quod nulla itaque architecto", 3, "#FFFF00", 6, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte10', "et et illo", 1, "#FFFF00", 6, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('carte11', "quis in animi quibusdam molestiae debitis", 1, "#FFFF00", 6, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte11', "quis in animi quibusdam molestiae debitis", 2, "#FFFF00", 6, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte12', "dicta qui ipsa odio repellendus magnam ipsam ratione", 1, "#FFFF00", 7, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte13', "mollitia enim sunt impedit praesentium omnis beatae sequi ad dolor ex blanditiis", 1, "#FFFF00", 8, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-('carte14', "voluptatem esse tempore in magnam", 1, "#FFFF00", 8, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+('carte14', "voluptatem esse tempore in magnam", 2, "#FFFF00", 8, '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ('carte15', "vitae et non voluptate ipsum est beatae dolorem quasi sunt id in iste sit repellat autem ut quibusdam exercitationem magni blanditiis rerum repudiandae maxime", 1, "#FFFF00", 9, '2021-12-01 14:31:25', '2021-12-01 14:31:25');
