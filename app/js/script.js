@@ -31,25 +31,25 @@
 // Menu
 /* Set the width of the side navigation to 310px */
 function openNav() {
-    document.getElementByClass(".burger-header").style.width = "310px";
-  }
-  
-  /* Set the width of the side navigation to 0 */
-  function closeNav() {
-    document.getElementByClass(".burger-header").style.width = "50px";
-  }
+    document.getElementByClass(".burger-header").style.width = "19rem";
+}
 
-  $('#burger-open').on('click', function() {
-    console.log("opening")
-    document.querySelector(".burger-header").style.width = "310px";
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementByClass(".burger-header").style.width = "2rem";
+}
+
+$('#burger-open').on('click', function() {
+    //console.log("opening")
+    document.querySelector(".burger-header").style.width = "19rem";
     document.querySelector("#burger-open").style.display = "none";
     document.querySelector("#burger-close").style.display = "block";
     document.querySelector(".burger-nav").style.display = "block";
-  });
+});
 
-  $('#burger-close').on('click', function() {
-    console.log("closing")
-    document.querySelector(".burger-header").style.width = "50px";
+$('#burger-close').on('click', function() {
+    //console.log("closing")
+    document.querySelector(".burger-header").style.width = "2rem";
     document.querySelector("#burger-close").style.display = "none";
     document.querySelector("#burger-open").style.display = "block";
     document.querySelector(".burger-nav").style.display = "none";
@@ -69,7 +69,7 @@ $('.burger-add-table').on('click', function() {
 //========================================================
 //======================= Sabrina ========================
 //========================================================
-  
+
 //Pour le déplacement des div .liste avec jquery draggable
 /*
 $(".liste").draggable({  

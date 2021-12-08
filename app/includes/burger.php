@@ -14,48 +14,49 @@
                 <li class="burger-list board-2" >Tableau 2 de testeur1</li>
                 <li class="burger-list board-3" >Tableau 3 de testeur1</li>
                 <li class="burger-list board-4" >Tableau 4 de testeur1</li>
-                <li class="burger-add-table">Ajouter un tableau</li>
             </ul>
+            <button class="btn burger-add-table">Ajouter un tableau</button>
 
             <div class="modify-table">
                 <h4 class="burger-liste">Modifier le tableau</h4>
-                <form action="">
-                    <label class="label-modify-table" for="name">Titre du tableau</label><br>
-                        <input type="text" class="input" value="" placeholder="" name="Titre du tableau"> <br>
-                    <label class="label-modify-table" for="name">Choisir une couleur</label><br>
-                        <input class="colorpicker" type="color" value="#FBFBF9" placeholder="" name="Choisir une couleur"> <br>
-                    <label class="label-modify-table" for="name">Choisir une image de fond</label><br>
+                <form action="" class="edit-board">
+                    <label class="label-modify-table" for="title">Titre du tableau</label>
+                        <input type="text" class="board-title" value="" name="title">
+                    <label class="label-modify-table" for="color">Choisir une couleur</label>
+                        <input class="colorpicker" type="color" value="#ffffff" name="color">
+                    <label class="label-modify-table" for="background">Choisir une image de fond</label>
                         
-                    <div class="edit-table-image">
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                       <!-- <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                         <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a> -->
+                    <div class="edit-table-image" name="background">
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
                     </div>
 
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="btn edit-board-submit">Enregistrer</button>
 
                 </form>
             </div>
 
             <div class="burger-new-table">
                 <h4 class="burger-liste">Nouveau tableau</h4>
-                <form action="">
-                    <label class="label-modify-table" for="name">Titre du tableau</label><br>
-                        <input type="text" class="input" value="" placeholder="" name="Titre du tableau"> <br>
-                    <label class="label-modify-table" for="name">Choisir une couleur</label><br>
-                        <input class="colorpicker" type="color" value="#FBFBF9" placeholder="" name=""> <br>
-                    <label class="label-modify-table" for="name">Choisir une image de fond</label><br>
-                    <div class="edit-table-image">
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/55" alt=""></a>
+                <form action="" class="new-board">
+                    <label class="label-modify-table" for="title">Titre du tableau</label>
+                        <input type="text" class="board-title" value="" placeholder="" name="title">
+                    <label class="label-modify-table" for="color">Choisir une couleur</label>
+                        <input class="colorpicker" type="color" value="#ffffff"name="color">
+                    <label class="label-modify-table" for="background">Choisir une image de fond</label>
+                    <div class="edit-table-image" name="background">
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
+                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
                     </div>
+                    <button type="submit" class="btn new-board-submit">Envoyer</button>
                 </form>
             </div>
         </nav>

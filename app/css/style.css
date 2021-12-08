@@ -84,15 +84,14 @@ a {
   padding: 0.3rem 0.5rem;
   font-size: 1rem;
   border-radius: 5px;
-  border: solid 2px #5d51f7;
-  color: #6D0CCE;
+  border: solid 2px #83367B;
+  color: #ffa500;
   line-height: normal;
-  background-color: #5d51f730;
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: #5d51f7;
+  background-color: #83367B;
   color: #FBFBF9;
 }
 
@@ -143,7 +142,7 @@ a {
 .header-navigation .fas {
   font-size: 2.3rem;
   margin-right: 0.8rem;
-  color: #5d51f7;
+  color: #83367B;
 }
 
 .header-navigation .fas:hover {
@@ -198,7 +197,7 @@ a {
   padding: 0.5rem 10rem;
   background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
-  color: #5d51f7;
+  color: #83367B;
   border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
   height: 2.2rem;
   position: fixed;
@@ -211,8 +210,11 @@ a {
   font-size: 0.7rem;
 }
 
-.footer .nav a:hover {
-  color: #6D0CCE;
+.footer .nav .footer-link {
+  color: #83367B;
+}
+
+.footer .nav .footer-link:hover {
   text-decoration: underline;
 }
 
@@ -222,19 +224,19 @@ a {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  /*color: $base-color;*/
+  color: #83367B;
 }
 
 .footer-favicons a {
   padding: 0.3rem 0.5rem;
 }
 
-.footer-favicons i:hover {
-  color: #6D0CCE;
+.footer-favicons a:hover i {
+  color: #ffa500;
 }
 
 .footer a:visited {
-  color: #5d51f7;
+  color: #83367B;
 }
 
 .accueil {
@@ -264,8 +266,8 @@ a {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 5px #5d51f7;
-          box-shadow: 0 0 5px #5d51f7;
+  -webkit-box-shadow: 0 0 5px #83367B;
+          box-shadow: 0 0 5px #83367B;
 }
 
 .accueil .btn-home {
@@ -301,11 +303,11 @@ a {
 .accueil h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #5d51f7;
+  color: #83367B;
   font-family: 'Solway', serif;
   text-align: center;
   letter-spacing: .1rem;
-  text-shadow: -1px -1px 1px #5d51f770, 2px 2px 1px #5d51f725;
+  text-shadow: -1px -1px 1px #83367B70, 2px 2px 1px #83367B25;
   font-weight: bold;
 }
 
@@ -325,6 +327,10 @@ a {
   margin-bottom: 1%;
   text-indent: 1rem;
   line-height: 1.3rem;
+}
+
+.board {
+  margin-left: 2rem;
 }
 
 .board-header {
@@ -412,6 +418,7 @@ a {
 .board-listes {
   position: relative;
   height: calc(100vh - 4.5rem - 4.7rem - 2.2rem);
+  padding-left: 0.5rem;
 }
 
 .board-listes .liste {
@@ -647,10 +654,13 @@ a {
   display: none !important;
 }
 
-#burger-wrap {
+.menu-burger {
+  position: relative;
+}
+
+.menu-burger #burger-wrap {
   background-color: #83367B;
-  width: 50px;
-  padding: 0 20px;
+  width: 2rem;
   font-family: 'Poppins',sans-serif;
   font-size: 21px;
   line-height: 1.6;
@@ -661,43 +671,48 @@ a {
   height: calc(100vh - 4.5rem - 2.2rem);
 }
 
-.btn-burger {
+.menu-burger .btn-burger {
   margin: 1rem;
 }
 
-#burger-open,
-#burger-close {
+.menu-burger #burger-open,
+.menu-burger #burger-close {
   text-align: right;
 }
 
-#burger-open {
-  margin-left: -1rem;
+.menu-burger #burger-open {
+  margin-left: -0.6rem;
 }
 
-#burger-close {
+.menu-burger #burger-close {
   display: none;
 }
 
-.burger-nav a {
+.menu-burger .burger-nav a {
   color: #FBFBF9;
   text-decoration: none;
   display: block;
   text-align: left;
 }
 
-.burger-nav {
+.menu-burger .burger-nav {
   padding: 0 25px;
   display: none;
 }
 
-.burger-title {
+.menu-burger .burger-nav ul {
+  margin-bottom: 2rem;
+  width: 90%;
+}
+
+.menu-burger .burger-title {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   font-family: 'Solway', serif;
   color: orange;
 }
 
-.burger-list {
+.menu-burger .burger-list {
   font-size: 0.9rem;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -705,12 +720,14 @@ a {
   margin: 0.2rem 0;
 }
 
-.burger-list:hover {
+.menu-burger .burger-list:hover {
   background-color: #FBFBF9;
   color: #4B5C6B;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 
-.edit-table-image {
+.menu-burger .edit-table-image {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -720,15 +737,16 @@ a {
       justify-content: space-around;
 }
 
-.menu-burger {
-  position: relative;
-}
-
-.fa-paint-brush {
+.menu-burger .fa-paint-brush {
   font-size: 0.8rem;
+  padding: 0.2rem;
 }
 
-.table-brush {
+.menu-burger .fa-paint-brush:hover {
+  cursor: pointer;
+}
+
+.menu-burger .table-brush {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -740,69 +758,75 @@ a {
           align-items: center;
 }
 
-.modify-table {
+.menu-burger .modify-table {
   margin-top: 4rem;
   display: none;
-  text-align: center;
 }
 
-.burger-liste {
+.menu-burger label {
+  margin-top: 1rem;
+}
+
+.menu-burger .burger-liste {
   font-size: 1.2rem;
   font-family: 'Solway', serif;
   color: orange;
 }
 
-.burger-new-table {
+.menu-burger .burger-new-table {
   margin-top: 4rem;
   display: none;
-  text-align: center;
 }
 
-.burger-add-table {
+.menu-burger .edit-board, .menu-burger .new-board {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.menu-burger .btn {
   font-size: 0.9rem;
   border: 2px solid #FBFBF9;
-  width: 11rem;
-  padding: 0.2rem;
+  background-color: transparent;
+  color: #FBFBF9;
+  padding: 0.2rem 0.5rem;
   text-align: center;
-  margin-top: 1.2rem;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   border-radius: 5px;
 }
 
-.burger-add-table:hover {
+.menu-burger .btn:hover {
   background-color: #FBFBF9;
   color: #4B5C6B;
 }
 
-.input {
+.menu-burger .board-title {
   padding: 0.4rem;
   border-radius: 5px;
   margin-bottom: 0.7rem;
 }
 
-.label-modify-table {
+.menu-burger .label-modify-table {
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
   color: orange;
 }
 
-.colorpicker {
-  margin-bottom: 0;
-}
-
-input[type="color"] {
+.menu-burger .colorpicker {
   background-color: transparent;
   border: none;
-  height: 3rem;
-  width: 3rem;
+  height: 2.5rem;
+  width: 4rem;
   margin-left: auto;
   display: block;
   margin-right: auto;
-  border-radius: 5px;
 }
 
-/* height: calc(100vh - 4.5rem - 2.2rem);*/
 .signup, .signin, .profile, .editpass, .registered {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -811,8 +835,8 @@ input[type="color"] {
 
 .signup form, .signup .frame, .signin form, .signin .frame, .profile form, .profile .frame, .editpass form, .editpass .frame, .registered form, .registered .frame {
   margin: 5rem auto;
-  -webkit-box-shadow: 0 0 5px #5d51f7;
-          box-shadow: 0 0 5px #5d51f7;
+  -webkit-box-shadow: 0 0 5px #83367B;
+          box-shadow: 0 0 5px #83367B;
   border-radius: 10px;
   padding: 2rem;
   background-color: #FBFBF9;
@@ -824,11 +848,11 @@ input[type="color"] {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.5rem;
-  color: #5d51f7;
+  color: #83367B;
   margin: 0 1rem 1.5rem;
   width: 22rem;
   letter-spacing: .1rem;
-  text-shadow: -1px -1px 1px #5d51f770, 2px 2px 1px #5d51f725;
+  text-shadow: -1px -1px 1px #83367B70, 2px 2px 1px #83367B25;
 }
 
 .signup-valid, .signup-error, .signup-noerror, .signin-valid, .signin-error, .signin-noerror, .profile-valid, .profile-error, .profile-noerror, .editpass-valid, .editpass-error, .editpass-noerror, .registered-valid, .registered-error, .registered-noerror {
@@ -860,13 +884,13 @@ input[type="color"] {
   padding: 0.4rem 0.6rem;
   font-size: 1rem;
   border-radius: 5px;
-  border: solid 2px #5d51f7;
+  border: solid 2px #83367B;
 }
 
 .signup-input input:focus-visible, .signin-input input:focus-visible, .profile-input input:focus-visible, .editpass-input input:focus-visible, .registered-input input:focus-visible {
-  outline: solid 1px #5d51f7;
-  -webkit-box-shadow: inset 0 0 5px #5d51f7;
-          box-shadow: inset 0 0 5px #5d51f7;
+  outline: solid 1px #83367B;
+  -webkit-box-shadow: inset 0 0 5px #83367B;
+          box-shadow: inset 0 0 5px #83367B;
 }
 
 .signup-label, .signin-label, .profile-label, .editpass-label, .registered-label {
@@ -874,7 +898,7 @@ input[type="color"] {
   font-size: 0.9rem;
   line-height: 1.4rem;
   font-weight: bold;
-  color: #6D0CCE;
+  color: #4B5C6B;
 }
 
 .signup-btn, .signin-btn, .profile-btn, .editpass-btn, .registered-btn {
@@ -883,7 +907,7 @@ input[type="color"] {
 
 .signup-link, .signin-link, .profile-link, .editpass-link, .registered-link {
   font-family: 'Poppins', sans-serif;
-  color: #6D0CCE;
+  color: #4B5C6B;
   display: block;
   font-size: 0.9rem;
   line-height: 1.2rem;

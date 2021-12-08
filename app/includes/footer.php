@@ -1,13 +1,13 @@
 <footer class="footer">
 
     <div class="nav about us">
-        <a href="">A propos de nous</a>
+        <a href="" class="footer-link">A propos de nous</a>
     </div>
     <div class="nav legal">
-        <a href="">Mentions légales</a>
+        <a href="" class="footer-link">Mentions légales</a>
     </div>
     <div class="nav rgpd">
-        <a href="">Traitement des données</a>
+        <a href="" class="footer-link">Traitement des données</a>
     </div>
 
     <div class="footer-favicons col-2">

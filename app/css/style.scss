@@ -14,7 +14,7 @@ $sd-color: #6D0CCE;
 $light-color: #FBFBF9;
 $grey-color: #4B5C6B;
 $pink-color: #83367B;
-$orange-color:orange;
+$orange-color:#ffa500;
 
 
 //pour les colonnes : 
@@ -93,14 +93,14 @@ a {
     padding: 0.3rem 0.5rem;
     font-size: 1rem;
     border-radius: 5px;
-    border: solid 2px $base-color;
-    color: $sd-color;
+    border: solid 2px $pink-color;
+    color: $orange-color;
     line-height: normal;
-    background-color:  #{$base-color}30;
+    //background-color:  #{$pink-color}100;
 
     &:hover {
         cursor: pointer;
-        background-color: $base-color;
+        background-color: $pink-color;
         color: $light-color;
     }
 }
@@ -141,7 +141,7 @@ a {
         .fas{
             font-size:2.3rem;
             margin-right:0.8rem;
-            color: $base-color;
+            color: $pink-color;
 
             &:hover {
                 animation: pulse 2s infinite;
@@ -176,7 +176,7 @@ a {
     padding : 0.5rem 10rem;
     background-color:$light-color;
     font-family: 'Poppins', sans-serif;
-    color:$base-color;
+    color:$pink-color;
     border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
     height: 2.2rem;
     position: fixed;
@@ -184,30 +184,35 @@ a {
     left:0;
     right:0;
     
+    
     .nav{
         font-size:0.7rem;
+        
+        .footer-link {
+            color: $pink-color;
 
-        a:hover {
-            color: $sd-color;
-            text-decoration: underline;
+            &:hover {
+                text-decoration: underline;
+            }
         }
+
     }
     
     &-favicons{
         display: flex;
         justify-content: space-around;
-        /*color: $base-color;*/
+        color: $pink-color;
 
         a {
             padding: 0.3rem 0.5rem;
         }
-        i:hover {
-            color: $sd-color;
+        a:hover i {
+            color: $orange-color;
         }
     }
     
     a:visited{
-        color:$base-color;
+        color:$pink-color;
     }
 }
 
@@ -231,7 +236,7 @@ a {
         justify-content: center;
         flex-wrap: wrap;
         border-radius: 10px;
-        box-shadow: 0 0 5px $base-color;
+        box-shadow: 0 0 5px $pink-color;
     }
     .btn-home{
         text-align: center;
@@ -257,13 +262,13 @@ a {
     h1{
         font-size: 2.5rem;
         margin-bottom: 2rem;
-        color:$base-color;
+        color:$pink-color;
         font-family: 'Solway', serif; 
         text-align: center;
         letter-spacing: .1rem;
         text-shadow:
-            -1px -1px 1px #{$base-color}70, 
-            2px 2px 1px #{$base-color}25;
+            -1px -1px 1px #{$pink-color}70, 
+            2px 2px 1px #{$pink-color}25;
         font-weight: bold;
     }
     
@@ -287,412 +292,428 @@ a {
 }
 
 //Board start
-    .board{
-        &-header{
-            display:flex;
-            align-items: center;
-            padding: 1rem;
-            height: 4.7rem;
+.board{
+    margin-left: 2rem;
 
-            .menu-burger{
-                padding-right: 1.5rem;
-                font-size: 2rem;
-                color: $grey-color;
-            }
+    &-header{
+        display:flex;
+        align-items: center;
+        padding: 1rem;
+        height: 4.7rem;
 
-            .board-liste{
-                border:1px dotted $grey-color;
+        .menu-burger{
+            padding-right: 1.5rem;
+            font-size: 2rem;
+            color: $grey-color;
+        }
+
+        .board-liste{
+            border:1px dotted $grey-color;
+            font-size: 1rem;
+            padding:0.5rem;
+            width:11rem;
+
+            &-title{
                 font-size: 1rem;
-                padding:0.5rem;
-                width:11rem;
-
-                &-title{
-                    font-size: 1rem;
-                    color: $grey-color;
-                    padding-bottom: 0.3rem;
-                }
-            }
-
-            .board-title{
-                font-size: 2rem;
                 color: $grey-color;
-                font-family: 'Solway', serif;
-                font-weight: bold;
+                padding-bottom: 0.3rem;
+            }
+        }
+
+        .board-title{
+            font-size: 2rem;
+            color: $grey-color;
+            font-family: 'Solway', serif;
+            font-weight: bold;
+        }
+
+        .add-liste{
+            margin: 0 1rem;
+            font-size:1rem;
+            padding:0.5rem;
+            color:$grey-color;
+            border:1px solid $grey-color;
+            border-radius: 5px;
+            background-color: $light-color;
+            display: flex;
+
+            &-icon{
+                text-decoration: none;
+                color:$grey-color;
+                margin: 0.3rem;
             }
 
-            .add-liste{
-                margin: 0 1rem;
-                font-size:1rem;
-                padding:0.5rem;
-                color:$grey-color;
-                border:1px solid $grey-color;
-                border-radius: 5px;
-                background-color: $light-color;
-                display: flex;
+            &-input {
+                border: none;
+                font-size: 1.2rem;
+                background-color: transparent;
 
-                &-icon{
-                    text-decoration: none;
-                    color:$grey-color;
-                    margin: 0.3rem;
+                &::placeholder {
+                    font-family: 'Poppins', sans-serif;
                 }
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+    
+    }
+    &-listes {
+        position: relative;
+        height: calc(100vh - 4.5rem - 4.7rem - 2.2rem ); // -header -board-header -  footer
+        padding-left: 0.5rem;
+
+        //List start
+        .liste{
+            border:1px solid $grey-color;
+            background-color: $light-color;
+            border-radius: 5px;
+            width:15rem;
+            padding:0.7rem;
+            position: absolute;
+            top: 200px;
+            left: 75px;
+
+            .btn-icon {
+                border: none;
+                background-color: transparent;
+                font-size:1rem;
+                color:$grey-color;
+                padding: 0.2rem;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .tooltip {
+                position: absolute;
+                background-color: $light-color;
+                font-size: 0.7rem;
+                opacity: 0;
+                transition: 1s all;
+            }
+    
+            &-header {
+                &-show {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                }
+                &-title{
+                font-size: 1.3rem;
+                margin-right: 0.1rem;
+                font-family: 'Solway', serif;
+                color: $grey-color;
+                font-weight: bold;
+                font-size: 1.1rem;
 
                 &-input {
+                    font-family: 'Solway', serif;
+                    color: $grey-color;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    max-width: 100%;
                     border: none;
-                    font-size: 1.2rem;
-                    background-color: transparent;
+                    background-color: #{$grey-color}30;
 
                     &::placeholder {
                         font-family: 'Poppins', sans-serif;
                     }
 
                     &:focus-visible {
-                        outline: none;
+                        outline: solid 2px $grey-color;
+                    }
+                    }
+                }
+                .add-card {
+                    color:$grey-color;
+                    position: relative;
+                    display: inline-block;
+
+                    .addcard-tooltip {
+                        right: 1.2rem;
+                        top: -0.8rem
+                    }
+
+                    &:hover .addcard-tooltip {
+                        opacity: 1;
                     }
                 }
             }
-        
-        }
-        &-listes {
-            position: relative;
-            height: calc(100vh - 4.5rem - 4.7rem - 2.2rem ); // -header -board-header -  footer
+            
+            &-footer {
+                display: flex;
+                justify-content: flex-end;
 
-            //List start
-            .liste{
-                border:1px solid $grey-color;
-                background-color: $light-color;
-                border-radius: 5px;
-                width:15rem;
-                padding:0.7rem;
-                position: absolute;
-                top: 200px;
-                left: 75px;
+                .trash-tooltip {
+                    right: 1.3rem;
+                    top: -0.2rem;
+                }
 
-                .btn-icon {
-                    border: none;
-                    background-color: transparent;
-                    font-size:1rem;
-                    color:$grey-color;
+                .delete-liste{
+                    margin-top: 0.5rem;
                     padding: 0.2rem;
+                    position: relative;
 
-                    &:hover {
-                        cursor: pointer;
+                    &:hover .trash-tooltip {
+                        opacity: 1;
                     }
                 }
+            }
 
-                .tooltip {
-                    position: absolute;
-                    background-color: $light-color;
-                    font-size: 0.7rem;
-                    opacity: 0;
-                    transition: 1s all;
-                }
-        
-                &-header {
-                    &-show {
+            //Card start
+                .card{
+                    padding:0.5rem;
+                    border:1px solid $grey-color ;
+                    border-radius: 3px;
+                    margin-top: 0.5rem;
+
+                    &-show{
                         display: flex;
                         justify-content: space-between;
-                        align-items: center;
-                        width: 100%;
-                    }
-                    &-title{
-                    font-size: 1.3rem;
-                    margin-right: 0.1rem;
-                    font-family: 'Solway', serif;
-                    color: $grey-color;
-                    font-weight: bold;
-                    font-size: 1.1rem;
 
-                    &-input {
-                        font-family: 'Solway', serif;
-                        color: $grey-color;
-                        font-weight: bold;
-                        font-size: 1.1rem;
-                        max-width: 100%;
-                        border: none;
-                        background-color: #{$grey-color}30;
-    
-                        &::placeholder {
-                            font-family: 'Poppins', sans-serif;
-                        }
-    
-                        &:focus-visible {
-                            outline: solid 2px $grey-color;
-                        }
-                        }
-                    }
-                    .add-card {
-                        color:$grey-color;
-                        position: relative;
-                        display: inline-block;
-
-                        .addcard-tooltip {
-                            right: 1.2rem;
-                            top: -0.8rem
-                        }
-
-                        &:hover .addcard-tooltip {
-                            opacity: 1;
-                        }
-                    }
-                }
-                
-                &-footer {
-                    display: flex;
-                    justify-content: flex-end;
-
-                    .trash-tooltip {
-                        right: 1.3rem;
-                        top: -0.2rem;
-                    }
-
-                    .delete-liste{
-                        margin-top: 0.5rem;
-                        padding: 0.2rem;
-                        position: relative;
-
-                        &:hover .trash-tooltip {
-                            opacity: 1;
-                        }
-                    }
-                }
-
-                //Card start
-                    .card{
-                        padding:0.5rem;
-                        border:1px solid $grey-color ;
-                        border-radius: 3px;
-                        margin-top: 0.5rem;
-
-                        &-show{
-                            display: flex;
-                            justify-content: space-between;
-
-                            .card-content {
-                                &-title{
-                                    font-family: 'Solway', serif;
-                                    color: $grey-color;
-                                    font-size: 0.8rem;
-                                    font-weight: bold;
-                                    margin-bottom: 0.2rem;
-                                }
-    
-                                &-description{
-                                    font-size: 0.7rem;
-                                    font-family: 'Poppins', sans-serif;
-                                }
-                            }
-                        }
-
-                        &-utils {
-                            display: flex;
-                            flex-direction: column;
-                            .modify-card{
-                                font-size:0.8rem;
-                                position: relative;
-
-                                .editcard-tooltip {
-                                    right: 1.2rem;
-                                    top: -0.2rem
-                                }
-
-                                &:hover .editcard-tooltip {
-                                    opacity: 1;
-                                }
-                            }
-
-                            .delete-card {
-                                position: relative;
-        
-                                .deletecard-tooltip {
-                                    right: 1rem;
-                                    top: -0.2rem
-                                }
-        
-                                &:hover .deletecard-tooltip {
-                                    opacity: 1;
-                                }
-                            }
-                        }
-
-                        .edit-card-form {
-                            .card-header-title, .card-header-content {
-                                width: 100%;
-                                margin: 0.2rem auto;
-                            }
-                            .edit-color {
-                                display: flex;
-                                align-items: center;
-                                label {
-                                    font-family: 'Poppins', sans-serif;
-                                    color: $grey-color;
-                                    font-size: 0.7rem;
-                                    margin-left: 0.3rem;
-                                    letter-spacing: normal;
-                                }
-                            }
-                            .sm-btn {
-                                display: block;
-                                margin: 0.3rem auto;
-                                font-family: 'Poppins', sans-serif;
-                                font-size: 0.7rem;
-                                border-radius: 3px;
-                                border: solid 2px $grey-color;
+                        .card-content {
+                            &-title{
+                                font-family: 'Solway', serif;
                                 color: $grey-color;
-                                line-height: normal;
-                                background-color:  #{$grey-color}30;
+                                font-size: 0.8rem;
+                                font-weight: bold;
+                                margin-bottom: 0.2rem;
+                            }
 
-                                &:hover {
-                                    cursor: pointer;
-                                    background-color: $grey-color;
-                                    color: $light-color;
-                                }
+                            &-description{
+                                font-size: 0.7rem;
+                                font-family: 'Poppins', sans-serif;
                             }
                         }
                     }
-                //Card end
-            }
-        //List end
-        }
 
-        .is-hidden {
-            display: none !important;
+                    &-utils {
+                        display: flex;
+                        flex-direction: column;
+                        .modify-card{
+                            font-size:0.8rem;
+                            position: relative;
+
+                            .editcard-tooltip {
+                                right: 1.2rem;
+                                top: -0.2rem
+                            }
+
+                            &:hover .editcard-tooltip {
+                                opacity: 1;
+                            }
+                        }
+
+                        .delete-card {
+                            position: relative;
+    
+                            .deletecard-tooltip {
+                                right: 1rem;
+                                top: -0.2rem
+                            }
+    
+                            &:hover .deletecard-tooltip {
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    .edit-card-form {
+                        .card-header-title, .card-header-content {
+                            width: 100%;
+                            margin: 0.2rem auto;
+                        }
+                        .edit-color {
+                            display: flex;
+                            align-items: center;
+                            label {
+                                font-family: 'Poppins', sans-serif;
+                                color: $grey-color;
+                                font-size: 0.7rem;
+                                margin-left: 0.3rem;
+                                letter-spacing: normal;
+                            }
+                        }
+                        .sm-btn {
+                            display: block;
+                            margin: 0.3rem auto;
+                            font-family: 'Poppins', sans-serif;
+                            font-size: 0.7rem;
+                            border-radius: 3px;
+                            border: solid 2px $grey-color;
+                            color: $grey-color;
+                            line-height: normal;
+                            background-color:  #{$grey-color}30;
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: $grey-color;
+                                color: $light-color;
+                            }
+                        }
+                    }
+                }
+            //Card end
         }
+    //List end
     }
+
+    .is-hidden {
+        display: none !important;
+    }
+}
 //Board end
 
-//Menu burger start   
-#burger-wrap {
-    background-color:#83367B;
-    width: 50px;
-    padding: 0 20px;
-    font-family: 'Poppins',sans-serif; 
-    font-size: 21px;
-    line-height: 1.6;
-    margin: 0;
-    color:$light-color;
-    //transition: transform .4s cubic-bezier(.25, .1, .25, 1);
-    position:absolute;
-    z-index:99999;
-    height: calc(100vh - 4.5rem - 2.2rem);
-  }
-  
-  .btn-burger {
-      margin: 1rem;
-  }
-
-  #burger-open,
-  #burger-close {
-    text-align: right;
-  }
-  #burger-open {
-      margin-left:-1rem;
-  }
-  #burger-close {
-      display: none
-    }
-  
-  .burger-nav a {
-    color: #FBFBF9;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .burger-nav {
-    padding: 0 25px;
-    display: none;
-  }
-  .burger-title{
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    font-family: 'Solway', serif;
-    color:orange;
-  }
-  .burger-list{
-    font-size:0.9rem;
-    transition: 0.4s;
-    padding:0.1rem 0;
-    margin:0.2rem 0;
-  }
-  .burger-list:hover{
-    background-color: $light-color;
-    color:$grey-color;
-  }
-  .edit-table-image{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .menu-burger{
+//Menu burger start
+.menu-burger {
     position:relative;
-  }
-  .fa-paint-brush{
-    font-size: 0.8rem;
-  }
-  
-  .table-brush{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .modify-table{
-    margin-top: 4rem;
-    display:none;
-    text-align: center;
-  }
-  .burger-liste{
-    font-size: 1.2rem;
-    font-family: 'Solway', serif;
-    color:orange;
-  }
 
-  .burger-new-table{
-    margin-top: 4rem;
-    display:none;
-    text-align: center;
-  }
-  .burger-add-table{
-    font-size:0.9rem;
-    border:2px solid #FBFBF9;
-    width:11rem;
-    padding:0.2rem;
-    text-align: center;
-    margin-top: 1.2rem;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif; 
-    border-radius: 5px;
+    #burger-wrap {
+        background-color:#83367B;
+        width: 2rem;
+        //padding: 0 20px;
+        font-family: 'Poppins',sans-serif; 
+        font-size: 21px;
+        line-height: 1.6;
+        margin: 0;
+        color:$light-color;
+        //transition: transform .4s cubic-bezier(.25, .1, .25, 1);
+        position:absolute;
+        z-index:99999;
+        height: calc(100vh - 4.5rem - 2.2rem);
+    }
 
-  }
-  .burger-add-table:hover{
-    background-color:$light-color;
-    color:$grey-color;
-  }
-  .input{
-    padding: 0.4rem;
-    border-radius: 5px;
-    margin-bottom: 0.7rem;
-  }
-  .label-modify-table{
-    font-size:0.8rem;
-    font-family: 'Poppins', sans-serif;
-    color:orange; 
-  }
-  .colorpicker{
-      margin-bottom: 0;
-  }
+    .btn-burger {
+        margin: 1rem;
+    }
 
-  input[type="color"]{
+    #burger-open,
+    #burger-close {
+        text-align: right;
+    }
+    #burger-open {
+        margin-left: -0.6rem;
+    }
+    #burger-close {
+        display: none
+    }
+
+    .burger-nav a {
+        color: #FBFBF9;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .burger-nav {
+        padding: 0 25px;
+        display: none;
+
+        ul {
+            margin-bottom: 2rem;
+            width: 90%;
+        }
+    }
+    .burger-title{
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-family: 'Solway', serif;
+        color:orange;
+    }
+    .burger-list{
+        font-size:0.9rem;
+        transition: 0.4s;
+        padding:0.1rem 0;
+        margin:0.2rem 0;
+    }
+    .burger-list:hover{
+        background-color: $light-color;
+        color:$grey-color;
+        cursor: zoom-in;
+    }
+    .edit-table-image{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .fa-paint-brush{
+        font-size: 0.8rem;
+        padding: 0.2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .table-brush{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .modify-table{
+        margin-top: 4rem;
+        display:none;
+    }
+    label {
+        margin-top: 1rem;
+    }
+    .burger-liste{
+        font-size: 1.2rem;
+        font-family: 'Solway', serif;
+        color:orange;
+    }
+
+    .burger-new-table{
+        margin-top: 4rem;
+        display:none;
+    }
+
+    .edit-board, .new-board {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn{
+        font-size:0.9rem;
+        border:2px solid #FBFBF9;
+        background-color: transparent;
+        color: $light-color;
+        padding:0.2rem 0.5rem;
+        text-align: center;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif; 
+        border-radius: 5px;
+
+    }
+    .btn:hover{
+        background-color:$light-color;
+        color:$grey-color;
+    }
+    .board-title{
+        padding: 0.4rem;
+        border-radius: 5px;
+        margin-bottom: 0.7rem;
+    }
+    .label-modify-table{
+        font-size:0.8rem;
+        font-family: 'Poppins', sans-serif;
+        color:orange; 
+    }
+
+    .colorpicker{
         background-color: transparent;
         border: none;
-        height: 3rem;
-        width: 3rem;
+        height: 2.5rem;
+        width: 4rem;
         margin-left: auto;
         display: block;
         margin-right: auto;
-        border-radius: 5px;
-   }
-
-/* height: calc(100vh - 4.5rem - 2.2rem);*/
+    }
+}
 //Menu burger end
 
 
@@ -703,7 +724,7 @@ a {
 
     form, .frame {
         margin: 5rem auto;
-        box-shadow: 0 0 5px $base-color;
+        box-shadow: 0 0 5px $pink-color;
         border-radius: 10px;
         padding: 2rem;
         background-color: $light-color;
@@ -715,13 +736,13 @@ a {
         text-transform: uppercase;
         font-weight: bold;
         font-size: 1.5rem;
-        color: $base-color;
+        color: $pink-color;
         margin: 0 1rem 1.5rem;
         width: 22rem;
         letter-spacing: .1rem;
         text-shadow: 
-            -1px -1px 1px #{$base-color}70, 
-            2px 2px 1px #{$base-color}25;
+            -1px -1px 1px #{$pink-color}70, 
+            2px 2px 1px #{$pink-color}25;
     }
 
     &-valid, &-error, &-noerror {
@@ -747,11 +768,11 @@ a {
             padding: 0.4rem 0.6rem;
             font-size: 1rem;
             border-radius: 5px;
-            border: solid 2px $base-color;
+            border: solid 2px $pink-color;
 
             &:focus-visible {
-                outline: solid 1px $base-color;
-                box-shadow: inset 0 0 5px $base-color;
+                outline: solid 1px $pink-color;
+                box-shadow: inset 0 0 5px $pink-color;
             }
         }
     }
@@ -761,7 +782,7 @@ a {
         font-size: 0.9rem;
         line-height: 1.4rem;
         font-weight: bold;
-        color: $sd-color;
+        color: $grey-color;
     }
 
     &-btn {
@@ -771,7 +792,7 @@ a {
 
     &-link {
         font-family: 'Poppins', sans-serif;
-        color: $sd-color;
+        color: $grey-color;
         display: block;
         font-size: 0.9rem;
         line-height: 1.2rem;
