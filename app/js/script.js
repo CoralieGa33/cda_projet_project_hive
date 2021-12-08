@@ -51,3 +51,14 @@ function openNav() {
     document.querySelector("#burger-open").style.display = "block";
     document.querySelector(".burger-nav").style.display = "none";
 });
+
+
+// Au click sur Brush, show Modifier le tableau
+$('.fa-paint-brush').on('click', function() {
+    document.querySelector(".modify-table").style.display = "block";
+}); 
+
+// Au click sur "Ajouter un tableau", show Nouveau tableau
+$('.burger-add-table').on('click', function() {
+    document.querySelector(".burger-new-table").style.display = "block";
+});

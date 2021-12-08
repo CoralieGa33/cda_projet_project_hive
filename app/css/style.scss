@@ -13,6 +13,8 @@ $sd-color: #6D0CCE;
 //$light-color: #FAFAFA;
 $light-color: #FBFBF9;
 $grey-color: #4B5C6B;
+$pink-color: #83367B;
+$orange-color:orange;
 
 
 //pour les colonnes : 
@@ -555,7 +557,7 @@ a {
 
 //Menu burger start   
 #burger-wrap {
-    background-color:#5198f7;
+    background-color:#83367B;
     width: 50px;
     padding: 0 20px;
     font-family: 'Poppins',sans-serif; 
@@ -596,10 +598,10 @@ a {
     display: none;
   }
   .burger-title{
-    font-size: 1rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     font-family: 'Solway', serif;
-    color:$grey-color;
+    color:orange;
   }
   .burger-list{
     font-size:0.9rem;
@@ -609,7 +611,7 @@ a {
   }
   .burger-list:hover{
     background-color: $light-color;
-    color: $base-color;
+    color:$grey-color;
   }
   .edit-table-image{
     display: flex;
@@ -620,29 +622,29 @@ a {
     position:relative;
   }
   .fa-paint-brush{
-    color: white;
     font-size: 0.8rem;
   }
-  .fa-paint-brush:hover{
-    color:#5d51f7;
-  }
+  
   .table-brush{
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
   .modify-table{
-    margin-top: 1rem;
+    margin-top: 4rem;
+    display:none;
+    text-align: center;
   }
   .burger-liste{
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-family: 'Solway', serif;
-    color:$grey-color;
+    color:orange;
   }
 
   .burger-new-table{
-    margin-top: 0.8rem;
+    margin-top: 4rem;
+    display:none;
+    text-align: center;
   }
   .burger-add-table{
     font-size:0.9rem;
@@ -650,7 +652,7 @@ a {
     width:11rem;
     padding:0.2rem;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     cursor: pointer;
     font-family: 'Poppins', sans-serif; 
     border-radius: 5px;
@@ -658,7 +660,7 @@ a {
   }
   .burger-add-table:hover{
     background-color:$light-color;
-    color:$base-color;
+    color:$grey-color;
   }
   .input{
     padding: 0.4rem;
@@ -668,11 +670,22 @@ a {
   .label-modify-table{
     font-size:0.8rem;
     font-family: 'Poppins', sans-serif;
-    color:$grey-color; 
+    color:orange; 
   }
   .colorpicker{
       margin-bottom: 0;
   }
+
+  input[type="color"]{
+        background-color: transparent;
+        border: none;
+        height: 3rem;
+        width: 3rem;
+        margin-left: auto;
+        display: block;
+        margin-right: auto;
+        border-radius: 5px;
+   }
 
 /* height: calc(100vh - 4.5rem - 2.2rem);*/
 //Menu burger end

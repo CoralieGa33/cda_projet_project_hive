@@ -646,7 +646,7 @@ a {
 }
 
 #burger-wrap {
-  background-color: #5198f7;
+  background-color: #83367B;
   width: 50px;
   padding: 0 20px;
   font-family: 'Poppins',sans-serif;
@@ -689,10 +689,10 @@ a {
 }
 
 .burger-title {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
   font-family: 'Solway', serif;
-  color: #4B5C6B;
+  color: orange;
 }
 
 .burger-list {
@@ -705,7 +705,7 @@ a {
 
 .burger-list:hover {
   background-color: #FBFBF9;
-  color: #5d51f7;
+  color: #4B5C6B;
 }
 
 .edit-table-image {
@@ -723,12 +723,7 @@ a {
 }
 
 .fa-paint-brush {
-  color: white;
   font-size: 0.8rem;
-}
-
-.fa-paint-brush:hover {
-  color: #5d51f7;
 }
 
 .table-brush {
@@ -744,17 +739,21 @@ a {
 }
 
 .modify-table {
-  margin-top: 1rem;
+  margin-top: 4rem;
+  display: none;
+  text-align: center;
 }
 
 .burger-liste {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-family: 'Solway', serif;
-  color: #4B5C6B;
+  color: orange;
 }
 
 .burger-new-table {
-  margin-top: 0.8rem;
+  margin-top: 4rem;
+  display: none;
+  text-align: center;
 }
 
 .burger-add-table {
@@ -763,7 +762,7 @@ a {
   width: 11rem;
   padding: 0.2rem;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   border-radius: 5px;
@@ -771,7 +770,7 @@ a {
 
 .burger-add-table:hover {
   background-color: #FBFBF9;
-  color: #5d51f7;
+  color: #4B5C6B;
 }
 
 .input {
@@ -783,11 +782,22 @@ a {
 .label-modify-table {
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
-  color: #4B5C6B;
+  color: orange;
 }
 
 .colorpicker {
   margin-bottom: 0;
+}
+
+input[type="color"] {
+  background-color: transparent;
+  border: none;
+  height: 3rem;
+  width: 3rem;
+  margin-left: auto;
+  display: block;
+  margin-right: auto;
+  border-radius: 5px;
 }
 
 /* height: calc(100vh - 4.5rem - 2.2rem);*/
