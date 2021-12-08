@@ -644,7 +644,7 @@ a {
 }
 
 .board .is-hidden {
-  display: none;
+  display: none !important;
 }
 
 .signup, .signin, .profile, .editpass, .registered {

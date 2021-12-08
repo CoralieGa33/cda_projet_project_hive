@@ -12,7 +12,7 @@ let app = {
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
 
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
-        $('.add-liste').on('submit', app.createNewListe);
+        $('.add-liste').on('submit', app.handleCreateNewListe);
 
         // je charge mon tableau principal
         app.loadBoard();
@@ -130,7 +130,7 @@ let app = {
     },
 
     // Requête d'ajout d'une nouvelle liste
-    createNewListe: function(event) {
+    handleCreateNewListe: function(event) {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
         let boardId = $('.board').attr('board-id');

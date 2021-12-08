@@ -553,7 +553,7 @@ a {
         }
 
         .is-hidden {
-            display: none;
+            display: none !important;
         }
     }
 //Board end
