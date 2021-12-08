@@ -57,6 +57,6 @@ class ListeController extends AbstractController
         
     public function deleteListe($id)
     {
-        $this->listeRepository->delete($id);   
+        echo json_encode($this->listeRepository->delete($id));
     }
 }

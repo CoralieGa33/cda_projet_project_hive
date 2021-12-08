@@ -8,11 +8,11 @@ let app = {
     init: function() {
         console.log("initialisation ...")
 
+        $('.add-liste').on('submit', app.handleCreateNewListe);
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
-
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
-        $('.add-liste').on('submit', app.handleCreateNewListe);
+        $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
 
         // je charge mon tableau principal
         app.loadBoard();
@@ -195,7 +195,12 @@ let app = {
     getMaxListOrderNb: function(listeCollection) {
         let allListes = [... listeCollection];
         orderedListes = allListes.sort((a, b) => b.orderNb - a.orderNb);
-        maxOrderNb = orderedListes[0].orderNb;
+        if(orderedListes[0]) {
+            maxOrderNb = orderedListes[0].orderNb;
+        } else {
+            maxOrderNb = 0;
+        }
+        
         return(maxOrderNb);
     },
 
@@ -214,6 +219,24 @@ let app = {
             $(this).attr('order-nb', $(this).attr("order-nb")-1);
             app.updateListe($(this));
             $(this).css('zIndex', $(this).attr('order-nb'));
+        });
+    },
+
+    handleDeleteListe: function(event) {
+        let listeToDelete = $(event.currentTarget).parent().parent();
+        let listeToDeleteId = listeToDelete.attr("liste-id");
+        $.ajax({
+            url: app.baseUrl + 'liste/delete',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                listeId: listeToDeleteId,
+            }
+        }).done(function(response) {
+            listeToDelete.remove();
+        }).fail(function(e) {
+            console.error(e);
+            listeToDelete.remove();
         });
     },
 

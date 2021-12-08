@@ -63,6 +63,9 @@ class Router {
                 $this->listeController->newListe($_POST);
             }elseif (isset($_GET['api/liste/update'])) {
                 $this->listeController->editListe($_POST);
+            }elseif (isset($_GET['api/liste/delete'])) {
+                $this->listeController->deleteListe($_POST["listeId"]);
+                //$this->listeController->deleteListe("24");
             }elseif (isset($_GET['api/card'])) {
                 $this->cardController->getCard($_POST["cardId"]);
             }elseif (isset($_GET['api/backgrounds'])) {
