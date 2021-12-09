@@ -9,11 +9,7 @@
         
         <nav class="burger-nav">
             <h3 class="burger-title">Liste des tableaux</h3>
-            <ul>
-                <li class="table-brush burger-list">Tableau de testeur1 <i class="fas fa-paint-brush"></i></li>
-                <li class="burger-list board-2" >Tableau 2 de testeur1</li>
-                <li class="burger-list board-3" >Tableau 3 de testeur1</li>
-                <li class="burger-list board-4" >Tableau 4 de testeur1</li>
+            <ul class="menu-boards-list">
             </ul>
             <button class="btn burger-add-table">Ajouter un tableau</button>
 

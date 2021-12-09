@@ -1,9 +1,10 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
-    //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
+    //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_0912/app/?api/',
     
     maxListeOrderNb: 0,
+    loadedBoard: 0,
     
     init: function() {
         console.log("initialisation ...")
@@ -13,22 +14,29 @@ let app = {
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
 
         // je charge mon tableau principal
         app.loadBoard();
+        app.loadBoardMenu();
     },
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
-    loadBoard: function() {
+    loadBoard: function(id = null) {
+        let selectedBoardId = boardsList[0]['boardId'];
+        if(id) {
+            selectedBoardId = id;
+        }
+        console.log('Loaded board id : ', selectedBoardId);
         $.ajax({
             url: app.baseUrl + 'boards',
             method: 'POST',
             data: {
-                boardId:`${boardsList[0]['boardId']}`,
+                boardId: selectedBoardId,
             }
         }).done(function(boardDatas) {
             let board = JSON.parse(boardDatas)
-            app.generateBoard(board.boardId);
+            app.generateBoard(board.boardId, board.title);
 
             // Je place dans une variable toutes les listes reçues du tableau
             let listeCollection = board.listes;
@@ -59,10 +67,55 @@ let app = {
             console.error(e);
         });
     },
+
+    // Je charge la liste des tableaux de l'utilisateur dans le menu "burger"
+    loadBoardMenu: function() {
+        let boardsListNode = document.querySelector('.menu-boards-list');
+        // Je boucle sur la liste des tableaux pour créer les éléments
+        boardsList.map(board => {
+            let newBoard = document.createElement('li');
+            newBoard.classList.add('boards-list-item');
+            newBoard.id = "board-" + board.boardId;
+            newBoard.setAttribute("board-id", board.boardId);
+            newBoard.textContent = board.title;
+            boardsListNode.appendChild(newBoard);
+        })
+        boardsListNode.firstElementChild.classList.add('selected-board'); // A la connexion sur le 1er
+        boardsListNode.querySelector('.selected-board').insertAdjacentHTML('afterbegin', '<i class="fas fa-paint-brush"></i>'); 
+    },
+
     // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite
-    generateBoard: function(boardId) {
+    generateBoard: function(boardId, boardTitle) {
         let board = document.querySelector('.board');
-        board.setAttribute('board-id', boardId)
+        board.setAttribute('board-id', boardId);
+        board.querySelector('.board-title').textContent = boardTitle;
+    },
+
+    // Pour changer de tableau après le clic sur son nom
+    handleSelectBoard: function(event) {
+        let selectedItem = $(event.currentTarget);
+
+        // je récupère l'id du tableau selectionné pour la future requête
+        let selectedItemId = selectedItem.attr('board-id');
+        app.selectedBoardId = selectedItemId;
+        
+        // J'intervertis la place du "pinceau", et la classe
+        $('.selected-board').find('.fas').remove();
+        $('.selected-board').removeClass('selected-board');
+        selectedItem.addClass('selected-board');
+        selectedItem.prepend('<i class="fas fa-paint-brush"></i>');
+        
+        // Je vide le DOM du tableau actuel (sauf le premier élément -> template)
+        $('.board-listes').children().not(':first').remove();
+
+        // Je charge le nouveau tableau
+        app.loadBoard(app.selectedBoardId);
+        
+        // Je ferme le menu
+        document.querySelector(".burger-header").style.width = "2rem";
+        document.querySelector("#burger-close").style.display = "none";
+        document.querySelector("#burger-open").style.display = "block";
+        document.querySelector(".burger-nav").style.display = "none";
     },
     
     // permet  de générer une nouvelle liste avec ses détails

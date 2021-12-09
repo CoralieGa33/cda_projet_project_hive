@@ -712,19 +712,18 @@ a {
   color: orange;
 }
 
-.menu-burger .burger-list {
+.menu-burger .boards-list-item {
   font-size: 0.9rem;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  padding: 0.1rem 0;
   margin: 0.2rem 0;
+  padding-left: 1.7rem;
 }
 
-.menu-burger .burger-list:hover {
+.menu-burger .boards-list-item:hover {
   background-color: #FBFBF9;
   color: #4B5C6B;
-  cursor: -webkit-zoom-in;
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .menu-burger .edit-table-image {
@@ -739,23 +738,17 @@ a {
 
 .menu-burger .fa-paint-brush {
   font-size: 0.8rem;
-  padding: 0.2rem;
+  padding: 0.3rem;
+  margin-right: 0.5rem;
 }
 
 .menu-burger .fa-paint-brush:hover {
   cursor: pointer;
 }
 
-.menu-burger .table-brush {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.menu-burger .selected-board {
+  margin-left: -0.3rem;
+  padding: 0;
 }
 
 .menu-burger .modify-table {
