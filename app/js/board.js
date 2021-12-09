@@ -15,7 +15,7 @@ let app = {
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
-        // l'élément n'existe pas, lors de l'init donc pas possible de lui déposer un écouteur directement
+        // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
         // je charge mon tableau principal
