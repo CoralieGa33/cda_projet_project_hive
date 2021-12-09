@@ -1,7 +1,7 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
+    baseUrl: 'http://localhost:80/www/cda_projet_project_hive/app/?api/',
     
     maxListeOrderNb: 0,
     
@@ -13,6 +13,7 @@ let app = {
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
 
         // je charge mon tableau principal
         app.loadBoard();
@@ -257,6 +258,45 @@ let app = {
                 //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
                 app.updateOrderListe($(this));
             }
+        });
+    },
+
+        // Pour rendre une liste déplaçable dans le tableau
+    setDragListes: function() {
+        //Pour le déplacement des div .liste avec jquery draggable
+        $(".liste").draggable({  
+            cursor: "move", // pour modifier le curseur de déplacement
+            //containment: "#cible"// limite le déplacement à une zone
+            containment: ".board-listes",
+            //Pour l'enregistrement des positions après le déplacement
+            
+            stop: function(event, ui){
+                let posLeft = $(this).position().left;//voir si je change offset par position
+                let posTop = $(this).position().top;//offset modifié par position car parent ajouté par Coralie
+                let listeId = $(this).attr("liste-id");//à changer avec liste-id
+                //console.log(listeId);
+                //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
+                app.updateOrderListe($(this));
+            }
+        });
+    },
+    
+    //Requête pour supprimer une liste 
+    handleDeleteCard: function(event) {
+        let cardToDelete = $(event.currentTarget).parent().parent().parent();
+        let cardToDeleteId = cardToDelete.attr("card-id");
+        $.ajax({
+            url: app.baseUrl + 'card/delete',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                cardId: cardToDeleteId,
+            }
+        }).done(function(response) {
+            cardToDelete.remove();
+        }).fail(function(event) {
+            console.error(event);
+            cardToDelete.remove();
         });
     },
 

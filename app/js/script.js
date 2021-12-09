@@ -105,6 +105,13 @@ $(".liste-cards").sortable({
     }
 });
 
-//activer l'ajout de cartes
-//Faire apparaître le template quand on appuie sur l'ajout de cartes
+//pour activer l'ajout des cartes
+$(document).ready(function(){
+    $(".fa-plus-circle").on("click",function(e){
+        $(".template-card").clone().appendTo("#liste-2>.liste-cards");
+    })
+});
+
+
+
 
