@@ -53,7 +53,7 @@ class CardController extends AbstractController
 
     public function deleteCard($id)
     {
-        $this->cardRepository->delete($id);
-    }  
+        echo json_encode($this->cardRepository->delete($id));
+    }
 }
 

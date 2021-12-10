@@ -14,7 +14,7 @@ let app = {
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
-
+       
         // je charge mon tableau principal
         app.loadBoard();
     },
@@ -281,10 +281,11 @@ let app = {
         });
     },
     
-    //Requête pour supprimer une liste 
+    //Requête pour supprimer une card
     handleDeleteCard: function(event) {
         let cardToDelete = $(event.currentTarget).parent().parent().parent();
         let cardToDeleteId = cardToDelete.attr("card-id");
+        console.log(cardToDelete); //c'est bien la bonne, par contre il ne reconnait pas cardToDeleteId 
         $.ajax({
             url: app.baseUrl + 'card/delete',
             method: 'POST',
@@ -294,8 +295,8 @@ let app = {
             }
         }).done(function(response) {
             cardToDelete.remove();
-        }).fail(function(event) {
-            console.error(event);
+        }).fail(function(e) {
+            console.error(e);
             cardToDelete.remove();
         });
     },
@@ -303,3 +304,4 @@ let app = {
 };
 
 document.addEventListener('DOMContentLoaded', app.init);
+
