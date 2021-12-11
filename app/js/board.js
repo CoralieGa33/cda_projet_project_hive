@@ -284,7 +284,9 @@ let app = {
         });
     },
 
+    // Requête pour supprimer une liste
     handleDeleteListe: function(event) {
+        // Je trouve la bonne carte à supprimer grâce à l'ecouteur d'évènement, ainsi que son id
         let listeToDelete = $(event.currentTarget).parent().parent();
         let listeToDeleteId = listeToDelete.attr("liste-id");
         $.ajax({
@@ -295,6 +297,7 @@ let app = {
                 listeId: listeToDeleteId,
             }
         }).done(function(response) {
+            // Je la supprime du DOM maintenant qu'elle est supprimée de la BDD
             listeToDelete.remove();
         }).fail(function(e) {
             console.error(e);
@@ -321,6 +324,7 @@ let app = {
         });
     },
 
+    // Requête qui va chercher les backgrounds pour les afficher en vignettes dans les formulaires du menu
     loadBackgrounds: function() {
         $.ajax({
             url: app.baseUrl + 'backgrounds',
@@ -346,12 +350,15 @@ let app = {
         });
     },
 
+    // Sert à afficher un indicateur visuel sur le background sélectionné
+    // Et indirectement à récupérer son id à l'envoi du formulaire
     selectBackground: function(event) {
         let selectedImage = $(event.currentTarget);
         $('.selected-bg').removeClass('selected-bg');
         selectedImage.addClass('selected-bg');
     },
 
+    // Requête d'ajout d'un nouveau tableau
     handleCreateNewBoard: function(event) {
         event.preventDefault();
         let newBoardTitle = $('.new-board-title-input').eq(0).val();
