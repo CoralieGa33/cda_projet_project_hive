@@ -23,17 +23,19 @@ class BoardController extends AbstractController
         echo json_encode($board);
     }
 
-    public function newBoard($post) //enregistre un tableau dans la bdd
+    public function newBoard($post, $owner_id) //enregistre un tableau dans la bdd
     {
-        if (isset($post['submit'])) {
+        if ($post) {
             $board = new Board();
             $board
                 ->setTitle($post["title"])
-                ->setColor($post["color"])
-                ->setBackground_id($post["background_id"])
-                ->setOwner_id($post["owner_id"]);
+                ->setColor($post["color"] ?: NULL)
+                ->setBackground_id($post["background_id"] ?: NULL)
+                ->setOwner_id($owner_id);
 
             $this->boardRepository->addBoard($board);
+            $lastBoard = $this->boardRepository->getLastBoard();
+            echo json_encode($lastBoard); 
         }
     }
 

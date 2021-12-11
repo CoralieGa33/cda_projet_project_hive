@@ -5,22 +5,27 @@ let app = {
     
     maxListeOrderNb: 0,
     loadedBoard: 0,
+    backgrounds: {},
     
     init: function() {
         console.log("initialisation ...")
 
         $('.add-liste').on('submit', app.handleCreateNewListe);
+        $('.new-board').on('submit', app.handleCreateNewBoard);
+        //$('edit-board').on('submit', app.handleEditBoard);
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
+        $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
         // je charge mon tableau principal
         app.loadBoard();
         app.loadBoardMenu();
+        app.loadBackgrounds();
     },
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
@@ -76,14 +81,16 @@ let app = {
         // Je boucle sur la liste des tableaux pour créer les éléments
         boardsList.map(board => {
             let newBoard = document.createElement('li');
-            newBoard.classList.add('boards-list-item');
-            newBoard.id = "board-" + board.boardId;
-            newBoard.setAttribute("board-id", board.boardId);
-            newBoard.textContent = board.title;
+            let newBoardTitle = document.createElement('span');
+            newBoardTitle.classList.add('boards-list-item');
+            newBoardTitle.id = "board-" + board.boardId;
+            newBoardTitle.setAttribute("board-id", board.boardId);
+            newBoardTitle.textContent = board.title;
+            newBoard.appendChild(newBoardTitle);
             boardsListNode.appendChild(newBoard);
         })
-        boardsListNode.firstElementChild.classList.add('selected-board'); // A la connexion sur le 1er
-        boardsListNode.querySelector('.selected-board').insertAdjacentHTML('afterbegin', '<i class="fas fa-paint-brush"></i>'); 
+        boardsListNode.firstElementChild.querySelector('span').classList.add('selected-board'); // A la connexion sur le 1er
+        boardsListNode.querySelector('.selected-board').parentNode.insertAdjacentHTML('afterbegin', '<i class="fas fa-paint-brush"></i>'); 
     },
 
     // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite
@@ -101,8 +108,8 @@ let app = {
         let selectedItemId = selectedItem.attr('board-id');
         app.selectedBoardId = selectedItemId;
         
-        // J'intervertis la place du "pinceau", et la classe
-        $('.selected-board').find('.fas').remove();
+        // Je change la place du "pinceau", et la classe
+        $('.selected-board').parent().find('.fas').remove();
         $('.selected-board').removeClass('selected-board');
         selectedItem.addClass('selected-board');
         selectedItem.prepend('<i class="fas fa-paint-brush"></i>');
@@ -291,7 +298,6 @@ let app = {
             listeToDelete.remove();
         }).fail(function(e) {
             console.error(e);
-            listeToDelete.remove();
         });
     },
 
@@ -315,6 +321,78 @@ let app = {
         });
     },
 
+    loadBackgrounds: function() {
+        $.ajax({
+            url: app.baseUrl + 'backgrounds',
+            method: 'POST',
+            dataType: 'json',
+        }).done(function(response) {
+            app.backgrounds = response;
+            let backgroundsModifyNode = document.querySelector('.modify-table-backgrounds');
+            let backgroundsNewNode = document.querySelector('.new-table-backgrounds');
+            app.backgrounds.map(background => {
+                let newBackgroundItem = document.createElement('li');
+                let newBackgroundImage = document.createElement('img');
+                newBackgroundImage.classList.add('background-thumb');
+                newBackgroundImage.id = "background-" + background.backgroundId;
+                newBackgroundImage.setAttribute("background-id", background.backgroundId);
+                newBackgroundImage.src = background.imageUrl
+                newBackgroundItem.appendChild(newBackgroundImage);
+                backgroundsModifyNode.appendChild(newBackgroundItem);
+                backgroundsNewNode.appendChild(newBackgroundItem.cloneNode(true));
+            });
+        }).fail(function(e) {
+            console.error(e);
+        });
+    },
+
+    selectBackground: function(event) {
+        let selectedImage = $(event.currentTarget);
+        $('.selected-bg').removeClass('selected-bg');
+        selectedImage.addClass('selected-bg');
+    },
+
+    handleCreateNewBoard: function(event) {
+        event.preventDefault();
+        let newBoardTitle = $('.new-board-title-input').eq(0).val();
+        let newBoardColor = $('.new-board-colorpicker').eq(0).val();
+        let newBoardBgId = $('.selected-bg').attr("background-id");
+        
+        if(newBoardTitle) {
+            $.ajax({
+                url: app.baseUrl + 'board/add',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    title: newBoardTitle,
+                    color: newBoardColor,
+                    background_id: newBoardBgId ? newBoardBgId : null,
+                }
+            }).done(function(board) {
+                let boardsListNode = document.querySelector('.menu-boards-list');
+                let newBoard = document.createElement('li');
+                let newBoardTitle = document.createElement('span');
+                newBoardTitle.classList.add('boards-list-item');
+                newBoardTitle.id = "board-" + board.boardId;
+                newBoardTitle.setAttribute("board-id", board.boardId);
+                newBoardTitle.textContent = board.title;
+                newBoard.appendChild(newBoardTitle);
+                boardsListNode.appendChild(newBoard);
+
+                document.querySelector(".burger-new-table").style.display = "none";
+                document.querySelector('.new-board').reset();
+                $('.selected-bg').removeClass('selected-bg');
+            }).fail(function(e) {
+                console.error(e);
+            });
+        } else {
+            let errorMessage  =  document.createElement('p');
+            errorMessage.classList.add('error-message');
+            errorMessage.textContent = "Merci de renseigner un titre";
+            let newBoardForm = document.querySelector(".new-board");
+            newBoardForm.prepend(errorMessage);
+        }
+    }
 };
 
 document.addEventListener('DOMContentLoaded', app.init);

@@ -57,6 +57,8 @@ class Router {
                 $this->userController->showBoard();
             }elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
+            }elseif (isset($_GET['api/board/add'])) {
+                $this->boardController->newBoard($_POST, $_SESSION["userId"]);
             }elseif (isset($_GET['api/liste'])) {
                 $this->listeController->getListe($listId);
             }elseif (isset($_GET['api/liste/add'])) {

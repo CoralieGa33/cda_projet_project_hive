@@ -614,7 +614,6 @@ a {
         display: none;
 
         ul {
-            margin-bottom: 2rem;
             width: 90%;
         }
     }
@@ -624,22 +623,54 @@ a {
         font-family: 'Solway', serif;
         color:orange;
     }
-    .boards-list-item{
-        font-size:0.9rem;
-        transition: 0.4s;
-        margin:0.2rem 0;
-        padding-left: 1.7rem;
+    .menu-boards-list {
+        min-height: 13rem;
+        li {
+            line-height: 1.5rem;
+            margin: 0.5rem 0;
+            display: flex;
 
-        &:hover{
+            &:hover{
             background-color: $light-color;
             color:$grey-color;
             cursor: default;
+            }
         }
     }
-    .edit-table-image{
+    .boards-list-item{
+        font-size:0.9rem;
+        transition: 0.4s;
+        margin:auto 0;
+        padding-left: 1.7rem;
+        flex-grow: 4;
+        
+    }
+    .modify-table-backgrounds,
+    .new-table-backgrounds {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
+
+        li {
+            height: 76px;
+        }
+
+        .background-thumb {
+            width: 70px;
+            height: 70px;
+            margin: 3px;
+        }
+
+        .selected-bg {
+            outline: solid 2px $orange-color;
+        }
+
+    }
+
+    .error-message {
+        font-size: 0.7rem;
+        color: red;
+        margin-top: 1rem;
     }
 
     .fa-paint-brush{
@@ -655,12 +686,10 @@ a {
     .selected-board{
         margin-left: -0.3rem;
         padding: 0;
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
     }
-    .modify-table{
-        margin-top: 4rem;
+    .modify-table,
+    .burger-new-table {
+        margin-top: 2rem;
         display:none;
     }
     label {
@@ -670,11 +699,6 @@ a {
         font-size: 1.2rem;
         font-family: 'Solway', serif;
         color:orange;
-    }
-
-    .burger-new-table{
-        margin-top: 4rem;
-        display:none;
     }
 
     .edit-board, .new-board {
@@ -697,10 +721,12 @@ a {
         background-color:$light-color;
         color:$grey-color;
     }
-    .board-title{
+    .board-title-input,
+    .new-board-title-input{
         padding: 0.4rem;
         border-radius: 5px;
         margin-bottom: 0.7rem;
+        max-width: 90%;
     }
     .label-modify-table{
         font-size:0.8rem;
@@ -708,7 +734,8 @@ a {
         color:orange; 
     }
 
-    .colorpicker{
+    .edit-board-colorpicker,
+    .new-board-colorpicker{
         background-color: transparent;
         border: none;
         height: 2.5rem;

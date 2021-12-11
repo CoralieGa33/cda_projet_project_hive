@@ -13,6 +13,7 @@ INSERT INTO background (`imageUrl`, `createdAt`, `updatedAt`) VALUES
 ("https://picsum.photos/id/1016/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ("https://picsum.photos/id/1018/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
 ("https://picsum.photos/id/1021/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
+("https://picsum.photos/id/1028/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 
 INSERT INTO board (`title`, `color`, `background_id`, `owner_id`, `createdAt`, `updatedAt`) VALUES
