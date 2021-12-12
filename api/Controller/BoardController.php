@@ -39,16 +39,18 @@ class BoardController extends AbstractController
         }
     }
 
-    public function editBoard($board)
+    public function editBoard($post)
     {
-        if (isset($post['edit'])) {
-            $board
-                ->setTitle($post["title"])
-                ->setColor($post["color"])
-                ->setBackground_id($post["background_id"]);
-    
-            $this->boardRepository->editBoard($board);
-        }
+        $board = $this->boardRepository->findOne($post['boardId']);
+
+        $board
+            ->setTitle($post["title"])
+            ->setColor($post["color"])
+            ->setBackground_id($post["background_id"] ?: NULL);
+
+        $this->boardRepository->editBoard($board);
+        $updatedBoard = $this->boardRepository->findOne($post['boardId']);
+        echo json_encode($updatedBoard); 
     }
 
     public function deleteBoard($id)

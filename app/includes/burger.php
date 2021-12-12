@@ -24,15 +24,6 @@
                         <ul class="modify-table-backgrounds">
                         
                         </ul>
-                    <!-- <div class="modify-table-backgrounds">
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                    </div> -->
-
                     <button type="submit" class="btn edit-board-submit">Enregistrer</button>
 
                 </form>
@@ -49,14 +40,6 @@
                     <ul class="new-table-backgrounds">
 
                     </ul>
-                    <!-- <div class="edit-table-image" name="background">
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                        <a class="table-thumbs" href="https://placeholder.com"><img src="https://via.placeholder.com/75" alt=""></a>
-                    </div> -->
                     <button type="submit" class="btn new-board-submit">Envoyer</button>
                 </form>
             </div>
