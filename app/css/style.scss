@@ -673,13 +673,15 @@ a {
         margin-top: 1rem;
     }
 
-    .fa-paint-brush{
+    .fa-paint-brush,
+    .fa-trash-alt {
         font-size: 0.8rem;
         padding: 0.3rem;
         margin-right: 0.5rem;
 
         &:hover {
             cursor: pointer;
+            color: $orange-color;
         }
     }
 

@@ -55,7 +55,7 @@ class BoardController extends AbstractController
 
     public function deleteBoard($id)
     {
-        $this->boardRepository->delete($id);
+        echo json_encode($this->boardRepository->delete($id));
     }
 
 }

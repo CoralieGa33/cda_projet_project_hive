@@ -26,6 +26,7 @@ let app = {
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
         $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
         $('.menu-boards-list').on('click', '.fa-paint-brush', app.handleOpenEditBoardForm);
+        $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleDeleteBoard);
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
@@ -100,6 +101,7 @@ let app = {
             newBoardTitle.setAttribute("board-id", board.boardId);
             newBoardTitle.textContent = board.title;
             newBoard.appendChild(newBoardTitle);
+            newBoard.insertAdjacentHTML('beforeend', '<i class="fas fa-trash-alt"></i>');
             boardsListNode.appendChild(newBoard);
         })
         boardsListNode.firstElementChild.querySelector('span').classList.add('selected-board'); // A la connexion sur le 1er
@@ -409,6 +411,7 @@ let app = {
                 newBoardTitle.setAttribute("board-id", board.boardId);
                 newBoardTitle.textContent = board.title;
                 newBoard.appendChild(newBoardTitle);
+                newBoard.insertAdjacentHTML('beforeend', '<i class="fas fa-trash-alt"></i>');
                 boardsListNode.appendChild(newBoard);
 
                 // Je masque le formulaire et je le vide
@@ -471,6 +474,26 @@ let app = {
             $('.selected-bg').removeClass('selected-bg');
             $("img[background-id|='"+updatedBoard.background_id+"']").addClass('selected-bg');
             document.querySelector(".modify-table").style.display = "none";
+        }).fail(function(e) {
+            console.error(e);
+        });
+    },
+
+    handleDeleteBoard: function(event) {
+        // Je trouve le bon tableau à supprimer grâce à l'ecouteur d'évènement, ainsi que son id
+        let boardToDelete = $(event.currentTarget).prev()
+        let boardIdToDelete = boardToDelete.attr("board-id");
+        //console.log(boardIdToDelete)
+        $.ajax({
+            url: app.baseUrl + 'board/delete',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                boardId: boardIdToDelete,
+            }
+        }).done(function(response) {
+            // Je le supprime de la liste dans le menu maintenant qu'il est supprimé de la BDD
+            boardToDelete.parent().remove();
         }).fail(function(e) {
             console.error(e);
         });
