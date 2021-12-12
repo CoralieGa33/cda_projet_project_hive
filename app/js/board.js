@@ -13,6 +13,8 @@ let app = {
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
+        $('.board-listes').on('submit', '.sm-btn', app.handleUpdateCard);
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
        
         // je charge mon tableau principal
@@ -29,7 +31,7 @@ let app = {
             }
         }).done(function(boardDatas) {
             let board = JSON.parse(boardDatas)
-            app.generateBoard(board.boardId);
+            app.generateBoard(board.boardId, board.color, board.background_id); //ajout la couleur et le background du board
 
             // Je place dans une variable toutes les listes reçues du tableau
             let listeCollection = board.listes;
@@ -60,11 +62,16 @@ let app = {
             console.error(e);
         });
     },
-    // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite
-    generateBoard: function(boardId) {
+    
+    //!!!!! A RETESTER CAR IMPRESSION QUE CA NE MARCHE PLUS, VOIR POURQUOI
+    // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite 
+    generateBoard: function(boardId, boardColor, boardImage) {
         let board = document.querySelector('.board');
-        board.setAttribute('board-id', boardId)
-    },
+        board.setAttribute('board-id', boardId);
+        let background = $('.background');
+        background.css('background-color', boardColor);
+        background.css('background-image',"url("+boardImage+")");
+    }, 
     
     // permet  de générer une nouvelle liste avec ses détails
     // elle reste "virtuelle" tant qu'elle n'est pas ajoutée au DOM
@@ -102,6 +109,7 @@ let app = {
         newCard.querySelector('input[name=edit-card-title]').value = card.title;
         newCard.querySelector('textarea[name=edit-card-content]').value = card.content;
         newCard.setAttribute('liste-id', card.liste_id);
+        newCard.setAttribute('card-id', card.cardId)
         newCard.classList.remove('is-hidden');
         return newCard;
     },
@@ -131,7 +139,7 @@ let app = {
     },
 
     // Requête d'ajout d'une nouvelle liste
-    handleCreateNewListe: function(event) {
+    handleCreateNewListe: function() {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
         let boardId = $('.board').attr('board-id');
@@ -280,7 +288,68 @@ let app = {
             }
         });
     },
+
+
+    //Requête pour afficher le formulaire de modifcation de la carte au click du pinceau
+    handleClickModifyCard: function(event) { 
+        let editCard = $(event.currentTarget).parent().parent().parent();
+        //console.log(editCard); ok
+        editCard.addClass('is-hidden'); 
+        let editCardForm = document.querySelector('.edit-card-form'); //ok querySelect mais ne reconnait pas closest, next. . .
+        console.log(editCardForm); 
+        editCardForm.removeClass('is-hidden'); //n'affiche rien, ni même en changeant par display : block avec modif dans css et html !!!! et show ne fonctionne pas non plus
+        //J'ai essayé également d'afficher une modal donc je pense que le problème est autre part (Xfiles :-))
+        //penser à tester le clone demain avec Chloé
+    },
+
+     // Réinitialise titre/description du form si le changement n'est pas validé
+     //voir fonction handleBlurListTitle:
+    //blur utilisé avec la méthode focus mais comme je préfèrerais utiliser une sorte de modal plutôt qu'un focus, à ne pas réutiliser en principe
     
+    
+
+
+    //Requête pour modifier une carte 
+    updateCard: function(card) { 
+        let cardTitle = card.find('.card-header-title').val(); 
+        let cardContent = card.find('.edit-card-content').val();
+        let cardColor = card.find('.edit-card-color');
+        $.ajax({
+            url: app.baseUrl + 'card/update',
+            method: 'POST',
+            data: {
+                cardId: card.attr('card-id'),
+                title: cardTitle,
+                content: cardContent,
+                orderNb: card.attr('order-nb'),
+                color : cardColor,
+            }
+        }).done(function(updatedCard) {
+            updatedCard = JSON.parse(updatedCard);
+            // Si c'est ok je mets à jour les détails la card ciblée dans le DOM
+            let cardToUpdateId = updatedCard.cardId;
+            let cardToUpdate = $('.card[card-id='+ cardToUpdateId +']');
+            cardToUpdate.attr('order-nb', updatedCard.orderNb);
+            cardToUpdate.find('h4').text(updatedCard.title);
+            cardToUpdate.find('input[name=edit-card-title]').val(updatedCard.title);
+            cardToUpdate.find('.card-content-description').text(updatedCard.content);
+            cardToUpdate.find('textarea[name=edit-card-content]').val(updateCard.content);
+            cardToUpdate.find('.card-show').css('background-color', cardColor);
+            cardToUpdate.find('input[name=edit-card-color]').val(updatedCard.color);
+        }).fail(function(e) {
+            console.error(e);
+        });
+    },
+
+     // Sélectionne et envoie la card complète visée par l'action pour la requête
+    handleUpdateCard: function(event) {
+        event.preventDefault();
+        let card = $(event.currentTarget).parent().parent().parent();
+        app.updateCard(card);
+        $('.edit-card-form').blur(); //à vérifier 
+    },
+
+
     //Requête pour supprimer une card
     handleDeleteCard: function(event) {
         let cardToDelete = $(event.currentTarget).parent().parent().parent();
@@ -304,4 +373,3 @@ let app = {
 };
 
 document.addEventListener('DOMContentLoaded', app.init);
-

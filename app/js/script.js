@@ -106,11 +106,11 @@ $(".liste-cards").sortable({
 });
 
 //pour activer l'ajout des cartes
-$(document).ready(function(){
-    $(".fa-plus-circle").on("click",function(e){
-        $(".template-card").clone().appendTo("#liste-2>.liste-cards");
-    })
-});
+//(document).ready(function(){
+  //  $(".fa-plus-circle").on("click",function(e){
+      //  $(".template-card").clone().appendTo("#liste-2>.liste-cards");
+    //})
+//});
 
 
 
