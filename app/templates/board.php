@@ -19,6 +19,7 @@
     <div class="board-listes">
         <?php
             require 'templates/liste.php';
+            require 'templates/card.php';
         ?>
     </div>
 </div>

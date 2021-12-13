@@ -1,7 +1,7 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_0912/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1312/app/?api/',
     
     maxListeOrderNb: 0,
     loadedBoard: {
@@ -18,7 +18,7 @@ let app = {
         $('.add-liste').on('submit', app.handleCreateNewListe);
         $('.new-board').on('submit', app.handleCreateNewBoard);
         $('.edit-board').on('submit', app.handleEditBoard);
-        //$('edit-board').on('submit', app.handleEditBoard);
+        
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
