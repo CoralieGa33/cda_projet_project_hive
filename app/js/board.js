@@ -13,8 +13,9 @@ let app = {
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.add-card', app.handleCreateNewCard);
         $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
-        $('.board-listes').on('submit', '.sm-btn', app.handleUpdateCard);
+        //$('.board-listes').on('submit', '.sm-btn', app.handleUpdateCard); mettre sur le nom du formulaire !!!A MODIFIER
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
        
         // je charge mon tableau principal
@@ -70,7 +71,10 @@ let app = {
         board.setAttribute('board-id', boardId);
         let background = $('.background');
         background.css('background-color', boardColor);
-        background.css('background-image',"url("+boardImage+")");
+        //background.css('background-image',"url("+boardImage+")");//produit une erreur
+        if(boardImage) {
+            background.css('background-image',"url("+boardImage+")");
+        }
     }, 
     
     // permet  de générer une nouvelle liste avec ses détails
@@ -139,7 +143,7 @@ let app = {
     },
 
     // Requête d'ajout d'une nouvelle liste
-    handleCreateNewListe: function() {
+    handleCreateNewListe: function(event) {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
         let boardId = $('.board').attr('board-id');
@@ -249,26 +253,6 @@ let app = {
         });
     },
 
-    // Pour rendre une liste déplaçable dans le tableau
-    setDragListes: function() {
-        //Pour le déplacement des div .liste avec jquery draggable
-        $(".liste").draggable({  
-            cursor: "move", // pour modifier le curseur de déplacement
-            //containment: "#cible"// limite le déplacement à une zone
-            containment: ".board-listes",
-            //Pour l'enregistrement des positions après le déplacement
-            
-            stop: function(event, ui){
-                let posLeft = $(this).position().left;//voir si je change offset par position
-                let posTop = $(this).position().top;//offset modifié par position car parent ajouté par Coralie
-                let listeId = $(this).attr("liste-id");//à changer avec liste-id
-                //console.log(listeId);
-                //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
-                app.updateOrderListe($(this));
-            }
-        });
-    },
-
         // Pour rendre une liste déplaçable dans le tableau
     setDragListes: function() {
         //Pour le déplacement des div .liste avec jquery draggable
@@ -289,17 +273,32 @@ let app = {
         });
     },
 
+    handleCreateNewCard: function(event) {
+        let ListeEnCours = $(event.currentTarget).parent().parent().parent();
+        console.log(ListeEnCours);
+        //let newForm =  $(".edit-card-form").clone(true, true);
+        //newForm.removeClass('is-hidden');
+        //newForm.appendTo(ListeEnCours.find('.liste-cards')); ce n'est pas joli affiché comme cela
+        let cardModel = $('.template-card').find(".card-show");
+        let cardClone= cardModel.clone(true, true);
+        let cardModelTitle = cardClone.find('.card-content-title');
+        let cardModelContent = cardClone.find('.card-content-description');
+        /*Je pensais qu'en faisant cela je pourrais remplacer le contenu de ma carte-show clonée par un input et un textarea, ça fonctionne mais c'est laid*/
+        //let cardTitleInput = $('.template-card').find(".card-header-title");
+        //let cardTextContent = $('.template-card').find('.card-header-content');
+        //cardModelTitle.replaceWith(cardTitleInput);
+        //cardModelContent.replaceWith()
+        cardModelTitle.text("titre de la carte");
+        cardModelContent.text("contenu de la carte à compléter");
+        cardClone.appendTo(ListeEnCours.find('.liste-cards'));
+    },
 
     //Requête pour afficher le formulaire de modifcation de la carte au click du pinceau
     handleClickModifyCard: function(event) { 
-        let editCard = $(event.currentTarget).parent().parent().parent();
-        //console.log(editCard); ok
-        editCard.addClass('is-hidden'); 
-        let editCardForm = document.querySelector('.edit-card-form'); //ok querySelect mais ne reconnait pas closest, next. . .
-        console.log(editCardForm); 
-        editCardForm.removeClass('is-hidden'); //n'affiche rien, ni même en changeant par display : block avec modif dans css et html !!!! et show ne fonctionne pas non plus
-        //J'ai essayé également d'afficher une modal donc je pense que le problème est autre part (Xfiles :-))
-        //penser à tester le clone demain avec Chloé
+        let editCard = $(event.currentTarget).parent().parent().parent(); //chercher le bon parent
+        console.log(editCard); 
+        editCard.find('.card-show').addClass('is-hidden'); 
+        editCard.find('.edit-card-form').removeClass('is-hidden');
     },
 
      // Réinitialise titre/description du form si le changement n'est pas validé
