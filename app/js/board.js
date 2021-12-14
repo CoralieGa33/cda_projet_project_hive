@@ -275,22 +275,23 @@ let app = {
 
     handleCreateNewCard: function(event) {
         let ListeEnCours = $(event.currentTarget).parent().parent().parent();
-        console.log(ListeEnCours);
+        //console.log(ListeEnCours);
         //let newForm =  $(".edit-card-form").clone(true, true);
         //newForm.removeClass('is-hidden');
         //newForm.appendTo(ListeEnCours.find('.liste-cards')); ce n'est pas joli affiché comme cela
-        let cardModel = $('.template-card').find(".card-show");
-        let cardClone= cardModel.clone(true, true);
-        let cardModelTitle = cardClone.find('.card-content-title');
-        let cardModelContent = cardClone.find('.card-content-description');
-        /*Je pensais qu'en faisant cela je pourrais remplacer le contenu de ma carte-show clonée par un input et un textarea, ça fonctionne mais c'est laid*/
-        //let cardTitleInput = $('.template-card').find(".card-header-title");
-        //let cardTextContent = $('.template-card').find('.card-header-content');
-        //cardModelTitle.replaceWith(cardTitleInput);
-        //cardModelContent.replaceWith()
-        cardModelTitle.text("titre de la carte");
-        cardModelContent.text("contenu de la carte à compléter");
+        //let cardModel = $('.template-card').find(".card");
+        let cardClone= $('.template-card').clone(true, true);
+        cardClone.removeClass('is-hidden');
+        let cardCloneTitle = cardClone.find(".card-content-title");
+        let cardCloneContent = cardClone.find('.card-content-description');
+        (cardClone.find('.card-utils')).addClass('is-hidden');
+        let cardTitleInput = $('.template-card').find(".card-header-title");
+        let cardTextContent = $('.template-card').find('.card-header-content');
+        let cardSubmit = $('.template-card').find('.sm-btn');
+        cardCloneTitle.replaceWith(cardTitleInput);
+        cardCloneContent.replaceWith(cardTextContent);
         cardClone.appendTo(ListeEnCours.find('.liste-cards'));
+        cardClone.append(cardSubmit);
     },
 
     //Requête pour afficher le formulaire de modifcation de la carte au click du pinceau
