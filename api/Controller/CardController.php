@@ -34,6 +34,8 @@ class CardController extends AbstractController
                 ->setListe_id($post["liste_id"]);
 
             $this->cardRepository->addCard($card);
+            $lastCard =$this->cardRepository->getLastCard();
+            echo json_encode($lastCard);
         }
     }
 

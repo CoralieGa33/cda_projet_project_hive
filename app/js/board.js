@@ -14,6 +14,7 @@ let app = {
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
         $('.board-listes').on('click', '.add-card', app.handleCreateNewCard);
+        $('.board-listes').on('submit', '.edit-card-form', app.handleNewCard);
         $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
         //$('.board-listes').on('submit', '.sm-btn', app.handleUpdateCard); mettre sur le nom du formulaire !!!A MODIFIER
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
@@ -281,18 +282,52 @@ let app = {
         //newForm.appendTo(ListeEnCours.find('.liste-cards')); ce n'est pas joli affiché comme cela
         //let cardModel = $('.template-card').find(".card");
         let cardClone= $('.template-card').clone(true, true);
-        cardClone.removeClass('is-hidden');
-        let cardCloneTitle = cardClone.find(".card-content-title");
-        let cardCloneContent = cardClone.find('.card-content-description');
-        (cardClone.find('.card-utils')).addClass('is-hidden');
-        let cardTitleInput = $('.template-card').find(".card-header-title");
-        let cardTextContent = $('.template-card').find('.card-header-content');
-        let cardSubmit = $('.template-card').find('.sm-btn');
-        cardCloneTitle.replaceWith(cardTitleInput);
-        cardCloneContent.replaceWith(cardTextContent);
+        cardClone.removeClass('template-card is-hidden');
+        (cardClone.find('.card-show')).addClass('is-hidden');
+        (cardClone.find('.edit-card-form')).removeClass('is-hidden');
         cardClone.appendTo(ListeEnCours.find('.liste-cards'));
-        cardClone.append(cardSubmit);
     },
+
+    // Requête d'ajout d'une nouvelle carte
+    handleNewCard: function(event) {
+        event.preventDefault();
+        let cardTitleInput = $(event.currentTarget).find('.card-header-title').val();
+        console.log(cardTitleInput);
+        let cardTextContent = $(event.currentTarget).find('.card-header-content').val();
+        console.log(cardTextContent);
+        let cardColor = $(event.currentTarget).find('.card-header-color').val();
+        console.log(cardColor);
+        let listeId = $(event.currentTarget).parent().parent().parent().attr('liste-id');
+        console.log(listeId);
+        /*$.ajax({
+            url: app.baseUrl + 'card/add',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                title: cardTitleInput,
+                content: cardTextContent,
+                orderNb: parseInt(5)+1,
+                color: cardColor;
+                listeId: listeId,
+
+            }
+        }).done(function(card) {
+            // Si c'est ok, je génère la nouvelle carte et je l'ajoute au DOM
+            // ça évite de recharger la page et de faire une nouvelle requête
+            let newCardElement = app.generateCardElement(card);
+            ce que l'on a récupéré à réinjecter
+            //$('.card-header-title').blur();
+            $('.card-header-content').eq(0).val();
+            ////$('.card-header-content').blur();
+            app.addCardElement(newCardElement);
+            app.maxCardOrderNb ++
+        }).fail(function(e) {
+            console.error(e);
+        });
+        */
+    },
+
+
 
     //Requête pour afficher le formulaire de modifcation de la carte au click du pinceau
     handleClickModifyCard: function(event) { 
