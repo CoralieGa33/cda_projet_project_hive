@@ -105,6 +105,10 @@ a {
     }
 }
 
+.is-hidden {
+    display: none !important;
+}
+
 .container {
     height: 100%;
 }
@@ -561,10 +565,6 @@ a {
         }
     //List end
     }
-
-    .is-hidden {
-        display: none !important;
-    }
 }
 //Board end
 
@@ -583,7 +583,7 @@ a {
         color:$light-color;
         //transition: transform .4s cubic-bezier(.25, .1, .25, 1);
         position:absolute;
-        z-index:99999;
+        z-index:99998;
         height: calc(100vh - 4.5rem - 2.2rem);
     }
 
@@ -746,7 +746,45 @@ a {
     }
 }
 //Menu burger end
+.delete-board-confirm {
+    position: absolute;
+    z-index: 99999;
+    width: 30rem;
+    margin: 5rem 15rem;
+    color: $grey-color;
+    background-color: $light-color;
+    box-shadow: 0 0 5px $pink-color;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
 
+    &-title {
+        font-family: 'Solway', serif;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    &-text {
+        text-align: start;
+        text-indent: 1rem;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+
+    }
+    &-text:last-of-type {
+        text-align: center;
+        margin: 1rem;
+    }
+    
+    .btn {
+        margin-top: 1rem;
+        display: inline-block;
+    }
+    .delete-board-confirmed:hover {
+        background-color: red;
+    }
+}
 
 
 // Coralie's scss

@@ -46,3 +46,10 @@
         </nav>
     </div>
 </div>
+<div class="delete-board-confirm is-hidden">
+    <h5 class="delete-board-confirm-title">Supprimer ce tableau ?</h5>
+    <p class="delete-board-confirm-text">Le tableau "<span class="delete-board-name"></span>" sera définitivement supprimé ainsi que son contenu.</p>
+    <p class="delete-board-confirm-text">Etes-vous sûr(e) ?</p>
+    <button class="btn delete-board-submit" board-id="">Supprimer</button>
+    <button class="btn delete-board-abord">Annuler</button>
+</div>

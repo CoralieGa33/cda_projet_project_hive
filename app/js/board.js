@@ -1,7 +1,7 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1312/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1412/app/?api/',
     
     maxListeOrderNb: 0,
     loadedBoard: {
@@ -26,7 +26,7 @@ let app = {
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
         $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
         $('.menu-boards-list').on('click', '.fa-paint-brush', app.handleOpenEditBoardForm);
-        $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleDeleteBoard);
+        $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleConfirmDeleteBoard);
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
@@ -479,21 +479,53 @@ let app = {
         });
     },
 
+    // Faire apparaitre la fenêtre de confirmation de suppression de tableau
+    handleConfirmDeleteBoard: function(event) {
+        let confirmDialog = $(".delete-board-confirm");
+
+        // Pour afficher le nom du tableau dans le text de la fenêtre
+        // -> vérification de plus pour l'utilisateur
+        let boardToDeletName = $(event.currentTarget).prev().text();
+        confirmDialog.find(".delete-board-name").text(boardToDeletName);
+
+        // Je récupère l'id du tableau pour faciliter la requête de supprsesion
+        let boardToDeleteId = $(event.currentTarget).prev().attr("board-id");
+        //console.log(boardToDeleteId)
+        // je cache cet id dans le bouton de confirmation
+        confirmDialog.find(".delete-board-submit").attr("board-id", boardToDeleteId);
+        confirmDialog.removeClass("is-hidden");
+
+        // Je prévois un retour en arrière possible
+        $(".delete-board-abord").on('click', function () {
+            // et dans ce cas, je nettoie les infos de la fenêtre pour éviter les erreurs
+            confirmDialog.find(".delete-board-name").text("");
+            confirmDialog.find(".delete-board-submit").attr("board-id", "");
+
+            // Puis je masque la fenêtre
+            confirmDialog.addClass("is-hidden");
+        });
+        
+        $('.delete-board-submit').on('click', app.handleDeleteBoard);
+    },
+
+    // Pour supprimer définitivement un tableau
     handleDeleteBoard: function(event) {
-        // Je trouve le bon tableau à supprimer grâce à l'ecouteur d'évènement, ainsi que son id
-        let boardToDelete = $(event.currentTarget).prev()
-        let boardIdToDelete = boardToDelete.attr("board-id");
-        //console.log(boardIdToDelete)
+        // Je trouve le bon tableau (et son id) à supprimer (presque caché dans le bouton !)
+        let boardToDeleteId = $(event.currentTarget).attr("board-id");
+        let boardToDelete = $(".menu-boards-list").find("span[board-id="+boardToDeleteId +"]").parent();
+        //console.log(boardToDelete)
         $.ajax({
             url: app.baseUrl + 'board/delete',
             method: 'POST',
             dataType: 'json',
             data: {
-                boardId: boardIdToDelete,
+                boardId: boardToDeleteId,
             }
         }).done(function(response) {
             // Je le supprime de la liste dans le menu maintenant qu'il est supprimé de la BDD
-            boardToDelete.parent().remove();
+            boardToDelete.hide();
+            // Je masque la fenêtre de confirmation de suppression
+            $(".delete-board-confirm").addClass("is-hidden");
         }).fail(function(e) {
             console.error(e);
         });
