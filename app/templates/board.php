@@ -9,7 +9,7 @@
 
 <div class="board">
     <div class="board-header">
-        <h2 class="board-title">Tableau 1234</h2>
+        <h2 class="board-title"></h2>
 
         <form class="add-liste" action="" method="POST">    
             <i class="fas fa-plus add-liste-icon"></i><input type="text" class="add-liste-input" placeholder="Ajouter une liste" name="add-liste">

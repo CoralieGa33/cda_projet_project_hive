@@ -53,17 +53,30 @@ $('#burger-close').on('click', function() {
     document.querySelector("#burger-close").style.display = "none";
     document.querySelector("#burger-open").style.display = "block";
     document.querySelector(".burger-nav").style.display = "none";
+    document.querySelector(".modify-table").style.display = "none";
+    document.querySelector('.edit-board').reset();
+    document.querySelector(".burger-new-table").style.display = "none";
+    document.querySelector('.new-board').reset();
+    $('.selected-bg').removeClass('selected-bg');
+    document.querySelector('.menu-boards-list').style.height = "auto";
 });
 
 
 // Au click sur Brush, show Modifier le tableau
-$('.fa-paint-brush').on('click', function() {
-    document.querySelector(".modify-table").style.display = "block";
-}); 
+// -> moved to board.js
+// $('.menu-boards-list').on('click', '.fa-paint-brush', function() {
+//     document.querySelector(".modify-table").style.display = "block";
+//     document.querySelector(".burger-new-table").style.display = "none";
+//     document.querySelector('.menu-boards-list').style.height = "13rem";
+//     document.querySelector('.menu-boards-list').style.overflow = "auto";
+// }); 
 
 // Au click sur "Ajouter un tableau", show Nouveau tableau
 $('.burger-add-table').on('click', function() {
     document.querySelector(".burger-new-table").style.display = "block";
+    document.querySelector(".modify-table").style.display = "none";
+    document.querySelector('.menu-boards-list').style.height = "13rem";
+    document.querySelector('.menu-boards-list').style.overflow = "auto";
 });
 
 //========================================================

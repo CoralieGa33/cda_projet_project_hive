@@ -8,7 +8,7 @@
         <form action="" method="post" class="liste-header-title-form is-hidden"><input type="text" class="liste-header-title-input" name="liste-title" value=""></form>
     </div>
     <ul class="liste-cards">
-    
+
     </ul>
     <div class="liste-footer">
         <button class="btn-icon delete-liste"><span class="tooltip trash-tooltip">Supprimer la liste</span><i class="fas fa-trash-alt"></i></button>
