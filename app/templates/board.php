@@ -12,7 +12,7 @@
         <h2 class="board-title"></h2>
 
         <form class="add-liste" action="" method="POST">    
-            <i class="fas fa-plus add-liste-icon"></i><input type="text" class="add-liste-input" placeholder="Ajouter une liste" name="add-liste">
+            <input type="text" class="add-liste-input" placeholder="Ajouter une liste" name="add-liste">
         </form>
     </div>
 

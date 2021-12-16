@@ -388,12 +388,6 @@ a {
   display: flex;
 }
 
-.board-header .add-liste-icon {
-  text-decoration: none;
-  color: #4B5C6B;
-  margin: 0.3rem;
-}
-
 .board-header .add-liste-input {
   border: none;
   font-size: 1.2rem;

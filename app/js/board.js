@@ -1,7 +1,7 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1412/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1612/app/?api/',
     
     maxListeOrderNb: 0,
     loadedBoard: {
@@ -446,26 +446,29 @@ let app = {
         let cardNumber = $(event.currentTarget).parent().parent().children().length;
         //console.log(cardNumber);
 
-        if($(event.currentTarget).parent().parent().attr('card-id')) {
-            cardId = $(event.currentTarget).parent().parent().attr('card-id');
+        //console.log($(event.currentTarget).parent().attr('card-id'));
+        if($(event.currentTarget).parent().attr('card-id')) {
+            cardToEditId = $(event.currentTarget).parent().attr('card-id');
+            //console.log(cardToEditId);
             $.ajax({
                 url: app.baseUrl + 'card/update',
                 method: 'POST',
-                dataType: 'json',
                 data: {
                     title: cardTitleInput,
                     content: cardTextContent,
                     orderNb: cardNumber,
                     color: cardColor,
                     liste_id: listeId,
-                    cardId: cardId
+                    cardId: cardToEditId,
                 }
-            }).done(function(card) {
+            }).done(function(updatedCard) {
                 // Si c'est ok, je complète la nouvelle carte avec les infos reçues
                 // elle a déjà été créée dans le DOM lors du click sur le +
-                $(event.currentTarget).prev().find('.card-content-title').text(card.title);
-                $(event.currentTarget).prev().find('.card-content-description').text(card.content);
-                $(event.currentTarget).parent().css('border-color', card.color);
+                updatedCard = JSON.parse(updatedCard);
+                //console.log(updatedCard)
+                $(event.currentTarget).prev().find('.card-content-title').text(updatedCard.title);
+                $(event.currentTarget).prev().find('.card-content-description').text(updatedCard.content);
+                $(event.currentTarget).parent().css('border-color', updatedCard.color);
                 // masquage du form et apparition de la carte
                 $(event.currentTarget).addClass('is-hidden');
                 $(event.currentTarget).prev().removeClass('is-hidden');

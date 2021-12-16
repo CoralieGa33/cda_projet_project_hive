@@ -41,7 +41,6 @@ class CardController extends AbstractController
 
     public function editCard($post)
     {
-        if ($post) {
             $card = $this->cardRepository->findOne($post['cardId']);
             $card
                 ->setTitle($post["title"])
@@ -51,9 +50,8 @@ class CardController extends AbstractController
                 ->setListe_id($post["liste_id"]);
 
             $this->cardRepository->editCard($card);
-            $updatedCard = $this->CardRepository->findOne($post['cartId']);
-            echo json_encode($updatedCard); 
-        }
+            $updatedCard = $this->cardRepository->findOne($post['cardId']);
+            echo json_encode($updatedCard);
     }
 
     public function deleteCard($id)
