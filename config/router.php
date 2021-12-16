@@ -53,11 +53,20 @@ class Router {
             elseif (isset($_GET['logout'])) {
                 session_destroy();
                 header('Location: ?');
-            }elseif (isset($_GET['board'])) {
+            }
+            elseif (isset($_GET['board'])) {
                 $this->userController->showBoard();
-            }elseif (isset($_GET['api/board'])) {
+            }
+            elseif (isset($_GET['api/board'])) {
                 $this->boardController->getBoardInfos($_POST["boardId"]);
-            }elseif (isset($_GET['api/liste'])) {
+            }elseif (isset($_GET['api/board/add'])) {
+                $this->boardController->newBoard($_POST, $_SESSION["userId"]);
+            }elseif (isset($_GET['api/board/edit'])) {
+                $this->boardController->editBoard($_POST);
+            }elseif (isset($_GET['api/board/delete'])) {
+                $this->boardController->deleteBoard($_POST["boardId"]);
+            }
+            elseif (isset($_GET['api/liste'])) {
                 $this->listeController->getListe($listId);
             }elseif (isset($_GET['api/liste/add'])) {
                 $this->listeController->newListe($_POST);
@@ -65,14 +74,23 @@ class Router {
                 $this->listeController->editListe($_POST);
             }elseif (isset($_GET['api/liste/delete'])) {
                 $this->listeController->deleteListe($_POST["listeId"]);
-                //$this->listeController->deleteListe("24");
-            }elseif (isset($_GET['api/card'])) {
-                $this->cardController->getCard($_POST["cardId"]);
-            }elseif (isset($_GET['api/backgrounds'])) {
+            }
+            elseif (isset($_GET['api/card'])) {
+                $this->cardController->getCard($cardId);
+            }elseif (isset($_GET['api/card/add'])) {
+                $this->cardController->newCard($_POST);
+            }elseif (isset($_GET['api/card/update'])) {
+                $this->cardController->editCard($_POST);  
+            }elseif (isset($_GET['api/card/delete'])) {
+                $this->cardController->deleteCard($_POST["cardId"]);
+            }
+            elseif (isset($_GET['api/backgrounds'])) {
                 $this->backgroundController->getBackgrounds();
-            }elseif (isset($_GET['api/boards'])) {
+            }
+            elseif (isset($_GET['api/boards'])) {
                 $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
-            }else {
+            }
+            else {
                 echo "404 : PAGE NOT FOUND";
             }
         }

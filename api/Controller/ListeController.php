@@ -29,7 +29,7 @@ class ListeController extends AbstractController
             $liste
             ->setTitle($post["title"])
             ->setOrderNb($post["orderNb"])
-            ->setBoard_id($post["boardId"]);
+            ->setBoard_id($post["board_id"]);
             //->setPosLeft($post["posLeft"]) pas la peine, positionnée à un endroit précis par défaut à la création
             //->setPosTop($post["posTop"]);  idem
             

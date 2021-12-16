@@ -52,5 +52,14 @@ class BoardRepository extends ManagerRepository
 
         return $boards;
     }
+
+    public function getLastBoard() {
+        $sql = 'SELECT * FROM board WHERE boardId = (SELECT MAX(boardId) FROM board)';
+        $result = $this->createQuery($sql);
+        $row = $result->fetch();
+        $lastBoard = $this->buildObject($row);
+
+        return $lastBoard;
+    }
 }
 

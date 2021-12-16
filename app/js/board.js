@@ -1,34 +1,133 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
-    //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive_0512/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
+    //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1612/app/?api/',
     
     maxListeOrderNb: 0,
+    loadedBoard: {
+        boardId: null,
+        title: "",
+        color: "",
+        backgroundId: null,
+        backgroundUrl: "",
+    },
+    backgrounds: {},
     
     init: function() {
         console.log("initialisation ...")
+        app.loadBackgrounds();
+
+        $('#burger-open').on('click', app.handleOpenMenu);
+        $('#burger-close').on('click', app.handleCloseMenu);
 
         $('.add-liste').on('submit', app.handleCreateNewListe);
+        $('.new-board').on('submit', app.handleCreateNewBoard);
+        $('.board-listes').on('submit', '.edit-card-form', app.handleCreateOrEditCard);
+        $('.edit-board').on('submit', app.handleEditBoard);
+        $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
+        
+        $('.menu-boards-list').on('click', '.fa-paint-brush', app.handleOpenEditBoardForm);
+        $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleConfirmDeleteBoard);
+        $('.burger-add-table').on('click', app.handleFormNewBoard);
+        $('.board-abord').on('click', app.handleBoardFormAbord);
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
-        $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
+        $('.board-listes').on('click', '.add-card', app.handleFormNewCard);
+        $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
+        $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
+        $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
+
+
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
+
+        // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
+        // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
         // je charge mon tableau principal
-        app.loadBoard();
+        // app.loadBoard();
+        // app.loadBoardMenu();
+    },
+
+    handleOpenMenu: function() {
+        //console.log("opening")
+        document.querySelector("#burger-wrap").style.width = "19rem";
+        document.querySelector("#burger-open").style.display = "none";
+        document.querySelector("#burger-close").style.display = "block";
+        document.querySelector(".burger-nav").style.display = "block";
+    },
+
+    handleCloseMenu: function() {
+        //console.log("closing")
+        document.querySelector("#burger-wrap").style.width = "2rem";
+        document.querySelector("#burger-close").style.display = "none";
+        document.querySelector("#burger-open").style.display = "block";
+        document.querySelector(".burger-nav").style.display = "none";
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector('.edit-board').reset();
+        document.querySelector(".burger-new-table").style.display = "none";
+        document.querySelector('.new-board').reset();
+        $('.modify-table-backgrounds .selected-bg').removeClass('selected-bg');
+        document.querySelector('.menu-boards-list').style.height = "auto";
+        document.querySelector('.burger-header').style.display = "block";
+    },
+
+    // Requête qui va chercher les backgrounds pour les afficher en vignettes dans les formulaires du menu
+    loadBackgrounds: function() {
+        $.ajax({
+            url: app.baseUrl + 'backgrounds',
+            method: 'POST',
+            dataType: 'json',
+        }).done(function(response) {
+            app.backgrounds = response;
+            let backgroundsModifyNode = document.querySelector('.modify-table-backgrounds');
+            let backgroundsNewNode = document.querySelector('.new-table-backgrounds');
+            app.backgrounds.map(background => {
+                let newBackgroundItem = document.createElement('li');
+                let newBackgroundImage = document.createElement('img');
+                newBackgroundImage.classList.add('background-thumb');
+                newBackgroundImage.id = "background-" + background.backgroundId;
+                newBackgroundImage.setAttribute("background-id", background.backgroundId);
+                newBackgroundImage.src = background.imageUrl
+                newBackgroundItem.appendChild(newBackgroundImage);
+                backgroundsModifyNode.appendChild(newBackgroundItem);
+                backgroundsNewNode.appendChild(newBackgroundItem.cloneNode(true));
+            });
+            app.loadBoard();
+            app.loadBoardMenu();
+        }).fail(function(e) {
+            console.error(e);
+        });
     },
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
-    loadBoard: function() {
+    loadBoard: function(id = null) {
+        let selectedBoardId = boardsList[0]['boardId'];
+        if(id) {
+            selectedBoardId = id;
+        }
+        console.log('Loaded board id : ', selectedBoardId);
         $.ajax({
             url: app.baseUrl + 'boards',
             method: 'POST',
             data: {
-                boardId:`${boardsList[0]['boardId']}`,
+                boardId: selectedBoardId,
             }
         }).done(function(boardDatas) {
             let board = JSON.parse(boardDatas)
-            app.generateBoard(board.boardId);
+            //console.log(board)
+            app.loadedBoard.boardId = board.boardId;
+            app.loadedBoard.title = board.title;
+            app.loadedBoard.color = board.color;
+            //console.log(app.loadedBoard)
+            if(board.background_id) {
+                app.loadedBoard.backgroundId = board.background_id;
+                app.loadedBoard.backgroundUrl = app.backgrounds[board.background_id-1].imageUrl;
+            } else {
+                app.loadedBoard.backgroundId = null
+                app.loadedBoard.backgroundUrl = ""
+            }
+            app.generateBoard();
 
             // Je place dans une variable toutes les listes reçues du tableau
             let listeCollection = board.listes;
@@ -59,10 +158,66 @@ let app = {
             console.error(e);
         });
     },
+
+    // Je charge la liste des tableaux de l'utilisateur dans le menu "burger"
+    loadBoardMenu: function() {
+        let boardsListNode = document.querySelector('.menu-boards-list');
+        // Je boucle sur la liste des tableaux pour créer les éléments
+        boardsList.map(board => {
+            let newBoard = document.createElement('li');
+            let newBoardTitle = document.createElement('span');
+            newBoardTitle.classList.add('boards-list-item');
+            newBoardTitle.id = "board-" + board.boardId;
+            newBoardTitle.setAttribute("board-id", board.boardId);
+            newBoardTitle.textContent = board.title;
+            newBoard.appendChild(newBoardTitle);
+            newBoard.insertAdjacentHTML('beforeend', '<i class="fas fa-trash-alt"></i>');
+            boardsListNode.appendChild(newBoard);
+        })
+        boardsListNode.firstElementChild.querySelector('span').classList.add('selected-board'); // A la connexion sur le 1er
+        boardsListNode.querySelector('.selected-board').parentNode.insertAdjacentHTML('afterbegin', '<i class="fas fa-paint-brush"></i>'); 
+    },
+
     // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite
-    generateBoard: function(boardId) {
+    generateBoard: function(boardId, boardTitle) {
         let board = document.querySelector('.board');
-        board.setAttribute('board-id', boardId)
+        board.setAttribute('board-id', app.loadedBoard.boardId);
+        board.querySelector('.board-title').textContent = app.loadedBoard.title;
+        let background = $('.background');
+        background.css('background-color', app.loadedBoard.color);
+        //console.log( app.loadedBoard.backgroundUrl)
+        background.css('background-image',"url("+app.loadedBoard.backgroundUrl+")");
+    },
+
+    // Pour changer de tableau après le clic sur son nom
+    handleSelectBoard: function(event) {
+        let selectedItem = $(event.currentTarget);
+
+        // je récupère l'id du tableau selectionné pour la future requête
+        let selectedItemId = selectedItem.attr('board-id');
+        app.selectedBoardId = selectedItemId;
+        
+        // Je change la place du "pinceau", et la classe
+        $('.selected-board').parent().find('.fa-paint-brush').remove();
+        $('.selected-board').removeClass('selected-board');
+        selectedItem.addClass('selected-board');
+        selectedItem.parent().prepend('<i class="fas fa-paint-brush"></i>');
+        
+        // Je vide le DOM du tableau actuel (sauf les 2 premiers éléments -> templates)
+        $('.board-listes').children().not(':lt(2)').remove();
+
+        // Je charge le nouveau tableau
+        app.loadBoard(app.selectedBoardId);
+        
+        // Je ferme le menu burger
+        document.querySelector("#burger-wrap").style.width = "2rem";
+        document.querySelector("#burger-close").style.display = "none";
+        document.querySelector("#burger-open").style.display = "block";
+        document.querySelector(".burger-nav").style.display = "none";
+
+        // Je ferme les formulaire du tableau au cas où
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector(".burger-new-table").style.display = "none";
     },
     
     // permet  de générer une nouvelle liste avec ses détails
@@ -71,6 +226,7 @@ let app = {
         let newListe = document.querySelector('.template-liste').cloneNode(true)
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
+        newListe.classList.add("drag")
         newListe.setAttribute('liste-id', liste.listeId)
         newListe.setAttribute('order-nb', liste.orderNb)
         newListe.querySelector('h3').textContent = liste.title;
@@ -94,6 +250,7 @@ let app = {
     // elle reste "virtuelle" tant qu'elle n'est pas ajoutée au DOM
     generateCardElement: function(card) {
         let newCard = document.querySelector('.template-card').cloneNode(true)
+        //console.log(newCard)
         newCard.id = "card-"+card.cardId;
         newCard.classList.remove("template-card");
         newCard.querySelector('h4').textContent = card.title;
@@ -101,6 +258,8 @@ let app = {
         newCard.querySelector('input[name=edit-card-title]').value = card.title;
         newCard.querySelector('textarea[name=edit-card-content]').value = card.content;
         newCard.setAttribute('liste-id', card.liste_id);
+        newCard.setAttribute('card-id', card.cardId)
+        newCard.style.borderColor = card.color;
         newCard.classList.remove('is-hidden');
         return newCard;
     },
@@ -141,7 +300,7 @@ let app = {
             data: {
                 title: newListeName,
                 orderNb: parseInt(app.maxListeOrderNb)+1,
-                boardId: boardId,
+                board_id: boardId,
             }
         }).done(function(liste) {
             // Si c'est ok, je génère la nouvelle liste et je l'ajoute au DOM
@@ -222,7 +381,9 @@ let app = {
         });
     },
 
+    // Requête pour supprimer une liste
     handleDeleteListe: function(event) {
+        // Je trouve la bonne carte à supprimer grâce à l'ecouteur d'évènement, ainsi que son id
         let listeToDelete = $(event.currentTarget).parent().parent();
         let listeToDeleteId = listeToDelete.attr("liste-id");
         $.ajax({
@@ -233,17 +394,17 @@ let app = {
                 listeId: listeToDeleteId,
             }
         }).done(function(response) {
+            // Je la supprime du DOM maintenant qu'elle est supprimée de la BDD
             listeToDelete.remove();
         }).fail(function(e) {
             console.error(e);
-            listeToDelete.remove();
         });
     },
 
     // Pour rendre une liste déplaçable dans le tableau
     setDragListes: function() {
         //Pour le déplacement des div .liste avec jquery draggable
-        $(".liste").draggable({  
+        $(".drag").draggable({  
             cursor: "move", // pour modifier le curseur de déplacement
             //containment: "#cible"// limite le déplacement à une zone
             containment: ".board-listes",
@@ -260,6 +421,299 @@ let app = {
         });
     },
 
+    // Formulaire d'ajout d'une nouvelle carte
+    handleFormNewCard: function(event) {
+        let ListeEnCours = $(event.currentTarget).parent().parent().parent();
+        //console.log(ListeEnCours);
+        let cardClone= $('.template-card').clone(true, true);
+        cardClone.removeClass('template-card is-hidden');
+        (cardClone.find('.card-show')).addClass('is-hidden');
+        (cardClone.find('.edit-card-form')).removeClass('is-hidden');
+        cardClone.appendTo(ListeEnCours.find('.liste-cards'));
+    },
+
+    // Requête d'ajout d'une nouvelle carte
+    handleCreateOrEditCard: function(event) {
+        event.preventDefault();
+        let cardTitleInput = $(event.currentTarget).find('.card-header-title').val();
+        //console.log(cardTitleInput);
+        let cardTextContent = $(event.currentTarget).find('.card-header-content').val();
+        //console.log(cardTextContent);
+        let cardColor = $(event.currentTarget).find('.card-header-color').val();
+        //console.log(cardColor);
+        let listeId = $(event.currentTarget).parent().parent().parent().attr('liste-id');
+        //console.log(listeId);
+        let cardNumber = $(event.currentTarget).parent().parent().children().length;
+        //console.log(cardNumber);
+
+        //console.log($(event.currentTarget).parent().attr('card-id'));
+        if($(event.currentTarget).parent().attr('card-id')) {
+            cardToEditId = $(event.currentTarget).parent().attr('card-id');
+            //console.log(cardToEditId);
+            $.ajax({
+                url: app.baseUrl + 'card/update',
+                method: 'POST',
+                data: {
+                    title: cardTitleInput,
+                    content: cardTextContent,
+                    orderNb: cardNumber,
+                    color: cardColor,
+                    liste_id: listeId,
+                    cardId: cardToEditId,
+                }
+            }).done(function(updatedCard) {
+                // Si c'est ok, je complète la nouvelle carte avec les infos reçues
+                // elle a déjà été créée dans le DOM lors du click sur le +
+                updatedCard = JSON.parse(updatedCard);
+                //console.log(updatedCard)
+                $(event.currentTarget).prev().find('.card-content-title').text(updatedCard.title);
+                $(event.currentTarget).prev().find('.card-content-description').text(updatedCard.content);
+                $(event.currentTarget).parent().css('border-color', updatedCard.color);
+                // masquage du form et apparition de la carte
+                $(event.currentTarget).addClass('is-hidden');
+                $(event.currentTarget).prev().removeClass('is-hidden');
+    
+            }).fail(function(e) {
+                console.error(e);
+            });
+        } 
+        else {
+            $.ajax({
+                url: app.baseUrl + 'card/add',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    title: cardTitleInput,
+                    content: cardTextContent,
+                    orderNb: cardNumber,
+                    color: cardColor,
+                    liste_id: listeId,
+                }
+            }).done(function(card) {
+                // Si c'est ok, je complète la nouvelle carte avec les infos reçues
+                // elle a déjà été créée dans le DOM lors du click sur le +
+                $(event.currentTarget).prev().find('.card-content-title').text(card.title);
+                $(event.currentTarget).prev().find('.card-content-description').text(card.content);
+                $(event.currentTarget).parent().css('border-color', card.color);
+                // masquage du form et apparition de la carte
+                $(event.currentTarget).addClass('is-hidden');
+                $(event.currentTarget).prev().removeClass('is-hidden');
+    
+            }).fail(function(e) {
+                console.error(e);
+            });
+        }
+    },
+
+    //Requête pour supprimer une card
+    handleDeleteCard: function(event) {
+        let cardToDelete = $(event.currentTarget).parent().parent().parent();
+        let cardToDeleteId = cardToDelete.attr("card-id");
+        //console.log(cardToDelete);
+        $.ajax({
+            url: app.baseUrl + 'card/delete',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                cardId: cardToDeleteId,
+            }
+        }).done(function(response) {
+            cardToDelete.remove();
+        }).fail(function(e) {
+            console.error(e);
+            cardToDelete.remove();
+        });
+    },
+
+    //Requête pour afficher le formulaire de modifcation de la carte au click du pinceau
+    handleClickModifyCard: function(event) { 
+        let editCard = $(event.currentTarget).parent().parent().parent(); //chercher le bon parent
+        //console.log(editCard); 
+        editCard.find('.card-show').addClass('is-hidden'); 
+        editCard.find('.edit-card-form').removeClass('is-hidden');
+    },
+
+    // Sert à afficher un indicateur visuel sur le background sélectionné
+    // Et indirectement à récupérer son id à l'envoi du formulaire
+    selectBackground: function(event) {
+        let selectedImage = $(event.currentTarget);
+
+        // Pour pouvoir "déselectionner"
+        if($(event.currentTarget).hasClass('selected-bg')) {
+            $(event.currentTarget).removeClass('selected-bg');
+        } else {
+            $(event.currentTarget).parent().parent().find('.selected-bg').removeClass('selected-bg');
+            selectedImage.addClass('selected-bg');
+        }
+    },
+
+    handleFormNewBoard: function() {
+        document.querySelector(".burger-new-table").style.display = "block";
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector('.burger-header').style.display = "none";
+    },
+
+    // Requête d'ajout d'un nouveau tableau
+    handleCreateNewBoard: function(event) {
+        event.preventDefault();
+        let newBoardTitle = $('.new-board-title-input').eq(0).val();
+        let newBoardColor = $('.new-board-colorpicker').eq(0).val();
+        let newBoardBgId = $('.selected-bg').attr("background-id");
+        
+        // Je vérifie qu'un titre a bien été entré
+        if(newBoardTitle) {
+            $.ajax({
+                url: app.baseUrl + 'board/add',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    title: newBoardTitle,
+                    color: newBoardColor,
+                    background_id: newBoardBgId ? newBoardBgId : null,
+                }
+            }).done(function(board) {
+                // J'ajoute le nouveau tableau à la liste dans le menu, avec ses informations
+                let boardsListNode = document.querySelector('.menu-boards-list');
+                let newBoard = document.createElement('li');
+                let newBoardTitle = document.createElement('span');
+                newBoardTitle.classList.add('boards-list-item');
+                newBoardTitle.id = "board-" + board.boardId;
+                newBoardTitle.setAttribute("board-id", board.boardId);
+                newBoardTitle.textContent = board.title;
+                newBoard.appendChild(newBoardTitle);
+                newBoard.insertAdjacentHTML('beforeend', '<i class="fas fa-trash-alt"></i>');
+                boardsListNode.appendChild(newBoard);
+
+                // Je masque le formulaire et je le vide
+                document.querySelector(".burger-new-table").style.display = "none";
+                document.querySelector('.new-board').reset();
+                $('.selected-bg').removeClass('selected-bg');
+            }).fail(function(e) {
+                console.error(e);
+            });
+        } else {
+            // Si pas de titre, j'affiche un message d'erreur
+            let errorMessage  =  document.createElement('p');
+            errorMessage.classList.add('error-message');
+            errorMessage.textContent = "Merci de renseigner un titre";
+            let newBoardForm = document.querySelector(".new-board");
+            newBoardForm.prepend(errorMessage);
+        }
+    },
+
+    // Ouvre et remplit le formulaire d'édition du tableau
+    handleOpenEditBoardForm: function() {
+        document.querySelector(".burger-header").style.display = "none";
+        document.querySelector(".modify-table").style.display = "block";
+        document.querySelector(".burger-new-table").style.display = "none";
+
+        $('.board-title-input').eq(0).val(app.loadedBoard.title);
+        $('.edit-board-colorpicker').eq(0).val(app.loadedBoard.color?app.loadedBoard.color:"#ffffff");
+        $("img[background-id|='"+app.loadedBoard.backgroundId+"']").addClass('selected-bg');
+    },
+
+    handleBoardFormAbord: function() {
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector(".burger-new-table").style.display = "none";
+        document.querySelector(".burger-header").style.display = "block";
+    },
+
+    // Pour éditer un tableau
+    handleEditBoard: function(event) {
+        event.preventDefault();
+        // je récupère dans le form les nouvelles valeurs dont j'ai besoin
+        let newBoardTitle = $('.board-title-input').eq(0).val();
+        let newBoardColor = $('.edit-board-colorpicker').eq(0).val();
+        let newBoardBgId = $('.modify-table-backgrounds .selected-bg').attr("background-id");
+
+        // Je les envois dans la requête
+        $.ajax({
+            url: app.baseUrl + 'board/edit',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                boardId: app.loadedBoard.boardId,
+                title: newBoardTitle,
+                color: newBoardColor,
+                background_id: newBoardBgId ? newBoardBgId : null,
+            }
+        }).done(function(updatedBoard) {
+            // Je mets à jour les éléments du DOM
+            // console.log(updatedBoard)
+            $('.selected-board').text(updatedBoard.title);
+            document.querySelector('.board-title').textContent = updatedBoard.title;
+
+            app.loadedBoard.color = updatedBoard.color;
+            if(updatedBoard.background_id) {
+                app.loadedBoard.backgroundUrl = app.backgrounds[updatedBoard.background_id-1].imageUrl;
+            } else {
+                app.loadedBoard.backgroundUrl = "";
+            }
+            
+            $('.background').css('background-color', app.loadedBoard.color);
+            $('.background').css('background-image',"url("+app.loadedBoard.backgroundUrl+")");
+
+            $('.board-title-input').eq(0).val(updatedBoard.title);
+            $('.edit-board-colorpicker').eq(0).val(updatedBoard.color);
+            
+            //$("img[background-id|='"+updatedBoard.background_id+"']").addClass('selected-bg');
+            document.querySelector(".modify-table").style.display = "none";
+        }).fail(function(e) {
+            console.error(e);
+        });
+    },
+
+    // Faire apparaitre la fenêtre de confirmation de suppression de tableau
+    handleConfirmDeleteBoard: function(event) {
+        let confirmDialog = $(".delete-board-confirm");
+
+        // Pour afficher le nom du tableau dans le text de la fenêtre
+        // -> vérification de plus pour l'utilisateur
+        let boardToDeletName = $(event.currentTarget).prev().text();
+        confirmDialog.find(".delete-board-name").text(boardToDeletName);
+
+        // Je récupère l'id du tableau pour faciliter la requête de supprsesion
+        let boardToDeleteId = $(event.currentTarget).prev().attr("board-id");
+        //console.log(boardToDeleteId)
+        // je cache cet id dans le bouton de confirmation
+        confirmDialog.find(".delete-board-submit").attr("board-id", boardToDeleteId);
+        confirmDialog.removeClass("is-hidden");
+
+        // Je prévois un retour en arrière possible
+        $(".delete-board-abord").on('click', function () {
+            // et dans ce cas, je nettoie les infos de la fenêtre pour éviter les erreurs
+            confirmDialog.find(".delete-board-name").text("");
+            confirmDialog.find(".delete-board-submit").attr("board-id", "");
+
+            // Puis je masque la fenêtre
+            confirmDialog.addClass("is-hidden");
+        });
+        
+        $('.delete-board-submit').on('click', app.handleDeleteBoard);
+    },
+
+    // Pour supprimer définitivement un tableau
+    handleDeleteBoard: function(event) {
+        // Je trouve le bon tableau (et son id) à supprimer (presque caché dans le bouton !)
+        let boardToDeleteId = $(event.currentTarget).attr("board-id");
+        let boardToDelete = $(".menu-boards-list").find("span[board-id="+boardToDeleteId +"]").parent();
+        //console.log(boardToDelete)
+        $.ajax({
+            url: app.baseUrl + 'board/delete',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                boardId: boardToDeleteId,
+            }
+        }).done(function(response) {
+            // Je le supprime de la liste dans le menu maintenant qu'il est supprimé de la BDD
+            boardToDelete.hide();
+            // Je masque la fenêtre de confirmation de suppression
+            $(".delete-board-confirm").addClass("is-hidden");
+        }).fail(function(e) {
+            console.error(e);
+        });
+    }
 };
 
 document.addEventListener('DOMContentLoaded', app.init);

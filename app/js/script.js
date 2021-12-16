@@ -30,41 +30,54 @@
 
 // Menu
 /* Set the width of the side navigation to 310px */
-function openNav() {
-    document.getElementByClass(".burger-header").style.width = "19rem";
-}
+// function openNav() {
+//     document.getElementByClass(".burger-header").style.width = "19rem";
+// }
 
 /* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementByClass(".burger-header").style.width = "2rem";
-}
+// function closeNav() {
+//     document.getElementByClass(".burger-header").style.width = "2rem";
+// }
 
-$('#burger-open').on('click', function() {
-    //console.log("opening")
-    document.querySelector(".burger-header").style.width = "19rem";
-    document.querySelector("#burger-open").style.display = "none";
-    document.querySelector("#burger-close").style.display = "block";
-    document.querySelector(".burger-nav").style.display = "block";
-});
+// $('#burger-open').on('click', function() {
+//     //console.log("opening")
+//     document.querySelector(".burger-header").style.width = "19rem";
+//     document.querySelector("#burger-open").style.display = "none";
+//     document.querySelector("#burger-close").style.display = "block";
+//     document.querySelector(".burger-nav").style.display = "block";
+// });
 
-$('#burger-close').on('click', function() {
-    //console.log("closing")
-    document.querySelector(".burger-header").style.width = "2rem";
-    document.querySelector("#burger-close").style.display = "none";
-    document.querySelector("#burger-open").style.display = "block";
-    document.querySelector(".burger-nav").style.display = "none";
-});
+// $('#burger-close').on('click', function() {
+//     //console.log("closing")
+//     document.querySelector(".burger-header").style.width = "2rem";
+//     document.querySelector("#burger-close").style.display = "none";
+//     document.querySelector("#burger-open").style.display = "block";
+//     document.querySelector(".burger-nav").style.display = "none";
+//     document.querySelector(".modify-table").style.display = "none";
+//     document.querySelector('.edit-board').reset();
+//     document.querySelector(".burger-new-table").style.display = "none";
+//     document.querySelector('.new-board').reset();
+//     $('.selected-bg').removeClass('selected-bg');
+//     document.querySelector('.menu-boards-list').style.height = "auto";
+// });
 
 
 // Au click sur Brush, show Modifier le tableau
-$('.fa-paint-brush').on('click', function() {
-    document.querySelector(".modify-table").style.display = "block";
-}); 
+// -> moved to board.js
+// $('.menu-boards-list').on('click', '.fa-paint-brush', function() {
+//     document.querySelector(".modify-table").style.display = "block";
+//     document.querySelector(".burger-new-table").style.display = "none";
+//     document.querySelector('.menu-boards-list').style.height = "13rem";
+//     document.querySelector('.menu-boards-list').style.overflow = "auto";
+// }); 
 
 // Au click sur "Ajouter un tableau", show Nouveau tableau
-$('.burger-add-table').on('click', function() {
-    document.querySelector(".burger-new-table").style.display = "block";
-});
+// $('.burger-add-table').on('click', function() {
+//     document.querySelector(".burger-new-table").style.display = "block";
+//     document.querySelector(".modify-table").style.display = "none";
+//     document.querySelector('.menu-boards-list').style.height = "13rem";
+//     document.querySelector('.menu-boards-list').style.overflow = "auto";
+// });
 
 //========================================================
 //======================= Sabrina ========================
@@ -91,19 +104,19 @@ $(".liste").draggable({
 
 //Pour la réorganisation de l'ordre des cards avec sortable
 
-$(".liste-cards").sortable({
-    items: 'li',
-    cursor:"move",
-    axis: "y",
+// $(".liste-cards").sortable({
+//     items: 'li',
+//     cursor:"move",
+//     axis: "y",
     
-    //pour l'enregistrement du nouvel ordre des cartes avec l'index
-    stop: function(event, ui) {
-        index = ui.item.index()+1;
-        console.log(index);
-        let id = $(this).attr("id"); 
-        console.log(id); //ne fonctionne pas car pas encore d'id pour les cartes
-    }
-});
+//     //pour l'enregistrement du nouvel ordre des cartes avec l'index
+//     stop: function(event, ui) {
+//         index = ui.item.index()+1;
+//         console.log(index);
+//         let id = $(this).attr("id"); 
+//         console.log(id); //ne fonctionne pas car pas encore d'id pour les cartes
+//     }
+// });
 
 //activer l'ajout de cartes
 //Faire apparaître le template quand on appuie sur l'ajout de cartes

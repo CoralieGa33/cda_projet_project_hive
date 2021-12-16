@@ -9,16 +9,17 @@
 
 <div class="board">
     <div class="board-header">
-        <h2 class="board-title">Tableau 1234</h2>
+        <h2 class="board-title"></h2>
 
         <form class="add-liste" action="" method="POST">    
-            <i class="fas fa-plus add-liste-icon"></i><input type="text" class="add-liste-input" placeholder="Ajouter une liste" name="add-liste">
+            <input type="text" class="add-liste-input" placeholder="Ajouter une liste" name="add-liste">
         </form>
     </div>
 
     <div class="board-listes">
         <?php
             require 'templates/liste.php';
+            require 'templates/card.php';
         ?>
     </div>
 </div>
@@ -28,7 +29,6 @@
     let username = "<?= $_SESSION['username']; ?>";
     let boardsList = <?= $boardsList; ?>;
 </script>
-<script defer src="js/board.js"></script>
 
 <?php
     require 'includes/footer.php';
