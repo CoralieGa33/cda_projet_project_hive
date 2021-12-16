@@ -519,6 +519,10 @@ a {
   opacity: 1;
 }
 
+.board-listes .liste-cards {
+  min-height: 1rem;
+}
+
 .board-listes .liste-footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -543,14 +547,33 @@ a {
   opacity: 1;
 }
 
-.board-listes .liste .card {
+.board-listes .card {
   padding: 0.5rem;
   border: 1px solid #4B5C6B;
   border-radius: 3px;
   margin-top: 0.5rem;
+  background-color: #FBFBF9;
 }
 
-.board-listes .liste .card-show {
+.board-listes .card:hover {
+  cursor: move;
+}
+
+.board-listes .card:active {
+  -webkit-box-shadow: 0 0 5px #4B5C6B;
+          box-shadow: 0 0 5px #4B5C6B;
+  z-index: 9000;
+}
+
+.board-listes .card-placeholder {
+  border: #4B5C6B dashed 1px;
+  height: 4rem;
+  border-radius: 3px;
+  margin-top: 0.5rem;
+  background-color: #4B5C6B20;
+}
+
+.board-listes .card-show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -559,7 +582,7 @@ a {
           justify-content: space-between;
 }
 
-.board-listes .liste .card-show .card-content-title {
+.board-listes .card-show .card-content-title {
   font-family: 'Solway', serif;
   color: #4B5C6B;
   font-size: 0.8rem;
@@ -567,12 +590,12 @@ a {
   margin-bottom: 0.2rem;
 }
 
-.board-listes .liste .card-show .card-content-description {
+.board-listes .card-show .card-content-description {
   font-size: 0.7rem;
   font-family: 'Poppins', sans-serif;
 }
 
-.board-listes .liste .card-utils {
+.board-listes .card-utils {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -582,39 +605,39 @@ a {
           flex-direction: column;
 }
 
-.board-listes .liste .card-utils .modify-card {
+.board-listes .card-utils .modify-card {
   font-size: 0.8rem;
   position: relative;
 }
 
-.board-listes .liste .card-utils .modify-card .editcard-tooltip {
+.board-listes .card-utils .modify-card .editcard-tooltip {
   right: 1.2rem;
   top: -0.2rem;
 }
 
-.board-listes .liste .card-utils .modify-card:hover .editcard-tooltip {
+.board-listes .card-utils .modify-card:hover .editcard-tooltip {
   opacity: 1;
 }
 
-.board-listes .liste .card-utils .delete-card {
+.board-listes .card-utils .delete-card {
   position: relative;
 }
 
-.board-listes .liste .card-utils .delete-card .deletecard-tooltip {
+.board-listes .card-utils .delete-card .deletecard-tooltip {
   right: 1rem;
   top: -0.2rem;
 }
 
-.board-listes .liste .card-utils .delete-card:hover .deletecard-tooltip {
+.board-listes .card-utils .delete-card:hover .deletecard-tooltip {
   opacity: 1;
 }
 
-.board-listes .liste .card .edit-card-form .card-header-title, .board-listes .liste .card .edit-card-form .card-header-content {
+.board-listes .card .edit-card-form .card-header-title, .board-listes .card .edit-card-form .card-header-content {
   width: 100%;
   margin: 0.2rem auto;
 }
 
-.board-listes .liste .card .edit-card-form .edit-color {
+.board-listes .card .edit-card-form .edit-color {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -623,7 +646,7 @@ a {
           align-items: center;
 }
 
-.board-listes .liste .card .edit-card-form .edit-color label {
+.board-listes .card .edit-card-form .edit-color label {
   font-family: 'Poppins', sans-serif;
   color: #4B5C6B;
   font-size: 0.7rem;
@@ -631,7 +654,7 @@ a {
   letter-spacing: normal;
 }
 
-.board-listes .liste .card .edit-card-form .sm-btn {
+.board-listes .card .edit-card-form .sm-btn {
   display: block;
   margin: 0.3rem auto;
   font-family: 'Poppins', sans-serif;
@@ -643,7 +666,7 @@ a {
   background-color: #4B5C6B30;
 }
 
-.board-listes .liste .card .edit-card-form .sm-btn:hover {
+.board-listes .card .edit-card-form .sm-btn:hover {
   cursor: pointer;
   background-color: #4B5C6B;
   color: #FBFBF9;
