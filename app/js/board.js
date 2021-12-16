@@ -150,6 +150,21 @@ let app = {
                     let newCardElement = app.generateCardElement(card);
                     app.addCardElement(newCardElement);
                 })
+
+                // Si une liste est hors-ecran, reset de sa position
+                // en cas de changement d'appareil par exemple
+                let listeHeight = $('.liste[liste-id="'+liste.listeId+'"]').height();
+                let listeWidth = $('.liste[liste-id="'+liste.listeId+'"]').width();
+                let boardHeight = $('.board').height();
+                let boardWidth = $('.board').width();
+                //console.log(boardHeight)
+                //console.log($('.liste[liste-id="'+liste.listeId+'"]').position().top)
+                if($('.liste[liste-id="'+liste.listeId+'"]').position().top > (boardHeight-listeHeight)) {
+                    $('.liste[liste-id="'+liste.listeId+'"]').css('top', 0);
+                }
+                if($('.liste[liste-id="'+liste.listeId+'"]').position().left > (boardWidth-listeWidth)) {
+                    $('.liste[liste-id="'+liste.listeId+'"]').css('left', 0);
+                }
                 
             })
             // J'ajoute à chaque liste la capacité d'être déplacée une fois que TOUTES mes listes sont chargées
@@ -311,6 +326,7 @@ let app = {
             $('.add-liste-input').blur();
             app.addListeElement(newListeElement);
             app.maxListeOrderNb ++
+            app.setDragListes();
         }).fail(function(e) {
             console.error(e);
         });
