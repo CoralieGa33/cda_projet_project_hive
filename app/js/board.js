@@ -8,12 +8,14 @@ let app = {
         boardId: null,
         title: "",
         color: "",
-        backgroundId: null
+        backgroundId: null,
+        backgroundUrl: "",
     },
     backgrounds: {},
     
     init: function() {
         console.log("initialisation ...")
+        app.loadBackgrounds();
 
         $('.add-liste').on('submit', app.handleCreateNewListe);
         $('.new-board').on('submit', app.handleCreateNewBoard);
@@ -23,6 +25,10 @@ let app = {
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.add-card', app.handleFormNewCard);
+        $('.board-listes').on('submit', '.edit-card-form', app.handleCreateOrEditCard);
+        $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
+        $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
         $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
         $('.menu-boards-list').on('click', '.fa-paint-brush', app.handleOpenEditBoardForm);
@@ -33,7 +39,6 @@ let app = {
         // je charge mon tableau principal
         app.loadBoard();
         app.loadBoardMenu();
-        app.loadBackgrounds();
     },
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
@@ -55,9 +60,15 @@ let app = {
             app.loadedBoard.boardId = board.boardId;
             app.loadedBoard.title = board.title;
             app.loadedBoard.color = board.color;
-            app.loadedBoard.backgroundId = board.background_id;
             //console.log(app.loadedBoard)
-            app.generateBoard(board.boardId, board.title);
+            if(board.background_id) {
+                app.loadedBoard.backgroundId = board.background_id;
+                app.loadedBoard.backgroundUrl = app.backgrounds[board.background_id-1].imageUrl;
+            } else {
+                app.loadedBoard.backgroundId = null
+                app.loadedBoard.backgroundUrl = ""
+            }
+            app.generateBoard();
 
             // Je place dans une variable toutes les listes reçues du tableau
             let listeCollection = board.listes;
@@ -111,8 +122,12 @@ let app = {
     // Je donne un id (récupéré par la requête) à chaque tableau afin de pouvoir en charger d'autre par la suite
     generateBoard: function(boardId, boardTitle) {
         let board = document.querySelector('.board');
-        board.setAttribute('board-id', boardId);
-        board.querySelector('.board-title').textContent = boardTitle;
+        board.setAttribute('board-id', app.loadedBoard.boardId);
+        board.querySelector('.board-title').textContent = app.loadedBoard.title;
+        let background = $('.background');
+        background.css('background-color', app.loadedBoard.color);
+        //console.log( app.loadedBoard.backgroundUrl)
+        background.css('background-image',"url("+app.loadedBoard.backgroundUrl+")");
     },
 
     // Pour changer de tableau après le clic sur son nom
@@ -124,13 +139,13 @@ let app = {
         app.selectedBoardId = selectedItemId;
         
         // Je change la place du "pinceau", et la classe
-        $('.selected-board').parent().find('.fas').remove();
+        $('.selected-board').parent().find('.fa-paint-brush').remove();
         $('.selected-board').removeClass('selected-board');
         selectedItem.addClass('selected-board');
         selectedItem.parent().prepend('<i class="fas fa-paint-brush"></i>');
         
-        // Je vide le DOM du tableau actuel (sauf le premier élément -> template)
-        $('.board-listes').children().not(':first').remove();
+        // Je vide le DOM du tableau actuel (sauf les 2 premiers éléments -> templates)
+        $('.board-listes').children().not(':lt(2)').remove();
 
         // Je charge le nouveau tableau
         app.loadBoard(app.selectedBoardId);
@@ -152,6 +167,7 @@ let app = {
         let newListe = document.querySelector('.template-liste').cloneNode(true)
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
+        newListe.classList.add("drag")
         newListe.setAttribute('liste-id', liste.listeId)
         newListe.setAttribute('order-nb', liste.orderNb)
         newListe.querySelector('h3').textContent = liste.title;
@@ -175,6 +191,7 @@ let app = {
     // elle reste "virtuelle" tant qu'elle n'est pas ajoutée au DOM
     generateCardElement: function(card) {
         let newCard = document.querySelector('.template-card').cloneNode(true)
+        //console.log(newCard)
         newCard.id = "card-"+card.cardId;
         newCard.classList.remove("template-card");
         newCard.querySelector('h4').textContent = card.title;
@@ -182,6 +199,8 @@ let app = {
         newCard.querySelector('input[name=edit-card-title]').value = card.title;
         newCard.querySelector('textarea[name=edit-card-content]').value = card.content;
         newCard.setAttribute('liste-id', card.liste_id);
+        newCard.setAttribute('card-id', card.cardId)
+        newCard.style.borderColor = card.color;
         newCard.classList.remove('is-hidden');
         return newCard;
     },
@@ -222,7 +241,7 @@ let app = {
             data: {
                 title: newListeName,
                 orderNb: parseInt(app.maxListeOrderNb)+1,
-                boardId: boardId,
+                board_id: boardId,
             }
         }).done(function(liste) {
             // Si c'est ok, je génère la nouvelle liste et je l'ajoute au DOM
@@ -326,7 +345,7 @@ let app = {
     // Pour rendre une liste déplaçable dans le tableau
     setDragListes: function() {
         //Pour le déplacement des div .liste avec jquery draggable
-        $(".liste").draggable({  
+        $(".drag").draggable({  
             cursor: "move", // pour modifier le curseur de déplacement
             //containment: "#cible"// limite le déplacement à une zone
             containment: ".board-listes",
@@ -341,6 +360,115 @@ let app = {
                 app.updateOrderListe($(this));
             }
         });
+    },
+
+    // Formulaire d'ajout d'une nouvelle carte
+    handleFormNewCard: function(event) {
+        let ListeEnCours = $(event.currentTarget).parent().parent().parent();
+        //console.log(ListeEnCours);
+        let cardClone= $('.template-card').clone(true, true);
+        cardClone.removeClass('template-card is-hidden');
+        (cardClone.find('.card-show')).addClass('is-hidden');
+        (cardClone.find('.edit-card-form')).removeClass('is-hidden');
+        cardClone.appendTo(ListeEnCours.find('.liste-cards'));
+    },
+
+    // Requête d'ajout d'une nouvelle carte
+    handleCreateOrEditCard: function(event) {
+        event.preventDefault();
+        let cardTitleInput = $(event.currentTarget).find('.card-header-title').val();
+        //console.log(cardTitleInput);
+        let cardTextContent = $(event.currentTarget).find('.card-header-content').val();
+        //console.log(cardTextContent);
+        let cardColor = $(event.currentTarget).find('.card-header-color').val();
+        //console.log(cardColor);
+        let listeId = $(event.currentTarget).parent().parent().parent().attr('liste-id');
+        //console.log(listeId);
+        let cardNumber = $(event.currentTarget).parent().parent().children().length;
+        //console.log(cardNumber);
+
+        if($(event.currentTarget).parent().parent().attr('card-id')) {
+            cardId = $(event.currentTarget).parent().parent().attr('card-id');
+            $.ajax({
+                url: app.baseUrl + 'card/update',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    title: cardTitleInput,
+                    content: cardTextContent,
+                    orderNb: cardNumber,
+                    color: cardColor,
+                    liste_id: listeId,
+                    cardId: cardId
+                }
+            }).done(function(card) {
+                // Si c'est ok, je complète la nouvelle carte avec les infos reçues
+                // elle a déjà été créée dans le DOM lors du click sur le +
+                $(event.currentTarget).prev().find('.card-content-title').text(card.title);
+                $(event.currentTarget).prev().find('.card-content-description').text(card.content);
+                $(event.currentTarget).parent().css('border-color', card.color);
+                // masquage du form et apparition de la carte
+                $(event.currentTarget).addClass('is-hidden');
+                $(event.currentTarget).prev().removeClass('is-hidden');
+    
+            }).fail(function(e) {
+                console.error(e);
+            });
+        } 
+        else {
+            $.ajax({
+                url: app.baseUrl + 'card/add',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    title: cardTitleInput,
+                    content: cardTextContent,
+                    orderNb: cardNumber,
+                    color: cardColor,
+                    liste_id: listeId,
+                }
+            }).done(function(card) {
+                // Si c'est ok, je complète la nouvelle carte avec les infos reçues
+                // elle a déjà été créée dans le DOM lors du click sur le +
+                $(event.currentTarget).prev().find('.card-content-title').text(card.title);
+                $(event.currentTarget).prev().find('.card-content-description').text(card.content);
+                $(event.currentTarget).parent().css('border-color', card.color);
+                // masquage du form et apparition de la carte
+                $(event.currentTarget).addClass('is-hidden');
+                $(event.currentTarget).prev().removeClass('is-hidden');
+    
+            }).fail(function(e) {
+                console.error(e);
+            });
+        }
+    },
+
+    //Requête pour supprimer une card
+    handleDeleteCard: function(event) {
+        let cardToDelete = $(event.currentTarget).parent().parent().parent();
+        let cardToDeleteId = cardToDelete.attr("card-id");
+        //console.log(cardToDelete);
+        $.ajax({
+            url: app.baseUrl + 'card/delete',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                cardId: cardToDeleteId,
+            }
+        }).done(function(response) {
+            cardToDelete.remove();
+        }).fail(function(e) {
+            console.error(e);
+            cardToDelete.remove();
+        });
+    },
+
+    //Requête pour afficher le formulaire de modifcation de la carte au click du pinceau
+    handleClickModifyCard: function(event) { 
+        let editCard = $(event.currentTarget).parent().parent().parent(); //chercher le bon parent
+        //console.log(editCard); 
+        editCard.find('.card-show').addClass('is-hidden'); 
+        editCard.find('.edit-card-form').removeClass('is-hidden');
     },
 
     // Requête qui va chercher les backgrounds pour les afficher en vignettes dans les formulaires du menu

@@ -44,4 +44,13 @@ class CardRepository extends ManagerRepository
 
         return $cards;
     }
+
+    public function getLastCard(){
+        $sql = 'SELECT * FROM card WHERE cardId = (SELECT MAX(cardId) FROM card)';
+        $result = $this->createQuery($sql);
+        $row = $result->fetch();
+        $lastCard = $this->buildObject($row);
+
+        return $lastCard;
+    }
 }

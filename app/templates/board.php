@@ -29,7 +29,6 @@
     let username = "<?= $_SESSION['username']; ?>";
     let boardsList = <?= $boardsList; ?>;
 </script>
-<script defer src="js/board.js"></script>
 
 <?php
     require 'includes/footer.php';

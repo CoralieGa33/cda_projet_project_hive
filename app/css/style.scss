@@ -78,7 +78,6 @@ a {
 .background{
     background-size: cover;
     position:fixed;
-    opacity:0.7;
     top: 0;
     bottom: 0;
     left: 0;
@@ -227,6 +226,7 @@ a {
     
     .background{
         background-image: url(../images/bkgd.jpeg);
+        opacity: 0.7;
     }
 
     p{
@@ -304,6 +304,7 @@ a {
         align-items: center;
         padding: 1rem;
         height: 4.7rem;
+        background: #{$light-color}50;
 
         .menu-burger{
             padding-right: 1.5rem;
