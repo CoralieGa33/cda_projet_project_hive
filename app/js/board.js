@@ -1,7 +1,7 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_1612/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
     
     maxListeOrderNb: 0,
     loadedBoard: {
@@ -257,6 +257,7 @@ let app = {
         newCard.querySelector('.card-content-description').textContent = card.content;
         newCard.querySelector('input[name=edit-card-title]').value = card.title;
         newCard.querySelector('textarea[name=edit-card-content]').value = card.content;
+        newCard.querySelector('input[name=edit-card-color]').value = card.color;
         newCard.setAttribute('liste-id', card.liste_id);
         newCard.setAttribute('card-id', card.cardId)
         newCard.style.borderColor = card.color;
@@ -494,6 +495,9 @@ let app = {
                 // elle a déjà été créée dans le DOM lors du click sur le +
                 $(event.currentTarget).prev().find('.card-content-title').text(card.title);
                 $(event.currentTarget).prev().find('.card-content-description').text(card.content);
+                $(event.currentTarget).parent().attr('id', 'card-'+card.cardId);
+                $(event.currentTarget).parent().attr('liste-id', card.liste_id);
+                $(event.currentTarget).parent().attr('card-id', card.cardId);
                 $(event.currentTarget).parent().css('border-color', card.color);
                 // masquage du form et apparition de la carte
                 $(event.currentTarget).addClass('is-hidden');
