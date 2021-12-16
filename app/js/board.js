@@ -37,8 +37,8 @@ let app = {
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
         // je charge mon tableau principal
-        app.loadBoard();
-        app.loadBoardMenu();
+        // app.loadBoard();
+        // app.loadBoardMenu();
     },
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
@@ -492,6 +492,8 @@ let app = {
                 backgroundsModifyNode.appendChild(newBackgroundItem);
                 backgroundsNewNode.appendChild(newBackgroundItem.cloneNode(true));
             });
+            app.loadBoard();
+            app.loadBoardMenu();
         }).fail(function(e) {
             console.error(e);
         });
@@ -506,7 +508,7 @@ let app = {
         if($(event.currentTarget).hasClass('selected-bg')) {
             $(event.currentTarget).removeClass('selected-bg');
         } else {
-            $('.selected-bg').removeClass('selected-bg');
+            $(event.currentTarget).parent().parent().find('.selected-bg').removeClass('selected-bg');
             selectedImage.addClass('selected-bg');
         }
     },
@@ -579,7 +581,7 @@ let app = {
         // je récupère dans le form les nouvelles valeurs dont j'ai besoin
         let newBoardTitle = $('.board-title-input').eq(0).val();
         let newBoardColor = $('.edit-board-colorpicker').eq(0).val();
-        let newBoardBgId = $('.selected-bg').attr("background-id");
+        let newBoardBgId = $('.modify-table-backgrounds .selected-bg').attr("background-id");
 
         // Je les envois dans la requête
         $.ajax({
@@ -594,13 +596,24 @@ let app = {
             }
         }).done(function(updatedBoard) {
             // Je mets à jour les éléments du DOM
-            console.log(updatedBoard)
+            // console.log(updatedBoard)
             $('.selected-board').text(updatedBoard.title);
             document.querySelector('.board-title').textContent = updatedBoard.title;
+
+            app.loadedBoard.color = updatedBoard.color;
+            if(updatedBoard.background_id) {
+                app.loadedBoard.backgroundUrl = app.backgrounds[updatedBoard.background_id-1].imageUrl;
+            } else {
+                app.loadedBoard.backgroundUrl = "";
+            }
+            
+            $('.background').css('background-color', app.loadedBoard.color);
+            $('.background').css('background-image',"url("+app.loadedBoard.backgroundUrl+")");
+
             $('.board-title-input').eq(0).val(updatedBoard.title);
             $('.edit-board-colorpicker').eq(0).val(updatedBoard.color);
-            $('.selected-bg').removeClass('selected-bg');
-            $("img[background-id|='"+updatedBoard.background_id+"']").addClass('selected-bg');
+            
+            //$("img[background-id|='"+updatedBoard.background_id+"']").addClass('selected-bg');
             document.querySelector(".modify-table").style.display = "none";
         }).fail(function(e) {
             console.error(e);
