@@ -713,7 +713,7 @@ a {
 }
 
 .menu-burger .menu-boards-list {
-  min-height: 13rem;
+  overflow: "auto";
 }
 
 .menu-burger .menu-boards-list li {
@@ -858,6 +858,22 @@ a {
   height: 2.5rem;
   width: 4rem;
   margin-left: 5rem;
+}
+
+.menu-burger .board-abord {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1rem auto;
+  background: none;
+  border: none;
+  color: #FBFBF9;
+  font-family: 'Poppins', sans-serif;
+}
+
+.menu-burger .board-abord:hover {
+  color: #ffa500;
+  cursor: pointer;
 }
 
 .delete-board-confirm {

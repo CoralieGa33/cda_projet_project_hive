@@ -17,28 +17,87 @@ let app = {
         console.log("initialisation ...")
         app.loadBackgrounds();
 
+        $('#burger-open').on('click', app.handleOpenMenu);
+        $('#burger-close').on('click', app.handleCloseMenu);
+
         $('.add-liste').on('submit', app.handleCreateNewListe);
         $('.new-board').on('submit', app.handleCreateNewBoard);
-        $('.edit-board').on('submit', app.handleEditBoard);
-        
-        $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
-        $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
-        $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
-        $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
-        $('.board-listes').on('click', '.add-card', app.handleFormNewCard);
         $('.board-listes').on('submit', '.edit-card-form', app.handleCreateOrEditCard);
-        $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
-        $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
-        $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
-        $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
+        $('.edit-board').on('submit', app.handleEditBoard);
+        $('.board-listes').on('submit', '.liste-header-title-form', app.handleUpdateListeName);
+        
         $('.menu-boards-list').on('click', '.fa-paint-brush', app.handleOpenEditBoardForm);
         $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleConfirmDeleteBoard);
+        $('.burger-add-table').on('click', app.handleFormNewBoard);
+        $('.board-abord').on('click', app.handleBoardFormAbord);
+        $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
+        $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
+        $('.board-listes').on('click', '.add-card', app.handleFormNewCard);
+        $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
+        $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
+        $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
+
+
+        $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
+
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
 
         // je charge mon tableau principal
         // app.loadBoard();
         // app.loadBoardMenu();
+    },
+
+    handleOpenMenu: function() {
+        //console.log("opening")
+        document.querySelector("#burger-wrap").style.width = "19rem";
+        document.querySelector("#burger-open").style.display = "none";
+        document.querySelector("#burger-close").style.display = "block";
+        document.querySelector(".burger-nav").style.display = "block";
+    },
+
+    handleCloseMenu: function() {
+        //console.log("closing")
+        document.querySelector("#burger-wrap").style.width = "2rem";
+        document.querySelector("#burger-close").style.display = "none";
+        document.querySelector("#burger-open").style.display = "block";
+        document.querySelector(".burger-nav").style.display = "none";
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector('.edit-board').reset();
+        document.querySelector(".burger-new-table").style.display = "none";
+        document.querySelector('.new-board').reset();
+        $('.modify-table-backgrounds .selected-bg').removeClass('selected-bg');
+        document.querySelector('.menu-boards-list').style.height = "auto";
+        document.querySelector('.burger-header').style.display = "block";
+    },
+
+    // Requête qui va chercher les backgrounds pour les afficher en vignettes dans les formulaires du menu
+    loadBackgrounds: function() {
+        $.ajax({
+            url: app.baseUrl + 'backgrounds',
+            method: 'POST',
+            dataType: 'json',
+        }).done(function(response) {
+            app.backgrounds = response;
+            let backgroundsModifyNode = document.querySelector('.modify-table-backgrounds');
+            let backgroundsNewNode = document.querySelector('.new-table-backgrounds');
+            app.backgrounds.map(background => {
+                let newBackgroundItem = document.createElement('li');
+                let newBackgroundImage = document.createElement('img');
+                newBackgroundImage.classList.add('background-thumb');
+                newBackgroundImage.id = "background-" + background.backgroundId;
+                newBackgroundImage.setAttribute("background-id", background.backgroundId);
+                newBackgroundImage.src = background.imageUrl
+                newBackgroundItem.appendChild(newBackgroundImage);
+                backgroundsModifyNode.appendChild(newBackgroundItem);
+                backgroundsNewNode.appendChild(newBackgroundItem.cloneNode(true));
+            });
+            app.loadBoard();
+            app.loadBoardMenu();
+        }).fail(function(e) {
+            console.error(e);
+        });
     },
 
     // Appel à l'API pour récupérer toutes les infos du tableau principal de l'utilisateur connecté
@@ -151,7 +210,7 @@ let app = {
         app.loadBoard(app.selectedBoardId);
         
         // Je ferme le menu burger
-        document.querySelector(".burger-header").style.width = "2rem";
+        document.querySelector("#burger-wrap").style.width = "2rem";
         document.querySelector("#burger-close").style.display = "none";
         document.querySelector("#burger-open").style.display = "block";
         document.querySelector(".burger-nav").style.display = "none";
@@ -471,34 +530,6 @@ let app = {
         editCard.find('.edit-card-form').removeClass('is-hidden');
     },
 
-    // Requête qui va chercher les backgrounds pour les afficher en vignettes dans les formulaires du menu
-    loadBackgrounds: function() {
-        $.ajax({
-            url: app.baseUrl + 'backgrounds',
-            method: 'POST',
-            dataType: 'json',
-        }).done(function(response) {
-            app.backgrounds = response;
-            let backgroundsModifyNode = document.querySelector('.modify-table-backgrounds');
-            let backgroundsNewNode = document.querySelector('.new-table-backgrounds');
-            app.backgrounds.map(background => {
-                let newBackgroundItem = document.createElement('li');
-                let newBackgroundImage = document.createElement('img');
-                newBackgroundImage.classList.add('background-thumb');
-                newBackgroundImage.id = "background-" + background.backgroundId;
-                newBackgroundImage.setAttribute("background-id", background.backgroundId);
-                newBackgroundImage.src = background.imageUrl
-                newBackgroundItem.appendChild(newBackgroundImage);
-                backgroundsModifyNode.appendChild(newBackgroundItem);
-                backgroundsNewNode.appendChild(newBackgroundItem.cloneNode(true));
-            });
-            app.loadBoard();
-            app.loadBoardMenu();
-        }).fail(function(e) {
-            console.error(e);
-        });
-    },
-
     // Sert à afficher un indicateur visuel sur le background sélectionné
     // Et indirectement à récupérer son id à l'envoi du formulaire
     selectBackground: function(event) {
@@ -511,6 +542,12 @@ let app = {
             $(event.currentTarget).parent().parent().find('.selected-bg').removeClass('selected-bg');
             selectedImage.addClass('selected-bg');
         }
+    },
+
+    handleFormNewBoard: function() {
+        document.querySelector(".burger-new-table").style.display = "block";
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector('.burger-header').style.display = "none";
     },
 
     // Requête d'ajout d'un nouveau tableau
@@ -563,16 +600,19 @@ let app = {
 
     // Ouvre et remplit le formulaire d'édition du tableau
     handleOpenEditBoardForm: function() {
+        document.querySelector(".burger-header").style.display = "none";
         document.querySelector(".modify-table").style.display = "block";
         document.querySelector(".burger-new-table").style.display = "none";
-
-        // Optimise l'affichage quand il y a trop de tableaux dans la liste
-        document.querySelector('.menu-boards-list').style.maxHeight = "13rem";
-        document.querySelector('.menu-boards-list').style.overflow = "auto";
 
         $('.board-title-input').eq(0).val(app.loadedBoard.title);
         $('.edit-board-colorpicker').eq(0).val(app.loadedBoard.color?app.loadedBoard.color:"#ffffff");
         $("img[background-id|='"+app.loadedBoard.backgroundId+"']").addClass('selected-bg');
+    },
+
+    handleBoardFormAbord: function() {
+        document.querySelector(".modify-table").style.display = "none";
+        document.querySelector(".burger-new-table").style.display = "none";
+        document.querySelector(".burger-header").style.display = "block";
     },
 
     // Pour éditer un tableau

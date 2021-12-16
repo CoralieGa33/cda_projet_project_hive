@@ -1,18 +1,20 @@
 
 <div class="menu-burger">
-    <div id="burger-wrap" class="burger-header">
+    <div id="burger-wrap">
         <div class="btn-burger">
             <i id="burger-open"class="fas fa-arrow-right"></i>     
             <i id="burger-close" class="fas fa-arrow-left"></i>
         </div>
         
         <nav class="burger-nav">
-            <h3 class="burger-title">Liste des tableaux</h3>
-            <ul class="menu-boards-list">
+            <div class="burger-header">
+                <h3 class="burger-title">Liste des tableaux</h3>
+                <ul class="menu-boards-list">
 
-            </ul>
-            <button class="btn burger-add-table">Ajouter un tableau</button>
-
+                </ul>
+                <button class="btn burger-add-table">Ajouter un tableau</button>
+            </div>
+            
             <div class="modify-table">
                 <h4 class="burger-liste">Modifier le tableau</h4>
                 <form action="" class="edit-board">
@@ -25,6 +27,7 @@
                         
                         </ul>
                     <button type="submit" class="btn edit-board-submit">Enregistrer</button>
+                    <button type="button" class="board-abord">Annuler</button>
 
                 </form>
             </div>
@@ -41,6 +44,7 @@
 
                     </ul>
                     <button type="submit" class="btn new-board-submit">Envoyer</button>
+                    <button type="button" class="board-abord">Annuler</button>
                 </form>
             </div>
         </nav>

@@ -30,36 +30,36 @@
 
 // Menu
 /* Set the width of the side navigation to 310px */
-function openNav() {
-    document.getElementByClass(".burger-header").style.width = "19rem";
-}
+// function openNav() {
+//     document.getElementByClass(".burger-header").style.width = "19rem";
+// }
 
 /* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementByClass(".burger-header").style.width = "2rem";
-}
+// function closeNav() {
+//     document.getElementByClass(".burger-header").style.width = "2rem";
+// }
 
-$('#burger-open').on('click', function() {
-    //console.log("opening")
-    document.querySelector(".burger-header").style.width = "19rem";
-    document.querySelector("#burger-open").style.display = "none";
-    document.querySelector("#burger-close").style.display = "block";
-    document.querySelector(".burger-nav").style.display = "block";
-});
+// $('#burger-open').on('click', function() {
+//     //console.log("opening")
+//     document.querySelector(".burger-header").style.width = "19rem";
+//     document.querySelector("#burger-open").style.display = "none";
+//     document.querySelector("#burger-close").style.display = "block";
+//     document.querySelector(".burger-nav").style.display = "block";
+// });
 
-$('#burger-close').on('click', function() {
-    //console.log("closing")
-    document.querySelector(".burger-header").style.width = "2rem";
-    document.querySelector("#burger-close").style.display = "none";
-    document.querySelector("#burger-open").style.display = "block";
-    document.querySelector(".burger-nav").style.display = "none";
-    document.querySelector(".modify-table").style.display = "none";
-    document.querySelector('.edit-board').reset();
-    document.querySelector(".burger-new-table").style.display = "none";
-    document.querySelector('.new-board').reset();
-    $('.selected-bg').removeClass('selected-bg');
-    document.querySelector('.menu-boards-list').style.height = "auto";
-});
+// $('#burger-close').on('click', function() {
+//     //console.log("closing")
+//     document.querySelector(".burger-header").style.width = "2rem";
+//     document.querySelector("#burger-close").style.display = "none";
+//     document.querySelector("#burger-open").style.display = "block";
+//     document.querySelector(".burger-nav").style.display = "none";
+//     document.querySelector(".modify-table").style.display = "none";
+//     document.querySelector('.edit-board').reset();
+//     document.querySelector(".burger-new-table").style.display = "none";
+//     document.querySelector('.new-board').reset();
+//     $('.selected-bg').removeClass('selected-bg');
+//     document.querySelector('.menu-boards-list').style.height = "auto";
+// });
 
 
 // Au click sur Brush, show Modifier le tableau
@@ -72,12 +72,12 @@ $('#burger-close').on('click', function() {
 // }); 
 
 // Au click sur "Ajouter un tableau", show Nouveau tableau
-$('.burger-add-table').on('click', function() {
-    document.querySelector(".burger-new-table").style.display = "block";
-    document.querySelector(".modify-table").style.display = "none";
-    document.querySelector('.menu-boards-list').style.height = "13rem";
-    document.querySelector('.menu-boards-list').style.overflow = "auto";
-});
+// $('.burger-add-table').on('click', function() {
+//     document.querySelector(".burger-new-table").style.display = "block";
+//     document.querySelector(".modify-table").style.display = "none";
+//     document.querySelector('.menu-boards-list').style.height = "13rem";
+//     document.querySelector('.menu-boards-list').style.overflow = "auto";
+// });
 
 //========================================================
 //======================= Sabrina ========================
