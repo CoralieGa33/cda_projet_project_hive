@@ -726,6 +726,7 @@ let app = {
                 app.loadedBoard.backgroundId = updatedBoard.background_id
                 app.loadedBoard.backgroundUrl = app.backgrounds[updatedBoard.background_id-1].imageUrl;
             } else {
+                app.loadedBoard.backgroundId = null
                 app.loadedBoard.backgroundUrl = "";
             }
             
