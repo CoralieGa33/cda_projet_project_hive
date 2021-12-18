@@ -14,7 +14,7 @@ let app = {
     backgrounds: {},
     
     init: function() {
-        console.log("initialisation ...")
+        //console.log("initialisation ...")
         app.loadBackgrounds();
 
         $('#burger-open').on('click', app.handleOpenMenu);
@@ -40,6 +40,10 @@ let app = {
 
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
+
+        $(".communication").click(function(){
+            $('.social-icons').toggleClass('open');
+        });
 
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
@@ -106,7 +110,7 @@ let app = {
         if(id) {
             selectedBoardId = id;
         }
-        console.log('Loaded board id : ', selectedBoardId);
+        //console.log('Loaded board id : ', selectedBoardId);
         $.ajax({
             url: app.baseUrl + 'boards',
             method: 'POST',
@@ -241,15 +245,23 @@ let app = {
         let newListe = document.querySelector('.template-liste').cloneNode(true)
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
-        newListe.classList.add("drag")
         newListe.setAttribute('liste-id', liste.listeId)
         newListe.setAttribute('order-nb', liste.orderNb)
         newListe.querySelector('h3').textContent = liste.title;
         newListe.querySelector('input[name=liste-title]').value = liste.title;
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
-        newListe.style.left = liste.posLeft+'px';
-        newListe.style.top = liste.posTop+'px';
-        newListe.style.zIndex = liste.orderNb;
+        
+        //console.log(window.innerWidth)
+        if(window.innerWidth >= 1023) {
+            newListe.classList.add("drag");
+            newListe.style.zIndex = liste.orderNb;
+            newListe.style.left = liste.posLeft+'px';
+            newListe.style.top = liste.posTop+'px';
+        } else {
+            document.querySelector('.board-listes').classList.add("res-sort");
+            app.setSortListes();
+        }
+        
         newListe.classList.remove('is-hidden');
         return newListe;
     },
@@ -258,7 +270,12 @@ let app = {
     addListeElement: function(newListeElement) {
         let listeContainer = $('.board-listes');
         listeContainer.append(newListeElement);
-        app.setDragListes();
+
+        if(window.innerWidth >= 1023) {
+            app.setDragListes();
+        } else {
+            app.setSortListes();
+        }
     },
 
     // permet  de générer une nouvelle carte  avec ses détails
@@ -415,6 +432,16 @@ let app = {
             listeToDelete.remove();
         }).fail(function(e) {
             console.error(e);
+        });
+    },
+
+    // Pour rendre les listes déplaçables en horizontal (responsive)
+    setSortListes: function() {
+        $(".res-sort").sortable({
+            axis: "x",
+            cursor: "move",
+            cancel: ".card",
+            placeholder: "liste-placeholder"
         });
     },
 
@@ -736,4 +763,7 @@ let app = {
     }
 };
 
-document.addEventListener('DOMContentLoaded', app.init);
+// Pour charger le script seulement sur la page concernée
+if(window.location.search === "?board") {
+    document.addEventListener('DOMContentLoaded', app.init);
+}
