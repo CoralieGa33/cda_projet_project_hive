@@ -1,7 +1,7 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
     //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_test/app/?api/',
     
     maxListeOrderNb: 0,
     loadedBoard: {
@@ -252,7 +252,7 @@ let app = {
         newListe.querySelector('h3').textContent = liste.title;
         newListe.querySelector('input[name=liste-title]').value = liste.title;
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
-        
+      
         //console.log(window.innerWidth)
         if(window.innerWidth >= 1023) {
             newListe.classList.add("drag");
@@ -263,7 +263,7 @@ let app = {
             document.querySelector('.board-listes').classList.add("res-sort");
             app.setSortListes();
         }
-        
+      
         newListe.classList.remove('is-hidden');
         return newListe;
     },
@@ -287,6 +287,7 @@ let app = {
         //console.log(newCard)
         newCard.id = "card-"+card.cardId;
         newCard.classList.remove("template-card");
+        newCard.classList.add("sortable");
         newCard.querySelector('h4').textContent = card.title;
         newCard.querySelector('.card-content-description').textContent = card.content;
         newCard.querySelector('input[name=edit-card-title]').value = card.title;
@@ -294,6 +295,7 @@ let app = {
         newCard.querySelector('input[name=edit-card-color]').value = card.color;
         newCard.setAttribute('liste-id', card.liste_id);
         newCard.setAttribute('card-id', card.cardId)
+        newCard.setAttribute('order-nb', card.orderNb)
         newCard.style.borderColor = card.color;
         newCard.classList.remove('is-hidden');
         return newCard;
@@ -303,6 +305,7 @@ let app = {
     addCardElement: function(newCardElement) {
         let cardContainer = $('.liste-cards-'+newCardElement.getAttribute('liste-id'));
         cardContainer.append(newCardElement);
+        app.setSortCards();
     },
 
     // Fait apparaitre le formulaire de modification du titre de la liste
@@ -459,6 +462,7 @@ let app = {
             //containment: "#cible"// limite le déplacement à une zone
             containment: ".board-listes",
             //Pour l'enregistrement des positions après le déplacement
+            cancel: ".card",
             
             stop: function(event, ui){
                 let posLeft = $(this).position().left;//voir si je change offset par position
@@ -468,6 +472,72 @@ let app = {
                 //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
                 app.updateOrderListe($(this));
             }
+        });
+    },
+
+    setSortCards: function(event) {
+        $( ".liste-cards" ).sortable({
+            cursor:"move",
+            connectWith: ".connectedSortable",
+            placeholder: "card-placeholder",
+            stack: ".board-listes",
+
+            start: function(event, ui) {
+                oldList = ui.item.parent().parent().attr('liste-id')
+                //console.log(oldList)
+            },
+
+            stop: function(event, ui) {
+                newList = ui.item.parent().parent().attr('liste-id')
+                let index = ui.item.index()+1;
+                //console.log(index);
+                ui.item.attr('order-nb', index);
+                //console.log( ui.item.attr('order-nb'))
+                let cardListeId = ui.item.parent().parent().attr('liste-id');
+                ui.item.attr('liste-id', cardListeId);
+                //app.updateCardOnMove(ui.item);
+
+                //console.log(oldList)
+                //console.log(newList)
+                //console.log($('.liste[liste-id = "'+oldList+'"]').find('.card'))
+                $('.liste[liste-id = "'+oldList+'"]').find('.card').each(function(index){
+                    $(this).attr('order-nb', $(this).index()+1);
+                    app.updateCardOnMove($(this))
+                });
+                $('.liste[liste-id = "'+newList+'"]').find('.card').each(function(index){
+                    $(this).attr('order-nb', $(this).index()+1);
+                    app.updateCardOnMove($(this))
+                }); 
+            }
+        })
+    },
+
+    updateCardOnMove: function(card) {
+        let cardId = card.attr('card-id');
+        let newListeId = card.attr('liste-id');
+        let newOrderNb = card.attr('order-nb');
+        let cardTitle = card.find('.card-header-title').val();
+        let cardTextContent = card.find('.card-header-content').val();
+        let cardColor = card.find('.card-header-color').val();
+        //console.log(newOrderNb);
+
+        $.ajax({
+            url: app.baseUrl + 'card/update',
+            method: 'POST',
+            data: {
+                title: cardTitle,
+                content: cardTextContent,
+                orderNb: newOrderNb,
+                color: cardColor,
+                liste_id: newListeId,
+                cardId: cardId,
+            }
+        }).done(function(updatedCard) {
+            updatedCard = JSON.parse(updatedCard);
+            //console.log(updatedCard)
+            //console.log("Card "+updatedCard.title+" updated !")
+        }).fail(function(e) {
+            console.error(e);
         });
     },
 
@@ -493,13 +563,13 @@ let app = {
         //console.log(cardColor);
         let listeId = $(event.currentTarget).parent().parent().parent().attr('liste-id');
         //console.log(listeId);
-        let cardNumber = $(event.currentTarget).parent().parent().children().length;
-        //console.log(cardNumber);
-
+        
         //console.log($(event.currentTarget).parent().attr('card-id'));
         if($(event.currentTarget).parent().attr('card-id')) {
             cardToEditId = $(event.currentTarget).parent().attr('card-id');
             //console.log(cardToEditId);
+            let cardNumber = $(event.currentTarget).parent().attr('order-nb');
+            console.log(cardNumber);
             $.ajax({
                 url: app.baseUrl + 'card/update',
                 method: 'POST',
@@ -522,12 +592,14 @@ let app = {
                 // masquage du form et apparition de la carte
                 $(event.currentTarget).addClass('is-hidden');
                 $(event.currentTarget).prev().removeClass('is-hidden');
-    
+                
             }).fail(function(e) {
                 console.error(e);
             });
         } 
         else {
+            let cardNumber = $(event.currentTarget).parent().parent().children().length;
+            //console.log(cardNumber);
             $.ajax({
                 url: app.baseUrl + 'card/add',
                 method: 'POST',
@@ -665,11 +737,12 @@ let app = {
                 newBoard.appendChild(newBoardTitle);
                 newBoard.insertAdjacentHTML('beforeend', '<i class="fas fa-trash-alt"></i>');
                 boardsListNode.appendChild(newBoard);
+                document.querySelector('.burger-header').style.display = "block";
 
                 // Je masque le formulaire et je le vide
                 document.querySelector(".burger-new-table").style.display = "none";
                 document.querySelector('.new-board').reset();
-                $('.selected-bg').removeClass('selected-bg');
+                $('.new-board').find('.selected-bg').removeClass('selected-bg');
             }).fail(function(e) {
                 console.error(e);
             });
@@ -727,8 +800,10 @@ let app = {
 
             app.loadedBoard.color = updatedBoard.color;
             if(updatedBoard.background_id) {
+                app.loadedBoard.backgroundId = updatedBoard.background_id
                 app.loadedBoard.backgroundUrl = app.backgrounds[updatedBoard.background_id-1].imageUrl;
             } else {
+                app.loadedBoard.backgroundId = null
                 app.loadedBoard.backgroundUrl = "";
             }
             
@@ -738,8 +813,9 @@ let app = {
             $('.board-title-input').eq(0).val(updatedBoard.title);
             $('.edit-board-colorpicker').eq(0).val(updatedBoard.color);
             
-            //$("img[background-id|='"+updatedBoard.background_id+"']").addClass('selected-bg');
+            $('.modify-table-backgrounds .selected-bg').removeClass('selected-bg');
             document.querySelector(".modify-table").style.display = "none";
+            document.querySelector('.burger-header').style.display = "block";
         }).fail(function(e) {
             console.error(e);
         });
