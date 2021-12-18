@@ -28,7 +28,8 @@
                 <?php
                 if (!empty($_SESSION)) {
                 ?>
-                    <a href="?profile" class="header-user"><i class="fas fa-user-circle"></i></a>
+                    <a href="?profile" class="header-user"><i class="fas fa-user-circle"></i><p class="header-icon-label">Profil</p></a>
+                    <a href="?board" class="header-board"><i class="fas fa-clipboard-list"></i><p class="header-icon-label">Tableaux</p></a>
                     <a href="?logout" class="btn header-logout">Se déconnecter</a>
                 <?php
                 } else {
@@ -40,5 +41,3 @@
                 ?>
             </div>
         </header>
-
-        

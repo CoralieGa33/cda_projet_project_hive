@@ -14,7 +14,7 @@ let app = {
     backgrounds: {},
     
     init: function() {
-        console.log("initialisation ...")
+        //console.log("initialisation ...")
         app.loadBackgrounds();
 
         $('#burger-open').on('click', app.handleOpenMenu);
@@ -30,16 +30,22 @@ let app = {
         $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleConfirmDeleteBoard);
         $('.burger-add-table').on('click', app.handleFormNewBoard);
         $('.board-abord').on('click', app.handleBoardFormAbord);
+        $('.add-liste-input').on('blur', app.handleBlurNewListTitle);
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('click', '.add-card', app.handleFormNewCard);
         $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
+        $('.board-listes').on('click', '.abord-btn', app.handleCardFormAbord);
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
         $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
 
 
         $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
+
+        $(".communication").click(function(){
+            $('.social-icons').toggleClass('open');
+        });
 
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
@@ -106,7 +112,7 @@ let app = {
         if(id) {
             selectedBoardId = id;
         }
-        console.log('Loaded board id : ', selectedBoardId);
+        //console.log('Loaded board id : ', selectedBoardId);
         $.ajax({
             url: app.baseUrl + 'boards',
             method: 'POST',
@@ -150,6 +156,21 @@ let app = {
                     let newCardElement = app.generateCardElement(card);
                     app.addCardElement(newCardElement);
                 })
+
+                // Si une liste est hors-ecran, reset de sa position
+                // en cas de changement d'appareil par exemple
+                let listeHeight = $('.liste[liste-id="'+liste.listeId+'"]').height();
+                let listeWidth = $('.liste[liste-id="'+liste.listeId+'"]').width();
+                let boardHeight = $('.board').height();
+                let boardWidth = $('.board').width();
+                //console.log(boardHeight)
+                //console.log($('.liste[liste-id="'+liste.listeId+'"]').position().top)
+                if($('.liste[liste-id="'+liste.listeId+'"]').position().top > (boardHeight-listeHeight)) {
+                    $('.liste[liste-id="'+liste.listeId+'"]').css('top', 0);
+                }
+                if($('.liste[liste-id="'+liste.listeId+'"]').position().left > (boardWidth-listeWidth)) {
+                    $('.liste[liste-id="'+liste.listeId+'"]').css('left', 0);
+                }
                 
             })
             // J'ajoute à chaque liste la capacité d'être déplacée une fois que TOUTES mes listes sont chargées
@@ -226,16 +247,23 @@ let app = {
         let newListe = document.querySelector('.template-liste').cloneNode(true)
         newListe.id = "liste-"+liste.listeId;
         newListe.classList.remove("template-liste")
-        newListe.classList.add("drag")
         newListe.setAttribute('liste-id', liste.listeId)
         newListe.setAttribute('order-nb', liste.orderNb)
         newListe.querySelector('h3').textContent = liste.title;
         newListe.querySelector('input[name=liste-title]').value = liste.title;
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
-        newListe.querySelector('.liste-cards').classList.add('connectedSortable')
-        newListe.style.left = liste.posLeft+'px';
-        newListe.style.top = liste.posTop+'px';
-        newListe.style.zIndex = liste.orderNb;
+      
+        //console.log(window.innerWidth)
+        if(window.innerWidth >= 1023) {
+            newListe.classList.add("drag");
+            newListe.style.zIndex = liste.orderNb;
+            newListe.style.left = liste.posLeft+'px';
+            newListe.style.top = liste.posTop+'px';
+        } else {
+            document.querySelector('.board-listes').classList.add("res-sort");
+            app.setSortListes();
+        }
+      
         newListe.classList.remove('is-hidden');
         return newListe;
     },
@@ -244,7 +272,12 @@ let app = {
     addListeElement: function(newListeElement) {
         let listeContainer = $('.board-listes');
         listeContainer.append(newListeElement);
-        app.setDragListes();
+
+        if(window.innerWidth >= 1023) {
+            app.setDragListes();
+        } else {
+            app.setSortListes();
+        }
     },
 
     // permet  de générer une nouvelle carte  avec ses détails
@@ -315,9 +348,14 @@ let app = {
             $('.add-liste-input').blur();
             app.addListeElement(newListeElement);
             app.maxListeOrderNb ++
+            app.setDragListes();
         }).fail(function(e) {
             console.error(e);
         });
+    },
+
+    handleBlurNewListTitle: function() {
+        document.querySelector(".add-liste").reset();
     },
 
     // Requête pour mettre à jour une liste donnée
@@ -403,6 +441,16 @@ let app = {
             listeToDelete.remove();
         }).fail(function(e) {
             console.error(e);
+        });
+    },
+
+    // Pour rendre les listes déplaçables en horizontal (responsive)
+    setSortListes: function() {
+        $(".res-sort").sortable({
+            axis: "x",
+            cursor: "move",
+            cancel: ".card",
+            placeholder: "liste-placeholder"
         });
     },
 
@@ -610,6 +658,35 @@ let app = {
         editCard.find('.edit-card-form').removeClass('is-hidden');
     },
 
+    handleCardFormAbord: function(event) {
+        let card = $(event.currentTarget).parent().parent();
+        if(card.attr("card-id")) {
+            card.find('.card-header-title').val(card.find('.card-content-title').text());
+            card.find('.card-header-content').val(card.find('.card-content-description').text());
+
+            let color = card.css('border-color');
+            color = color.replace('rgb(','').replace(')', '');
+            color = color.split(', ');
+            //console.log(color)
+            let hexColor = app.convertRGBtoHex(color[0], color[1], color[2]);
+            card.find('.card-header-color').val(hexColor);
+            
+            card.find('.edit-card-form').addClass('is-hidden');
+            card.find('.card-show').removeClass('is-hidden'); 
+        } else {
+            card.remove();
+        }
+    },
+
+    colorToHex: function(color) {
+        var hexadecimal = color.toString(16);
+        return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+    },
+
+    convertRGBtoHex(red, green, blue) {
+        return "#" + app.colorToHex(parseInt(red)) + app.colorToHex(parseInt(green)) + app.colorToHex(parseInt(blue));
+    },
+
     // Sert à afficher un indicateur visuel sur le background sélectionné
     // Et indirectement à récupérer son id à l'envoi du formulaire
     selectBackground: function(event) {
@@ -797,4 +874,7 @@ let app = {
     }
 };
 
-document.addEventListener('DOMContentLoaded', app.init);
+// Pour charger le script seulement sur la page concernée
+if(window.location.search === "?board") {
+    document.addEventListener('DOMContentLoaded', app.init);
+}

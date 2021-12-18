@@ -17,5 +17,6 @@
             <label for="edit-card-color">Choisir une couleur</label>
         </div>
         <button type="submit" class="sm-btn">Enregistrer</button>
+        <button type="button" class="abord-btn">Annuler</button>
     </form>
 </li>

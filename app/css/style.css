@@ -142,10 +142,15 @@ a {
   margin: 1rem 0.5rem;
 }
 
+.header-navigation a {
+  margin-right: 1.5rem;
+  text-align: center;
+}
+
 .header-navigation .fas {
   font-size: 2.3rem;
-  margin-right: 0.8rem;
   color: #83367B;
+  margin-bottom: 0.2rem;
 }
 
 .header-navigation .fas:hover {
@@ -185,6 +190,10 @@ a {
 
 .header-navigation .fas:visited {
   color: #5d51f7;
+}
+
+.header-navigation .header-icon-label {
+  font-size: 0.8rem;
 }
 
 .footer {
@@ -230,6 +239,15 @@ a {
   color: #83367B;
 }
 
+.footer-favicons .social-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  color: #83367B;
+}
+
 .footer-favicons a {
   padding: 0.3rem 0.5rem;
 }
@@ -240,6 +258,10 @@ a {
 
 .footer a:visited {
   color: #83367B;
+}
+
+.footer .communication {
+  display: none;
 }
 
 .accueil {
@@ -547,7 +569,21 @@ a {
   opacity: 1;
 }
 
-.board-listes .card {
+.board-listes .liste-placeholder {
+  border: #4B5C6B dashed 1px;
+  height: 20rem;
+  width: 15rem;
+  border-radius: 5px;
+  background-color: #4B5C6B20;
+  vertical-align: top;
+  display: inline-block;
+  position: relative;
+  margin-right: 0.5rem;
+  left: auto;
+  top: 0.5rem;
+}
+
+.board-listes .liste .card {
   padding: 0.5rem;
   border: 1px solid #4B5C6B;
   border-radius: 3px;
@@ -672,6 +708,25 @@ a {
   color: #FBFBF9;
 }
 
+.board-listes .liste .card .edit-card-form .abord-btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+  margin: 0.2rem auto;
+  background: none;
+  border: none;
+  color: #4B5C6B;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+}
+
+.board-listes .liste .card .edit-card-form .abord-btn:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .menu-burger {
   position: relative;
 }
@@ -685,7 +740,7 @@ a {
   margin: 0;
   color: #FBFBF9;
   position: absolute;
-  z-index: 99998;
+  z-index: 9999;
   height: calc(100vh - 4.5rem - 2.2rem);
 }
 
@@ -1071,14 +1126,29 @@ a {
   line-height: normal;
 }
 
-.signin .background, .signup .background, .registered .background {
+.signin .background, .signup .background, .registered .background, .profile .background {
   background-image: url(../images/bkgd.jpeg);
+  opacity: 0.7;
 }
 
 /*----------------------------------------------------------- 
 ------------------------ Media Queries ----------------------
 ------------------------------------------------------------*/
+/* Very Large devices (desktops, 4K) */
+@media (min-width: 2560px) {
+  .accueil .row-home {
+    width: 40%;
+    margin-top: 10rem;
+  }
+}
+
 /* Large devices (desktops, less than 1200px) */
+@media (max-width: 1200px) {
+  .accueil .row-home {
+    width: 80%;
+  }
+}
+
 /* Medium devices (tablets, less than 1024px) */
 @media (max-width: 1024px) {
   .accueil .row-home {
@@ -1089,9 +1159,44 @@ a {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    width: 70%;
   }
   .accueil .text, .accueil .preview {
     width: 100%;
+  }
+  .board-header {
+    position: relative;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .board-header .menu-burger {
+    position: absolute;
+    left: 1rem;
+  }
+  .board-header .board-title {
+    max-width: 80%;
+    margin: 0 1rem 0.5rem;
+  }
+  .board-listes {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  .board-listes .liste {
+    vertical-align: top;
+    display: inline-block;
+    white-space: normal;
+    position: relative;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-right: 0.5rem;
+    left: auto;
+    top: 0.5rem;
+  }
+  .delete-board-confirm {
+    width: 30rem;
+    margin: 5rem 5rem;
   }
 }
 
@@ -1103,21 +1208,6 @@ a {
   }
   .accueil .row-home {
     width: 90%;
-  }
-  .board-header {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    position: relative;
-  }
-  .board-header .menu-burger {
-    position: absolute;
-    left: 1rem;
-  }
-  .board-header .board-title {
-    max-width: 80%;
-    margin: 0 1rem 0.5rem;
   }
 }
 
@@ -1135,6 +1225,16 @@ a {
     width: 100%;
     margin: 0 auto 1rem;
   }
+  .board-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .delete-board-confirm {
+    width: 90%;
+    margin: 5rem 1rem;
+  }
 }
 
 /* Media queries pour le footer et le header */
@@ -1142,19 +1242,73 @@ a {
   .header .btn, .footer .btn {
     font-size: 0.5rem;
   }
-  .board-lists {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+  .board-listes {
+    height: calc(100vh - 4.5rem - 7.5rem - 2.2rem);
   }
-  .board-lists .liste {
+  .board-listes .liste {
     position: relative;
-    width: 80%;
+    width: 90%;
+    margin: 1rem;
     top: auto;
     left: auto;
   }
-  footer .nav {
-    font-size: 3 rem;
+  .board-header {
+    height: 7.5rem;
+  }
+  .footer {
+    padding-right: 0;
+  }
+  .footer .nav {
+    width: 30%;
+  }
+  .footer .footer-favicons {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: end;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+  }
+  .footer .footer-favicons .communication {
+    display: inline-block;
+    text-align: end;
+  }
+  .footer .footer-favicons .communication .fa-comments {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+  }
+  .footer .footer-favicons .social-icons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    margin-bottom: 1.7rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 2.5rem;
+    height: 12rem;
+    bottom: 0.7rem;
+    right: -2.5rem;
+    background-color: #83367B;
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+  }
+  .footer .footer-favicons .social-icons a {
+    color: #FBFBF9;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+  }
+  .footer .footer-favicons .open {
+    -webkit-transform: translate(-2.5rem, 0);
+            transform: translate(-2.5rem, 0);
   }
 }
 /*# sourceMappingURL=style.css.map */
