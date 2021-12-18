@@ -1141,35 +1141,14 @@ a {
             margin: 0 auto 1rem;
         }
     }
-
-    .board{
-        &-header{
-            flex-direction: column;
-        }
-    }
-
-    .delete-board-confirm {
-        width: 90%;
-        margin: 5rem 1rem;
-    }
-}
-
-/* Media queries pour le footer et le header */
-@media screen and (max-device-width: 480px)
-{
-    .header, .footer{
-        .btn {
-        font-size: 0.5rem;
-        }
-    }
-
+    
     .board{
         &-listes {
             height: calc(100vh - 4.5rem - 7.5rem - 2.2rem);
             
             .liste {
                 position: relative;
-                width: 90%;
+                width: 18rem;
                 margin: 1rem;
                 top: auto;
                 left: auto;
@@ -1177,17 +1156,23 @@ a {
         }
         
         &-header {
+            flex-direction: column;
             height: 7.5rem;
         }
     }
 
+    .delete-board-confirm {
+        width: 90%;
+        margin: 5rem 1rem;
+    }
+    
     .footer{
         padding-right: 0;
         
         .nav {
             width: 30%;
         }
-
+    
         .footer-favicons {
             justify-content: end;
             flex-direction: column;
@@ -1203,7 +1188,7 @@ a {
                 }
                 
             }
-
+    
             .social-icons {
                 //display: none;
                 display: flex;
@@ -1217,17 +1202,32 @@ a {
                 right: -2.5rem;
                 background-color: $pink-color;
                 transition: transform 1s;
-
+    
                 a {
                     color: $light-color;
                     padding: 0.5rem;
                     font-size: 1.5rem;
                 }
             }
-            
+    
             .open {
                 transform: translate(-2.5rem, 0);
             }
+        }
+    }
+}
+
+/* Media queries pour le footer et le header */
+@media screen and (max-device-width: 480px)
+{
+    .header, .footer{
+        .btn {
+        font-size: 0.5rem;
+        }
+    }
+    .board{
+        .liste {
+            width: 90%;
         }
     }
 }

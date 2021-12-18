@@ -215,17 +215,4 @@ class UserRepository extends ManagerRepository
             }
         }
     }
-
-    public function errorMessage($error){ //$error = phrase d'erreur
-        setcookie(
-            'ERROR_MESSAGE',
-            $error,
-            [
-                'expires' => time() + 1,
-                'secure'  => true,
-                'httponly' => true,
-            ]
-        );
-    }
-    
 }
