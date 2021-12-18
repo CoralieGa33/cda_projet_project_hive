@@ -1,7 +1,6 @@
 let app = {
     // Penser à modifier ici l'adresse de votre API
-    //baseUrl: 'http://localhost:81/Projets/cda_projet_project_hive/app/?api/',
-    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive_test/app/?api/',
+    baseUrl: 'http://localhost/cda/Projets/cda_projet_project_hive/app/?api/',
     
     maxListeOrderNb: 0,
     loadedBoard: {

@@ -583,7 +583,7 @@ a {
   top: 0.5rem;
 }
 
-.board-listes .liste .card {
+.board-listes .card {
   padding: 0.5rem;
   border: 1px solid #4B5C6B;
   border-radius: 3px;
@@ -708,7 +708,7 @@ a {
   color: #FBFBF9;
 }
 
-.board-listes .liste .card .edit-card-form .abord-btn {
+.board-listes .card .edit-card-form .abord-btn {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -721,10 +721,28 @@ a {
   font-size: 0.7rem;
 }
 
-.board-listes .liste .card .edit-card-form .abord-btn:hover {
+.board-listes .card .edit-card-form .abord-btn:hover {
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
+}
+
+.board-listes .card .sm-btn {
+  display: block;
+  margin: 0.3rem auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  border-radius: 3px;
+  border: solid 2px #4B5C6B;
+  color: #4B5C6B;
+  line-height: normal;
+  background-color: #4B5C6B30;
+}
+
+.board-listes .card .sm-btn:hover {
+  cursor: pointer;
+  background-color: #4B5C6B;
+  color: #FBFBF9;
 }
 
 .menu-burger {
