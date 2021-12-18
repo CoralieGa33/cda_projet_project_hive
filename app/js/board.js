@@ -30,10 +30,12 @@ let app = {
         $('.menu-boards-list').on('click', '.fa-trash-alt', app.handleConfirmDeleteBoard);
         $('.burger-add-table').on('click', app.handleFormNewBoard);
         $('.board-abord').on('click', app.handleBoardFormAbord);
+        $('.add-liste-input').on('blur', app.handleBlurNewListTitle);
         $('.board-listes').on('dblclick', '.liste-header-show', app.handleDblClickListTitle);
         $('.board-listes').on('blur', '.liste-header-title-input', app.handleBlurListTitle);
         $('.board-listes').on('click', '.add-card', app.handleFormNewCard);
         $('.board-listes').on('click', '.modify-card', app.handleClickModifyCard);
+        $('.board-listes').on('click', '.abord-btn', app.handleCardFormAbord);
         $('.menu-boards-list').on('click', '.boards-list-item', app.handleSelectBoard);
         $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
 
@@ -349,6 +351,10 @@ let app = {
         });
     },
 
+    handleBlurNewListTitle: function() {
+        document.querySelector(".add-liste").reset();
+    },
+
     // Requête pour mettre à jour une liste donnée
     updateListe: function(liste) {
         let listeTitle = liste.find('.liste-header-title-input').val();
@@ -578,6 +584,35 @@ let app = {
         //console.log(editCard); 
         editCard.find('.card-show').addClass('is-hidden'); 
         editCard.find('.edit-card-form').removeClass('is-hidden');
+    },
+
+    handleCardFormAbord: function(event) {
+        let card = $(event.currentTarget).parent().parent();
+        if(card.attr("card-id")) {
+            card.find('.card-header-title').val(card.find('.card-content-title').text());
+            card.find('.card-header-content').val(card.find('.card-content-description').text());
+
+            let color = card.css('border-color');
+            color = color.replace('rgb(','').replace(')', '');
+            color = color.split(', ');
+            //console.log(color)
+            let hexColor = app.convertRGBtoHex(color[0], color[1], color[2]);
+            card.find('.card-header-color').val(hexColor);
+            
+            card.find('.edit-card-form').addClass('is-hidden');
+            card.find('.card-show').removeClass('is-hidden'); 
+        } else {
+            card.remove();
+        }
+    },
+
+    colorToHex: function(color) {
+        var hexadecimal = color.toString(16);
+        return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+    },
+
+    convertRGBtoHex(red, green, blue) {
+        return "#" + app.colorToHex(parseInt(red)) + app.colorToHex(parseInt(green)) + app.colorToHex(parseInt(blue));
     },
 
     // Sert à afficher un indicateur visuel sur le background sélectionné

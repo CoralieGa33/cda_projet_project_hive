@@ -587,6 +587,22 @@ a {
                                 color: $light-color;
                             }
                         }
+                        .abord-btn {
+                            width: fit-content;
+                            display: block;
+                            margin: 0.2rem auto;
+                            background: none;
+                            border: none;
+                            color: $grey-color;
+                            font-family: 'Poppins', sans-serif;
+                            font-size: 0.7rem;
+                    
+                            &:hover {
+                                text-decoration: underline;
+                                font-weight: bold;
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
             //Card end

@@ -685,6 +685,25 @@ a {
   color: #FBFBF9;
 }
 
+.board-listes .liste .card .edit-card-form .abord-btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+  margin: 0.2rem auto;
+  background: none;
+  border: none;
+  color: #4B5C6B;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+}
+
+.board-listes .liste .card .edit-card-form .abord-btn:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .menu-burger {
   position: relative;
 }
