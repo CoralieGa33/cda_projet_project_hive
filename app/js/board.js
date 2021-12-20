@@ -331,27 +331,29 @@ let app = {
         event.preventDefault();
         let newListeName = $('.add-liste-input').eq(0).val();
         let boardId = $('.board').attr('board-id');
-        $.ajax({
-            url: app.baseUrl + 'liste/add',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                title: newListeName,
-                orderNb: parseInt(app.maxListeOrderNb)+1,
-                board_id: boardId,
-            }
-        }).done(function(liste) {
-            // Si c'est ok, je génère la nouvelle liste et je l'ajoute au DOM
-            // ça évite de recharger la page et de faire une nouvelle requête
-            let newListeElement = app.generateListeElement(liste);
-            $('.add-liste-input').eq(0).val("");
-            $('.add-liste-input').blur();
-            app.addListeElement(newListeElement);
-            app.maxListeOrderNb ++
-            app.setDragListes();
-        }).fail(function(e) {
-            console.error(e);
-        });
+        if(newListeName.trim()) {
+            $.ajax({
+                url: app.baseUrl + 'liste/add',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    title: newListeName,
+                    orderNb: parseInt(app.maxListeOrderNb)+1,
+                    board_id: boardId,
+                }
+            }).done(function(liste) {
+                // Si c'est ok, je génère la nouvelle liste et je l'ajoute au DOM
+                // ça évite de recharger la page et de faire une nouvelle requête
+                let newListeElement = app.generateListeElement(liste);
+                $('.add-liste-input').eq(0).val("");
+                $('.add-liste-input').blur();
+                app.addListeElement(newListeElement);
+                app.maxListeOrderNb ++
+                app.setDragListes();
+            }).fail(function(e) {
+                console.error(e);
+            });
+        }
     },
 
     handleBlurNewListTitle: function() {
@@ -361,27 +363,29 @@ let app = {
     // Requête pour mettre à jour une liste donnée
     updateListe: function(liste) {
         let listeTitle = liste.find('.liste-header-title-input').val();
-        $.ajax({
-            url: app.baseUrl + 'liste/update',
-            method: 'POST',
-            data: {
-                listeId: liste.attr('liste-id'),
-                title: listeTitle,
-                orderNb: liste.attr('order-nb'),
-                posLeft: liste.position().left,
-                posTop: liste.position().top,
-            }
-        }).done(function(updatedListe) {
-            updatedListe = JSON.parse(updatedListe);
-            // Si c'est ok je mets à jour les détails la liste ciblée dans le DOM
-            let listeToUpdateId = updatedListe.listeId;
-            let listeToUpdate = $('.liste[liste-id='+ listeToUpdateId +']');
-            listeToUpdate.attr('order-nb', updatedListe.orderNb)
-            listeToUpdate.find('h3').text(updatedListe.title);
-            listeToUpdate.find('input[name=liste-title]').val( updatedListe.title);
-        }).fail(function(e) {
-            console.error(e);
-        });
+        if(listeTitle.trim()) {
+            $.ajax({
+                url: app.baseUrl + 'liste/update',
+                method: 'POST',
+                data: {
+                    listeId: liste.attr('liste-id'),
+                    title: listeTitle,
+                    orderNb: liste.attr('order-nb'),
+                    posLeft: liste.position().left,
+                    posTop: liste.position().top,
+                }
+            }).done(function(updatedListe) {
+                updatedListe = JSON.parse(updatedListe);
+                // Si c'est ok je mets à jour les détails la liste ciblée dans le DOM
+                let listeToUpdateId = updatedListe.listeId;
+                let listeToUpdate = $('.liste[liste-id='+ listeToUpdateId +']');
+                listeToUpdate.attr('order-nb', updatedListe.orderNb)
+                listeToUpdate.find('h3').text(updatedListe.title);
+                listeToUpdate.find('input[name=liste-title]').val( updatedListe.title);
+            }).fail(function(e) {
+                console.error(e);
+            });
+        }
     },
 
     // Sélectionne et envoie la liste complète visée par l'action pour la requête
@@ -569,64 +573,82 @@ let app = {
             cardToEditId = $(event.currentTarget).parent().attr('card-id');
             //console.log(cardToEditId);
             let cardNumber = $(event.currentTarget).parent().attr('order-nb');
-            console.log(cardNumber);
-            $.ajax({
-                url: app.baseUrl + 'card/update',
-                method: 'POST',
-                data: {
-                    title: cardTitleInput,
-                    content: cardTextContent,
-                    orderNb: cardNumber,
-                    color: cardColor,
-                    liste_id: listeId,
-                    cardId: cardToEditId,
-                }
-            }).done(function(updatedCard) {
-                // Si c'est ok, je complète la nouvelle carte avec les infos reçues
-                // elle a déjà été créée dans le DOM lors du click sur le +
-                updatedCard = JSON.parse(updatedCard);
-                //console.log(updatedCard)
-                $(event.currentTarget).prev().find('.card-content-title').text(updatedCard.title);
-                $(event.currentTarget).prev().find('.card-content-description').text(updatedCard.content);
-                $(event.currentTarget).parent().css('border-color', updatedCard.color);
-                // masquage du form et apparition de la carte
-                $(event.currentTarget).addClass('is-hidden');
-                $(event.currentTarget).prev().removeClass('is-hidden');
-                
-            }).fail(function(e) {
-                console.error(e);
-            });
+            //console.log(cardNumber);
+            if(cardTitleInput.trim()) {
+                $.ajax({
+                    url: app.baseUrl + 'card/update',
+                    method: 'POST',
+                    data: {
+                        title: cardTitleInput,
+                        content: cardTextContent,
+                        orderNb: cardNumber,
+                        color: cardColor,
+                        liste_id: listeId,
+                        cardId: cardToEditId,
+                    }
+                }).done(function(updatedCard) {
+                    // Si c'est ok, je complète la nouvelle carte avec les infos reçues
+                    // elle a déjà été créée dans le DOM lors du click sur le +
+                    updatedCard = JSON.parse(updatedCard);
+                    //console.log(updatedCard)
+                    $(event.currentTarget).prev().find('.card-content-title').text(updatedCard.title);
+                    $(event.currentTarget).prev().find('.card-content-description').text(updatedCard.content);
+                    $(event.currentTarget).parent().css('border-color', updatedCard.color);
+                    // masquage du form et apparition de la carte
+                    $(event.currentTarget).addClass('is-hidden');
+                    $(event.currentTarget).prev().removeClass('is-hidden');
+                    
+                }).fail(function(e) {
+                    console.error(e);
+                });
+            } else {
+                // Si pas de titre, j'affiche un message d'erreur
+                let errorMessage  =  document.createElement('p');
+                errorMessage.classList.add('error-message');
+                errorMessage.textContent = "Merci de renseigner un titre";
+                let cardForm = $(event.currentTarget).parent();
+                cardForm.prepend(errorMessage);
+            }
         } 
         else {
             let cardNumber = $(event.currentTarget).parent().parent().children().length;
             //console.log(cardNumber);
-            $.ajax({
-                url: app.baseUrl + 'card/add',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    title: cardTitleInput,
-                    content: cardTextContent,
-                    orderNb: cardNumber,
-                    color: cardColor,
-                    liste_id: listeId,
-                }
-            }).done(function(card) {
-                // Si c'est ok, je complète la nouvelle carte avec les infos reçues
-                // elle a déjà été créée dans le DOM lors du click sur le +
-                $(event.currentTarget).prev().find('.card-content-title').text(card.title);
-                $(event.currentTarget).prev().find('.card-content-description').text(card.content);
-                $(event.currentTarget).parent().attr('id', 'card-'+card.cardId);
-                $(event.currentTarget).parent().attr('liste-id', card.liste_id);
-                $(event.currentTarget).parent().attr('card-id', card.cardId);
-                $(event.currentTarget).parent().css('border-color', card.color);
-                // masquage du form et apparition de la carte
-                $(event.currentTarget).addClass('is-hidden');
-                $(event.currentTarget).prev().removeClass('is-hidden');
-    
-            }).fail(function(e) {
-                console.error(e);
-            });
+            if(cardTitleInput.trim()) {
+                $.ajax({
+                    url: app.baseUrl + 'card/add',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        title: cardTitleInput,
+                        content: cardTextContent,
+                        orderNb: cardNumber,
+                        color: cardColor,
+                        liste_id: listeId,
+                    }
+                }).done(function(card) {
+                    // Si c'est ok, je complète la nouvelle carte avec les infos reçues
+                    // elle a déjà été créée dans le DOM lors du click sur le +
+                    $(event.currentTarget).prev().find('.card-content-title').text(card.title);
+                    $(event.currentTarget).prev().find('.card-content-description').text(card.content);
+                    $(event.currentTarget).parent().attr('id', 'card-'+card.cardId);
+                    $(event.currentTarget).parent().attr('liste-id', card.liste_id);
+                    $(event.currentTarget).parent().attr('card-id', card.cardId);
+                    $(event.currentTarget).parent().css('border-color', card.color);
+                    // masquage du form et apparition de la carte
+                    $(event.currentTarget).addClass('is-hidden');
+                    $(event.currentTarget).prev().removeClass('is-hidden');
+        
+                }).fail(function(e) {
+                    console.error(e);
+                });
+            } else {
+                // Si pas de titre, j'affiche un message d'erreur
+                let errorMessage  =  document.createElement('p');
+                errorMessage.classList.add('error-message');
+                errorMessage.textContent = "Merci de renseigner un titre";
+                let cardForm = $(event.currentTarget).parent();
+                cardForm.prepend(errorMessage);
+            }
         }
     },
 
@@ -670,7 +692,7 @@ let app = {
             //console.log(color)
             let hexColor = app.convertRGBtoHex(color[0], color[1], color[2]);
             card.find('.card-header-color').val(hexColor);
-            
+            card.find('.error-message').remove();
             card.find('.edit-card-form').addClass('is-hidden');
             card.find('.card-show').removeClass('is-hidden'); 
         } else {

@@ -12,9 +12,9 @@ require_once 'includes/header.php';
         <h3>1. Editeur</h3>
         <p class="desc desc-first">L'Agence nationale pour la formation professionnelle (AFPA) est l'éditeur du site Project Hive.</p>
         <p class="desc">Siège social de l’AFPA :</p>
-        <p class="desc">Tour Cityscope</p>
-        <p class="desc">3 rue Franklin</p>
-        <p class="desc">93100 Montreuil</p>
+        <p class="desc desc-addr">Tour Cityscope</p>
+        <p class="desc desc-addr">3 rue Franklin</p>
+        <p class="desc desc-addr">93100 Montreuil</p>
 
         <h3>2. Directeur de la publication</h3>
         <p class="desc">Florent Longuépée : Directeur de la communication</p>

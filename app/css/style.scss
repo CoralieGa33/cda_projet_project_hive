@@ -659,6 +659,11 @@ a {
             }
         }
         //Card end
+        .error-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.6rem;
+            color: red;
+        }
     }
 }
 //Board end
@@ -1095,6 +1100,10 @@ a {
             &-first {
                 margin: 0.5rem auto;
                 text-indent: 1rem;
+            }
+
+            &-addr {
+                text-indent: 2rem;
             }
         }
 

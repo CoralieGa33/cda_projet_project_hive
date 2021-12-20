@@ -45,10 +45,10 @@ require_once 'includes/header.php';
         <p class="desc">Pour toute information ou exercice de vos droits Informatique et Libertés sur les traitements de données personnelles gérés par Project Hive, vous pouvez contacter le délégué à la protection des données (DPO) :</p>
         <p class="desc">- par mail: contact.dpo@project-hive.afpa.fr</p>
         <p class="desc">- par voie postale à l’adresse suivante :</p>
-        <p class="desc">AFPA</p>
-        <p class="desc">Tour Cityscope</p>
-        <p class="desc">3 rue Franklin</p>
-        <p class="desc">93100 Montreuil</p>
+        <p class="desc desc-addr">AFPA</p>
+        <p class="desc desc-addr">Tour Cityscope</p>
+        <p class="desc desc-addr">3 rue Franklin</p>
+        <p class="desc desc-addr">93100 Montreuil</p>
         <p class="desc">Si vous estimez, après nous avoir contactés, que vos droits sur vos données ne sont pas respectés, vous pouvez adresser une réclamation (plainte) à la CNIL.</p>
 
         <h3>4. Conditions techniques d’accès</h3>

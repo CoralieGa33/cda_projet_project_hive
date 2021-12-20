@@ -749,6 +749,12 @@ a {
   color: #FBFBF9;
 }
 
+.board-listes .error-message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.6rem;
+  color: red;
+}
+
 .menu-burger {
   position: relative;
 }
@@ -1248,6 +1254,17 @@ a {
 .not_found-text .maybe-first {
   margin: 0.5rem auto;
   text-indent: 1rem;
+}
+
+.about-text .desc-addr,
+.about-text .maybe-addr,
+.mentions-text .desc-addr,
+.mentions-text .maybe-addr,
+.rgpd-text .desc-addr,
+.rgpd-text .maybe-addr,
+.not_found-text .desc-addr,
+.not_found-text .maybe-addr {
+  text-indent: 2rem;
 }
 
 .about-text .pub-date,
