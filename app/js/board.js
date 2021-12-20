@@ -251,7 +251,8 @@ let app = {
         newListe.querySelector('h3').textContent = liste.title;
         newListe.querySelector('input[name=liste-title]').value = liste.title;
         newListe.querySelector('.liste-cards').classList.add('liste-cards-'+liste.listeId)
-      
+        newListe.querySelector('.liste-cards').classList.add('connectedSortable')
+        
         //console.log(window.innerWidth)
         if(window.innerWidth >= 1023) {
             newListe.classList.add("drag");
@@ -262,7 +263,7 @@ let app = {
             document.querySelector('.board-listes').classList.add("res-sort");
             app.setSortListes();
         }
-      
+        
         newListe.classList.remove('is-hidden');
         return newListe;
     },
