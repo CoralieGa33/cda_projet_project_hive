@@ -18,26 +18,26 @@
 </head>
 
 <body>
-
+    <header class="header">
+        <div class="header-logo">
+            <a href="?"><img src="images/logo.png" alt="Logo Project Hive"></a>
+        </div>
+        <div class="header-navigation">
+        <?php
+            if (!empty($_SESSION)) {
+                ?>
+                <a href="?profile" class="header-user"><i class="fas fa-user-circle"></i><p class="header-icon-label">Profil</p></a>
+                <a href="?board" class="header-board"><i class="fas fa-clipboard-list"></i><p class="header-icon-label">Tableaux</p></a>
+                <a href="?logout" class="btn header-logout">Se déconnecter</a>
+                <?php
+            } else {
+                ?>
+                <a href="?signup" class="btn header-signup">S'inscrire</a>
+                <a href="?signin" class="btn header-signin">Se connecter</a>
+                <?php
+            }
+            ?>
+        </div>
+    </header>
+    
     <div class="container">
-        <header class="header">
-            <div class="header-logo">
-                <a href="?"><img src="images/logo.png" alt="Logo Project Hive"></a>
-            </div>
-            <div class="header-navigation">
-                <?php
-                if (!empty($_SESSION)) {
-                ?>
-                    <a href="?profile" class="header-user"><i class="fas fa-user-circle"></i><p class="header-icon-label">Profil</p></a>
-                    <a href="?board" class="header-board"><i class="fas fa-clipboard-list"></i><p class="header-icon-label">Tableaux</p></a>
-                    <a href="?logout" class="btn header-logout">Se déconnecter</a>
-                <?php
-                } else {
-                ?>
-                    <a href="?signup" class="btn header-signup">S'inscrire</a>
-                    <a href="?signin" class="btn header-signin">Se connecter</a>
-                <?php
-                }
-                ?>
-            </div>
-        </header>

@@ -99,7 +99,8 @@ a {
 }
 
 .container {
-  height: 100%;
+  height: calc(100vh - 4.5rem - 2.2rem);
+  padding-top: 4.5rem;
 }
 
 .header {
@@ -117,6 +118,9 @@ a {
   font-family: 'Poppins', sans-serif;
   height: 4.5rem;
   border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .header-logo {
@@ -1178,19 +1182,48 @@ a {
           box-shadow: 0 0 5px #83367B;
 }
 
+.about-text h2, .about-text h3, .about-text h4,
+.mentions-text h2,
+.mentions-text h3,
+.mentions-text h4,
+.rgpd-text h2,
+.rgpd-text h3,
+.rgpd-text h4,
+.not_found-text h2,
+.not_found-text h3,
+.not_found-text h4 {
+  text-transform: uppercase;
+  color: #83367B;
+  font-family: 'Solway', serif;
+  letter-spacing: .1rem;
+  font-weight: bold;
+}
+
 .about-text h2,
 .mentions-text h2,
 .rgpd-text h2,
 .not_found-text h2 {
-  text-transform: uppercase;
   font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #83367B;
-  font-family: 'Solway', serif;
   text-align: center;
-  letter-spacing: .1rem;
+  margin-bottom: 2rem;
   text-shadow: -1px -1px 1px #83367B70, 2px 2px 1px #83367B25;
-  font-weight: bold;
+}
+
+.about-text h3,
+.mentions-text h3,
+.rgpd-text h3,
+.not_found-text h3 {
+  font-size: 1.3rem;
+  margin: 1rem auto;
+}
+
+.about-text h4,
+.mentions-text h4,
+.rgpd-text h4,
+.not_found-text h4 {
+  font-size: 1rem;
+  text-indent: 1rem;
+  margin: 0.5rem auto;
 }
 
 .about-text .desc,
@@ -1202,10 +1235,30 @@ a {
 .not_found-text .desc,
 .not_found-text .maybe {
   font-family: 'Poppins', sans-serif;
-  margin-top: 3%;
-  margin-bottom: 1%;
-  text-indent: 1rem;
   line-height: 1.3rem;
+}
+
+.about-text .desc-first,
+.about-text .maybe-first,
+.mentions-text .desc-first,
+.mentions-text .maybe-first,
+.rgpd-text .desc-first,
+.rgpd-text .maybe-first,
+.not_found-text .desc-first,
+.not_found-text .maybe-first {
+  margin: 0.5rem auto;
+  text-indent: 1rem;
+}
+
+.about-text .pub-date,
+.mentions-text .pub-date,
+.rgpd-text .pub-date,
+.not_found-text .pub-date {
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin: 2rem auto 1rem;
+  text-align: end;
 }
 
 .about-text .compass,
