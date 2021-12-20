@@ -32,7 +32,16 @@ class Router {
     public function Run() {
         session_start();
         if($_GET) {
-            if(!empty($_SESSION['userId'])) {
+            if (isset($_GET['about'])) {
+                require "../app/templates/about.php";
+            }
+            elseif (isset($_GET['mentions'])) {
+                require "../app/templates/mentions.php";
+            }
+            elseif (isset($_GET['rgpd'])) {
+                require "../app/templates/rgpd.php";
+            }
+            elseif(!empty($_SESSION['userId'])) {
                 if (isset($_GET['profile'])) {
                     $this->userController->profile($_SESSION["userId"], $_POST);
                 }
@@ -75,6 +84,9 @@ class Router {
                 elseif (isset($_GET['api/boards'])) {
                     $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
                 }
+                else {
+                    require "../app/templates/not_found.php";
+                }
             }
             elseif (isset($_GET['signup'])) {
                 $this->userController->signup($_POST);
@@ -84,15 +96,6 @@ class Router {
             }
             elseif (isset($_GET['signin'])) {
                 $this->userController->signin($_POST);
-            }
-            elseif (isset($_GET['about'])) {
-                require "../app/templates/about.php";
-            }
-            elseif (isset($_GET['mentions'])) {
-                require "../app/templates/mentions.php";
-            }
-            elseif (isset($_GET['rgpd'])) {
-                require "../app/templates/rgpd.php";
             }
             else {
                 require "../app/templates/not_found.php";
