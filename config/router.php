@@ -32,10 +32,51 @@ class Router {
     public function Run() {
         session_start();
         if($_GET) {
-            if (isset($_GET['fixtures'])) {
-            $this->userController->loadFixtures();
+            if(!empty($_SESSION['userId'])) {
+                if (isset($_GET['profile'])) {
+                    $this->userController->profile($_SESSION["userId"], $_POST);
+                }
+                elseif (isset($_GET['editpass'])) {
+                    $this->userController->editpass($_SESSION["userId"], $_POST);
+                }
+                elseif (isset($_GET['logout'])) {
+                    session_destroy();
+                    header('Location: ?');
+                }
+                elseif (isset($_GET['board'])) {
+                    $this->userController->showBoard();
+                }
+                elseif (isset($_GET['api/board'])) {
+                    $this->boardController->getBoardInfos($_POST["boardId"]);
+                }elseif (isset($_GET['api/board/add'])) {
+                    $this->boardController->newBoard($_POST, $_SESSION["userId"]);
+                }elseif (isset($_GET['api/board/edit'])) {
+                    $this->boardController->editBoard($_POST);
+                }elseif (isset($_GET['api/board/delete'])) {
+                    $this->boardController->deleteBoard($_POST["boardId"]);
+                }
+                elseif (isset($_GET['api/liste/add'])) {
+                    $this->listeController->newListe($_POST);
+                }elseif (isset($_GET['api/liste/update'])) {
+                    $this->listeController->editListe($_POST);
+                }elseif (isset($_GET['api/liste/delete'])) {
+                    $this->listeController->deleteListe($_POST["listeId"]);
+                }
+                elseif (isset($_GET['api/card/add'])) {
+                    $this->cardController->newCard($_POST);
+                }elseif (isset($_GET['api/card/update'])) {
+                    $this->cardController->editCard($_POST);  
+                }elseif (isset($_GET['api/card/delete'])) {
+                    $this->cardController->deleteCard($_POST["cardId"]);
+                }
+                elseif (isset($_GET['api/backgrounds'])) {
+                    $this->backgroundController->getBackgrounds();
+                }
+                elseif (isset($_GET['api/boards'])) {
+                    $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
+                }
             }
-            if (isset($_GET['signup'])) {
+            elseif (isset($_GET['signup'])) {
                 $this->userController->signup($_POST);
             }
             elseif (isset($_GET['registered'])) {
@@ -44,54 +85,17 @@ class Router {
             elseif (isset($_GET['signin'])) {
                 $this->userController->signin($_POST);
             }
-            elseif (isset($_GET['profile'])) {
-                $this->userController->profile($_SESSION["userId"], $_POST);
+            elseif (isset($_GET['about'])) {
+                require "../app/templates/about.php";
             }
-            elseif (isset($_GET['editpass'])) {
-                $this->userController->editpass($_SESSION["userId"], $_POST);
+            elseif (isset($_GET['mentions'])) {
+                require "../app/templates/mentions.php";
             }
-            elseif (isset($_GET['logout'])) {
-                session_destroy();
-                header('Location: ?');
-            }
-            elseif (isset($_GET['board'])) {
-                $this->userController->showBoard();
-            }
-            elseif (isset($_GET['api/board'])) {
-                $this->boardController->getBoardInfos($_POST["boardId"]);
-            }elseif (isset($_GET['api/board/add'])) {
-                $this->boardController->newBoard($_POST, $_SESSION["userId"]);
-            }elseif (isset($_GET['api/board/edit'])) {
-                $this->boardController->editBoard($_POST);
-            }elseif (isset($_GET['api/board/delete'])) {
-                $this->boardController->deleteBoard($_POST["boardId"]);
-            }
-            elseif (isset($_GET['api/liste'])) {
-                $this->listeController->getListe($listId);
-            }elseif (isset($_GET['api/liste/add'])) {
-                $this->listeController->newListe($_POST);
-            }elseif (isset($_GET['api/liste/update'])) {
-                $this->listeController->editListe($_POST);
-            }elseif (isset($_GET['api/liste/delete'])) {
-                $this->listeController->deleteListe($_POST["listeId"]);
-            }
-            elseif (isset($_GET['api/card'])) {
-                $this->cardController->getCard($cardId);
-            }elseif (isset($_GET['api/card/add'])) {
-                $this->cardController->newCard($_POST);
-            }elseif (isset($_GET['api/card/update'])) {
-                $this->cardController->editCard($_POST);  
-            }elseif (isset($_GET['api/card/delete'])) {
-                $this->cardController->deleteCard($_POST["cardId"]);
-            }
-            elseif (isset($_GET['api/backgrounds'])) {
-                $this->backgroundController->getBackgrounds();
-            }
-            elseif (isset($_GET['api/boards'])) {
-                $this->multiController->getAllOfBoard($_POST["boardId"], $_SESSION["userId"]);
+            elseif (isset($_GET['rgpd'])) {
+                require "../app/templates/rgpd.php";
             }
             else {
-                echo "404 : PAGE NOT FOUND";
+                require "../app/templates/not_found.php";
             }
         }
         else {

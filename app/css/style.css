@@ -1149,6 +1149,103 @@ a {
   opacity: 0.7;
 }
 
+.about,
+.mentions,
+.rgpd,
+.not_found {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.about .background,
+.mentions .background,
+.rgpd .background,
+.not_found .background {
+  background-image: url(../images/bkgd.jpeg);
+  opacity: 0.7;
+}
+
+.about-text,
+.mentions-text,
+.rgpd-text,
+.not_found-text {
+  background-color: #FBFBF9;
+  margin: 5rem auto;
+  padding: 1.8rem 1.5rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 5px #83367B;
+          box-shadow: 0 0 5px #83367B;
+}
+
+.about-text h2,
+.mentions-text h2,
+.rgpd-text h2,
+.not_found-text h2 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #83367B;
+  font-family: 'Solway', serif;
+  text-align: center;
+  letter-spacing: .1rem;
+  text-shadow: -1px -1px 1px #83367B70, 2px 2px 1px #83367B25;
+  font-weight: bold;
+}
+
+.about-text .desc,
+.about-text .maybe,
+.mentions-text .desc,
+.mentions-text .maybe,
+.rgpd-text .desc,
+.rgpd-text .maybe,
+.not_found-text .desc,
+.not_found-text .maybe {
+  font-family: 'Poppins', sans-serif;
+  margin-top: 3%;
+  margin-bottom: 1%;
+  text-indent: 1rem;
+  line-height: 1.3rem;
+}
+
+.about-text .compass,
+.mentions-text .compass,
+.rgpd-text .compass,
+.not_found-text .compass {
+  font-size: 10rem;
+  text-align: center;
+  margin: 5rem;
+  color: #ffa500;
+}
+
+.about-text .compass i:hover,
+.mentions-text .compass i:hover,
+.rgpd-text .compass i:hover,
+.not_found-text .compass i:hover {
+  -webkit-animation: spin 0.7s linear infinite;
+  animation: spin 0.7s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.about-text .maybe,
+.mentions-text .maybe,
+.rgpd-text .maybe,
+.not_found-text .maybe {
+  text-align: center;
+}
+
 /*----------------------------------------------------------- 
 ------------------------ Media Queries ----------------------
 ------------------------------------------------------------*/
@@ -1227,6 +1324,12 @@ a {
   .accueil .row-home {
     width: 90%;
   }
+  .about-text,
+  .mentions-text,
+  .rgpd-text,
+  .not_found-text {
+    width: 90%;
+  }
 }
 
 /* Small devices (portrait phones, less than 576px) */
@@ -1263,6 +1366,12 @@ a {
   .delete-board-confirm {
     width: 90%;
     margin: 5rem 1rem;
+  }
+  .about-text,
+  .mentions-text,
+  .rgpd-text,
+  .not_found-text {
+    margin: 2rem auto 4rem;
   }
   .footer {
     padding-right: 0;

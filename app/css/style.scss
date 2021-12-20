@@ -1038,6 +1038,70 @@ a {
         opacity: 0.7;
     }
 }
+
+.about,
+.mentions,
+.rgpd,
+.not_found {
+    display: flex;
+
+    .background{
+        background-image: url(../images/bkgd.jpeg);
+        opacity: 0.7;
+    }
+    &-text {
+        background-color: $light-color;
+        margin: 5rem auto;
+        padding: 1.8rem 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 0 5px $pink-color;
+
+        h2 {
+            text-transform: uppercase;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color:$pink-color;
+            font-family: 'Solway', serif; 
+            text-align: center;
+            letter-spacing: .1rem;
+            text-shadow:
+                -1px -1px 1px #{$pink-color}70, 
+                2px 2px 1px #{$pink-color}25;
+            font-weight: bold;
+        }
+
+        .desc,
+        .maybe {
+            font-family: 'Poppins', sans-serif;
+            margin-top: 3%;
+            margin-bottom: 1%;
+            text-indent: 1rem;
+            line-height: 1.3rem;
+        }
+
+        .compass {
+            font-size: 10rem;
+            text-align: center;
+            margin: 5rem;
+            color: $orange-color;
+
+            i {
+                &:hover {
+                    -webkit-animation:spin 0.7s linear infinite;
+                    -moz-animation:spin 0.7s linear infinite;
+                    animation:spin 0.7s linear infinite;
+                }
+                @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+                @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+                @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+            }
+        }
+
+        .maybe {
+            text-align: center;
+        }
+    }
+}
 /*----------------------------------------------------------- 
 ------------------------ Media Queries ----------------------
 ------------------------------------------------------------*/
@@ -1126,6 +1190,15 @@ a {
         }
     }
     //end
+
+    .about,
+    .mentions,
+    .rgpd,
+    .not_found {
+        &-text {
+            width:90%;
+        }
+    }
 }
 /* Small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
@@ -1164,6 +1237,15 @@ a {
     .delete-board-confirm {
         width: 90%;
         margin: 5rem 1rem;
+    }
+
+    .about,
+    .mentions,
+    .rgpd,
+    .not_found {
+        &-text {
+            margin: 2rem auto 4rem;
+        }
     }
     
     .footer{
