@@ -18,7 +18,7 @@
             <input type="password" name="newPassword">
         </div>
         <div class="editpass-input">
-            <label for="newPassword2" class="editpass-label">Confirmer votre nouveau mot de passe</label>
+            <label for="newPassword2" class="editpass-label">Confirmez votre nouveau mot de passe</label>
             <input type="password" name="newPassword2">
         </div>
         <input type="submit"  class="btn editpass-btn" name="submit" value="Modifier">

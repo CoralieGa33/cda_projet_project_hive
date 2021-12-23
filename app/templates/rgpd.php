@@ -6,7 +6,7 @@ require_once 'includes/header.php';
     <div class="background"></div>
 
     <div class="rgpd-text col-6">
-        <h2>RGPD</h2>
+        <h2>Conditions générales d'utilisation</h2>
         <p class="desc desc-first">Project Hive a pour objectif de permettre aux personnels et stagiaires de l’AFPA de disposer d’un outil collaboratif de gestion de projet et d’organisation, disponible en ligne, gratuit et simple d’utilisation.</p>
         <p class="desc">Project Hive met tout en œuvre pour se conformer à la Loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, dite « Loi Informatique et libertés » dans sa version actuellement en vigueur et au Règlement Général sur la Protection des Données Personnelles (RGPD).</p>
 
@@ -22,7 +22,7 @@ require_once 'includes/header.php';
 
         <h4>3.1	Les données collectées lors de la création des comptes utilisateurs</h4>
         <p class="desc desc-first">Lors de l'inscription au site Project Hive, l'usager choisit un identifiant (formalisé par une adresse électronique valide), un pseudo et un mot de passe. Le mot de passe doit comprendre 6 caractères. L'usager doit conserver son identifiant, son pseudo et son mot de passe qui lui seront utiles pour tout accès à ses tableaux.</p>
-        <p class="desc">Le mot de passe doit être choisi par l'utilisateur de façon qu'il ne puisse pas être deviné par un tiers. L'utilisateur s'engage à en préserver la confidentialité. L'utilisateur s'engage à avertir immédiatement l’AFPA de toute utilisation non autorisée de ces informations, l’AFPA ne pouvant être tenue pour responsable des dommages éventuellement causés par un accès ou une utilisation du compte d’un utilisateur par une personne tierce non autorisée.</p>
+        <p class="desc">Le mot de passe doit être choisi par l'utilisateur de sorte qu'il ne puisse pas être deviné par un tiers. L'utilisateur s'engage à en préserver la confidentialité. L'utilisateur s'engage à avertir immédiatement l’AFPA de toute utilisation non autorisée de ces informations, l’AFPA ne pouvant être tenue pour responsable des dommages éventuellement causés par un accès ou une utilisation du compte d’un utilisateur par une personne tierce non autorisée.</p>
         <p class="desc">L'usager du Service fournit une adresse électronique valide lors de son inscription au service qui servira d'identifiant et sera utilisée pour la confirmation des opérations réalisées par l'usager sur le site.</p>
         <p class="desc">L'utilisation du service requiert une connexion et un navigateur internet.</p>
         <p class="desc">Lors de la création du compte, la liste des données collectées sont :</p>
