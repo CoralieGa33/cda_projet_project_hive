@@ -32,7 +32,7 @@ require_once 'includes/header.php';
         <p class="desc">L’utilisateur peut demander la suppression de son compte à tout moment.</p>
 
         <h4>3.2 Les données d'utilisation de Project Hive</h4>
-        <p class="desc desc-first">L’utilisateur fournit également des données lors de l’utilisation de Project Hive. Il s’agit des données fournies lors de la création, du remplissage ou de la modification des tableaux, listes et cartes, mais également des dates de création et de modification des éléments précités.</p>
+        <p class="desc desc-first">L’utilisateur fournit également des données lors de la création, du remplissage ou de la modification des tableaux, listes et cartes, mais également des dates de création et de modification des éléments précités.</p>
 
         <h4>3.3 Destinataires des données</h4>
         <p class="desc desc-first">Seuls les membres de l’équipe Project Hive sont destinataires des données collectées. Project Hive s’engage à prendre toutes précautions utiles pour préserver la sécurité des données collectées. Aucun transfert de données à des sociétés ou à des organismes tiers n’est réalisé par Project Hive.</p>
