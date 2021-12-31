@@ -8,12 +8,12 @@ INSERT INTO user (`email`, `username`, `password`, `role`, `createdAt`, `updated
 ('testeur3@testeur3.fr', 'testeur3', '$2y$10$GtPKSmaiJVR6ky6Dnm17MupmCt9x3GgkptnXFXrGm5flfTWzqdUEu', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 INSERT INTO background (`imageUrl`, `createdAt`, `updatedAt`) VALUES
-("https://picsum.photos/id/1002/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1019/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1016/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1018/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1021/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1028/1100/750", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
+("https://picsum.photos/id/1002/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1019/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1016/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1018/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1021/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1028/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 
 INSERT INTO board (`title`, `color`, `background_id`, `owner_id`, `createdAt`, `updatedAt`) VALUES
