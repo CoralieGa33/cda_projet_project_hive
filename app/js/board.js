@@ -278,6 +278,7 @@ let app = {
         } else {
             app.setSortListes();
         }
+        app.setSortCards();
     },
 
     // permet  de générer une nouvelle carte  avec ses détails
