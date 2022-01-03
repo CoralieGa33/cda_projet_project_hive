@@ -7,7 +7,7 @@ require_once 'includes/header.php';
 
     <div class="rgpd-text col-6">
         <h2>Conditions générales d'utilisation</h2>
-        <p class="desc desc-first">Project Hive a pour objectif de permettre aux personnels et stagiaires de l’AFPA de disposer d’un outil collaboratif de gestion de projet et d’organisation, disponible en ligne, gratuit et simple d’utilisation.</p>
+        <p class="desc desc-first">Project Hive (project-hive.afpa.fr) a pour objectif de permettre aux personnels et stagiaires de l’AFPA de disposer d’un outil collaboratif de gestion de projet et d’organisation, disponible en ligne, gratuit et simple d’utilisation.</p>
         <p class="desc">Project Hive met tout en œuvre pour se conformer à la Loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, dite « Loi Informatique et libertés » dans sa version actuellement en vigueur et au Règlement Général sur la Protection des Données Personnelles (RGPD).</p>
 
         <h3>1. Acceptation des conditions d’utilisation du site</h3>
@@ -52,7 +52,11 @@ require_once 'includes/header.php';
         <p class="desc">Si vous estimez, après nous avoir contactés, que vos droits sur vos données ne sont pas respectés, vous pouvez adresser une réclamation (plainte) à la CNIL.</p>
 
         <h3>4. Conditions techniques d’accès</h3>
-        <p class="desc desc-first">Pour utiliser l’outil dans les meilleures conditions, vous devez utiliser de préférence le navigateur Chrome dans une version supérieure ou égale à Chrome V50.</p>
+        <p class="desc desc-first">Pour utiliser l’outil dans les meilleures conditions, vous devez utiliser de préférence les navigateurs suivants dans des versions supérieures ou égales à :</p>
+        <p class="desc"> - Chrome V50</p>
+        <p class="desc"> - Edge V14</p>
+        <p class="desc"> - Firefox V50</p>
+        <p class="desc"> - Safari V8.</p>
 
         <h3>5. Contenus illégaux et responsabilité</h3>
         <p class="desc desc-first">L’utilisateur est pénalement responsable des informations qu’il met en ligne sur le site Project Hive.</p>
