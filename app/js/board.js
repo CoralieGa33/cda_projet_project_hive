@@ -278,6 +278,7 @@ let app = {
         } else {
             app.setSortListes();
         }
+        app.setSortCards();
     },
 
     // permet  de générer une nouvelle carte  avec ses détails
@@ -475,6 +476,7 @@ let app = {
                 //console.log(listeId);
                 //console.log(posLeft, posTop); //permet de vérifier que le offset fonctionne bien
                 app.updateOrderListe($(this));
+                $(".board-listes").append(this);
             }
         });
     },
@@ -556,7 +558,7 @@ let app = {
         cardClone.appendTo(ListeEnCours.find('.liste-cards'));
     },
 
-    // Requête d'ajout d'une nouvelle carte
+    // Requête d'ajout ou d'édition d'une carte
     handleCreateOrEditCard: function(event) {
         event.preventDefault();
         let cardTitleInput = $(event.currentTarget).find('.card-header-title').val();
@@ -568,12 +570,15 @@ let app = {
         let listeId = $(event.currentTarget).parent().parent().parent().attr('liste-id');
         //console.log(listeId);
         
+        // Je cherche si c'est une nouvelle carte ou une édition
+        // en cherchant si elle a déjà un id
         //console.log($(event.currentTarget).parent().attr('card-id'));
         if($(event.currentTarget).parent().attr('card-id')) {
             cardToEditId = $(event.currentTarget).parent().attr('card-id');
             //console.log(cardToEditId);
             let cardNumber = $(event.currentTarget).parent().attr('order-nb');
             //console.log(cardNumber);
+            // Je vérifie si le titre est non vide avant d'envoyer la requête
             if(cardTitleInput.trim()) {
                 $.ajax({
                     url: app.baseUrl + 'card/update',
@@ -587,8 +592,7 @@ let app = {
                         cardId: cardToEditId,
                     }
                 }).done(function(updatedCard) {
-                    // Si c'est ok, je complète la nouvelle carte avec les infos reçues
-                    // elle a déjà été créée dans le DOM lors du click sur le +
+                    // Si c'est ok, je modifie la carte avec les infos reçues
                     updatedCard = JSON.parse(updatedCard);
                     //console.log(updatedCard)
                     $(event.currentTarget).prev().find('.card-content-title').text(updatedCard.title);
@@ -630,9 +634,11 @@ let app = {
                     // elle a déjà été créée dans le DOM lors du click sur le +
                     $(event.currentTarget).prev().find('.card-content-title').text(card.title);
                     $(event.currentTarget).prev().find('.card-content-description').text(card.content);
+                    $(event.currentTarget).parent().addClass('sortable');
                     $(event.currentTarget).parent().attr('id', 'card-'+card.cardId);
                     $(event.currentTarget).parent().attr('liste-id', card.liste_id);
                     $(event.currentTarget).parent().attr('card-id', card.cardId);
+                    $(event.currentTarget).parent().attr('order-nb', cardNumber);
                     $(event.currentTarget).parent().css('border-color', card.color);
                     // masquage du form et apparition de la carte
                     $(event.currentTarget).addClass('is-hidden');
