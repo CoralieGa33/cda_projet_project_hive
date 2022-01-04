@@ -3,6 +3,7 @@
 namespace Api\Controller;
 
 use Api\Entity\Liste;
+use Api\Repository\CardRepository;
 use Api\Repository\ListeRepository;
 use Api\Controller\AbstractController;
 
@@ -12,7 +13,8 @@ class ListeController extends AbstractController
 
     public function __construct()
     {
-        $this->listeRepository = new listeRepository();
+        $this->listeRepository = new ListeRepository();
+        $this->cardRepository = new CardRepository();
     }   
 
 
@@ -57,6 +59,17 @@ class ListeController extends AbstractController
         
     public function deleteListe($id)
     {
+        $this->cardRepository->removeAllCardsByListId($id);
         echo json_encode($this->listeRepository->delete($id));
+    }
+
+    public function deleteAllListesByBoardId($id)
+    {
+        $listes = $this->listeRepository->getListesByBoard($id);
+        foreach($listes as $liste) {
+            //var_dump($liste->getListeId());
+            $this->cardRepository->removeAllCardsByListId($liste->getListeId());
+        }
+        echo json_encode($this->listeRepository->removeAllListesByBoardId($id));
     }
 }

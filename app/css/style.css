@@ -587,6 +587,29 @@ a {
   top: 0.5rem;
 }
 
+.board-listes .liste .delete-liste-dialog {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.board-listes .liste .delete-liste-dialog-text {
+  text-align: start;
+  font-family: 'Solway', serif;
+  color: red;
+  font-size: 0.7rem;
+  line-height: 0.9rem;
+}
+
+.board-listes .liste .delete-liste-dialog .btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+}
+
+.board-listes .liste .delete-liste-dialog .delete-liste-confirm:hover {
+  background-color: red;
+}
+
 .board-listes .card {
   padding: 0.5rem;
   border: 1px solid #4B5C6B;

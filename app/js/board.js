@@ -39,7 +39,7 @@ let app = {
         $('.burger-nav').on('click', '.background-thumb', app.selectBackground);
 
 
-        $('.board-listes').on('click', '.delete-liste', app.handleDeleteListe);
+        $('.board-listes').on('click', '.delete-liste', app.handleConfirmDeleteListe);
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
 
         $(".communication").click(function(){
@@ -48,10 +48,6 @@ let app = {
 
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
-
-        // je charge mon tableau principal
-        // app.loadBoard();
-        // app.loadBoardMenu();
     },
 
     handleOpenMenu: function() {
@@ -224,7 +220,7 @@ let app = {
         selectedItem.parent().prepend('<i class="fas fa-paint-brush"></i>');
         
         // Je vide le DOM du tableau actuel (sauf les 2 premiers éléments -> templates)
-        $('.board-listes').children().not(':lt(2)').remove();
+        $('.board-listes').children().not(':lt(3)').remove();
 
         // Je charge le nouveau tableau
         app.loadBoard(app.selectedBoardId);
@@ -429,11 +425,40 @@ let app = {
         });
     },
 
-    // Requête pour supprimer une liste
-    handleDeleteListe: function(event) {
+    handleConfirmDeleteListe: function(event) {
         // Je trouve la bonne carte à supprimer grâce à l'ecouteur d'évènement, ainsi que son id
         let listeToDelete = $(event.currentTarget).parent().parent();
         let listeToDeleteId = listeToDelete.attr("liste-id");
+
+        // Je regarde si la liste comporte des cartes
+        // car il faudra les supprimer en même temps
+        if(listeToDelete.find('.liste-cards').children().length != 0){
+            // je demande confirmation à l'utilisateur
+            let dialog = document.querySelector('.delete-liste-dialog').cloneNode(true)
+            listeToDelete.append(dialog)
+            $(event.currentTarget).parent().addClass('is-hidden')
+            dialog.classList.remove('is-hidden')
+
+            // Si la suppression est confirmée par l'utilisateur
+            // J'appelle la methode qui effectuera la suppression
+            $(dialog).find('.delete-liste-confirm').on('click', function () {
+                app.handleDeleteListe(listeToDelete, listeToDeleteId)
+            });
+            // Si l'utilisateur annule
+            // Je reviens à l'état initial
+            $(".delete-liste-abord").on('click', function () {
+                dialog.previousElementSibling.classList.remove('is-hidden')
+                dialog.remove()
+            });
+        }
+        // Si la liste ne comporte pas de carte je peux la supprimer directement
+        else {
+            app.handleDeleteListe(listeToDelete, listeToDeleteId);
+        }
+    },
+
+    // Requête pour supprimer une liste
+    handleDeleteListe: function(listeToDelete, listeToDeleteId) {
         $.ajax({
             url: app.baseUrl + 'liste/delete',
             method: 'POST',
@@ -601,7 +626,10 @@ let app = {
                     // masquage du form et apparition de la carte
                     $(event.currentTarget).addClass('is-hidden');
                     $(event.currentTarget).prev().removeClass('is-hidden');
-                    
+
+                    if($(event.currentTarget).parent().find('.error-message')){
+                        $(event.currentTarget).parent().find('.error-message').remove();
+                    }
                 }).fail(function(e) {
                     console.error(e);
                 });
@@ -643,7 +671,10 @@ let app = {
                     // masquage du form et apparition de la carte
                     $(event.currentTarget).addClass('is-hidden');
                     $(event.currentTarget).prev().removeClass('is-hidden');
-        
+                    
+                    if($(event.currentTarget).parent().find('.error-message')){
+                        $(event.currentTarget).parent().find('.error-message').remove();
+                    }
                 }).fail(function(e) {
                     console.error(e);
                 });
@@ -896,6 +927,7 @@ let app = {
             boardToDelete.hide();
             // Je masque la fenêtre de confirmation de suppression
             $(".delete-board-confirm").addClass("is-hidden");
+            location.reload();
         }).fail(function(e) {
             console.error(e);
         });

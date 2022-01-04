@@ -507,6 +507,28 @@ a {
                 left: auto;
                 top: 0.5rem;
             }
+
+            .delete-liste-dialog{
+                text-align: center;
+                margin-top: 0.5rem;
+
+                &-text {
+                    text-align: start;
+                    font-family: 'Solway', serif;
+                    color: red;
+                    font-size: 0.7rem;
+                    line-height: 0.9rem;
+                }
+
+                .btn {
+                    display: inline-block;
+                    margin-top: 0.5rem;
+                    font-size: 0.7rem;
+                }
+                .delete-liste-confirm:hover {
+                    background-color: red;
+                }
+            }
         }
         //List end
 

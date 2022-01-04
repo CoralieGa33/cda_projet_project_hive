@@ -14,7 +14,7 @@ class BoardController extends AbstractController
     public function __construct()
     {
         $this->boardRepository = new BoardRepository();
-    }   
+    }
 
     public function getBoardInfos($id)
     {
@@ -55,7 +55,10 @@ class BoardController extends AbstractController
 
     public function deleteBoard($id)
     {
-        echo json_encode($this->boardRepository->delete($id));
+        $delete = $this->boardRepository->delete($id);
+        if($delete == true) {
+            http_response_code(200);
+        }
     }
 
 }

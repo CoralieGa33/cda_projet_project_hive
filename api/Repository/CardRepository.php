@@ -53,4 +53,9 @@ class CardRepository extends ManagerRepository
 
         return $lastCard;
     }
+
+    public function removeAllCardsByListId(int $id) {
+        $sql = "DELETE FROM card WHERE liste_id = ?";
+        $this->createQuery($sql, [$id]);
+    }
 }

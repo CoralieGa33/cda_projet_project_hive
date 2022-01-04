@@ -32,6 +32,10 @@ class Router {
     public function Run() {
         session_start();
         if($_GET) {
+            // if (isset($_GET['api/board/delete'])) {
+            //     $this->listeController->deleteAllListesByBoardId(4);
+            //     $this->boardController->deleteBoard(4);
+            // }
             if (isset($_GET['about'])) {
                 require "../app/templates/about.php";
             }
@@ -62,6 +66,7 @@ class Router {
                 }elseif (isset($_GET['api/board/edit'])) {
                     $this->boardController->editBoard($_POST);
                 }elseif (isset($_GET['api/board/delete'])) {
+                    $this->listeController->deleteAllListesByBoardId($_POST["boardId"]);
                     $this->boardController->deleteBoard($_POST["boardId"]);
                 }
                 elseif (isset($_GET['api/liste/add'])) {
