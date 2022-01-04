@@ -27,9 +27,9 @@ require_once 'includes/header.php';
         <p class="desc">Siège social : 2 rue Kellermann - 59100 Roubaix - France.</p>
 
         <h3>4. Credits</h3>
-        <h4>4.1	La reproduction sur support électronique ou papier</h4>
-        <p class="desc desc-first">La reproduction de tout ou partie du site Project Hive sur support électronique ou papier est autorisée pour une utilisation à des fins privées sous réserve du respect de l'intégrité des documents reproduits ou par courte citation avec mention claire et lisible de la source sous la forme suivante "Source : www.project-hive.afpa.fr, tous droits réservés. ».</p>
-        <p class="desc">Toute autre utilisation est soumise à l'accord préalable et exprès de l'AFPA.</p>
+        <h4>4.1	La reproduction et le partage de Project Hive </h4>
+        <p class="desc desc-first"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+        
 
         <h4>4.2	Les marques, logos , images et polices</h4>
         <p class="desc desc-first">Les marques et logos cités sur le site sont déposés par les sociétés ou organismes qui en sont propriétaires. Leur reproduction ou utilisation est interdite sauf autorisation expresse des titulaires des marques.</p>
@@ -37,7 +37,7 @@ require_once 'includes/header.php';
         <p class="desc">Les icônes et polices utilisés pour la réalisation du site web Project Hive proviennent respectivement du site Fontawesome.com et Google Fonts (fonts.google.com).</p>
 
         <h4>4.3	Les liens</h4>
-        <p class="desc desc-first">La mise en place d'un lien hypertexte pointant vers Project Hive est autorisée sous réserve de mentionner la source " www.project-hive.afpa.fr " qui pointera grâce à un lien hypertexte directement sur le contenu visé.</p>
+        <p class="desc desc-first">La mise en place d'un lien hypertexte pointant vers Project Hive est autorisée sous réserve de respecter les conditions prévues par la licence Creative Commons CC BY-NC-SA 4.0</p>
         <p class="desc">La mise en place des liens et les informations utilisées ne doivent l'être qu'à des fins personnelles, associatives ou professionnelles. Toute utilisation à des fins commerciales ou publicitaires est exclue.</p>
 
         <h3>5. Contact</h3>
