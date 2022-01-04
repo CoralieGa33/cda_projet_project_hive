@@ -203,7 +203,7 @@ class UserRepository extends ManagerRepository
                             return "<p class='editpass-error'>Les nouveaux mots de passes doivent correspondre.</p>";
                         }
                     } else {
-                        return "<p class='editpass-error'>Le nouveau mot de passe doit faire 6 caractères au minimum.</p>";
+                        return "<p class='editpass-error'>Le nouveau mot de passe doit comporter 6 caractères au minimum.</p>";
                     }
                 } else {
                     return "<p class='editpass-error'>Vérifiez votre mot de passe.</p>";

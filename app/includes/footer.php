@@ -8,7 +8,7 @@
             <a href="?mentions" class="footer-link">Mentions légales</a>
         </div>
         <div class="nav rgpd">
-            <a href="?rgpd" class="footer-link">Traitement des données</a>
+            <a href="?rgpd" class="footer-link">Conditions générales d'utilisation</a>
         </div>
         
         <div class="footer-favicons col-2">

@@ -6,8 +6,8 @@ require_once 'includes/header.php';
     <div class="background"></div>
 
     <div class="rgpd-text col-6">
-        <h2>RGPD</h2>
-        <p class="desc desc-first">Project Hive a pour objectif de permettre aux personnels et stagiaires de l’AFPA de disposer d’un outil collaboratif de gestion de projet et d’organisation, disponible en ligne, gratuit et simple d’utilisation.</p>
+        <h2>Conditions générales d'utilisation</h2>
+        <p class="desc desc-first">Project Hive (project-hive.afpa.fr) a pour objectif de permettre aux personnels et stagiaires de l’AFPA de disposer d’un outil collaboratif de gestion de projet et d’organisation, disponible en ligne, gratuit et simple d’utilisation.</p>
         <p class="desc">Project Hive met tout en œuvre pour se conformer à la Loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, dite « Loi Informatique et libertés » dans sa version actuellement en vigueur et au Règlement Général sur la Protection des Données Personnelles (RGPD).</p>
 
         <h3>1. Acceptation des conditions d’utilisation du site</h3>
@@ -22,7 +22,7 @@ require_once 'includes/header.php';
 
         <h4>3.1	Les données collectées lors de la création des comptes utilisateurs</h4>
         <p class="desc desc-first">Lors de l'inscription au site Project Hive, l'usager choisit un identifiant (formalisé par une adresse électronique valide), un pseudo et un mot de passe. Le mot de passe doit comprendre 6 caractères. L'usager doit conserver son identifiant, son pseudo et son mot de passe qui lui seront utiles pour tout accès à ses tableaux.</p>
-        <p class="desc">Le mot de passe doit être choisi par l'utilisateur de façon qu'il ne puisse pas être deviné par un tiers. L'utilisateur s'engage à en préserver la confidentialité. L'utilisateur s'engage à avertir immédiatement l’AFPA de toute utilisation non autorisée de ces informations, l’AFPA ne pouvant être tenue pour responsable des dommages éventuellement causés par un accès ou une utilisation du compte d’un utilisateur par une personne tierce non autorisée.</p>
+        <p class="desc">Le mot de passe doit être choisi par l'utilisateur de sorte qu'il ne puisse pas être deviné par un tiers. L'utilisateur s'engage à en préserver la confidentialité. L'utilisateur s'engage à avertir immédiatement l’AFPA de toute utilisation non autorisée de ces informations, l’AFPA ne pouvant être tenue pour responsable des dommages éventuellement causés par un accès ou une utilisation du compte d’un utilisateur par une personne tierce non autorisée.</p>
         <p class="desc">L'usager du Service fournit une adresse électronique valide lors de son inscription au service qui servira d'identifiant et sera utilisée pour la confirmation des opérations réalisées par l'usager sur le site.</p>
         <p class="desc">L'utilisation du service requiert une connexion et un navigateur internet.</p>
         <p class="desc">Lors de la création du compte, la liste des données collectées sont :</p>
@@ -32,7 +32,7 @@ require_once 'includes/header.php';
         <p class="desc">L’utilisateur peut demander la suppression de son compte à tout moment.</p>
 
         <h4>3.2 Les données d'utilisation de Project Hive</h4>
-        <p class="desc desc-first">L’utilisateur fournit également des données lors de l’utilisation de Project Hive. Il s’agit des données fournies lors de la création, du remplissage ou de la modification des tableaux, listes et cartes, mais également des dates de création et de modification des éléments précités.</p>
+        <p class="desc desc-first">L’utilisateur fournit également des données lors de la création, du remplissage ou de la modification des tableaux, listes et cartes, mais également des dates de création et de modification des éléments précités.</p>
 
         <h4>3.3 Destinataires des données</h4>
         <p class="desc desc-first">Seuls les membres de l’équipe Project Hive sont destinataires des données collectées. Project Hive s’engage à prendre toutes précautions utiles pour préserver la sécurité des données collectées. Aucun transfert de données à des sociétés ou à des organismes tiers n’est réalisé par Project Hive.</p>
@@ -52,7 +52,11 @@ require_once 'includes/header.php';
         <p class="desc">Si vous estimez, après nous avoir contactés, que vos droits sur vos données ne sont pas respectés, vous pouvez adresser une réclamation (plainte) à la CNIL.</p>
 
         <h3>4. Conditions techniques d’accès</h3>
-        <p class="desc desc-first">Pour utiliser l’outil dans les meilleures conditions, vous devez utiliser de préférence le navigateur Chrome dans une version supérieure ou égale à Chrome V50.</p>
+        <p class="desc desc-first">Pour utiliser l’outil dans les meilleures conditions, vous devez utiliser de préférence les navigateurs suivants dans des versions supérieures ou égales à :</p>
+        <p class="desc"> - Chrome V50</p>
+        <p class="desc"> - Edge V14</p>
+        <p class="desc"> - Firefox V50</p>
+        <p class="desc"> - Safari V8.</p>
 
         <h3>5. Contenus illégaux et responsabilité</h3>
         <p class="desc desc-first">L’utilisateur est pénalement responsable des informations qu’il met en ligne sur le site Project Hive.</p>
