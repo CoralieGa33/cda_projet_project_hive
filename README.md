@@ -36,5 +36,9 @@ ninaSdev https://github.com/ninaSdev
 chloeazerty https://github.com/chloeazerty 
 
 ## Licence
-L’application Project Hive est OpenSource. Toute personne souhaitant apporter
-des améliorations est libre de le faire.  
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic License</a>.
+
+_"Le titulaire des droits autorise l’exploitation de l’œuvre originale à des fins non commerciales, ainsi que la création d’œuvres dérivées, à condition qu’elles soient distribuées sous une licence identique à celle qui régit l’oeuvre originale."_  
+
+_"This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."_
