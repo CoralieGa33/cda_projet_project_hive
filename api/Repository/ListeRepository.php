@@ -54,4 +54,9 @@ class ListeRepository extends ManagerRepository
 
         return $lastListe;
     }
+
+    public function removeAllListesByBoardId($id) {
+        $sql = "DELETE FROM liste WHERE board_id = ?";
+        $this->createQuery($sql, [$id]);
+    }
 }

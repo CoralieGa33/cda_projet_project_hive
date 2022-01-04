@@ -21,6 +21,12 @@
             require 'templates/liste.php';
             require 'templates/card.php';
         ?>
+        <div class="delete-liste-dialog is-hidden">
+            <p class="delete-liste-dialog-text">Cette liste et les cartes qu'elle contient seront définitivement supprimées.</p>
+            <p class="delete-liste-dialog-text">Etes-vous sûr(e) ?</p>
+            <button class="btn delete-liste-confirm">Supprimer</button>
+            <button class="btn delete-liste-abord">Annuler</button>
+        </div>
     </div>
 </div>
 

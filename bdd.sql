@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS cda_projet_project_hive;
--- CREATE DATABASE cda_projet_project_hive CHARACTER SET utf8;
--- USE cda_projet_project_hive;
+DROP DATABASE IF EXISTS cda_projet_project_hive;
+CREATE DATABASE cda_projet_project_hive CHARACTER SET utf8;
+USE cda_projet_project_hive;
 
 CREATE TABLE user (
     userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -63,3 +63,11 @@ CREATE TABLE card (
     updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (liste_id) REFERENCES liste(listeId)
 );
+
+INSERT INTO background (`imageUrl`, `createdAt`, `updatedAt`) VALUES
+("https://picsum.photos/id/1002/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1019/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1016/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1018/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1021/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://picsum.photos/id/1028/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
