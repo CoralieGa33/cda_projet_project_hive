@@ -39,6 +39,16 @@ require_once 'includes/header.php';
         <h4>4.3	Les liens</h4>
         <p class="desc desc-first">La mise en place d'un lien hypertexte pointant vers Project Hive est autorisée sous réserve de mentionner la source " www.project-hive.afpa.fr " qui pointera grâce à un lien hypertexte directement sur le contenu visé.</p>
         <p class="desc">La mise en place des liens et les informations utilisées ne doivent l'être qu'à des fins personnelles, associatives ou professionnelles. Toute utilisation à des fins commerciales ou publicitaires est exclue.</p>
+
+        <h3>5. Contact</h3>
+        <p class="desc desc-first">Pous nous contacter, si vous constatez un dysfontionnement par exemple, vous pouvez nous écrire à l'adresse suivante :</p>
+        <p class="desc">AFPA</p>
+        <p class="desc">Project Hive</p>
+        <p class="desc">Tour Cityscope</p>
+        <p class="desc">3 rue Franklin</p>
+        <p class="desc">93100 Montreuil</p>
+        <p class="desc">3 rue Franklin</p>
+        
     </div>
 </div>
 
