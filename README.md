@@ -18,8 +18,8 @@ L’application **Project Hive** est développée avec les technologies abordée
 **JS (JavaScript) et jQuery** - Pour l’animation du contenu et les interactions (ajout,
 modifications, suppressions des tableaux/listes et cartes et déplacements des
 éléments du tableau)  
-**PHP** - Pour avoir des contenus dynamiques et pour gérer des API  
-**MySQL** - Système de gestion de base de données relationnelles  
+**PHP** - Pour avoir des contenus dynamiques et gérer l'API  
+**MySQL** - Système de gestion de base de données relationnelle  
 
 ## Démarrage
 
@@ -38,7 +38,7 @@ chloeazerty https://github.com/chloeazerty
 ## Licence
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />
-Ce(tte) oeuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.<br />
+Cette oeuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.<br />
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 _"Le titulaire des droits autorise l’exploitation de l’œuvre originale à des fins non commerciales, ainsi que la création d’œuvres dérivées, à condition qu’elles soient distribuées sous une licence identique à celle qui régit l’oeuvre originale."_  
