@@ -11,7 +11,7 @@ $sd-color: #6D0CCE;
 $light-color: #FBFBF9;
 $grey-color: #4B5C6B;
 $pink-color: #83367B;
-$orange-color:#ffa500;
+$orange-color:#F7D02F;
 
 
 //pour les colonnes : 
@@ -90,14 +90,16 @@ a {
     font-size: 1rem;
     border-radius: 5px;
     border: solid 2px $pink-color;
-    color: $orange-color;
+    color: $pink-color;
+    font-weight: 700;
     line-height: normal;
     //background-color:  #{$pink-color}100;
 
     &:hover {
         cursor: pointer;
         background-color: $pink-color;
-        color: $light-color;
+        color: $orange-color;
+        font-weight: 400;
     }
 }
 
@@ -125,9 +127,9 @@ a {
     width: 100%;
 
     &-logo{
-        width: 4rem;
-        margin-top: 0.5rem;
-        margin-bottom: 0.2;
+        width: 23rem;
+        // margin-top: 0.5rem;
+        // margin-bottom: 0.2;
 
         img{
             width: 100%;
@@ -214,6 +216,7 @@ a {
     &-favicons{
         display: flex;
         justify-content: space-around;
+        width: auto;
         color: $pink-color;
 
         .social-icons {
@@ -224,6 +227,7 @@ a {
 
         a {
             padding: 0.3rem 0.5rem;
+            margin: auto 0.3rem;
         }
         a:hover i {
             color: $orange-color;
@@ -246,7 +250,7 @@ a {
     
     .background{
         background-image: url(../images/bkgd.jpeg);
-        opacity: 0.7;
+        opacity: 0.5;
     }
 
     p{
@@ -734,36 +738,36 @@ a {
     }
 
     .burger-nav {
-        padding: 0 25px;
+        padding: 0 2rem;
         display: none;
-
-        ul {
-            width: 90%;
-        }
     }
+
     .burger-title{
         font-size: 1.3rem;
         margin-bottom: 1rem;
         font-family: 'Solway', serif;
-        color:orange;
+        text-align: center;
+        color: $orange-color;
     }
 
     .menu-boards-list {
-        overflow: "auto";
+        overflow-y: "auto";
 
         li {
             line-height: 1.5rem;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
+            padding: 0.2rem 0;
             display: flex;
-
+            
+            
             &:hover{
-            background-color: $light-color;
-            color:$grey-color;
-            cursor: default;
+                background-color: $light-color;
+                color:$grey-color;
+                cursor: default;
             }
         }
     }
-
+    
     .boards-list-item{
         font-size:0.9rem;
         transition: 0.4s;
@@ -803,12 +807,20 @@ a {
     .fa-trash-alt {
         font-size: 0.8rem;
         padding: 0.3rem;
-        margin-right: 0.5rem;
-
+    
+        
         &:hover {
             cursor: pointer;
             color: $orange-color;
         }
+    }
+    .fa-trash-alt {
+        margin-right: 0;
+    }
+
+    .fa-paint-brush {
+        margin-right: 0.5rem;
+        margin-left: 0;
     }
 
     .selected-board{
@@ -1236,6 +1248,11 @@ a {
 }
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 768px) {
+    .header {
+        &-logo {
+            width: 18rem;
+        }
+    }
     .footer{
         padding : 0.5rem 1rem 0.5rem;
         text-align: center;
