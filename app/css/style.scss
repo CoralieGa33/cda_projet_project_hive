@@ -12,6 +12,7 @@ $light-color: #FBFBF9;
 $grey-color: #4B5C6B;
 $pink-color: #83367B;
 $orange-color:#F7D02F;
+//$orange-color: #2FF7E4;
 
 
 //pour les colonnes : 
@@ -109,7 +110,7 @@ a {
 
 .container {
     height: calc(100vh - 4.5rem - 2.2rem );
-    padding-top: 4.5rem;
+    margin-top: 4.5rem;
 }
 
 // Sabrina's scss
@@ -247,6 +248,9 @@ a {
 // Chloé's scss
 .accueil{
     display:flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
     
     .background{
         background-image: url(../images/bkgd.jpeg);
@@ -260,7 +264,7 @@ a {
     .row-home{
         background-color: $light-color;
         text-align:center;
-        margin: 5rem auto;
+        //margin: 5rem auto;
         display:flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -951,9 +955,10 @@ a {
 // Coralie's scss
 .signup, .signin, .profile, .editpass, .registered {
     display: flex;
+    height: 100%;
 
     form, .frame {
-        margin: 5rem auto;
+        margin: auto;
         box-shadow: 0 0 5px $pink-color;
         border-radius: 10px;
         padding: 2rem;
@@ -1180,7 +1185,15 @@ a {
     .accueil{
         .row-home{
             width:40%;
-            margin-top: 10rem;
+        }
+    }
+}
+
+/* Large devices (desktops, less than 1440px) */
+@media (max-width: 1440px) {
+    .accueil{
+        .row-home{
+            width:60%;
         }
     }
 }
@@ -1188,8 +1201,11 @@ a {
 /* Large devices (desktops, less than 1200px) */
 @media (max-width: 1200px) {
     .accueil{
+        height: auto;
+
         .row-home{
             width:80%;
+            margin: 2rem auto 4rem;
         }
     }
 }
@@ -1197,6 +1213,8 @@ a {
 /* Medium devices (tablets, less than 1024px) */
 @media (max-width: 1024px) {
     .accueil{
+        height: auto;
+
         .row-home{
             flex-direction: column;
             justify-content:center;

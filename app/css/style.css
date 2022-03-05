@@ -102,7 +102,7 @@ a {
 
 .container {
   height: calc(100vh - 4.5rem - 2.2rem);
-  padding-top: 4.5rem;
+  margin-top: 4.5rem;
 }
 
 .header {
@@ -274,6 +274,13 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .accueil .background {
@@ -288,7 +295,6 @@ a {
 .accueil .row-home {
   background-color: #FBFBF9;
   text-align: center;
-  margin: 5rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1053,10 +1059,11 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 100%;
 }
 
 .signup form, .signup .frame, .signin form, .signin .frame, .profile form, .profile .frame, .editpass form, .editpass .frame, .registered form, .registered .frame {
-  margin: 5rem auto;
+  margin: auto;
   -webkit-box-shadow: 0 0 5px #83367B;
           box-shadow: 0 0 5px #83367B;
   border-radius: 10px;
@@ -1354,19 +1361,32 @@ a {
 @media (min-width: 2560px) {
   .accueil .row-home {
     width: 40%;
-    margin-top: 10rem;
+  }
+}
+
+/* Large devices (desktops, less than 1440px) */
+@media (max-width: 1440px) {
+  .accueil .row-home {
+    width: 60%;
   }
 }
 
 /* Large devices (desktops, less than 1200px) */
 @media (max-width: 1200px) {
+  .accueil {
+    height: auto;
+  }
   .accueil .row-home {
     width: 80%;
+    margin: 2rem auto 4rem;
   }
 }
 
 /* Medium devices (tablets, less than 1024px) */
 @media (max-width: 1024px) {
+  .accueil {
+    height: auto;
+  }
   .accueil .row-home {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
