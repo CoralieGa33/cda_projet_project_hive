@@ -845,7 +845,7 @@ a {
     .burger-liste{
         font-size: 1.2rem;
         font-family: 'Solway', serif;
-        color:orange;
+        color: $orange-color;
     }
 
     .edit-board, .new-board {
@@ -881,7 +881,7 @@ a {
     .label-modify-table{
         font-size:0.8rem;
         font-family: 'Poppins', sans-serif;
-        color:orange; 
+        color: $orange-color; 
     }
 
     .edit-board-colorpicker,

@@ -944,7 +944,7 @@ a {
 .menu-burger .burger-liste {
   font-size: 1.2rem;
   font-family: 'Solway', serif;
-  color: orange;
+  color: #F7D02F;
 }
 
 .menu-burger .edit-board, .menu-burger .new-board {
@@ -985,7 +985,7 @@ a {
 .menu-burger .label-modify-table {
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
-  color: orange;
+  color: #F7D02F;
 }
 
 .menu-burger .edit-board-colorpicker,
