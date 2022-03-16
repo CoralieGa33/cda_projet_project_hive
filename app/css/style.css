@@ -1190,7 +1190,6 @@ a {
 
 .signin .background, .signup .background, .registered .background, .profile .background {
   background-image: url(../images/background.jpg);
-  opacity: 0.7;
 }
 
 .about,
@@ -1207,7 +1206,6 @@ a {
 .rgpd .background,
 .not_found .background {
   background-image: url(../images/background.jpg);
-  opacity: 0.7;
 }
 
 .about-text,
