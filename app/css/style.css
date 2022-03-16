@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Solway:wght@400;500;700&display=swap");
 .col {
   width: calc(90% / 4);
 }
@@ -85,15 +85,14 @@ a {
   border-radius: 5px;
   border: solid 2px #83367B;
   color: #83367B;
-  font-weight: 700;
+  font-weight: 600;
   line-height: normal;
 }
 
 .btn:hover {
   cursor: pointer;
   background-color: #83367B;
-  color: #F7D02F;
-  font-weight: 400;
+  color: #ffeea2;
 }
 
 .is-hidden {
@@ -126,11 +125,11 @@ a {
 }
 
 .header-logo {
-  width: 23rem;
+  height: 4rem;
 }
 
 .header-logo img {
-  width: 100%;
+  height: 100%;
 }
 
 .header-navigation {
@@ -259,7 +258,7 @@ a {
 }
 
 .footer-favicons a:hover i {
-  color: #F7D02F;
+  color: #ffeea2;
 }
 
 .footer a:visited {
@@ -284,8 +283,7 @@ a {
 }
 
 .accueil .background {
-  background-image: url(../images/bkgd.jpeg);
-  opacity: 0.5;
+  background-image: url(../images/background.jpg);
 }
 
 .accueil p {
@@ -343,10 +341,10 @@ a {
   margin-bottom: 2rem;
   color: #83367B;
   font-family: 'Solway', serif;
+  font-weight: 500;
   text-align: center;
   letter-spacing: .1rem;
   text-shadow: -1px -1px 1px #83367B70, 2px 2px 1px #83367B25;
-  font-weight: bold;
 }
 
 .accueil .grey {
@@ -406,7 +404,7 @@ a {
   font-size: 2rem;
   color: #4B5C6B;
   font-family: 'Solway', serif;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .board-header .add-liste {
@@ -504,14 +502,14 @@ a {
   margin-right: 0.1rem;
   font-family: 'Solway', serif;
   color: #4B5C6B;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.1rem;
 }
 
 .board-listes .liste-header-title-input {
   font-family: 'Solway', serif;
   color: #4B5C6B;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.1rem;
   max-width: 100%;
   border: none;
@@ -657,7 +655,7 @@ a {
   font-family: 'Solway', serif;
   color: #4B5C6B;
   font-size: 0.8rem;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 0.2rem;
 }
 
@@ -812,19 +810,17 @@ a {
   text-align: right;
 }
 
+.menu-burger #burger-open:hover,
+.menu-burger #burger-close:hover {
+  cursor: pointer;
+}
+
 .menu-burger #burger-open {
   margin-left: -0.6rem;
 }
 
 .menu-burger #burger-close {
   display: none;
-}
-
-.menu-burger .burger-nav a {
-  color: #FBFBF9;
-  text-decoration: none;
-  display: block;
-  text-align: left;
 }
 
 .menu-burger .burger-nav {
@@ -837,7 +833,7 @@ a {
   margin-bottom: 1rem;
   font-family: 'Solway', serif;
   text-align: center;
-  color: #F7D02F;
+  color: #ffeea2;
 }
 
 .menu-burger .menu-boards-list {
@@ -896,7 +892,7 @@ a {
 
 .menu-burger .modify-table-backgrounds .selected-bg,
 .menu-burger .new-table-backgrounds .selected-bg {
-  outline: solid 2px #F7D02F;
+  outline: solid 2px #ffeea2;
 }
 
 .menu-burger .error-message {
@@ -914,7 +910,7 @@ a {
 .menu-burger .fa-paint-brush:hover,
 .menu-burger .fa-trash-alt:hover {
   cursor: pointer;
-  color: #F7D02F;
+  color: #83367B;
 }
 
 .menu-burger .fa-trash-alt {
@@ -944,7 +940,7 @@ a {
 .menu-burger .burger-liste {
   font-size: 1.2rem;
   font-family: 'Solway', serif;
-  color: #F7D02F;
+  color: #ffeea2;
 }
 
 .menu-burger .edit-board, .menu-burger .new-board {
@@ -985,7 +981,7 @@ a {
 .menu-burger .label-modify-table {
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
-  color: #F7D02F;
+  color: #ffeea2;
 }
 
 .menu-burger .edit-board-colorpicker,
@@ -1009,7 +1005,7 @@ a {
 }
 
 .menu-burger .board-abord:hover {
-  color: #F7D02F;
+  color: #ffeea2;
   cursor: pointer;
 }
 
@@ -1030,7 +1026,7 @@ a {
 .delete-board-confirm-title {
   font-family: 'Solway', serif;
   font-size: 1.3rem;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 1rem;
 }
 
@@ -1075,7 +1071,7 @@ a {
   font-family: 'Solway', serif;
   text-align: center;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.5rem;
   color: #83367B;
   margin: 0 1rem 1.5rem;
@@ -1193,7 +1189,7 @@ a {
 }
 
 .signin .background, .signup .background, .registered .background, .profile .background {
-  background-image: url(../images/bkgd.jpeg);
+  background-image: url(../images/background.jpg);
   opacity: 0.7;
 }
 
@@ -1210,7 +1206,7 @@ a {
 .mentions .background,
 .rgpd .background,
 .not_found .background {
-  background-image: url(../images/bkgd.jpeg);
+  background-image: url(../images/background.jpg);
   opacity: 0.7;
 }
 
@@ -1240,7 +1236,7 @@ a {
   color: #83367B;
   font-family: 'Solway', serif;
   letter-spacing: .1rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .about-text h2,
@@ -1323,7 +1319,7 @@ a {
   font-size: 10rem;
   text-align: center;
   margin: 5rem;
-  color: #F7D02F;
+  color: #ffeea2;
 }
 
 .about-text .compass i:hover,
