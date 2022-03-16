@@ -726,15 +726,26 @@ a {
 }
 
 .board-listes .card .edit-card-form .sm-btn {
+  /*display: block;
+                    margin: 0.3rem auto;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 0.7rem;
+                    border-radius: 3px;
+                    border: solid 2px $grey-color;
+                    color: $grey-color;
+                    line-height: normal;
+                    background-color:  #4B5C6B30;
+                    */
   display: block;
   margin: 0.3rem auto;
   font-family: 'Poppins', sans-serif;
+  padding: 0.3rem 0.5rem;
   font-size: 0.7rem;
   border-radius: 3px;
-  border: solid 2px #4B5C6B;
-  color: #4B5C6B;
+  border: solid 2px #83367B;
+  color: #83367B;
+  font-weight: 700;
   line-height: normal;
-  background-color: #4B5C6B30;
 }
 
 .board-listes .card .edit-card-form .sm-btn:hover {
@@ -763,15 +774,25 @@ a {
 }
 
 .board-listes .card .sm-btn {
+  /*display: block;
+                margin: 0.3rem auto;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.7rem;
+                border-radius: 3px;
+                border: solid 2px $grey-color;
+                color: $grey-color;
+                line-height: normal;
+                background-color:  #4B5C6B30;*/
   display: block;
   margin: 0.3rem auto;
   font-family: 'Poppins', sans-serif;
+  padding: 0.3rem 0.5rem;
   font-size: 0.7rem;
   border-radius: 3px;
-  border: solid 2px #4B5C6B;
-  color: #4B5C6B;
+  border: solid 2px #83367B;
+  color: #83367B;
+  font-weight: 700;
   line-height: normal;
-  background-color: #4B5C6B30;
 }
 
 .board-listes .card .sm-btn:hover {
@@ -944,7 +965,7 @@ a {
 .menu-burger .burger-liste {
   font-size: 1.2rem;
   font-family: 'Solway', serif;
-  color: orange;
+  color: orange-color;
 }
 
 .menu-burger .edit-board, .menu-burger .new-board {
@@ -985,7 +1006,7 @@ a {
 .menu-burger .label-modify-table {
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
-  color: orange;
+  color: orange-color;
 }
 
 .menu-burger .edit-board-colorpicker,

@@ -636,7 +636,7 @@ a {
                 }
 
                 .sm-btn {
-                    display: block;
+                    /*display: block;
                     margin: 0.3rem auto;
                     font-family: 'Poppins', sans-serif;
                     font-size: 0.7rem;
@@ -645,6 +645,18 @@ a {
                     color: $grey-color;
                     line-height: normal;
                     background-color:  #{$grey-color}30;
+                    */
+
+                    display: block;
+                    margin: 0.3rem auto;
+                    font-family: 'Poppins', sans-serif;
+                    padding: 0.3rem 0.5rem;
+                    font-size: 0.7rem;
+                    border-radius: 3px;
+                    border: solid 2px $pink-color;
+                    color: $pink-color;
+                    font-weight: 700;
+                    line-height: normal;
 
                     &:hover {
                         cursor: pointer;
@@ -671,7 +683,7 @@ a {
                 }
             }
             .sm-btn {
-                display: block;
+                /*display: block;
                 margin: 0.3rem auto;
                 font-family: 'Poppins', sans-serif;
                 font-size: 0.7rem;
@@ -679,7 +691,18 @@ a {
                 border: solid 2px $grey-color;
                 color: $grey-color;
                 line-height: normal;
-                background-color:  #{$grey-color}30;
+                background-color:  #{$grey-color}30;*/
+
+                display: block;
+                margin: 0.3rem auto;
+                font-family: 'Poppins', sans-serif;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.7rem;
+                border-radius: 3px;
+                border: solid 2px $pink-color;
+                color: $pink-color;
+                font-weight: 700;
+                line-height: normal;
 
                 &:hover {
                     cursor: pointer;
@@ -845,7 +868,7 @@ a {
     .burger-liste{
         font-size: 1.2rem;
         font-family: 'Solway', serif;
-        color:orange;
+        color:orange-color;
     }
 
     .edit-board, .new-board {
@@ -881,7 +904,7 @@ a {
     .label-modify-table{
         font-size:0.8rem;
         font-family: 'Poppins', sans-serif;
-        color:orange; 
+        color:orange-color; 
     }
 
     .edit-board-colorpicker,
