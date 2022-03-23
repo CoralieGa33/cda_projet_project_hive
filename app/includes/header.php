@@ -19,7 +19,7 @@
 <body>
     <header class="header">
         <div class="header-logo">
-            <a href="?"><img src="images/hive_logo_light.png" alt="Logo Project Hive"></a>
+            <a href="?"><img src="images/hive_logo_light.svg" alt="Logo Project Hive"></a>
         </div>
         <div class="header-navigation">
         <?php
