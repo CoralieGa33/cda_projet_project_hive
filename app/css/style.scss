@@ -232,8 +232,10 @@ a {
             margin: auto 0.3rem;
         }
         a:hover i {
-            // TODO : trouver une autre couleur
-            color: $orange-color;
+            // Proposition de nouvelle couleur 
+           //color: $grey-color;
+           //color: #3B1837;
+           color:#E05CD3;
         }
     }
     
@@ -765,7 +767,9 @@ a {
             
             &:hover{
                 background-color: $light-color;
-                color:$grey-color;
+                //proposition :
+                //color:$grey-color;
+                color:#E05CD3;
                 cursor: default;
             }
         }

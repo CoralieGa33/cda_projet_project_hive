@@ -258,7 +258,7 @@ a {
 }
 
 .footer-favicons a:hover i {
-  color: #ffeea2;
+  color: #E05CD3;
 }
 
 .footer a:visited {
@@ -851,7 +851,7 @@ a {
 
 .menu-burger .menu-boards-list li:hover {
   background-color: #FBFBF9;
-  color: #4B5C6B;
+  color: #E05CD3;
   cursor: default;
 }
 
