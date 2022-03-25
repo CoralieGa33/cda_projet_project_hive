@@ -92,7 +92,7 @@ a {
 .btn:hover {
   cursor: pointer;
   background-color: #83367B;
-  color: #ffeea2;
+  color: #FFEEA2;
 }
 
 .is-hidden {
@@ -258,7 +258,24 @@ a {
 }
 
 .footer-favicons a:hover i {
-  color: #ffeea2;
+  color: #83367B;
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .footer a:visited {
@@ -833,7 +850,7 @@ a {
   margin-bottom: 1rem;
   font-family: 'Solway', serif;
   text-align: center;
-  color: #ffeea2;
+  color: #FFEEA2;
 }
 
 .menu-burger .menu-boards-list {
@@ -851,7 +868,7 @@ a {
 
 .menu-burger .menu-boards-list li:hover {
   background-color: #FBFBF9;
-  color: #4B5C6B;
+  color: #83367B;
   cursor: default;
 }
 
@@ -892,7 +909,7 @@ a {
 
 .menu-burger .modify-table-backgrounds .selected-bg,
 .menu-burger .new-table-backgrounds .selected-bg {
-  outline: solid 2px #ffeea2;
+  outline: solid 2px #FFEEA2;
 }
 
 .menu-burger .error-message {
@@ -910,7 +927,23 @@ a {
 .menu-burger .fa-paint-brush:hover,
 .menu-burger .fa-trash-alt:hover {
   cursor: pointer;
-  color: #83367B;
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .menu-burger .fa-trash-alt {
@@ -940,7 +973,7 @@ a {
 .menu-burger .burger-liste {
   font-size: 1.2rem;
   font-family: 'Solway', serif;
-  color: #ffeea2;
+  color: #FFEEA2;
 }
 
 .menu-burger .edit-board, .menu-burger .new-board {
@@ -981,7 +1014,7 @@ a {
 .menu-burger .label-modify-table {
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
-  color: #ffeea2;
+  color: #FFEEA2;
 }
 
 .menu-burger .edit-board-colorpicker,
@@ -1005,7 +1038,7 @@ a {
 }
 
 .menu-burger .board-abord:hover {
-  color: #ffeea2;
+  color: #FFEEA2;
   cursor: pointer;
 }
 
@@ -1317,7 +1350,7 @@ a {
   font-size: 10rem;
   text-align: center;
   margin: 5rem;
-  color: #ffeea2;
+  color: #FFEEA2;
 }
 
 .about-text .compass i:hover,
