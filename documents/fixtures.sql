@@ -8,12 +8,12 @@ INSERT INTO user (`email`, `username`, `password`, `role`, `createdAt`, `updated
 ('testeur3@testeur3.fr', 'testeur3', '$2y$10$GtPKSmaiJVR6ky6Dnm17MupmCt9x3GgkptnXFXrGm5flfTWzqdUEu', 'registered', '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 INSERT INTO background (`imageUrl`, `createdAt`, `updatedAt`) VALUES
-("https://picsum.photos/id/1002/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1019/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1016/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1018/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1021/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
-("https://picsum.photos/id/1028/945/630", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
+("https://cdn.pixabay.com/photo/2015/11/12/05/49/abstract-1039702_960_720.jpg", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://cdn.pixabay.com/photo/2022/02/24/08/35/background-7032001_960_720.jpg", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://cdn.pixabay.com/photo/2022/02/24/08/35/background-7032000_960_720.jpg", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://cdn.pixabay.com/photo/2022/02/24/08/36/background-7032009_960_720.jpg", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://cdn.pixabay.com/photo/2021/07/07/10/04/background-6393927_960_720.jpg", '2021-12-01 14:31:25', '2021-12-01 14:31:25'),
+("https://cdn.pixabay.com/photo/2022/02/24/08/36/background-7032008_960_720.jpg", '2021-12-01 14:31:25', '2021-12-01 14:31:25');
 
 
 INSERT INTO board (`title`, `color`, `background_id`, `owner_id`, `createdAt`, `updatedAt`) VALUES
