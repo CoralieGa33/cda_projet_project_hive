@@ -132,6 +132,10 @@ a {
   height: 100%;
 }
 
+.header-logo .logo-small {
+  display: none;
+}
+
 .header-navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -139,6 +143,10 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.header-navigation .logout-small {
+  display: none;
 }
 
 .header-navigation .btn, .header-navigation .header-logout {
@@ -634,7 +642,7 @@ a {
 
 .board-listes .card {
   padding: 0.5rem;
-  border: 1px solid #4B5C6B;
+  border: 1px solid #83367B;
   border-radius: 3px;
   margin-top: 0.5rem;
   background-color: #FBFBF9;
@@ -722,6 +730,17 @@ a {
   margin: 0.2rem auto;
 }
 
+.board-listes .card .edit-card-form input, .board-listes .card .edit-card-form textarea {
+  border: solid 1px #83367B;
+  border-radius: 5px;
+}
+
+.board-listes .card .edit-card-form input:focus-visible, .board-listes .card .edit-card-form textarea:focus-visible {
+  outline: solid 1px #83367B;
+  -webkit-box-shadow: inset 0 0 5px #83367B;
+          box-shadow: inset 0 0 5px #83367B;
+}
+
 .board-listes .card .edit-card-form .edit-color {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -733,28 +752,10 @@ a {
 
 .board-listes .card .edit-card-form .edit-color label {
   font-family: 'Poppins', sans-serif;
-  color: #4B5C6B;
+  color: #83367B;
   font-size: 0.7rem;
   margin-left: 0.3rem;
   letter-spacing: normal;
-}
-
-.board-listes .card .edit-card-form .sm-btn {
-  display: block;
-  margin: 0.3rem auto;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.7rem;
-  border-radius: 3px;
-  border: solid 2px #4B5C6B;
-  color: #4B5C6B;
-  line-height: normal;
-  background-color: #4B5C6B30;
-}
-
-.board-listes .card .edit-card-form .sm-btn:hover {
-  cursor: pointer;
-  background-color: #4B5C6B;
-  color: #FBFBF9;
 }
 
 .board-listes .card .edit-card-form .abord-btn {
@@ -765,7 +766,7 @@ a {
   margin: 0.2rem auto;
   background: none;
   border: none;
-  color: #4B5C6B;
+  color: #83367B;
   font-family: 'Poppins', sans-serif;
   font-size: 0.7rem;
 }
@@ -780,17 +781,18 @@ a {
   display: block;
   margin: 0.3rem auto;
   font-family: 'Poppins', sans-serif;
+  padding: 0.3rem 0.5rem;
   font-size: 0.7rem;
   border-radius: 3px;
-  border: solid 2px #4B5C6B;
-  color: #4B5C6B;
+  border: solid 2px #83367B;
+  color: #83367B;
+  font-weight: 700;
   line-height: normal;
-  background-color: #4B5C6B30;
 }
 
 .board-listes .card .sm-btn:hover {
   cursor: pointer;
-  background-color: #4B5C6B;
+  background-color: #83367B;
   color: #FBFBF9;
 }
 
@@ -1464,8 +1466,8 @@ a {
 
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 768px) {
-  .header-logo {
-    width: 18rem;
+  .header .btn {
+    font-size: 0.9rem;
   }
   .footer {
     padding: 0.5rem 1rem 0.5rem;
@@ -1484,6 +1486,12 @@ a {
 
 /* Small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
+  .header .logo-large {
+    display: none;
+  }
+  .header .logo-small {
+    display: block;
+  }
   .signup, .signin, .profile, .editpass, .registered {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1583,7 +1591,23 @@ a {
 /* Media queries pour le footer et le header */
 @media screen and (max-device-width: 480px) {
   .header .btn, .footer .btn {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .header .logout-large {
+    display: none;
+  }
+  .header .logout-small {
+    display: block;
+  }
+  .header-navigation .header-icon-label {
+    font-size: 0.7rem;
+  }
+  .header-navigation .header-logout {
+    margin: 1rem 0 1rem 1rem;
+  }
+  .header-navigation a {
+    margin-right: auto;
+    margin-left: 1.5rem;
   }
   .board .liste {
     width: 90%;

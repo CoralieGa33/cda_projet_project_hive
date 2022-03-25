@@ -42,10 +42,6 @@ let app = {
         $('.board-listes').on('click', '.delete-liste', app.handleConfirmDeleteListe);
         $('.board-listes').on('click', '.delete-card', app.handleDeleteCard);
 
-        $(".communication").click(function(){
-            $('.social-icons').toggleClass('open');
-        });
-
         // l'élément n'existe pas lors de l'init, donc pas possible de lui déposer un écouteur directement
         // => je pose l'écouteur sur le container, qui lui écoutera son enfant (donné en second paramètre)
     },
@@ -938,3 +934,8 @@ let app = {
 if(window.location.search === "?board") {
     document.addEventListener('DOMContentLoaded', app.init);
 }
+
+//Pour afficher les icones réseaux sociaux en mode mobile
+$(".communication").click(function(){
+    $('.social-icons').toggleClass('open');
+});

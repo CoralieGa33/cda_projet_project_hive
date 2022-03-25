@@ -19,7 +19,10 @@
 <body>
     <header class="header">
         <div class="header-logo">
-            <a href="?"><img src="images/hive_logo_light.svg" alt="Logo Project Hive"></a>
+            <a href="?">
+                <img src="images/hive_logo_light.svg" alt="Logo Project Hive" class="logo-large">
+                <img src="images/hive_logo_mini.svg" alt="Logo Project Hive" class="logo-small">
+            </a>
         </div>
         <div class="header-navigation">
         <?php
@@ -27,7 +30,8 @@
                 ?>
                 <a href="?profile" class="header-user"><i class="fas fa-user-circle"></i><p class="header-icon-label">Profil</p></a>
                 <a href="?board" class="header-board"><i class="fas fa-clipboard-list"></i><p class="header-icon-label">Tableaux</p></a>
-                <a href="?logout" class="btn header-logout">Se déconnecter</a>
+                <a href="?logout" class="btn header-logout logout-large">Se déconnecter</a>
+                <a href="?logout" class="header-logout logout-small"><i class="fas fa-sign-out-alt"></i><p class="header-icon-label">Se déconnecter</p></a>
                 <?php
             } else {
                 ?>
