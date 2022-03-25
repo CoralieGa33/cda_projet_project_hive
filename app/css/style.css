@@ -125,7 +125,7 @@ a {
 }
 
 .header-logo {
-  height: 4rem;
+  height: 3.5rem;
 }
 
 .header-logo img {
@@ -192,7 +192,7 @@ a {
 }
 
 .header-navigation .fas:visited {
-  color: #5d51f7;
+  color: #83367B;
 }
 
 .header-navigation .header-icon-label {
