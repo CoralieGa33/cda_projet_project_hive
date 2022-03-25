@@ -118,7 +118,7 @@ a {
   background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
   height: 4.5rem;
-  border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
+  border-bottom: 0.06rem solid rgba(131, 54, 123, 0.5);
   position: fixed;
   top: 0;
   width: 100%;
@@ -213,7 +213,7 @@ a {
   background-color: #FBFBF9;
   font-family: 'Poppins', sans-serif;
   color: #83367B;
-  border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
+  border-top: 0.06rem solid rgba(131, 54, 123, 0.5);
   height: 2.2rem;
   position: fixed;
   bottom: 0;
@@ -258,7 +258,6 @@ a {
 }
 
 .footer-favicons a:hover i {
-  color: #83367B;
   -webkit-animation: pulse 2s infinite;
           animation: pulse 2s infinite;
 }
@@ -1000,7 +999,7 @@ a {
 
 .menu-burger .btn:hover {
   background-color: #FBFBF9;
-  color: #4B5C6B;
+  color: #83367B;
 }
 
 .menu-burger .board-title-input,

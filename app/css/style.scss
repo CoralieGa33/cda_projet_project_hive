@@ -121,7 +121,7 @@ a {
     background-color:$light-color;
     font-family: 'Poppins', sans-serif;
     height: 4.5rem;
-    border-bottom: 0.06rem solid rgba(109, 12, 206, 0.5);
+    border-bottom: 0.06rem solid rgba(131, 54, 123, 0.5);
     position: fixed;
     top: 0;
     width: 100%;
@@ -194,7 +194,7 @@ a {
     background-color:$light-color;
     font-family: 'Poppins', sans-serif;
     color:$pink-color;
-    border-top: 0.06rem solid rgba(109, 12, 206, 0.5);
+    border-top: 0.06rem solid rgba(131, 54, 123, 0.5);
     height: 2.2rem;
     position: fixed;
     bottom:0;
@@ -233,10 +233,7 @@ a {
         }
         a:hover i {
             // Ajout de l'animation au hover
-           color: $pink-color;
-           //color: #3B1837;
-           //color:#E05CD3;
-           animation: pulse 2s infinite;
+            animation: pulse 2s infinite;
 
                 @keyframes pulse {
                     0% {
@@ -782,11 +779,7 @@ a {
             
             &:hover{
                 background-color: $light-color;
-                //ancienne version
-                //color:$grey-color;
-                //new version
                 color:$pink-color;
-                //color:#E05CD3;
                 cursor: default;
             }
         }
@@ -835,9 +828,7 @@ a {
         
         &:hover {
             cursor: pointer;
-            // TODO : trouver une autre couleur
             //ajout animation:
-            //color: $pink-color;
             animation: pulse 2s infinite;
 
                 @keyframes pulse {
@@ -904,7 +895,7 @@ a {
 
     .btn:hover{
         background-color:$light-color;
-        color:$grey-color;
+        color:$pink-color;
     }
 
     .board-title-input,
